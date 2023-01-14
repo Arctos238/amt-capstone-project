@@ -1,6 +1,7 @@
 import React from "react";
 
 import Card from "../UI/Card";
+import Button from "../UI/Button";
 import "./LoginForm.css";
 
 const LoginForm = () => {
@@ -35,7 +36,7 @@ const LoginForm = () => {
         </Card>
       </div>
       <div className="login-button-container">
-        <button className="login-button" type="submit">Login</button>
+        <Button className="button login-button" type="submit">Login</Button>
       </div>
     </form>
   );
