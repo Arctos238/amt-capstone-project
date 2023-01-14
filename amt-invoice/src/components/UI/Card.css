@@ -1,0 +1,17 @@
+.card {
+    border-radius: 15px;
+    background-color: #05516A;
+    border: 5px;
+    width: 50%;
+    margin:auto;
+    padding:10px;
+    
+}
+
+.form_floating {
+    position: relative;
+}
+
+.form_floating ::after, ::before {
+    box-sizing: border-box;
+}

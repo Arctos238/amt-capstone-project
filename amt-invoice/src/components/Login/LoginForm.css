@@ -1,0 +1,56 @@
+input[type="text"],
+textarea,
+textarea:focus {
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  width: 50%;
+  outline: none;
+  color: white;
+  font-size: 120%;
+}
+
+label {
+  color: white;
+  display: inline-block;
+  width: auto;
+  text-align: left;
+  font-size: 125%;
+  padding: 5px;
+}
+
+div {
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+}
+
+div .login_contents {
+  margin: auto;
+  padding: 15% 0;
+}
+
+button.login-button {
+  background-color: #E0AA3E;
+  border: none;
+  font-size: 125%;
+  color: #ffffff;
+  border-radius: 30px;
+  width: 20%;
+  padding: 10px;
+  margin-left: 40%;
+}
+
+button.login-button:hover {
+  cursor: pointer;
+  background-color: #fabd44;
+}
+
+button:active {
+  outline: none;
+  border: none;
+}
+
+button:focus {
+  outline: 0;
+}
