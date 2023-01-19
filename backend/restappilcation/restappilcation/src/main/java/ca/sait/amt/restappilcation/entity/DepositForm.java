@@ -1,11 +1,15 @@
 package ca.sait.amt.restappilcation.entity;
-// Generated Jan. 19, 2023, 2:36:38 p.m. by Hibernate Tools 4.3.6.Final
+// Generated Jan. 19, 2023, 2:55:38 p.m. by Hibernate Tools 4.3.6.Final
+
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -16,9 +20,9 @@ import jakarta.persistence.Table;
 public class DepositForm implements java.io.Serializable {
 
 	private Integer depositFormId;
+	private Project project;
 	private int depositFormStatus;
 	private double depositAmount;
-	private Integer projectId;
 
 	public DepositForm() {
 	}
@@ -28,14 +32,14 @@ public class DepositForm implements java.io.Serializable {
 		this.depositAmount = depositAmount;
 	}
 
-	public DepositForm(int depositFormStatus, double depositAmount, Integer projectId) {
+	public DepositForm(Project project, int depositFormStatus, double depositAmount) {
+		this.project = project;
 		this.depositFormStatus = depositFormStatus;
 		this.depositAmount = depositAmount;
-		this.projectId = projectId;
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "deposit_form_id", unique = true, nullable = false)
 	public Integer getDepositFormId() {
@@ -44,6 +48,16 @@ public class DepositForm implements java.io.Serializable {
 
 	public void setDepositFormId(Integer depositFormId) {
 		this.depositFormId = depositFormId;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "project_id")
+	public Project getProject() {
+		return this.project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 	@Column(name = "deposit_form_status", nullable = false)
@@ -62,15 +76,6 @@ public class DepositForm implements java.io.Serializable {
 
 	public void setDepositAmount(double depositAmount) {
 		this.depositAmount = depositAmount;
-	}
-
-	@Column(name = "project_id")
-	public Integer getProjectId() {
-		return this.projectId;
-	}
-
-	public void setProjectId(Integer projectId) {
-		this.projectId = projectId;
 	}
 
 }

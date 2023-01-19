@@ -1,14 +1,19 @@
 package ca.sait.amt.restappilcation.entity;
-// Generated Jan. 19, 2023, 2:36:38 p.m. by Hibernate Tools 4.3.6.Final
+// Generated Jan. 19, 2023, 2:55:38 p.m. by Hibernate Tools 4.3.6.Final
+
+import static jakarta.persistence.GenerationType.IDENTITY;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -22,18 +27,20 @@ public class Client implements java.io.Serializable {
 	private ClientContact clientContact;
 	private String clientFirstName;
 	private String clientLastName;
+	private Set<Project> projects = new HashSet<Project>(0);
 
 	public Client() {
 	}
 
-	public Client(ClientContact clientContact, String clientFirstName, String clientLastName) {
+	public Client(ClientContact clientContact, String clientFirstName, String clientLastName, Set<Project> projects) {
 		this.clientContact = clientContact;
 		this.clientFirstName = clientFirstName;
 		this.clientLastName = clientLastName;
+		this.projects = projects;
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "client_id", unique = true, nullable = false)
 	public Integer getClientId() {
@@ -70,6 +77,15 @@ public class Client implements java.io.Serializable {
 
 	public void setClientLastName(String clientLastName) {
 		this.clientLastName = clientLastName;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+	public Set<Project> getProjects() {
+		return this.projects;
+	}
+
+	public void setProjects(Set<Project> projects) {
+		this.projects = projects;
 	}
 
 }

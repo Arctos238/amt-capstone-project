@@ -6,4 +6,12 @@
   <table-filter match-catalog="amt" match-name="client_contact"/>
   <table-filter match-catalog="amt" match-name="deposit_form"/>
   <table-filter match-catalog="amt" match-name="employee"/>
+  <table-filter match-catalog="amt" match-name="image"/>
+  <table-filter match-catalog="amt" match-name="invoice"/>
+  <table-filter match-catalog="amt" match-name="invoice_item"/>
+  <table-filter match-catalog="amt" match-name="project"/>
+  <table-filter match-catalog="amt" match-name="purchase_order"/>
+  <table-filter match-catalog="amt" match-name="purchase_order_item"/>
+  <table-filter match-catalog="amt" match-name="quote"/>
+  <table-filter match-catalog="amt" match-name="role"/>
 </hibernate-reverse-engineering>

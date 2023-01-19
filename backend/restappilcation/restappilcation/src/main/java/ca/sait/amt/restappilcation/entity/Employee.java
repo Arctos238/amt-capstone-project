@@ -1,12 +1,15 @@
 package ca.sait.amt.restappilcation.entity;
-// Generated Jan. 19, 2023, 2:36:38 p.m. by Hibernate Tools 4.3.6.Final
+// Generated Jan. 19, 2023, 2:55:38 p.m. by Hibernate Tools 4.3.6.Final
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -17,11 +20,11 @@ import jakarta.persistence.Table;
 public class Employee implements java.io.Serializable {
 
 	private Integer employeeId;
+	private Role role;
 	private String employeeFirstName;
 	private String employeeLastName;
 	private String employeeUsername;
 	private String employeePassword;
-	private Integer roleId;
 
 	public Employee() {
 	}
@@ -32,17 +35,18 @@ public class Employee implements java.io.Serializable {
 		this.employeeUsername = employeeUsername;
 	}
 
-	public Employee(String employeeFirstName, String employeeLastName, String employeeUsername, String employeePassword,
-			Integer roleId) {
+	public Employee(Role role, String employeeFirstName, String employeeLastName, String employeeUsername,
+			String employeePassword) {
+		this.role = role;
 		this.employeeFirstName = employeeFirstName;
 		this.employeeLastName = employeeLastName;
 		this.employeeUsername = employeeUsername;
 		this.employeePassword = employeePassword;
-		this.roleId = roleId;
 	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
+
 	@Column(name = "employee_id", unique = true, nullable = false)
 	public Integer getEmployeeId() {
 		return this.employeeId;
@@ -50,6 +54,16 @@ public class Employee implements java.io.Serializable {
 
 	public void setEmployeeId(Integer employeeId) {
 		this.employeeId = employeeId;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "role_id")
+	public Role getRole() {
+		return this.role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	@Column(name = "employee_first_name", nullable = false, length = 22)
@@ -86,15 +100,6 @@ public class Employee implements java.io.Serializable {
 
 	public void setEmployeePassword(String employeePassword) {
 		this.employeePassword = employeePassword;
-	}
-
-	@Column(name = "role_id")
-	public Integer getRoleId() {
-		return this.roleId;
-	}
-
-	public void setRoleId(Integer roleId) {
-		this.roleId = roleId;
 	}
 
 }

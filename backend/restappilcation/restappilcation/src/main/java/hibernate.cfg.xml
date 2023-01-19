@@ -13,9 +13,17 @@
         <property name="hibernate.hbm2ddl.auto">none</property>
         <property name="hibernate.search.autoregister_listeners">true</property>
         <property name="hibernate.validator.apply_to_ddl">false</property>
+        <mapping class="ca.sait.amt.restappilcation.entity.PurchaseOrderItem" />
         <mapping class="ca.sait.amt.restappilcation.entity.DepositForm" />
         <mapping class="ca.sait.amt.restappilcation.entity.Employee" />
+        <mapping class="ca.sait.amt.restappilcation.entity.Role" />
+        <mapping class="ca.sait.amt.restappilcation.entity.PurchaseOrder" />
+        <mapping class="ca.sait.amt.restappilcation.entity.Quote" />
         <mapping class="ca.sait.amt.restappilcation.entity.Client" />
+        <mapping class="ca.sait.amt.restappilcation.entity.Invoice" />
         <mapping class="ca.sait.amt.restappilcation.entity.ClientContact" />
+        <mapping class="ca.sait.amt.restappilcation.entity.InvoiceItem" />
+        <mapping class="ca.sait.amt.restappilcation.entity.Project" />
+        <mapping class="ca.sait.amt.restappilcation.entity.Image" />
     </session-factory>
 </hibernate-configuration>
