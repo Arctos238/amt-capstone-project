@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="amt" match-name="client"/>
+  <table-filter match-catalog="amt" match-name="client_contact"/>
+  <table-filter match-catalog="amt" match-name="deposit_form"/>
+  <table-filter match-catalog="amt" match-name="employee"/>
+  <table-filter match-catalog="amt" match-name="image"/>
+  <table-filter match-catalog="amt" match-name="invoice"/>
+  <table-filter match-catalog="amt" match-name="invoice_item"/>
+  <table-filter match-catalog="amt" match-name="project"/>
+  <table-filter match-catalog="amt" match-name="purchase_order"/>
+  <table-filter match-catalog="amt" match-name="purchase_order_item"/>
+  <table-filter match-catalog="amt" match-name="quote"/>
+  <table-filter match-catalog="amt" match-name="role"/>
+</hibernate-reverse-engineering>

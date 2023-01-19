@@ -23,7 +23,8 @@ DROP TABLE IF EXISTS `instructor`;
 
 CREATE TABLE `client` (
   `client_id` int(11) NOT NULL AUTO_INCREMENT,
-  `client_name` varchar(45) DEFAULT NULL,
+  `client_first_name` varchar(45) DEFAULT NULL,
+  `client_last_name` varchar(45) DEFAULT NULL,
   `client_contact_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`client_id`),
   KEY `FK_CLIENT_CONTACT` (`client_contact_id`),
@@ -147,13 +148,12 @@ CREATE TABLE role (
    KEY FK_ROLE_ID (role_id)
 ) ;
 
-select * from amt_admin.role;
-
 DROP TABLE IF EXISTS employee;
 
 CREATE TABLE employee (
   employee_id int(5) NOT NULL AUTO_INCREMENT,
-  employee_name varchar(22) NOT NULL,
+  employee_first_name varchar(22) NOT NULL,
+  employee_last_name varchar(22) NOT NULL,
   employee_username varchar(12) NOT NULL,
   employee_password varchar(50),
   role_id int(5),
@@ -164,3 +164,7 @@ CREATE TABLE employee (
 ) ;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+insert into employee (employee_id, employee_name, employee_username, employee_password, role_id) values (1, 'Riannon', 'Huddy', '0ECsEC0NTXv', 1);
+
+
