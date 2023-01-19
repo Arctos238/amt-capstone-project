@@ -1,4 +1,6 @@
 import React from "react";
+import {Link} from "react-router-dom";
+
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
@@ -35,9 +37,11 @@ const LoginForm = () => {
           />
         </Card>
       </div>
+      <Link to="/home">
       <div className="login-button-container">
         <Button className="button login-button" type="submit">Login</Button>
       </div>
+      </Link>
     </form>
   );
 };
