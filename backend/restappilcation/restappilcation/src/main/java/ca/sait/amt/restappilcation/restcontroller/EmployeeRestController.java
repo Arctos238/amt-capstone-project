@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.sait.amt.restappilcation.entity.Employee;
+import ca.sait.amt.restappilcation.exceptions.EmployeeNotFoundException;
 import ca.sait.amt.restappilcation.service.EmployeeService;
 
 @RestController
@@ -31,12 +32,23 @@ public class EmployeeRestController {
 		return employeeService.findAll();
 	}
 	
-	@GetMapping("/employees/{employeeId}")
-	public Employee getEmployees(@PathVariable int employeeId) {
-		Employee employee = employeeService.findById(employeeId);;
+//	@GetMapping("/employees/{employeeId}")
+//	public Employee getEmployees(@PathVariable int employeeId) {
+//		Employee employee = employeeService.findById(employeeId);;
+//		
+//		if (employee == null) {
+//			throw new RuntimeException("Employee id not found - " + employeeId);
+//		};
+//		
+//		return employee;
+//	}
+	
+	@GetMapping("/employees/{employeeUsername}")
+	public Employee getEmployees(@PathVariable String employeeUsername) {
+		Employee employee = employeeService.findByUsername(employeeUsername);;
 		
 		if (employee == null) {
-			throw new RuntimeException("Employee id not found - " + employeeId);
+			throw new EmployeeNotFoundException("Employee id not found - " + employeeUsername);
 		};
 		
 		return employee;
@@ -52,13 +64,13 @@ public class EmployeeRestController {
 		employeeService.saveEmployee(employee);
 	}
 	
-	@DeleteMapping("/employees/{employeeId}")
-	public void deleteEmployee(@PathVariable int employeeId) {
-		if (employeeService.findById(employeeId) == null) {
-			throw new RuntimeException("Employee id not found - " + employeeId);
+	@DeleteMapping("/employees/{employeeUsername}")
+	public void deleteEmployee(@PathVariable String employeeUsername) {
+		if (employeeService.findByUsername(employeeUsername) == null) {
+			throw new EmployeeNotFoundException("Employee id not found - " + employeeUsername);
 		};
 		
-		employeeService.deleteById(employeeId);
+		employeeService.deleteByUsername(employeeUsername);
 	}
 	
 }
