@@ -1,8 +1,8 @@
-DROP SCHEMA IF EXISTS `amt_file_system_db`;
+DROP SCHEMA IF EXISTS `amt`;
 
-CREATE SCHEMA `amt_file_system_db`;
+CREATE SCHEMA `amt`;
 
-use `amt_file_system_db`;
+use `amt`;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -164,7 +164,4 @@ CREATE TABLE employee (
 ) ;
 
 SET FOREIGN_KEY_CHECKS = 1;
-
-insert into employee (employee_id, employee_name, employee_username, employee_password, role_id) values (1, 'Riannon', 'Huddy', '0ECsEC0NTXv', 1);
-
 
