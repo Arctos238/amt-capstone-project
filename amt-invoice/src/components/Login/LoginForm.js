@@ -1,6 +1,6 @@
 import React from "react";
 import { useRef } from "react";
-import { Link } from 'react-router-dom';
+import { Link, Redirect, Route } from 'react-router-dom';
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
@@ -22,14 +22,18 @@ const LoginForm = () => {
   function submitHandler(event) {
     event.preventDefault();
     const username = usernameRef.current.value;
-    const password = usernameRef.current.value;
+    const password = passwordRef.current.value;
 
     fetch('http://70.77.64.68:8083/api/employees/' + username).then(res => {
       return res.json();
     }).then(user => {
         if(password === user.employeePassword) {
-          sessionStorage.setItem("user" , user)
+          console.log("inside if")
+          sessionStorage.setItem("user" , user);
+          return <Redirect to="/home"/>;
         }
+
+
       }
       
 
