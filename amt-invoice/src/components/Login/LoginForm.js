@@ -1,16 +1,14 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useRef } from "react";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import "./LoginForm.css";
 
 const LoginForm = () => {
-  const [loadedData, setLoadedData] = useState([]);
   const usernameRef = useRef();
   const passwordRef = useRef();
-  const navigate = useNavigate();
+ 
 
   const usernameChangeHandler = (event) => {
     const usernameInput = event.target.value;
@@ -24,16 +22,22 @@ const LoginForm = () => {
     event.preventDefault();
     const username = usernameRef.current.value;
     const password = usernameRef.current.value;
-    fetch('http://192.168.11.1:8080/api/employees').then(res => {
+    let loggedIn = false;
+    fetch('http://70.77.64.68:8083/api/employees/admin').then(res => {
       return res.json();
     }).then(data => {
       for (const key in data) {
-        if (data[key].username == username)  {
-          if (data[key].password == password) {
-            navigate("/main");
+        console.log(data[key]);
+        if (data[key].employeeUsername == username)  {
+          if (data[key].employeePassword == password) {
+            console.log("Log in");
+            loggedIn = true;
           }
-        } 
         }
+      }
+      if (!loggedIn) {
+        console.log("Wrong authen");
+      }
       }
 
     );
