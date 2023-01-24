@@ -66,9 +66,11 @@ const LoginForm = () => {
           />
         </Card>
       </div>
+      <Link to="/home">
       <div className="login-button-container">
         <Button className="button login-button" type="submit">Login</Button>
       </div>
+      </Link>
     </form>
   );
 };
