@@ -1,5 +1,6 @@
 import React from "react";
 import { useRef } from "react";
+import { Link } from 'react-router-dom';
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
@@ -22,26 +23,19 @@ const LoginForm = () => {
     event.preventDefault();
     const username = usernameRef.current.value;
     const password = usernameRef.current.value;
-    let loggedIn = false;
-    fetch('http://70.77.64.68:8083/api/employees/admin').then(res => {
+
+    fetch('http://70.77.64.68:8083/api/employees/' + username).then(res => {
       return res.json();
-    }).then(data => {
-      for (const key in data) {
-        console.log(data[key]);
-        if (data[key].employeeUsername == username)  {
-          if (data[key].employeePassword == password) {
-            console.log("Log in");
-            loggedIn = true;
-          }
+    }).then(user => {
+        if(password === user.employeePassword) {
+          sessionStorage.setItem("user" , user)
         }
       }
-      if (!loggedIn) {
-        console.log("Wrong authen");
-      }
-      }
+      
 
     );
   }
+
   return (
     <form onSubmit={submitHandler}>
       <div>
@@ -66,11 +60,9 @@ const LoginForm = () => {
           />
         </Card>
       </div>
-      <Link to="/home">
       <div className="login-button-container">
-        <Button className="button login-button" type="submit">Login</Button>
+        <Button className="button login-button" type="submit" onClick="">Login</Button>
       </div>
-      </Link>
     </form>
   );
 };
