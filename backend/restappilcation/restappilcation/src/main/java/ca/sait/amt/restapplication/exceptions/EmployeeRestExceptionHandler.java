@@ -26,6 +26,6 @@ public class EmployeeRestExceptionHandler {
 		error.setStatus(HttpStatus.BAD_REQUEST.value());
 		error.setTimeStamp(System.currentTimeMillis());
 		
-		return new ResponseEntity<>(error , HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(error , HttpStatus.BAD_REQUEST);
 	}
 }
