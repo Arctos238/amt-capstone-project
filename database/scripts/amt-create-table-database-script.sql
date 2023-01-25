@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS `client_contact`;
 
 CREATE TABLE `client_contact` (
   `client_contact_id` int(11) NOT NULL AUTO_INCREMENT,
-  `personal_contact_number` int(10) DEFAULT NULL,
+  `personal_contact_number` varchar(14) DEFAULT NULL,
   `personal_email` varchar(45) DEFAULT NULL,
    `business_email` varchar(45) DEFAULT NULL,
    `client_id` int(11) DEFAULT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE `client_contact` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
-DROP TABLE IF EXISTS `instructor`;
+DROP TABLE IF EXISTS `client`;
 
 CREATE TABLE `client` (
   `client_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -149,6 +149,7 @@ CREATE TABLE role (
 ) ;
 
 DROP TABLE IF EXISTS employee;
+
 
 CREATE TABLE employee (
   employee_id int(5) NOT NULL AUTO_INCREMENT,

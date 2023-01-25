@@ -29,8 +29,9 @@ const LoginForm = () => {
     }).then(user => {
         if(password === user.employeePassword) {
           console.log("inside if")
-          sessionStorage.setItem("user" , user);
-          return <Redirect to="/home"/>;
+          sessionStorage.setItem("user" , JSON.stringify(user));
+          const activeUser = JSON.parse(sessionStorage.user);
+          console.log(activeUser.role);
         }
 
 
@@ -39,6 +40,7 @@ const LoginForm = () => {
 
     );
   }
+
 
   return (
     <form onSubmit={submitHandler}>

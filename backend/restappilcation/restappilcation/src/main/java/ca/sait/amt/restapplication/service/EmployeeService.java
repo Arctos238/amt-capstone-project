@@ -1,8 +1,8 @@
-package ca.sait.amt.restappilcation.service;
+package ca.sait.amt.restapplication.service;
 
 import java.util.List;
 
-import ca.sait.amt.restappilcation.entity.Employee;
+import ca.sait.amt.restapplication.entity.Employee;
 
 public interface EmployeeService {
 	

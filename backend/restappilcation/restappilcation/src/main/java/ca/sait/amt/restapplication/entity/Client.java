@@ -1,4 +1,4 @@
-package ca.sait.amt.restappilcation.entity;
+package ca.sait.amt.restapplication.entity;
 // Generated Jan. 19, 2023, 2:55:38 p.m. by Hibernate Tools 4.3.6.Final
 
 import static jakarta.persistence.GenerationType.IDENTITY;
@@ -51,7 +51,7 @@ public class Client implements java.io.Serializable {
 		this.clientId = clientId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "client_contact_id")
 	public ClientContact getClientContact() {
 		return this.clientContact;

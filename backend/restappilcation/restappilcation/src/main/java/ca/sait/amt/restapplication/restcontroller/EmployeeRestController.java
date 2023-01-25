@@ -1,4 +1,4 @@
-package ca.sait.amt.restappilcation.restcontroller;
+package ca.sait.amt.restapplication.restcontroller;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ca.sait.amt.restappilcation.entity.Employee;
-import ca.sait.amt.restappilcation.exceptions.EmployeeNotFoundException;
-import ca.sait.amt.restappilcation.service.EmployeeService;
+import ca.sait.amt.restapplication.entity.Employee;
+import ca.sait.amt.restapplication.exceptions.EmployeeNotFoundException;
+import ca.sait.amt.restapplication.service.EmployeeService;
 
 @RestController
 @CrossOrigin(origins = "*")
