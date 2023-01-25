@@ -1,16 +1,15 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useRef } from "react";
+import { Link, Redirect, Route } from 'react-router-dom';
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import "./LoginForm.css";
 
 const LoginForm = () => {
-  const [loadedData, setLoadedData] = useState([]);
   const usernameRef = useRef();
   const passwordRef = useRef();
-  const navigate = useNavigate();
+ 
 
   const usernameChangeHandler = (event) => {
     const usernameInput = event.target.value;
@@ -23,21 +22,24 @@ const LoginForm = () => {
   function submitHandler(event) {
     event.preventDefault();
     const username = usernameRef.current.value;
-    const password = usernameRef.current.value;
-    fetch('http://192.168.11.1:8080/api/employees').then(res => {
+    const password = passwordRef.current.value;
+
+    fetch('http://70.77.64.68:8083/api/employees/' + username).then(res => {
       return res.json();
-    }).then(data => {
-      for (const key in data) {
-        if (data[key].username == username)  {
-          if (data[key].password == password) {
-            navigate("/main");
-          }
-        } 
+    }).then(user => {
+        if(password === user.employeePassword) {
+          console.log("inside if")
+          sessionStorage.setItem("user" , user);
+          return <Redirect to="/home"/>;
         }
+
+
       }
+      
 
     );
   }
+
   return (
     <form onSubmit={submitHandler}>
       <div>
@@ -62,11 +64,9 @@ const LoginForm = () => {
           />
         </Card>
       </div>
-      <Link to="/home">
       <div className="login-button-container">
-        <Button className="button login-button" type="submit">Login</Button>
+        <Button className="button login-button" type="submit" onClick="">Login</Button>
       </div>
-      </Link>
     </form>
   );
 };
