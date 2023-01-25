@@ -18,4 +18,14 @@ public class EmployeeRestExceptionHandler {
 		
 		return new ResponseEntity<>(error , HttpStatus.NOT_FOUND);
 	}
+	
+	@ExceptionHandler
+	public ResponseEntity<ErrorResponse> handleException(Exception ex){
+		ErrorResponse error = new ErrorResponse();
+		error.setMessage(ex.getMessage());
+		error.setStatus(HttpStatus.BAD_REQUEST.value());
+		error.setTimeStamp(System.currentTimeMillis());
+		
+		return new ResponseEntity<>(error , HttpStatus.NOT_FOUND);
+	}
 }
