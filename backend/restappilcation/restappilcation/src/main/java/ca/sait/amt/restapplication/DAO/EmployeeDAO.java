@@ -1,8 +1,8 @@
-package ca.sait.amt.restappilcation.DAO;
+package ca.sait.amt.restapplication.DAO;
 
 import java.util.List;
 
-import ca.sait.amt.restappilcation.entity.Employee;
+import ca.sait.amt.restapplication.entity.Employee;
 
 public interface EmployeeDAO {
 	
@@ -10,7 +10,7 @@ public interface EmployeeDAO {
 	
 	public Employee findEmployeeByUsername(String userName);
 
-	public void saveEmployee(Employee theCustomer);
+	public void saveEmployee(Employee employee);
 
 	public void deleteEmployee(String userName);
 }

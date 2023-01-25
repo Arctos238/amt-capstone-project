@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ca.sait.amt</groupId>
-	<artifactId>restappilcation</artifactId>
+	<artifactId>restapplication</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>restappilcation</name>
 	<description>AMT RESTful Application</description>

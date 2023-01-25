@@ -1,15 +1,15 @@
-package ca.sait.amt.restappilcation.exceptions;
+package ca.sait.amt.restapplication.exceptions;
 
-public class EmployeeErrorResponse {
+public class ErrorResponse {
 	private int status;
 	private String message;
 	private long timeStamp;
 	
-	public EmployeeErrorResponse() {
+	public ErrorResponse() {
 		
 	}
 
-	public EmployeeErrorResponse(int status, String message, long timeStamp) {
+	public ErrorResponse(int status, String message, long timeStamp) {
 		super();
 		this.status = status;
 		this.message = message;

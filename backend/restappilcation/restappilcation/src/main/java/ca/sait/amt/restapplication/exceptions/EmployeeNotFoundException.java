@@ -1,4 +1,4 @@
-package ca.sait.amt.restappilcation.exceptions;
+package ca.sait.amt.restapplication.exceptions;
 
 public class EmployeeNotFoundException extends RuntimeException {
 

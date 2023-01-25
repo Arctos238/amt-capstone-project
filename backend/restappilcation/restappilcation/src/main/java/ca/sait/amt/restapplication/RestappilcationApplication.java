@@ -1,4 +1,4 @@
-package ca.sait.amt.restappilcation;
+package ca.sait.amt.restapplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

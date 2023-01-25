@@ -1,4 +1,4 @@
-package ca.sait.amt.restappilcation.entity;
+package ca.sait.amt.restapplication.entity;
 // Generated Jan. 19, 2023, 2:55:38 p.m. by Hibernate Tools 4.3.6.Final
 
 import static jakarta.persistence.GenerationType.IDENTITY;
@@ -11,7 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -22,22 +22,22 @@ import jakarta.persistence.Table;
 public class ClientContact implements java.io.Serializable {
 
 	private Integer clientContactId;
-	private Integer personalContactNumber;
+	private String personalContactNumber;
 	private String personalEmail;
 	private String businessEmail;
 	private Integer clientId;
-	private Set<Client> clients = new HashSet<Client>(0);
+	private Client clients;
 
 	public ClientContact() {
 	}
 
-	public ClientContact(Integer personalContactNumber, String personalEmail, String businessEmail, Integer clientId,
-			Set<Client> clients) {
+	public ClientContact(String personalContactNumber, String personalEmail, String businessEmail, Integer clientId,
+			Client client) {
 		this.personalContactNumber = personalContactNumber;
 		this.personalEmail = personalEmail;
 		this.businessEmail = businessEmail;
 		this.clientId = clientId;
-		this.clients = clients;
+		this.clients = client;
 	}
 
 	@Id
@@ -53,11 +53,11 @@ public class ClientContact implements java.io.Serializable {
 	}
 
 	@Column(name = "personal_contact_number")
-	public Integer getPersonalContactNumber() {
+	public String getPersonalContactNumber() {
 		return this.personalContactNumber;
 	}
 
-	public void setPersonalContactNumber(Integer personalContactNumber) {
+	public void setPersonalContactNumber(String personalContactNumber) {
 		this.personalContactNumber = personalContactNumber;
 	}
 
@@ -88,12 +88,12 @@ public class ClientContact implements java.io.Serializable {
 		this.clientId = clientId;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "clientContact")
-	public Set<Client> getClients() {
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "clientContact")
+	public Client getClients() {
 		return this.clients;
 	}
 
-	public void setClients(Set<Client> clients) {
+	public void setClients(Client client) {
 		this.clients = clients;
 	}
 
