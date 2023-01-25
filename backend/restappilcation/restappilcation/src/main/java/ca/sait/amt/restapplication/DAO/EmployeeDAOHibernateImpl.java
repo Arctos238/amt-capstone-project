@@ -39,6 +39,8 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
 
 		if (employee.getEmployeeId() == 0) {
 			currentSession.save(employee);
+		} else {
+			currentSession.update(employee);
 		}
 
 		currentSession.merge(employee);
