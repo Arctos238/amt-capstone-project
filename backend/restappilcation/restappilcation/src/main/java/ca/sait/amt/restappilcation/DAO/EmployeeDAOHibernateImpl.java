@@ -34,10 +34,10 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void saveEmployee(Employee theCustomer) {
+	public void saveEmployee(Employee employee) {
 		Session currentSession = entityManager.unwrap(Session.class);
 
-		currentSession.saveOrUpdate(theCustomer);
+		currentSession.saveOrUpdate(employee);
 	}
 
 	@Override
@@ -53,6 +53,8 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
 			Employee employee = null;
 			
 			employee = query.getSingleResult();
+			
+			return employee;
 		} catch (Exception ex) {
 			currentSession.close();
 		}
