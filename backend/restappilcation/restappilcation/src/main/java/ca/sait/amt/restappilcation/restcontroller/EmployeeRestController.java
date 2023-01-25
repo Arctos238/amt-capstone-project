@@ -3,6 +3,7 @@ package ca.sait.amt.restappilcation.restcontroller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,14 +18,19 @@ import ca.sait.amt.restappilcation.exceptions.EmployeeNotFoundException;
 import ca.sait.amt.restappilcation.service.EmployeeService;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api")
 public class EmployeeRestController {
-	
 	private EmployeeService employeeService;
 	
 	@Autowired
 	public EmployeeRestController(EmployeeService employeeService) {
 		this.employeeService = employeeService;
+	}
+	
+	@GetMapping("")
+	public String link() {
+		return "Type /employees";
 	}
 	
 	@GetMapping("/employees")
@@ -48,7 +54,7 @@ public class EmployeeRestController {
 		Employee employee = employeeService.findByUsername(employeeUsername);;
 		
 		if (employee == null) {
-			throw new EmployeeNotFoundException("Employee id not found - " + employeeUsername);
+			throw new EmployeeNotFoundException("Employee username not found - " + employeeUsername);
 		};
 		
 		return employee;
@@ -68,7 +74,7 @@ public class EmployeeRestController {
 	@DeleteMapping("/employees/{employeeUsername}")
 	public void deleteEmployee(@PathVariable String employeeUsername) {
 		if (employeeService.findByUsername(employeeUsername) == null) {
-			throw new EmployeeNotFoundException("Employee id not found - " + employeeUsername);
+			throw new EmployeeNotFoundException("Employee username not found - " + employeeUsername);
 		};
 		
 		employeeService.deleteByUsername(employeeUsername);
