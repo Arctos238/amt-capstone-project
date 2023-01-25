@@ -1,6 +1,7 @@
 import React from "react";
 import { useRef } from "react";
 import { Link, Redirect, Route } from 'react-router-dom';
+import { useGet } from '../../hooks/GetHttpRequest.js';
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
@@ -19,31 +20,21 @@ const LoginForm = () => {
     const passwordInput = event.target.value;
   };
 
-  function submitHandler(event) {
+  function SubmitHandler(event) {
     event.preventDefault();
     const username = usernameRef.current.value;
     const password = passwordRef.current.value;
-
-    fetch('http://70.77.64.68:8083/api/employees/' + username).then(res => {
-      return res.json();
-    }).then(user => {
-        if(password === user.employeePassword) {
-          console.log("inside if")
-          sessionStorage.setItem("user" , JSON.stringify(user));
-          const activeUser = JSON.parse(sessionStorage.user);
-          console.log(activeUser.role);
-        }
-
-
-      }
-      
-
-    );
+    const {data, loading, error} = useGet('http://70.77.64.68:8083/api/employees/' + username);
+    if(password === data.employeePassword) {
+      console.log("inside if");
+      sessionStorage.setItem("user" , JSON.stringify(data));
+      const activeUser = JSON.parse(sessionStorage.user);
+      console.log(activeUser.role);
+    }
   }
-
-
+  
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={SubmitHandler}>
       <div>
         <Card className="card form_floating">
           <label>Username:</label>
