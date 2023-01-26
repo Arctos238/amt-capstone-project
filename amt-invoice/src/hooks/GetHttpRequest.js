@@ -10,7 +10,7 @@ function useGet(url){
         .then(res => { return res.json(); })
         .then(data => {
             seterror(data.error)
-            setdata(data.joke)
+            setdata(data)
             setloading(false)
             }
           );

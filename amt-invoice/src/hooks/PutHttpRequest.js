@@ -16,9 +16,9 @@ function usePut(url, obj){
         .then(res => { return res.json(); })
         .then(data => {
             setData(data);
-            console.log(JSON.stringify(data));
+            // console.log(JSON.stringify(data));
             setError(data.error);
-            console.log(data.error);
+            // console.log(data.error);
             setloading(false)
         }
     );
