@@ -60,14 +60,14 @@ insert into client_contact (client_contact_id, personal_contact_number, personal
 
 -- Insert data into client table -- 
 
-insert into client values (1, 'Corina', 'Liversley', 1);
-insert into client values (2, 'Leanora', 'Ragbourne', 2);
-insert into client values (3, 'Korie', 'Scad', 3);
-insert into client  values (4, 'Shawnee', 'Senescall', 4);
-insert into client  values (5, 'Kakalina', 'Brun', 5);
-insert into client  values (6, 'Lotte', 'Esposita', 6);
-insert into client  values (7, 'Ulysses', 'Sandiland', 7);
-insert into client values (8, 'Tina', 'Valerius', 8);
-insert into client  values (9, 'Babb', 'Airds', 9);
-insert into client  values (10, 'Skyler', 'Wellan', 10);
+insert into client values (1, 'Corina Bob', 1);
+insert into client values (2, 'Leanora Rego', 2);
+insert into client values (3, 'Korie Nupte', 3);
+insert into client  values (4, 'Shawnee Place', 4);
+insert into client  values (5, 'Kakalina Roberta', 5);
+insert into client  values (6, 'Lotte Leslie',  6);
+insert into client  values (7, 'Ulysses Nugugual', 7);
+insert into client values (8, 'Tina Turner',  8);
+insert into client  values (9, 'Babb Booka',  9);
+insert into client  values (10, 'Skyler Gray',  10);
 

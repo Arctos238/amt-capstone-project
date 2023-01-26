@@ -66,11 +66,11 @@ public class Client implements java.io.Serializable {
 	}
 
 	@Column(name = "client_name", length = 80)
-	public String getClientFirstName() {
+	public String getClientName() {
 		return this.clientName;
 	}
 
-	public void setClientFirstName(String clientFirstName) {
+	public void setClientName(String clientFirstName) {
 		this.clientName = clientFirstName;
 	}
 

@@ -24,11 +24,19 @@ import jakarta.persistence.Table;
 @Table(name = "project", catalog = "amt")
 public class Project implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2813752260032381786L;
 	private Integer projectId;
 	private Client client;
 	private String projectName;
-	private Integer projectStatus;
+	private Boolean projectStatus;
+	private Boolean projectCabinetsCondition;
+	private Boolean projectCounterRemoval;
+	private Boolean projectTitleRemoval;
 	private ProjectAddress projectAddress;
+	private ProjectSupervisor projectSupervisor;
 	private Set<Quote> quotes = new HashSet<Quote>(0);
 	private Set<Image> images = new HashSet<Image>(0);
 	private Set<PurchaseOrder> purchaseOrders = new HashSet<PurchaseOrder>(0);
@@ -42,11 +50,20 @@ public class Project implements java.io.Serializable {
 		this.projectName = projectName;
 	}
 
-	public Project(Client client, String projectName, Integer projectStatus, Set<Quote> quotes, Set<Image> images,
+	public Project(Integer projectId, Client client, String projectName, Boolean projectStatus,
+			Boolean projectCabinetsCondition, Boolean projectCounterRemoval, Boolean projectTitleRemoval,
+			ProjectAddress projectAddress, ProjectSupervisor projectSupervisor, Set<Quote> quotes, Set<Image> images,
 			Set<PurchaseOrder> purchaseOrders, Set<DepositForm> depositForms, Set<Invoice> invoices) {
+		super();
+		this.projectId = projectId;
 		this.client = client;
 		this.projectName = projectName;
 		this.projectStatus = projectStatus;
+		this.projectCabinetsCondition = projectCabinetsCondition;
+		this.projectCounterRemoval = projectCounterRemoval;
+		this.projectTitleRemoval = projectTitleRemoval;
+		this.projectAddress = projectAddress;
+		this.projectSupervisor = projectSupervisor;
 		this.quotes = quotes;
 		this.images = images;
 		this.purchaseOrders = purchaseOrders;
@@ -86,12 +103,39 @@ public class Project implements java.io.Serializable {
 	}
 
 	@Column(name = "project_status")
-	public Integer getProjectStatus() {
+	public Boolean getProjectStatus() {
 		return this.projectStatus;
 	}
 
-	public void setProjectStatus(Integer projectStatus) {
+	public void setProjectStatus(Boolean projectStatus) {
 		this.projectStatus = projectStatus;
+	}
+
+	@Column(name = "project_cabinets_condition")
+	private Boolean getProjectCabinetsCondition() {
+		return projectCabinetsCondition;
+	}
+
+	private void setProjectCabinetsCondition(Boolean projectCabinetsCondition) {
+		this.projectCabinetsCondition = projectCabinetsCondition;
+	}
+
+	@Column(name = "project_counter_removal")
+	private Boolean getProjectCounterRemoval() {
+		return projectCounterRemoval;
+	}
+
+	private void setProjectCounterRemoval(Boolean projectCounterRemoval) {
+		this.projectCounterRemoval = projectCounterRemoval;
+	}
+
+	@Column(name = "project_tile_removal")
+	private Boolean getProjectTitleRemoval() {
+		return projectTitleRemoval;
+	}
+
+	private void setProjectTitleRemoval(Boolean projectTitleRemoval) {
+		this.projectTitleRemoval = projectTitleRemoval;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
@@ -140,7 +184,7 @@ public class Project implements java.io.Serializable {
 	}
 
 	@OneToOne(fetch = FetchType.EAGER, mappedBy = "project") 
-	@JoinColumn(name = "project_column")
+	@JoinColumn(name = "project_address")
 	public ProjectAddress getProjectAddress() {
 		return this.projectAddress;
 	}
@@ -148,4 +192,16 @@ public class Project implements java.io.Serializable {
 	public void setProjectAddress(ProjectAddress projectAddress) {
 		this.projectAddress = projectAddress;
 	}
+	
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "project") 
+	@JoinColumn(name = "project_supervisor")
+	public ProjectSupervisor getProjectSupervisor() {
+		return this.projectSupervisor;
+	}
+	
+	public void setProjectSupervisor(ProjectSupervisor projectSupervisor) {
+		this.projectSupervisor = projectSupervisor;
+	}
+	
+	
 }

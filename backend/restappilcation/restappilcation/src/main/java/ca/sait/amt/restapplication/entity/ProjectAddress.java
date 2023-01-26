@@ -19,21 +19,33 @@ import jakarta.persistence.Table;
 @Table(name = "project_address", catalog = "amt")
 public class ProjectAddress implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8692709818176693383L;
 	private int projectAddressId;
-	private int streetNumber;
-	private String street;
+	private String firstLineAddress;
+	private String secondLineAddress;
 	private String postalCode;
+	private String city;
+	private String province;
 	private Project project;
-	
-	public ProjectAddress() {
-	}	
 
-	public ProjectAddress(int projectAddressId, int streetNumber, String street, String postalCode, Project project) {
-		this.streetNumber = streetNumber;
-		this.street = street;
+	public ProjectAddress() {
+	}
+	
+	public ProjectAddress(int projectAddressId, String firstLineAddress, String secondLineAddress, String postalCode,
+			String city, String province, Project project) {
+		super();
+		this.projectAddressId = projectAddressId;
+		this.firstLineAddress = firstLineAddress;
+		this.secondLineAddress = secondLineAddress;
 		this.postalCode = postalCode;
+		this.city = city;
+		this.province = province;
 		this.project = project;
 	}
+
 
 
 	@Id
@@ -52,27 +64,27 @@ public class ProjectAddress implements java.io.Serializable {
 	public Project getProject() {
 		return this.project;
 	}
-	
+
 	public void setProject(Project project) {
 		this.project = project;
 	}
 
-	@Column(name = "street_number")
-	public int getStreetNumber() {
-		return streetNumber;
+	@Column(name = "first_line_address")
+	public String getFirstLineAddress() {
+		return firstLineAddress;
 	}
 
-	public void setStreetNumber(int streetNumber) {
-		this.streetNumber = streetNumber;
+	public void setFirstLineAddress(String firstLineAddress) {
+		this.firstLineAddress = firstLineAddress;
 	}
 
-	@Column(name = "street")
-	public String getStreet() {
-		return street;
+	@Column(name = "second_line_address")
+	public String getSecondLineAddress() {
+		return secondLineAddress;
 	}
 
-	public void setStreet(String street) {
-		this.street = street;
+	public void setSecondLineAddress(String secondLineAddress) {
+		this.secondLineAddress = secondLineAddress;
 	}
 
 	@Column(name = "postal_code")
@@ -83,6 +95,22 @@ public class ProjectAddress implements java.io.Serializable {
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
-	
-	
+
+	@Column(name = "city")
+	private String getCity() {
+		return city;
+	}
+
+	private void setCity(String city) {
+		this.city = city;
+	}
+
+	@Column(name = "province")
+	private String getProvince() {
+		return province;
+	}
+
+	private void setProvince(String province) {
+		this.province = province;
+	}
 }
