@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -27,6 +28,7 @@ public class Project implements java.io.Serializable {
 	private Client client;
 	private String projectName;
 	private Integer projectStatus;
+	private ProjectAddress projectAddress;
 	private Set<Quote> quotes = new HashSet<Quote>(0);
 	private Set<Image> images = new HashSet<Image>(0);
 	private Set<PurchaseOrder> purchaseOrders = new HashSet<PurchaseOrder>(0);
@@ -137,4 +139,13 @@ public class Project implements java.io.Serializable {
 		this.invoices = invoices;
 	}
 
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "project") 
+	@JoinColumn(name = "project_column")
+	public ProjectAddress getProjectAddress() {
+		return this.projectAddress;
+	}
+	
+	public void setProjectAddress(ProjectAddress projectAddress) {
+		this.projectAddress = projectAddress;
+	}
 }

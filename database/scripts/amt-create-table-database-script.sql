@@ -8,6 +8,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS `client_contact`;
 
+
 CREATE TABLE `client_contact` (
   `client_contact_id` int(11) NOT NULL AUTO_INCREMENT,
   `personal_contact_number` varchar(14) DEFAULT NULL,
@@ -30,6 +31,18 @@ CREATE TABLE `client` (
   KEY `FK_CLIENT_CONTACT` (`client_contact_id`),
   CONSTRAINT `FK_CLIENT_CONTACT_CONS` FOREIGN KEY (`client_contact_id`) 
   REFERENCES `client_contact` (`client_contact_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS project_address;
+
+CREATE TABLE `project_address` (
+	`project_address_id` int(11) NOT NULL AUTO_INCREMENT,
+    `street_number` int(10) DEFAULT NULL,
+	`street` varchar(45) DEFAULT NULL,
+   `postal_code` char(7) DEFAULT NULL,
+   `project_id` int(11) DEFAULT NULL,
+   PRIMARY KEY (`project_address_id`),
+   KEY `FK_projectaddress_project` (`project_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS project;
