@@ -24,8 +24,7 @@ DROP TABLE IF EXISTS `client`;
 
 CREATE TABLE `client` (
   `client_id` int(11) NOT NULL AUTO_INCREMENT,
-  `client_first_name` varchar(45) DEFAULT NULL,
-  `client_last_name` varchar(45) DEFAULT NULL,
+  `client_name` varchar(80) DEFAULT NULL,
   `client_contact_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`client_id`),
   KEY `FK_CLIENT_CONTACT` (`client_contact_id`),
@@ -37,12 +36,25 @@ DROP TABLE IF EXISTS project_address;
 
 CREATE TABLE `project_address` (
 	`project_address_id` int(11) NOT NULL AUTO_INCREMENT,
-    `street_number` int(10) DEFAULT NULL,
-	`street` varchar(45) DEFAULT NULL,
+    `first_line_address` varchar(80) DEFAULT NULL,
+	`second_line_address` varchar(80) DEFAULT NULL,
+    `city` varchar(20) DEFAULT NULL, 
+    `province` char(2) DEFAULT NULL,
    `postal_code` char(7) DEFAULT NULL,
    `project_id` int(11) DEFAULT NULL,
    PRIMARY KEY (`project_address_id`),
    KEY `FK_projectaddress_project` (`project_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS project_address;
+
+CREATE TABLE `project_supervisor` (
+	`project_supervisor_id` int(11) NOT NULL AUTO_INCREMENT,
+    `project_supervisor_name` varchar(80) DEFAULT NULL,
+	`project_supervisor_number` varchar(14) DEFAULT NULL,
+   `project_id` int(11) DEFAULT NULL,
+   PRIMARY KEY (`project_supervisor_id`),
+   KEY `FK_projectsupervisor_project` (`project_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS project;
@@ -51,6 +63,9 @@ CREATE TABLE project (
   project_id int(5) NOT NULL AUTO_INCREMENT,
   project_name varchar(22) NOT NULL,
   project_status int(1) DEFAULT 1,
+  project_cabinets_condition int(1) DEFAULT 1,
+  project_counter_removal int(1) DEFAULT 1,
+  project_tile_removal int(1) DEFAULT 1,
   client_id int(5),
   PRIMARY KEY (project_id),
   KEY FK_PROJECT_CLIENT (client_id),
