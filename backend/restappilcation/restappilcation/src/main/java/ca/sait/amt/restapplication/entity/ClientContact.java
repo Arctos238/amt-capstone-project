@@ -3,9 +3,10 @@ package ca.sait.amt.restapplication.entity;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
-import java.util.HashSet;
-import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -26,7 +27,7 @@ public class ClientContact implements java.io.Serializable {
 	private String personalEmail;
 	private String businessEmail;
 	private Integer clientId;
-	private Client clients;
+	private Client client;
 
 	public ClientContact() {
 	}
@@ -37,7 +38,7 @@ public class ClientContact implements java.io.Serializable {
 		this.personalEmail = personalEmail;
 		this.businessEmail = businessEmail;
 		this.clientId = clientId;
-		this.clients = client;
+		this.client = client;
 	}
 
 	@Id
@@ -88,13 +89,16 @@ public class ClientContact implements java.io.Serializable {
 		this.clientId = clientId;
 	}
 
-	@OneToOne(fetch = FetchType.EAGER, mappedBy = "clientContact")
+	
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "clientContact", cascade=CascadeType.ALL)
+	@JsonBackReference
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	public Client getClients() {
-		return this.clients;
+		return this.client;
 	}
 
 	public void setClients(Client client) {
-		this.clients = clients;
+		this.client = client;
 	}
 
 }

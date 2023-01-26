@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ca.sait.amt.restapplication.entity.Client;
-import ca.sait.amt.restapplication.entity.Employee;
 import jakarta.persistence.EntityManager;
 
 @Repository
@@ -65,6 +64,8 @@ public class ClientDAOHibernateImpl implements ClientDAO{
 
 		if (client.getClientId() == 0) {
 			currentSession.save(client);
+			client.getClientContact().setClientId(client.getClientId());
+			currentSession.merge(client);
 		}
 
 		currentSession.merge(client);

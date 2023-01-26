@@ -6,14 +6,18 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -51,8 +55,10 @@ public class Client implements java.io.Serializable {
 		this.clientId = clientId;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name = "client_contact_id")
+	@JsonManagedReference
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	public ClientContact getClientContact() {
 		return this.clientContact;
 	}
@@ -79,7 +85,8 @@ public class Client implements java.io.Serializable {
 		this.clientLastName = clientLastName;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
 	public Set<Project> getProjects() {
 		return this.projects;
 	}

@@ -59,6 +59,7 @@ public class ClientRestController {
 	@PostMapping("/clients")
 	public void addClient(@RequestBody Client client) {
 		client.setClientId(0);
+		
 		clientService.saveClient(client);
 		
 	}
@@ -68,8 +69,9 @@ public class ClientRestController {
 		clientService.saveClient(client);
 	}
 	
-	@DeleteMapping("/clients/id/{clientsId}")
-	public void updateClient(@PathVariable int clientId) {
+	@DeleteMapping("/clients/id/{clientId}")
+	public void deleteClient(@PathVariable int clientId) {
+		System.out.println(clientId);
 		if (clientService.findByClientId(clientId) == null) {
 			throw new ClientNotFoundException("No Clients found with that client id - " + clientId);
 		};
