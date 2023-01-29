@@ -64,8 +64,7 @@ public class ClientDAOHibernateImpl implements ClientDAO{
 
 		if (client.getClientId() == 0) {
 			currentSession.save(client);
-			client.getClientContact().setClientId(client.getClientId());
-			currentSession.merge(client);
+			client.getClientContact().setClientId(client.getClientId());;
 		}
 
 		currentSession.merge(client);

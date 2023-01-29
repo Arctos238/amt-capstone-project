@@ -76,6 +76,8 @@ public class Client implements java.io.Serializable {
 
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
+	@JsonManagedReference
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	public Set<Project> getProjects() {
 		return this.projects;
 	}

@@ -6,6 +6,9 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,17 +27,13 @@ import jakarta.persistence.Table;
 @Table(name = "project", catalog = "amt")
 public class Project implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2813752260032381786L;
 	private Integer projectId;
 	private Client client;
 	private String projectName;
 	private Boolean projectStatus;
 	private Boolean projectCabinetsCondition;
 	private Boolean projectCounterRemoval;
-	private Boolean projectTitleRemoval;
+	private Boolean projectTileRemoval;
 	private ProjectAddress projectAddress;
 	private ProjectSupervisor projectSupervisor;
 	private Set<Quote> quotes = new HashSet<Quote>(0);
@@ -51,7 +50,7 @@ public class Project implements java.io.Serializable {
 	}
 
 	public Project(Integer projectId, Client client, String projectName, Boolean projectStatus,
-			Boolean projectCabinetsCondition, Boolean projectCounterRemoval, Boolean projectTitleRemoval,
+			Boolean projectCabinetsCondition, Boolean projectCounterRemoval, Boolean projectTileRemoval,
 			ProjectAddress projectAddress, ProjectSupervisor projectSupervisor, Set<Quote> quotes, Set<Image> images,
 			Set<PurchaseOrder> purchaseOrders, Set<DepositForm> depositForms, Set<Invoice> invoices) {
 		super();
@@ -61,7 +60,7 @@ public class Project implements java.io.Serializable {
 		this.projectStatus = projectStatus;
 		this.projectCabinetsCondition = projectCabinetsCondition;
 		this.projectCounterRemoval = projectCounterRemoval;
-		this.projectTitleRemoval = projectTitleRemoval;
+		this.projectTileRemoval = projectTileRemoval;
 		this.projectAddress = projectAddress;
 		this.projectSupervisor = projectSupervisor;
 		this.quotes = quotes;
@@ -85,6 +84,8 @@ public class Project implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "client_id")
+	@JsonBackReference
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	public Client getClient() {
 		return this.client;
 	}
@@ -112,30 +113,30 @@ public class Project implements java.io.Serializable {
 	}
 
 	@Column(name = "project_cabinets_condition")
-	private Boolean getProjectCabinetsCondition() {
+	public Boolean getProjectCabinetsCondition() {
 		return projectCabinetsCondition;
 	}
 
-	private void setProjectCabinetsCondition(Boolean projectCabinetsCondition) {
+	public void setProjectCabinetsCondition(Boolean projectCabinetsCondition) {
 		this.projectCabinetsCondition = projectCabinetsCondition;
 	}
 
 	@Column(name = "project_counter_removal")
-	private Boolean getProjectCounterRemoval() {
+	public Boolean getProjectCounterRemoval() {
 		return projectCounterRemoval;
 	}
 
-	private void setProjectCounterRemoval(Boolean projectCounterRemoval) {
+	public void setProjectCounterRemoval(Boolean projectCounterRemoval) {
 		this.projectCounterRemoval = projectCounterRemoval;
 	}
 
 	@Column(name = "project_tile_removal")
-	private Boolean getProjectTitleRemoval() {
-		return projectTitleRemoval;
+	public Boolean getProjectTileRemoval() {
+		return projectTileRemoval;
 	}
 
-	private void setProjectTitleRemoval(Boolean projectTitleRemoval) {
-		this.projectTitleRemoval = projectTitleRemoval;
+	public void setProjectTileRemoval(Boolean projectTileRemoval) {
+		this.projectTileRemoval = projectTileRemoval;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project")

@@ -97,20 +97,20 @@ public class ProjectAddress implements java.io.Serializable {
 	}
 
 	@Column(name = "city")
-	private String getCity() {
+	public String getCity() {
 		return city;
 	}
 
-	private void setCity(String city) {
+	public void setCity(String city) {
 		this.city = city;
 	}
 
 	@Column(name = "province")
-	private String getProvince() {
+	public String getProvince() {
 		return province;
 	}
 
-	private void setProvince(String province) {
+	public void setProvince(String province) {
 		this.province = province;
 	}
 }

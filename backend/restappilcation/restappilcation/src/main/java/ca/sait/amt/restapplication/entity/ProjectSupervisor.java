@@ -46,29 +46,29 @@ public class ProjectSupervisor implements java.io.Serializable {
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "project_id")
-	private Project getProject() {
+	public Project getProject() {
 		return project;
 	}
 
-	private void setProject(Project project) {
+	public void setProject(Project project) {
 		this.project = project;
 	}
 
 	@Column(name = "project_supervisor_name")
-	private String getProjectSupervisorName() {
+	public String getProjectSupervisorName() {
 		return projectSupervisorName;
 	}
 
-	private void setProjectSupervisorName(String projectSupervisorName) {
+	public void setProjectSupervisorName(String projectSupervisorName) {
 		this.projectSupervisorName = projectSupervisorName;
 	}
 
 	@Column(name = "project_supervisor_number")
-	private String getProjectSupervisorNumber() {
+	public String getProjectSupervisorNumber() {
 		return projectSupervisorNumber;
 	}
 
-	private void setProjectSupervisorNumber(String projectSupervisorNumber) {
+	public void setProjectSupervisorNumber(String projectSupervisorNumber) {
 		this.projectSupervisorNumber = projectSupervisorNumber;
 	}
 
