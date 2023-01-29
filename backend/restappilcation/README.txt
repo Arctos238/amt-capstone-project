@@ -1,7 +1,6 @@
-RESTful Application V0.1
+RESTful Application V0.3
 
 Run rest-app-v0.1.jar file via cmd line with "java -jar rest-app-v0.1.jar" command no arguments.
-
 
 Employee w/ Role REST endpoints configured:
 
@@ -34,10 +33,30 @@ GET Request: http://70.77.64.68:8083/api/clients/id/{client_id} =
 	Returns a client with that clients id from the database or recieve an error message JSON.
 
 DELETE Request: http://70.77.64.68:8083/api/clients/id/{client_id} = 
-	Enter client id in brackets to delete the employee from the database or receive error message JSON object.
+	Enter client id in brackets to delete the client from the database or receive error message JSON object.
 
 POST Request: http://70.77.64.68:8083/api/clients = 
-	Send client and client_contact JSON object as a POST Request to save employee to database system.
+	Send client and client_contact JSON object as a POST Request to save client to database system.
 
 PUT Request: http://70.77.64.68:8083/api/clients = 
-	Send client and client_contact JSON object as a PUT Request to update employee in the database system.
+	Send client and client_contact JSON object as a PUT Request to update client in the database system.
+
+Project REST endpoints configured:
+
+GET Request: http://70.77.64.68:8083/api/projects = 
+	Returns all projects from the database
+
+GET Request: http://70.77.64.68:8083/api/projects/{clientId} = 
+	Returns all projects that are attached to that clientId from the database or recieve an error message JSON.
+
+GET Request: http://70.77.64.68:8083/api/projects/id/{projectId} = 
+	Returns a project with that project id from the database or recieve an error message JSON.
+
+DELETE Request: http://70.77.64.68:8083/api/projects/id/{projectId} = 
+	Enter project id in brackets to delete the project from the database or receive error message JSON object.
+
+POST Request: http://70.77.64.68:8083/api/projects = 
+	Send project w/o project id or 0 for project Id and client object JSON object as a POST Request to save project to database system.
+
+PUT Request: http://70.77.64.68:8083/api/projects = 
+	Send project w project id JSON object as a PUT Request to update project in the database system.
