@@ -71,3 +71,21 @@ insert into client values (8, 'Tina Turner',  8);
 insert into client  values (9, 'Babb Booka',  9);
 insert into client  values (10, 'Skyler Gray',  10);
 
+-- Insert data into project table --
+
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (1, 'Can''t Buy Me Love', true, false, true, 1);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (2, 'Nicht alle', false, false, true, 2);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (3, 'Bambi a', true, false, false, 1);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (4, 'Detective', false, true, false, 3);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (5, 'Berlin Calling', false, true, false, 4);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (6, 'The Corsican ', true, false, false, 3);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (7, 'More About Peter)', true, false, false, 2);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (8, 'Serial', true, false, false, 2);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (9, 'Baby Face', false, false, true, 1);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (10, 'Sweet Evil', false, false, true, 3);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (11, 'Gloria', true, true, false, 5);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (12, 'A Good Marriage', false, false, false, 7);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (13, 'Samaritan, The', false, false, true, 6);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (14, 'Crimes of Fashion', false, false, true, 1);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (15, 'Dad Save the World', false, false, true, 4);
+
