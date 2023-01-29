@@ -88,4 +88,3 @@ insert into project (project_id, project_name, project_status, project_cabinets_
 insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (13, 'Samaritan, The', false, false, true, 6);
 insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (14, 'Crimes of Fashion', false, false, true, 1);
 insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (15, 'Dad Save the World', false, false, true, 4);
-
