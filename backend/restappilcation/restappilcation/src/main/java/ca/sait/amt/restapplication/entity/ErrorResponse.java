@@ -1,4 +1,4 @@
-package ca.sait.amt.restapplication.exceptions;
+package ca.sait.amt.restapplication.entity;
 
 public class ErrorResponse {
 	private int status;

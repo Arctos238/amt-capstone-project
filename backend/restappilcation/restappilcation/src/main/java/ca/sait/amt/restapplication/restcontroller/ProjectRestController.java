@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.sait.amt.restapplication.entity.Project;
+import ca.sait.amt.restapplication.exceptions.ClientIdNotFoundException;
+import ca.sait.amt.restapplication.exceptions.ClientNotFoundException;
+import ca.sait.amt.restapplication.exceptions.ProjectNotFoundException;
 import ca.sait.amt.restapplication.service.ProjectService;
 
 @RestController
@@ -39,11 +42,22 @@ public class ProjectRestController {
 		
 		@GetMapping("/projects/id/{projectId}") 
 		public Project getProjectByProjectId(@PathVariable int projectId) {
+			if (projectService.findByProjectId(projectId) == null) {
+				throw new ProjectNotFoundException("No Projects found with that project id - " + projectId);
+			};
 			return projectService.findByProjectId(projectId);
 		}
 		
 		@PostMapping("/projects")
 		public void addProject(@RequestBody Project project) {
+			if(project.getClient() == null) {
+				throw new ClientIdNotFoundException("No Client Object attached");
+			}
+			
+			if(project.getClient().getClientId() == null) {
+				throw new ClientIdNotFoundException("No Client ID found inside the client object that was attached");
+			}
+			
 			project.setProjectId(0);
 			
 			projectService.saveProject(project);
@@ -56,6 +70,10 @@ public class ProjectRestController {
 		
 		@DeleteMapping("/projects/id/{projectId}")
 		public void deleteProject(@PathVariable int projectId) {
+			if (projectService.findByProjectId(projectId) == null) {
+				throw new ProjectNotFoundException("No Projects found with that project id - " + projectId);
+			};
+			
 			projectService.deleteProject(projectId);
 		}
 }
