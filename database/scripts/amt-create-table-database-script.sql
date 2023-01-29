@@ -40,13 +40,13 @@ CREATE TABLE `project_address` (
 	`second_line_address` varchar(80) DEFAULT NULL,
     `city` varchar(20) DEFAULT NULL, 
     `province` char(2) DEFAULT NULL,
-   `postal_code` char(7) DEFAULT NULL,
+   `postal_code` varchar(7) DEFAULT NULL,
    `project_id` int(11) DEFAULT NULL,
    PRIMARY KEY (`project_address_id`),
    KEY `FK_projectaddress_project` (`project_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS project_address;
+DROP TABLE IF EXISTS project_supervisor;
 
 CREATE TABLE `project_supervisor` (
 	`project_supervisor_id` int(11) NOT NULL AUTO_INCREMENT,

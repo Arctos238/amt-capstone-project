@@ -53,7 +53,7 @@ public class Client implements java.io.Serializable {
 		this.clientId = clientId;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.MERGE)
 	@JoinColumn(name = "client_contact_id")
 	@JsonManagedReference
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -73,7 +73,6 @@ public class Client implements java.io.Serializable {
 	public void setClientName(String clientFirstName) {
 		this.clientName = clientFirstName;
 	}
-
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
 	@JsonManagedReference

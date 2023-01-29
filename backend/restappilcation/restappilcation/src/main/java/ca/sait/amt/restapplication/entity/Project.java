@@ -8,7 +8,9 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -29,6 +31,7 @@ import jakarta.persistence.Transient;
 public class Project implements java.io.Serializable {
 
 	private Integer projectId;
+	private Integer clientId;
 	private Client client;
 	private String projectName;
 	private Boolean projectStatus;
@@ -50,12 +53,12 @@ public class Project implements java.io.Serializable {
 		this.projectName = projectName;
 	}
 
-	public Project(Integer projectId, Client client, String projectName, Boolean projectStatus,
+	public Project(Integer clientId, Client client, String projectName, Boolean projectStatus,
 			Boolean projectCabinetsCondition, Boolean projectCounterRemoval, Boolean projectTileRemoval,
 			ProjectAddress projectAddress, ProjectSupervisor projectSupervisor, Set<Quote> quotes, Set<Image> images,
 			Set<PurchaseOrder> purchaseOrders, Set<DepositForm> depositForms, Set<Invoice> invoices) {
 		super();
-		this.projectId = projectId;
+		this.clientId = clientId;
 		this.client = client;
 		this.projectName = projectName;
 		this.projectStatus = projectStatus;
@@ -83,8 +86,8 @@ public class Project implements java.io.Serializable {
 		this.projectId = projectId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "client_id")
+	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name= "client_id")
 	@JsonBackReference
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	public Client getClient() {
@@ -103,7 +106,7 @@ public class Project implements java.io.Serializable {
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
-
+	
 	@Column(name = "project_status")
 	public Boolean getProjectStatus() {
 		return this.projectStatus;
@@ -185,8 +188,8 @@ public class Project implements java.io.Serializable {
 		this.invoices = invoices;
 	}
 
-	@OneToOne(fetch = FetchType.EAGER, mappedBy = "project") 
-	@JoinColumn(name = "project_address")
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "project", cascade=CascadeType.ALL)
+	@JsonManagedReference
 	public ProjectAddress getProjectAddress() {
 		return this.projectAddress;
 	}
@@ -200,13 +203,14 @@ public class Project implements java.io.Serializable {
 	public ProjectSupervisor getProjectSupervisor() {
 		return this.projectSupervisor;
 	}
-	
+
 	public void setProjectSupervisor(ProjectSupervisor projectSupervisor) {
 		this.projectSupervisor = projectSupervisor;
 	}
 	
 	@Transient
-	public int getClientId() {
+	public Integer getClientId() {
 		return client.getClientId();
 	}
+
 }
