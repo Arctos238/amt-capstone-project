@@ -22,3 +22,18 @@ button:active {
 button:focus {
   outline: 0;
 }
+.button {
+  background-color: #e0aa3e;
+  border: none;
+  font-size: 125%;
+  color: #ffffff;
+  border-radius: 30px;
+  width: 20%;
+  padding: 10px;
+  margin-left: 40%;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #fabd44;
+}

@@ -1,0 +1,12 @@
+.separate {
+    margin: 0 50px;
+}
+
+.parent{
+    display: flex;
+    flex-direction: row;
+}
+
+.parent, .label, .left, .right {
+    padding: 0;
+}

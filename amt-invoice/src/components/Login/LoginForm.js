@@ -5,7 +5,7 @@ import useGet from "../../hooks/GetHttpRequest.js";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
-import "./LoginForm.css";
+import styles from "./LoginForm.module.css";
 
 const LoginForm = () => {
   const usernameRef = useRef();
@@ -37,7 +37,7 @@ const LoginForm = () => {
   return (
     <form onSubmit={SubmitHandler}>
       <div>
-        <Card className="card form_floating">
+        <Card className={`${styles.card} ${styles.form_floating}`}>
           <label>Username:</label>
           <input
             type="text"
@@ -59,7 +59,7 @@ const LoginForm = () => {
         </Card>
       </div>
       <div className="login-button-container">
-        <Button className="button login-button" type="submit" onClick="">
+        <Button type="submit" onClick="">
           Login
         </Button>
       </div>
