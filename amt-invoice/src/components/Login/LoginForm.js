@@ -38,7 +38,7 @@ const LoginForm = () => {
   return (
     <form onSubmit={SubmitHandler}>
       <div>
-        <Card>
+        <Card className={classes.blueCard}>
           <label>Username:</label>
           <input
             type="text"
@@ -49,7 +49,7 @@ const LoginForm = () => {
         </Card>
       </div>
       <div>
-        <Card className="card form_floating">
+        <Card className={classes.blueCard}>
           <label>Password:</label>
           <input
             type="text"
@@ -59,7 +59,7 @@ const LoginForm = () => {
           />
         </Card>
       </div>
-      <div className="login-button-container">
+      <div>
         <Button type="submit" onClick="">
           Login
         </Button>
