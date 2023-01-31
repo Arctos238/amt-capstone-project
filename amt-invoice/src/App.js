@@ -5,6 +5,7 @@ import Layout from "./components/Navigation/Layout";
 import Login from "./components/Login/Login";
 import HomePage from "./components/Home/Home";
 import CreateProject from "./components/CreateProject/CreateProject"
+import ClientPage from "./components/ClientPage/ClientPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       </Layout>
       
     </Switch>
+    // <ClientPage/>
   );
 }
 

@@ -5,7 +5,9 @@
     width: 50%;
     margin:auto;
     padding:10px;
-    
+}
+.blueBackground {
+    background-color: #05516A;
 }
 
 .form_floating {
@@ -14,4 +16,8 @@
 
 .form_floating ::after, ::before {
     box-sizing: border-box;
+}
+
+.cardYellow{
+    background-color: yellow;
 }
