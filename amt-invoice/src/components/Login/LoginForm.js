@@ -1,7 +1,7 @@
 import React from "react";
 import { useRef } from "react";
 import { Link, Redirect, Route } from 'react-router-dom';
-import { useGet } from '../../hooks/GetHttpRequest.js';
+import  useGet  from '../../hooks/GetHttpRequest.js';
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
