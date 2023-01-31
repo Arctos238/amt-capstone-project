@@ -3,7 +3,9 @@ import React from "react";
 import CardWithRadius from "../UI/CardWithRadius";
 import styles from "./CreateProjectAddOns.module.css";
 
-const CreateProjectAddOns = () => {
+const CreateProjectAddOns = (props) => {
+  
+  
   return (
     <div className={styles.addon_part}>
       <CardWithRadius>
@@ -12,11 +14,11 @@ const CreateProjectAddOns = () => {
             <label>Cabinet:</label>
           </div>
           <div className={styles.left}>
-            <input type="radio" className="new" name="cabinet" />
+            <input type="radio" className="new" name="cabinet" value="true" onChange={props.onCabinetChange}/>
             <label>New</label>
           </div>
           <div className={styles.right}>
-            <input type="radio" className="existing" name="cabinet" />
+            <input type="radio" className="existing" value="false" name="cabinet" onChange={props.onCabinetChange}/>
             <label>Existing</label>
           </div>
         </div>
@@ -28,11 +30,11 @@ const CreateProjectAddOns = () => {
             <label>Counter Removal:</label>
           </div>
           <div className={styles.left}>
-            <input type="radio" className="amt" name="counter_removal" />
+            <input type="radio" className="amt" name="counter_removal" value="true" onChange={props.onCounterChange}/>
             <label>AMT</label>
           </div>
           <div className={styles.right}>
-            <input type="radio" className="ther" name="counter_removal" />
+            <input type="radio" className="ther" value="false" name="counter_removal" onChange={props.onCounterChange}/>
             <label>Other</label>
           </div>
         </div>
@@ -44,11 +46,11 @@ const CreateProjectAddOns = () => {
             <label>Tile Removal:</label>
           </div>
           <div className={styles.left}>
-            <input type="radio" className="amt" name="tile_removal" />
+            <input type="radio" className="amt" name="tile_removal" value="true" onChange={props.onTileChange}/>
             <label>AMT</label>
           </div>
           <div className={styles.right}>
-            <input type="radio" className="ther" name="tile_removal" />
+            <input type="radio" className="ther" value="false" name="tile_removal" onChange={props.onTileChange}/>
             <label>Other</label>
           </div>
         </div>
