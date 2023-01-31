@@ -6,6 +6,7 @@ import  useGet  from '../../hooks/GetHttpRequest.js';
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import styles from "./LoginForm.module.css";
+import classes from "../UI/Card.module.css";
 
 const LoginForm = () => {
   const usernameRef = useRef();
@@ -19,7 +20,7 @@ const LoginForm = () => {
     const passwordInput = event.target.value;
   };
 
-  function SubmitHandler(event) {
+  function SubmitHandler(event) { 
     event.preventDefault();
     const username = usernameRef.current.value;
     const password = passwordRef.current.value;
@@ -37,7 +38,7 @@ const LoginForm = () => {
   return (
     <form onSubmit={SubmitHandler}>
       <div>
-        <Card className={`${styles.card} ${styles.form_floating}`}>
+        <Card>
           <label>Username:</label>
           <input
             type="text"
