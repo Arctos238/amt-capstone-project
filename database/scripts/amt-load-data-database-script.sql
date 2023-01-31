@@ -60,14 +60,49 @@ insert into client_contact (client_contact_id, personal_contact_number, personal
 
 -- Insert data into client table -- 
 
-insert into client values (1, 'Corina', 'Liversley', 1);
-insert into client values (2, 'Leanora', 'Ragbourne', 2);
-insert into client values (3, 'Korie', 'Scad', 3);
-insert into client  values (4, 'Shawnee', 'Senescall', 4);
-insert into client  values (5, 'Kakalina', 'Brun', 5);
-insert into client  values (6, 'Lotte', 'Esposita', 6);
-insert into client  values (7, 'Ulysses', 'Sandiland', 7);
-insert into client values (8, 'Tina', 'Valerius', 8);
-insert into client  values (9, 'Babb', 'Airds', 9);
-insert into client  values (10, 'Skyler', 'Wellan', 10);
+insert into client values (1, 'Corina Bob', 1);
+insert into client values (2, 'Leanora Rego', 2);
+insert into client values (3, 'Korie Nupte', 3);
+insert into client  values (4, 'Shawnee Place', 4);
+insert into client  values (5, 'Kakalina Roberta', 5);
+insert into client  values (6, 'Lotte Leslie',  6);
+insert into client  values (7, 'Ulysses Nugugual', 7);
+insert into client values (8, 'Tina Turner',  8);
+insert into client  values (9, 'Babb Booka',  9);
+insert into client  values (10, 'Skyler Gray',  10);
 
+-- Insert data into project table --
+
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (1, 'Can''t Buy Me Love', true, false, true, 1);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (2, 'Nicht alle', false, false, true, 2);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (3, 'Bambi a', true, false, false, 1);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (4, 'Detective', false, true, false, 3);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (5, 'Berlin Calling', false, true, false, 4);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (6, 'The Corsican ', true, false, false, 3);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (7, 'More About Peter)', true, false, false, 2);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (8, 'Serial', true, false, false, 2);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (9, 'Baby Face', false, false, true, 1);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (10, 'Sweet Evil', false, false, true, 3);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (11, 'Gloria', true, true, false, 5);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (12, 'A Good Marriage', false, false, false, 7);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (13, 'Samaritan, The', false, false, true, 6);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (14, 'Crimes of Fashion', false, false, true, 1);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (15, 'Dad Save the World', false, false, true, 4);
+
+-- Insert data into project address table --
+
+insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (1, '5963 Manufacturers Crossing', 'PO Box 53719', 'Las Vegas', '89145', 1, 'NV');
+insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (2, '72839 Waubesa Hill', 'PO Box 44026', 'Bakersfield', '93386', 2, 'CA');
+insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (3, '41 Northwestern Road', 'Room 1865', 'Houston', '77095', 3, 'TX');
+insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (4, '57692 Northwestern Drive', 'PO Box 76661', 'Birmingham', '35242', 4, 'AL');
+insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (5, '321 Fairfield Circle', 'Suite 38', 'Warren', '44485', 5, 'OH');
+insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (6, '15 Merry Road', 'Apt 313', 'Las Vegas', '89120', 6, 'NV');
+insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (7, '243 Lerdahl Place', 'Room 1729', 'Albuquerque', '87201', 7, 'NM');
+insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (8, '9 Red Cloud Park', 'Suite 59', 'Mc Keesport', '15134', 8, 'PA');
+insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (9, '33318 Bobwhite Center', 'Apt 1234', 'Everett', '98206', 9, 'WA');
+insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (10, '0798 Waubesa Crossing', 'Apt 1128', 'New Haven', '06505', 10, 'CT');
+insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (11, '450 North Parkway', '8th Floor', 'Dallas', '75387', 11, 'TX');
+insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (12, '7404 Spenser Parkway', '5th Floor', 'New York City', '10014', 12, 'NY');
+insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (13, '9 Dayton Terrace', 'Room 384', 'Wichita', '67205', 13, 'KS');
+insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (14, '68 Welch Pass', '3rd Floor', 'Alexandria', '22301', 14, 'VA');
+insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (15, '78686 Florence Avenue', 'PO Box 25391', 'Inglewood', '90398', 15, 'CA');

@@ -71,7 +71,6 @@ public class ClientRestController {
 	
 	@DeleteMapping("/clients/id/{clientId}")
 	public void deleteClient(@PathVariable int clientId) {
-		System.out.println(clientId);
 		if (clientService.findByClientId(clientId) == null) {
 			throw new ClientNotFoundException("No Clients found with that client id - " + clientId);
 		};

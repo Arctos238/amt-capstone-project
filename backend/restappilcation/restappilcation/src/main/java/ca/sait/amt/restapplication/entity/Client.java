@@ -29,17 +29,15 @@ public class Client implements java.io.Serializable {
 
 	private Integer clientId;
 	private ClientContact clientContact;
-	private String clientFirstName;
-	private String clientLastName;
+	private String clientName;
 	private Set<Project> projects = new HashSet<Project>(0);
 
 	public Client() {
 	}
 
-	public Client(ClientContact clientContact, String clientFirstName, String clientLastName, Set<Project> projects) {
+	public Client(ClientContact clientContact, String clientName, Set<Project> projects) {
 		this.clientContact = clientContact;
-		this.clientFirstName = clientFirstName;
-		this.clientLastName = clientLastName;
+		this.clientName = clientName;
 		this.projects = projects;
 	}
 
@@ -55,7 +53,7 @@ public class Client implements java.io.Serializable {
 		this.clientId = clientId;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.MERGE)
 	@JoinColumn(name = "client_contact_id")
 	@JsonManagedReference
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -67,26 +65,18 @@ public class Client implements java.io.Serializable {
 		this.clientContact = clientContact;
 	}
 
-	@Column(name = "client_first_name", length = 45)
-	public String getClientFirstName() {
-		return this.clientFirstName;
+	@Column(name = "client_name", length = 80)
+	public String getClientName() {
+		return this.clientName;
 	}
 
-	public void setClientFirstName(String clientFirstName) {
-		this.clientFirstName = clientFirstName;
+	public void setClientName(String clientFirstName) {
+		this.clientName = clientFirstName;
 	}
-
-	@Column(name = "client_last_name", length = 45)
-	public String getClientLastName() {
-		return this.clientLastName;
-	}
-
-	public void setClientLastName(String clientLastName) {
-		this.clientLastName = clientLastName;
-	}
-
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
+	@JsonManagedReference
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	public Set<Project> getProjects() {
 		return this.projects;
 	}

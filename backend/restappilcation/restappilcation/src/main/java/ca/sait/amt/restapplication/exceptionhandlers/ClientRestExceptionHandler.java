@@ -1,9 +1,12 @@
-package ca.sait.amt.restapplication.exceptions;
+package ca.sait.amt.restapplication.exceptionhandlers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import ca.sait.amt.restapplication.entity.ErrorResponse;
+import ca.sait.amt.restapplication.exceptions.ClientNotFoundException;
 
 
 @ControllerAdvice	
