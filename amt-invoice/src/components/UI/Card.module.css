@@ -1,12 +1,12 @@
 .card {
     border-radius: 15px;
-    background-color: #05516A;
+    /* background-color: #05516A; */
     border: 5px;
     width: 50%;
     margin:auto;
     padding:10px;
 }
-.blueBackground {
+.blueCard {
     background-color: #05516A;
 }
 
@@ -18,6 +18,9 @@
     box-sizing: border-box;
 }
 
-.cardYellow{
-    background-color: yellow;
+.yellowCard{
+    background-color:#fabd44;
+}
+.projectList {
+    width: 90%;
 }

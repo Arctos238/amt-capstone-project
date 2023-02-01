@@ -1,16 +1,12 @@
-import Dropdown from "../UI/Dropdown";
+import React from 'react';
 
-function HomePage() {
-  return (
-    <div>
-      
-
+function HomePage(props) {
+    return (
       <main>
         <h1>Hello There</h1>
-        <Dropdown/>
+        
       </main>
-    </div>
-  );
-}
-
-export default HomePage;
+    );
+  }
+  
+  export default HomePage;

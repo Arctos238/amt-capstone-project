@@ -1,17 +1,30 @@
 import React from "react";
 
+import MainNavigation from "../Navigation/MainNavigation";
 import Card from "../UI/Card";
-import classes from '../UI/CardWithRadius.module.css';
+import classes from "../UI/Card.module.css";
 import ClientContact from "./ClientContact";
+import ClientPageProjects from "./ClientPageProjects";
+import ClientPageButton from "./ClientPageButton";
 
 const ClientPage = () => {
   return (
-    <React.Fragment>
-      <Card classes={classes.yellowCard} >
-
-      </Card>
-        <ClientContact />
-    </React.Fragment>
+    <div className="clientPage">
+      <MainNavigation/> 
+      <div className="aboutClient">
+        <Card className={classes.yellowCard}>
+          <ClientContact />
+        </Card>
+      </div>
+      <div className="theProjects">
+        <Card className={classes.yellowCard}>
+          <ClientPageProjects />
+        </Card>
+      </div>
+      <div className="buttons">
+        <ClientPageButton/>
+      </div>
+    </div>
   );
 };
 
