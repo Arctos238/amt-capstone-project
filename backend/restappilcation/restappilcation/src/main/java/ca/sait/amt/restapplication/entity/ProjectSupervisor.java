@@ -2,6 +2,8 @@ package ca.sait.amt.restapplication.entity;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -10,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "project_supervisor", catalog = "amt")
@@ -33,18 +36,18 @@ public class ProjectSupervisor implements java.io.Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-
-	@Column(name = "client_id", unique = true, nullable = false)
-	public Integer getClientId() {
+	@Column(name = "project_supervisor_id")
+	public Integer getProjectSupervisorId() {
 		return this.projectSupervisorId;
 	}
 
 
-	public void setClientId(Integer projectSupervisorId) {
+	public void setProjectSupervisorId(Integer projectSupervisorId) {
 		this.projectSupervisorId = projectSupervisorId;
 	}
 	
 	@OneToOne(fetch = FetchType.LAZY)
+	@JsonBackReference
 	@JoinColumn(name = "project_id")
 	public Project getProject() {
 		return project;
@@ -70,6 +73,11 @@ public class ProjectSupervisor implements java.io.Serializable {
 
 	public void setProjectSupervisorNumber(String projectSupervisorNumber) {
 		this.projectSupervisorNumber = projectSupervisorNumber;
+	}
+	
+	@Transient
+	public Integer getProjectId() {
+		return project.getProjectId();
 	}
 
 }

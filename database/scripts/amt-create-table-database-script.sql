@@ -130,9 +130,8 @@ DROP TABLE IF EXISTS invoice;
 
 CREATE TABLE invoice (
   invoice_id int(5) NOT NULL AUTO_INCREMENT,
-  invoice_number int(24) NOT NULL,
-  document_name varchar(12) NOT NULL,
-  invoice_total_price double(8, 2),
+  invoice_total_price double(12, 2),
+  date_created datetime DEFAULT CURRENT_TIMESTAMP,
   project_id int(5),
   PRIMARY KEY (invoice_id),
   KEY FK_INVOICE_PROJECT (project_id),
@@ -142,15 +141,35 @@ CREATE TABLE invoice (
 
 DROP TABLE IF EXISTS invoice_item;
 
+CREATE TABLE edge_profile (
+  edge_profile_id int(5) NOT NULL AUTO_INCREMENT,
+  edge_profile_name varchar(60),
+  PRIMARY KEY (edge_profile_id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+CREATE TABLE invoice_item_note (
+	invoice_item_note_id int (5) NOT NULL AUTO_INCREMENT,
+    invoice_item_note varchar(500),
+    PRIMARY KEY (invoice_item_note_id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
 CREATE TABLE invoice_item (
   invoice_item_id int(5) NOT NULL AUTO_INCREMENT,
   invoice_item_name varchar(12) NOT NULL,
-  invoice_item_price double(8, 2) NOT NULL,
+  invoice_item_price double(12, 2) NOT NULL,
+  invoice_measurement varchar(20),
+  invoice_width double(6, 2),
+  invoice_length double(6, 2),
+  invoice_area double(18,4),
+  edge_profile_id int(5),
   invoice_id int(5),
   PRIMARY KEY (invoice_item_id),
   KEY FK_INVOICE_INVOICEITEM (invoice_id),
   CONSTRAINT FK_INVOICE_INVOICEITEM_ID FOREIGN KEY (invoice_id) 
-  REFERENCES invoice (invoice_id) ON DELETE NO ACTION ON UPDATE NO ACTION
+  REFERENCES invoice (invoice_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY FK_EDGEPROFILE_INVOICEITEM (edge_profile_id),
+  CONSTRAINT FK_EDGEPROFILE_INVOICEITEM_ID FOREIGN KEY (edge_profile_id) 
+  REFERENCES edge_profile_id (edge_profile_id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS image;

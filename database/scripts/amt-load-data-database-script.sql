@@ -106,3 +106,31 @@ insert into project_address (project_address_id, first_line_address, second_line
 insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (13, '9 Dayton Terrace', 'Room 384', 'Wichita', '67205', 13, 'KS');
 insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (14, '68 Welch Pass', '3rd Floor', 'Alexandria', '22301', 14, 'VA');
 insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (15, '78686 Florence Avenue', 'PO Box 25391', 'Inglewood', '90398', 15, 'CA');
+
+-- Insert into project supervisor table --
+
+insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (1, 'Bethanechol Chloride', '(667) 7365614', 1);
+insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (2, 'Antihemophilic Factor Recombinant', '(642) 3442204', 2);
+insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (3, 'Nystatin', '(628) 6634057', 3);
+insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (4, 'Methyl Salicylate, Capsaicin, and Menthol', '(177) 9252783', 4);
+insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (5, 'SALICYLIC ACID', '(487) 1746919', 5);
+insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (6, 'azithromycin', '(323) 7158541', 6);
+insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (7, 'GLYCERIN', '(286) 3245818', 7);
+insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (8, 'Loperamide Hydrochloride', '(388) 9027843', 8);
+insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (9, 'German Cockroach', '(305) 3867469', 9);
+insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (10, 'Ampicillin and Sulbactam', '(427) 7380678', 10);
+
+-- insert into invoice table --
+
+insert into invoice (invoice_id, invoice_total_price, project_id) values (2, 44.28, 2);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (3, 29.56, 3);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (4, 23.75, 4);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (5, 64.95, 5);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (6, 95.59, 6);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (7, 8.72, 7);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (8, 64.45, 8);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (9, 46.12, 9);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (10, 57.06, 10);
+
+
+
