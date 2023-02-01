@@ -3,14 +3,14 @@ import React from "react";
 
 import CardWithRadius from "../UI/CardWithRadius";
 
-import styles from "./ClientProject.module.css";
-import classes from "../UI/CardWithRadius.module.css";
 
+import classes from "../UI/CardWithRadius.module.css";
+import styles from "./ClientProject.module.css";
 
 
 const ClientProject = (props) => {
   return (
-    <CardWithRadius className={`${classes.blueCard} ${classes.projectList}`}>
+    <CardWithRadius className={classes.blueCard}>
       <div className={styles.parent}>
         <div className={styles.left}>
           <h3>Project Name: {props.projectName}</h3>

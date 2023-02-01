@@ -3,8 +3,9 @@
     /* background-color: #05516A; */
     border: 5px;
     width: 50%;
-    margin:auto;
+    margin: 10px auto;
     padding:10px;
+    justify-content: center;
 }
 .blueCard {
     background-color: #05516A;

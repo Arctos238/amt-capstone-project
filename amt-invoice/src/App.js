@@ -5,6 +5,7 @@ import Layout from "./components/Navigation/Layout";
 import Login from "./components/Login/Login";
 import HomePage from "./components/Home/Home";
 import CreateProject from "./components/CreateProject/CreateProject";
+import ClientPage from "./components/ClientPage/ClientPage";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -47,26 +48,29 @@ function App() {
   // if there's a user show the message below
   if (user.name) {
       return (
-        <Switch>
-          <Route path="/" exact>
-            <Login 
-              handleSubmit={handleSubmit}
-              username={username}
-              setUsername={setUsername}
-              password={password}
-              setPassword={setPassword}
-            />
-          </Route>
-          <Route path="/home" exact>
-            <Layout>
-              <HomePage handleLogout={handleLogout} />
-            </Layout>
-          </Route>
-          <Route path="/createProject" exact>
-            <CreateProject />
-          </Route>
-        </Switch>
+      //   <Switch>
+      //     <Route path="/" exact>
+      //       <Login 
+      //         handleSubmit={handleSubmit}
+      //         username={username}
+      //         setUsername={setUsername}
+      //         password={password}
+      //         setPassword={setPassword}
+      //       />
+      //     </Route>
+      //     <Route path="/home" exact>
+      //       <Layout>
+      //         <HomePage handleLogout={handleLogout} />
+      //       </Layout>
+      //     </Route>
+      //     <Route path="/createProject" exact>
+      //       <CreateProject />
+      //     </Route>
+      //   </Switch>
+      <ClientPage />
       );
+      
+    
   }
 
   // if there's no user, show the login form

@@ -30,10 +30,13 @@ button:focus {
   border-radius: 30px;
   width: 20%;
   padding: 10px;
-  margin-left: 40%;
 }
 
 button:hover {
   cursor: pointer;
   background-color: #fabd44;
+}
+
+.addProject, .editClient {
+  width: 50%;
 }
