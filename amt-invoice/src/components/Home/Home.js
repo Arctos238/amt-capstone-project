@@ -1,16 +1,14 @@
-import Dropdown from "../UI/Dropdown";
+import React from 'react';
 
-function HomePage() {
-  return (
-    <div>
-      
-
+function HomePage(props) {
+    return (
       <main>
         <h1>Hello There</h1>
-        <Dropdown/>
+        <div>
+        <button onClick={props.handleLogout}>logout</button>
+      </div>
       </main>
-    </div>
-  );
-}
-
-export default HomePage;
+    );
+  }
+  
+  export default HomePage;
