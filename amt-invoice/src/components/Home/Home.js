@@ -1,11 +1,16 @@
 import React from 'react';
+import classes from './Home.module.css';
+import HomeButtons from './HomeButtons';
+
 
 function HomePage(props) {
     return (
-      <main>
-        <h1>Hello There</h1>
+      <div className={classes.home}>
+      <React.Fragment>
+        <HomeButtons/>
         
-      </main>
+      </React.Fragment>
+      </div>
     );
   }
   

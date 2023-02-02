@@ -1,0 +1,29 @@
+.parent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-s;
+   text-align: center;
+}
+
+.left{
+    width: 12rem;
+   
+  }
+  .right{
+    width: 12rem;
+   
+  }
+  .center{
+    
+    width: 12rem;
+  }
+
+  .label {
+    margin: auto  ;
+  }
+
+  .inputBoxes {
+    
+    text-align: center;
+  }

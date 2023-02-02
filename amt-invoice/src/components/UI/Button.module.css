@@ -40,3 +40,13 @@ button:hover {
 .addProject, .editClient {
   width: 50%;
 }
+
+.change{
+  width: 80%;
+  background-color: #05516a;
+}
+.find{
+  width: 80%;
+  height: 100%;
+  background-color: #05516a;
+}

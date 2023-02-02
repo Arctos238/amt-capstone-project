@@ -8,6 +8,7 @@ import CreateProject from "./components/CreateProject/CreateProject";
 import ClientPage from "./components/ClientPage/ClientPage";
 import CreateClient from "./components/Create_client/CreateClientPage";
 
+
 function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -26,13 +27,6 @@ function App() {
     }
   }, []);
 
-  // logout the user
-  const handleLogout = () => {
-    setUser({});
-    setUsername("");
-    setPassword("");
-    localStorage.clear();
-  };
 
   const handleSubmit = () => {
     if (username === name && password === pass) {
@@ -47,7 +41,7 @@ function App() {
   };
 
   // if there's a user show the message below
-  if (user.name) {
+  if (user.name == "admin") {
       return (
         <Switch>
           <Route path="/" exact>
@@ -60,9 +54,11 @@ function App() {
             />
           </Route>
           <Route path="/home" exact>
+            
             <Layout>
-              <HomePage handleLogout={handleLogout} />
+              <HomePage/>
             </Layout>
+            
           </Route>
           <Route path="/createProject" exact>
             <CreateProject />
