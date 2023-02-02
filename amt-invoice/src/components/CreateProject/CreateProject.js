@@ -57,7 +57,22 @@ const CreateProject = () => {
     const province = provinceRef.current.value;
 
     const obj = {
-      projectName, siteSuperPhone, siteSuperName, postalCode, city, address, suite, province, cabinet, tile, counter
+      projectName,
+      projectStatus: true,
+      projectCabinetsCondition: cabinet,
+      projectTileRemoval: tile, 
+      projectCounterRemoval: counter,
+      projectAddress: {
+        firstLineAddress: address,
+        secondLineAddress: suite,
+        postalCode,
+        city,
+        province
+      },
+      projectSupervisor: {
+        siteSuperPhone,
+        siteSuperName
+      }
     }
     console.log(obj);
   }
