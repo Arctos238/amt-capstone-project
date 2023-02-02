@@ -1,10 +1,12 @@
 .main_container {
-  background-color: #05516a;
   margin: 10px auto;
   border-radius: 30px;
   color: white;
   padding: 15px;
 }
 .addons {
-    align-items:center;
+    justify-content: center;
+}
+.blueCard {
+  background-color: #05516A;
 }

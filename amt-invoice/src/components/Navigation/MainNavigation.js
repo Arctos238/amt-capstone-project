@@ -2,13 +2,16 @@ import { Link } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
 function MainNavigation() {
+    function clearLoc() {
+      localStorage.clear();
+    }
     return (
         <header className={classes.header}>
-      <div className={classes.logo}>AMT Invocing</div>
-      <nav>
-        <ul>
+      
+      
+        <ul  className={classes.nav}>
           <li>
-            <Link to="/">Logout</Link>
+            <Link to="/" onClick={clearLoc}>Logout</Link>
           </li>
 
           <li>
@@ -21,7 +24,7 @@ function MainNavigation() {
             </Link>
           </li>
         </ul>
-      </nav>
+      
     </header>
       );
 }

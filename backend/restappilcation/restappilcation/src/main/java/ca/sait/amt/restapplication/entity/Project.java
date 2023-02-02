@@ -198,7 +198,8 @@ public class Project implements java.io.Serializable {
 		this.projectAddress = projectAddress;
 	}
 	
-	@OneToOne(fetch = FetchType.EAGER, mappedBy = "project") 
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "project", cascade=CascadeType.ALL) 
+	@JsonManagedReference
 	@JoinColumn(name = "project_supervisor")
 	public ProjectSupervisor getProjectSupervisor() {
 		return this.projectSupervisor;

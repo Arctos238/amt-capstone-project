@@ -1,16 +1,17 @@
-import Dropdown from "../UI/Dropdown";
+import React from 'react';
+import classes from './Home.module.css';
+import HomeButtons from './HomeButtons';
 
-function HomePage() {
-  return (
-    <div>
-      
 
-      <main>
-        <h1>Hello There</h1>
-        <Dropdown/>
-      </main>
-    </div>
-  );
-}
-
-export default HomePage;
+function HomePage(props) {
+    return (
+      <div className={classes.home}>
+      <React.Fragment>
+        <HomeButtons/>
+        
+      </React.Fragment>
+      </div>
+    );
+  }
+  
+  export default HomePage;

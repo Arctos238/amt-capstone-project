@@ -1,0 +1,14 @@
+.h1 {
+    text-align: center;
+    margin:0;
+    margin-top: 20px;
+}
+
+.form {
+    
+    padding-left: 25%;
+    padding-right: 25%;
+    border-radius: 0.5rem;
+    text-align: center;
+    
+  }
