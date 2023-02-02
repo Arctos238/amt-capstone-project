@@ -1,7 +1,7 @@
 import { Route, Switch, useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Layout from "./components/Navigation/Layout";
-
+import  useGet  from './hooks/GetHttpRequest.js';
 import Login from "./components/Login/Login";
 import HomePage from "./components/Home/Home";
 import CreateProject from "./components/CreateProject/CreateProject";
@@ -19,6 +19,26 @@ function App() {
 
   const history = useHistory();
 
+  
+ 
+  const handleSubmit = () => {
+    const {data, loading, error} = useGet('http://70.77.64.68:8083/api/employees');
+    console.log(data, error);
+    if(error !== null || error !== undefined){
+      const user = data;
+      if(user !== null ){
+        if (password === user.password) {
+          localStorage.setItem("user", JSON.stringify(user));
+          setUser(user);
+          setUsername("");
+          setPassword("");
+         history.push("/home");
+      }
+    }
+    }
+    
+  };
+
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
@@ -28,20 +48,9 @@ function App() {
   }, []);
 
 
-  const handleSubmit = () => {
-    if (username === name && password === pass) {
-      const user = { name, password };
-      localStorage.setItem("user", JSON.stringify(user));
-      setUser(user);
-      setUsername("");
-      setPassword("");
-      
-      history.push("/home");
-    }
-  };
 
   // if there's a user show the message below
-  if (user.name == "admin") {
+  if (user.name) {
       return (
         <Switch>
           <Route path="/" exact>
