@@ -44,7 +44,6 @@ const CreateProject = () => {
   const suiteRef = useRef();
   const provinceRef = useRef();
 
-
   function submitHandler(event) {
     event.preventDefault();
     const projectName = projectNameRef.current.value;
@@ -57,8 +56,18 @@ const CreateProject = () => {
     const province = provinceRef.current.value;
 
     const obj = {
-      projectName, siteSuperPhone, siteSuperName, postalCode, city, address, suite, province, cabinet, tile, counter
-    }
+      projectName,
+      siteSuperPhone,
+      siteSuperName,
+      postalCode,
+      city,
+      address,
+      suite,
+      province,
+      cabinet,
+      tile,
+      counter,
+    };
     console.log(obj);
   }
 
@@ -67,20 +76,25 @@ const CreateProject = () => {
       <MainNavigation />
       <h1 className={styles.h1}>Create Project</h1>
       <form onSubmit={submitHandler}>
-        <CreateProjectDetails 
-        projectNameRef={projectNameRef}
-        siteSuperNameRef={siteSuperNameRef}
-        siteSuperPhoneRef={siteSuperPhoneRef}
-        postalCodeRef={postalCodeRef}
-        cityRef={cityRef}
-        addressRef={addressRef}
-        suiteRef={suiteRef}
-        provinceRef={provinceRef}/>
-        <CreateProjectAddOns 
-        onCabinetChange={onCabinetChange}
-        onTileChange={onTileChange}
-        onCounterChange={onCounterChange}/>
-        <Button type="submit">Create Project</Button>
+        <CreateProjectDetails
+          projectNameRef={projectNameRef}
+          siteSuperNameRef={siteSuperNameRef}
+          siteSuperPhoneRef={siteSuperPhoneRef}
+          postalCodeRef={postalCodeRef}
+          cityRef={cityRef}
+          addressRef={addressRef}
+          suiteRef={suiteRef}
+          provinceRef={provinceRef}
+        />
+        <CreateProjectAddOns
+          onCabinetChange={onCabinetChange}
+          onTileChange={onTileChange}
+          onCounterChange={onCounterChange}
+        />
+
+        <Button type="submit" className={styles.button}>Create Project</Button>
+       
+        
       </form>
     </React.Fragment>
   );

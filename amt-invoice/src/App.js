@@ -67,7 +67,7 @@ function App() {
       //       <CreateProject />
       //     </Route>
       //   </Switch>
-      <ClientPage />
+      <CreateProject />
       );
       
     
