@@ -19,13 +19,22 @@ label {
   padding: 5px;
 }
 
-div {
-  width: 90%;
-  margin: auto;
-  padding: 10px;
+.inputContainer {
+  text-align: center;
+  color: white;
+  background-color: #05516a;
+  border-radius: 10px;
+  
 }
 
-div .create-client-button {
-  margin: auto;
-  padding: 15% 0;
+.parent {
+  display: flex;
+  flex-direction: row;
+}
+
+.center{
+  padding-top: 2rem;
+
+  border-radius: 0.5rem;
+  text-align: center;
 }

@@ -6,6 +6,7 @@ import Login from "./components/Login/Login";
 import HomePage from "./components/Home/Home";
 import CreateProject from "./components/CreateProject/CreateProject";
 import ClientPage from "./components/ClientPage/ClientPage";
+import CreateClient from "./components/Create_client/CreateClientPage";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -48,26 +49,30 @@ function App() {
   // if there's a user show the message below
   if (user.name) {
       return (
-      //   <Switch>
-      //     <Route path="/" exact>
-      //       <Login 
-      //         handleSubmit={handleSubmit}
-      //         username={username}
-      //         setUsername={setUsername}
-      //         password={password}
-      //         setPassword={setPassword}
-      //       />
-      //     </Route>
-      //     <Route path="/home" exact>
-      //       <Layout>
-      //         <HomePage handleLogout={handleLogout} />
-      //       </Layout>
-      //     </Route>
-      //     <Route path="/createProject" exact>
-      //       <CreateProject />
-      //     </Route>
-      //   </Switch>
-      <ClientPage />
+        <Switch>
+          <Route path="/" exact>
+            <Login 
+              handleSubmit={handleSubmit}
+              username={username}
+              setUsername={setUsername}
+              password={password}
+              setPassword={setPassword}
+            />
+          </Route>
+          <Route path="/home" exact>
+            <Layout>
+              <HomePage handleLogout={handleLogout} />
+            </Layout>
+          </Route>
+          <Route path="/createProject" exact>
+            <CreateProject />
+          </Route>
+          <Route path="/createClient" exact>
+          <CreateClient />
+        </Route>
+        </Switch>
+      //<ClientPage />
+      
       );
       
     
