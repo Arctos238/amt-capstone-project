@@ -1,15 +1,25 @@
 .parent {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
-.label {
-    color: white;
+.left{
+  text-align: left;
+  margin: 10px;
+}
+.right{
+  text-align: left;
+  margin: 10px;
 }
 
-input[type="number"], input[type="tel"],
-textarea,
-textarea:focus {
+
+.inputBoxes {
+  height: 20%;
+  text-align: left;
+}
+
+.transparentInput {
   background-color: transparent;
   border: none;
   padding: 10px;
@@ -17,4 +27,8 @@ textarea:focus {
   outline: none;
   color: white;
   font-size: 120%;
+}
+
+.label {
+  margin: auto  ;
 }

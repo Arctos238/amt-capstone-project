@@ -1,12 +1,22 @@
 .separate {
-    margin: 0 50px;
+    margin-right: 200px;
 }
 
-.parent{
+.parent {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
-.parent, .label, .left, .right {
+.parent, .left, .right {
     padding: 0;
+    margin: auto;
+}
+.addOnPart {
+    width: 860px;
+    margin: auto;
+}
+
+.label {
+    margin: 0 ;
 }

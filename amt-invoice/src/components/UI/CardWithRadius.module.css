@@ -5,7 +5,7 @@
   padding: 15px;
 }
 .addons {
-    align-items:center;
+    justify-content: center;
 }
 .blueCard {
   background-color: #05516A;
