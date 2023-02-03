@@ -1,5 +1,6 @@
 import React from "react";
-import Card from "../UI/Card";
+import CardWithRadius from "../UI/CardWithRadius";
+import classes from "../UI/CardWithRadius.module.css";
 import styles from"./CreateClientDetails.module.css"
 
 const createClient = (props) =>{
@@ -7,29 +8,29 @@ const createClient = (props) =>{
 return (
     <React.Fragment>
         <div className = {styles.center} >
-            <Card className={styles.inputContainer}>
+            <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
             <label>Client Name:</label>
             <input type = "text" className="CC_Name"
             />
-            </Card>
-            <Card className={styles.inputContainer}>
+            </CardWithRadius>
+            <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
             <label>Email Personal:</label>
             <input type = "text" className="CC_EmailPersonal"
             />
-            </Card>
-            <Card className={styles.inputContainer}>
+            </CardWithRadius>
+            <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
             <label>Email Business:</label>
             <input type = "text" className="CC_EmailBusiness"
             />
-            </Card>
-            <Card className={styles.inputContainer}>
+            </CardWithRadius>
+            <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
             <label>Phone Number:</label>
             <input  type="tel" 
-              className="CC_PhoneNumber"
+              className={styles.transparentInput}
               placeholder="123-456-7890"
               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
             />
-            </Card>
+            </CardWithRadius>
         </div>
     </React.Fragment>
 );

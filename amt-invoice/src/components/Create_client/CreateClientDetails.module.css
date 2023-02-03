@@ -19,12 +19,9 @@ label {
   padding: 5px;
 }
 
-.inputContainer {
-  text-align: center;
-  color: white;
-  background-color: #05516a;
-  border-radius: 10px;
-  
+.inputBoxes {
+  height: 20%;
+  text-align: left;
 }
 
 .parent {
@@ -37,4 +34,13 @@ label {
   padding-bottom: 2rem;
   border-radius: 0.5rem;
   text-align: center;
+}
+.transparentInput {
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  width: 50%;
+  outline: none;
+  color: white;
+  font-size: 120%;
 }
