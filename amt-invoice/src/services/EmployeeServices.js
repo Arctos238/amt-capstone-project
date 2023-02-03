@@ -1,35 +1,30 @@
-import useDelete from '../hooks/DeleteHttpRequest';
-import useGet  from '../hooks/GetHttpRequest';
-import usePost from '../hooks/PostHttpRequest';
-import usePut from '../hooks/PutHttpRequest';
+import { getApi, postApi, putApi, deleteApi} from "../https/HttpRequest";
 
-const GetAllEmployees = () => { 
-    const {data, loading, error} = useGet('http://70.77.64.68:8083/api/employees');
-    return {data, loading, error}
+const GetAllEmployees = async () => { 
+    const data = await getApi('http://70.77.64.68:8083/api/employees');
+    return data
 }
-const GetEmployeeByUsername = (username) => {
-    const {data, loading, error} = useGet('http://70.77.64.68:8083/api/employees/' + username);
-    return {data, loading, error}
+const GetEmployeeByUsername = async (username) => {
+    const data = await getApi('http://70.77.64.68:8083/api/employees/' + username);
+    return data
 }
-const DeleteEmployeeByUsername = (username) => {
-    const {data, loading, error} = useDelete('http://70.77.64.68:8083/api/employees/' + username);
-    return {data, loading, error}
+const DeleteEmployeeByUsername = async (username) => {
+    const data = await deleteApi('http://70.77.64.68:8083/api/employees/' + username);
+    return data
 }
-const CreateNewEmployee = (obj) => {
-    const {data, loading, error} = usePost('http://70.77.64.68:8083/api/employees', obj);
-    return {data, loading, error}
+const CreateNewEmployee = async (obj) => {
+    const data = await postApi('http://70.77.64.68:8083/api/employees', obj);
+    return data
 }
-const UpdateEmployee = (obj) => {
-    const {data, loading, error} = usePut('http://70.77.64.68:8083/api/employees', obj);
-    return {data, loading, error}
+const UpdateEmployee = async (obj) => {
+    const data = await putApi('http://70.77.64.68:8083/api/employees', obj);
+    return data
 }
 
-const EmployeeServices = {
+export {
     GetAllEmployees,
     GetEmployeeByUsername,
     DeleteEmployeeByUsername,
     CreateNewEmployee,
     UpdateEmployee
 } 
-
-export default EmployeeServices;

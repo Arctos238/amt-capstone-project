@@ -1,7 +1,7 @@
 import { Route, Switch, useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Layout from "./components/Navigation/Layout";
-import  useGet  from './hooks/GetHttpRequest.js';
+import { GetEmployeeByUsername } from "./services/EmployeeServices";
 import Login from "./components/Login/Login";
 import HomePage from "./components/Home/Home";
 import CreateProject from "./components/CreateProject/CreateProject";
@@ -18,13 +18,11 @@ function App() {
   let pass = "password";
 
   const history = useHistory();
-
-  
  
   const handleSubmit = () => {
-    const {data, loading, error} = useGet('http://70.77.64.68:8083/api/employees');
-    console.log(data, error);
-    if(error !== null || error !== undefined){
+    const data = GetEmployeeByUsername();
+    console.log(data);
+    localStorage.setItem("data", data);
       const user = data;
       if(user !== null ){
         if (password === user.password) {
@@ -34,7 +32,6 @@ function App() {
           setPassword("");
          history.push("/home");
       }
-    }
     }
     
   };

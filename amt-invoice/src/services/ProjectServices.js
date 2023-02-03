@@ -1,34 +1,31 @@
-import useDelete from '../hooks/DeleteHttpRequest';
-import useGet  from '../hooks/GetHttpRequest';
-import usePost from '../hooks/PostHttpRequest';
-import usePut from '../hooks/PutHttpRequest';
+import { getApi, postApi, putApi, deleteApi } from "../https/HttpRequest";
 
-const GetAllProjects = () => { 
-    const {data, loading, error} = useGet('http://70.77.64.68:8083/api/projects');
-    return {data, loading, error}
+const GetAllProjects = async () => { 
+    const data = await getApi('http://70.77.64.68:8083/api/projects');
+    return data
 }
-const GetProjectByClientId = (id) => {
-    const {data, loading, error} = useGet('http://70.77.64.68:8083/api/projects/' + id);
-    return {data, loading, error}
+const GetProjectByClientId = async (id) => {
+    const data = await getApi('http://70.77.64.68:8083/api/projects/' + id);
+    return data
 }
-const GetProjectById = (id) => {
-    const {data, loading, error} = useGet('http://70.77.64.68:8083/api/projects/' + id);
-    return {data, loading, error}
+const GetProjectById = async (id) => {
+    const data = await getApi('http://70.77.64.68:8083/api/projects/' + id);
+    return data
 }
-const DeleteProjectById = (id) => {
-    const {data, loading, error} = useDelete('http://70.77.64.68:8083/api/projects/id/' + id);
-    return {data, loading, error}
+const DeleteProjectById = async (id) => {
+    const data = await deleteApi('http://70.77.64.68:8083/api/projects/id/' + id);
+    return data
 }
-const CreateNewProject = (obj) => {
-    const {data, loading, error} = usePost('http://70.77.64.68:8083/api/projects/', obj);
-    return {data, loading, error}
+const CreateNewProject = async (obj) => {
+    const data = await postApi('http://70.77.64.68:8083/api/projects/', obj);
+    return data
 }
-const UpdateProject = (obj) => {
-    const {data, loading, error} = usePut('http://70.77.64.68:8083/api/projects/', obj);
-    return {data, loading, error}
+const UpdateProject = async (obj) => {
+    const data = await putApi('http://70.77.64.68:8083/api/projects/', obj);
+    return data
 }
 
-const ProjectServices = {
+export {
     GetAllProjects,
     GetProjectByClientId,
     GetProjectById,
@@ -36,5 +33,3 @@ const ProjectServices = {
     CreateNewProject,
     UpdateProject
 } 
-
-export default ProjectServices;
