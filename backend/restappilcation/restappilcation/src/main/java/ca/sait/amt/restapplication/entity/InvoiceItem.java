@@ -3,6 +3,14 @@ package ca.sait.amt.restapplication.entity;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -10,6 +18,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -23,6 +33,8 @@ public class InvoiceItem implements java.io.Serializable {
 	private Invoice invoice;
 	private String invoiceItemName;
 	private double invoiceItemPrice;
+	private EdgeProfile edgeProfile;
+	private Set<InvoiceItemNote> invoiceItemNotes = new HashSet<InvoiceItemNote>(0);
 
 	public InvoiceItem() {
 	}
@@ -32,7 +44,9 @@ public class InvoiceItem implements java.io.Serializable {
 		this.invoiceItemPrice = invoiceItemPrice;
 	}
 
-	public InvoiceItem(Invoice invoice, String invoiceItemName, double invoiceItemPrice) {
+	public InvoiceItem(Set<InvoiceItemNote> invoiceItemNotes, Invoice invoice, EdgeProfile edgeProfile, String invoiceItemName, double invoiceItemPrice) {
+		this.invoiceItemNotes = invoiceItemNotes;
+		this.edgeProfile = edgeProfile;
 		this.invoice = invoice;
 		this.invoiceItemName = invoiceItemName;
 		this.invoiceItemPrice = invoiceItemPrice;
@@ -40,7 +54,6 @@ public class InvoiceItem implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-
 	@Column(name = "invoice_item_id", unique = true, nullable = false)
 	public Integer getInvoiceItemId() {
 		return this.invoiceItemId;
@@ -51,6 +64,8 @@ public class InvoiceItem implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonBackReference
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JoinColumn(name = "invoice_id")
 	public Invoice getInvoice() {
 		return this.invoice;
@@ -77,5 +92,24 @@ public class InvoiceItem implements java.io.Serializable {
 	public void setInvoiceItemPrice(double invoiceItemPrice) {
 		this.invoiceItemPrice = invoiceItemPrice;
 	}
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "edge_profile_id")
+	public EdgeProfile getEdgeProfile() {
+		return edgeProfile;
+	}
+	
+	public void setEdgeProfile(EdgeProfile edgeProfile) {
+		this.edgeProfile = edgeProfile;
+	}
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "invoiceItem")
+	@JsonManagedReference
+	public Set<InvoiceItemNote> getInvoiceItemNotes() {
+		return this.invoiceItemNotes;
+	}
 
+	public void setInvoiceItemNotes(Set<InvoiceItemNote> invoiceItemNotes) {
+		this.invoiceItemNotes = invoiceItemNotes;
+	}
 }

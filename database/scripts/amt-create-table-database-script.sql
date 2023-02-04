@@ -26,10 +26,10 @@ CREATE TABLE `client` (
   `client_id` int(11) NOT NULL AUTO_INCREMENT,
   `client_name` varchar(80) DEFAULT NULL,
   `client_contact_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`client_id`),
-  KEY `FK_CLIENT_CONTACT` (`client_contact_id`),
-  CONSTRAINT `FK_CLIENT_CONTACT_CONS` FOREIGN KEY (`client_contact_id`) 
-  REFERENCES `client_contact` (`client_contact_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (client_id),
+  KEY FK_CLIENT_CONTACT (client_contact_id),
+  CONSTRAINT FK_CLIENT_CONTACT_CONS FOREIGN KEY (client_contact_id) 
+  REFERENCES client_contact (client_contact_id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS project_address;
@@ -42,8 +42,10 @@ CREATE TABLE `project_address` (
     `province` char(2) DEFAULT NULL,
    `postal_code` varchar(7) DEFAULT NULL,
    `project_id` int(11) DEFAULT NULL,
-   PRIMARY KEY (`project_address_id`),
-   KEY `FK_projectaddress_project` (`project_id`)
+	PRIMARY KEY (project_address_id),
+	KEY FK_PROJECT_PROJADDRESS (project_id),
+	CONSTRAINT FK_PROJECT_PROJADDRESS_ID FOREIGN KEY (project_id) 
+	REFERENCES project (project_id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS project_supervisor;
@@ -53,8 +55,10 @@ CREATE TABLE `project_supervisor` (
     `project_supervisor_name` varchar(80) DEFAULT NULL,
 	`project_supervisor_number` varchar(14) DEFAULT NULL,
    `project_id` int(11) DEFAULT NULL,
-   PRIMARY KEY (`project_supervisor_id`),
-   KEY `FK_projectsupervisor_project` (`project_id`)
+	PRIMARY KEY (project_supervisor_id),
+	KEY FK_PROJECT_PROJSUPER (project_id),
+	CONSTRAINT FK_PROJECT_PROJSUPER_ID FOREIGN KEY (project_id) 
+	REFERENCES project (project_id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS project;
@@ -143,14 +147,20 @@ DROP TABLE IF EXISTS invoice_item;
 
 CREATE TABLE edge_profile (
   edge_profile_id int(5) NOT NULL AUTO_INCREMENT,
-  edge_profile_name varchar(60),
+  edge_profile_type varchar(60),
+  edge_profile_cut varchar(60),
+  edge_profile_measurement varchar(60),
   PRIMARY KEY (edge_profile_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 CREATE TABLE invoice_item_note (
 	invoice_item_note_id int (5) NOT NULL AUTO_INCREMENT,
     invoice_item_note varchar(500),
-    PRIMARY KEY (invoice_item_note_id)
+    invoice_item_id int (5),
+    PRIMARY KEY (invoice_item_note_id),
+    KEY FK_INVOICEITEM_INVOICEITEMNOTE (invoice_item_id),
+	CONSTRAINT FK_INVOICEITEM_INVOICEITEMNOTE_ID FOREIGN KEY (invoice_item_id) 
+	REFERENCES invoice_item (invoice_item_id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 CREATE TABLE invoice_item (
@@ -161,6 +171,7 @@ CREATE TABLE invoice_item (
   invoice_width double(6, 2),
   invoice_length double(6, 2),
   invoice_area double(18,4),
+  invoice_depth double (10,2),
   edge_profile_id int(5),
   invoice_id int(5),
   PRIMARY KEY (invoice_item_id),
@@ -169,7 +180,7 @@ CREATE TABLE invoice_item (
   REFERENCES invoice (invoice_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
   KEY FK_EDGEPROFILE_INVOICEITEM (edge_profile_id),
   CONSTRAINT FK_EDGEPROFILE_INVOICEITEM_ID FOREIGN KEY (edge_profile_id) 
-  REFERENCES edge_profile_id (edge_profile_id) ON DELETE NO ACTION ON UPDATE NO ACTION
+  REFERENCES edge_profile (edge_profile_id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS image;

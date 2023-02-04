@@ -122,15 +122,38 @@ insert into project_supervisor (project_supervisor_id, project_supervisor_name, 
 
 -- insert into invoice table --
 
-insert into invoice (invoice_id, invoice_total_price, project_id) values (2, 44.28, 2);
-insert into invoice (invoice_id, invoice_total_price, project_id) values (3, 29.56, 3);
-insert into invoice (invoice_id, invoice_total_price, project_id) values (4, 23.75, 4);
-insert into invoice (invoice_id, invoice_total_price, project_id) values (5, 64.95, 5);
-insert into invoice (invoice_id, invoice_total_price, project_id) values (6, 95.59, 6);
-insert into invoice (invoice_id, invoice_total_price, project_id) values (7, 8.72, 7);
-insert into invoice (invoice_id, invoice_total_price, project_id) values (8, 64.45, 8);
-insert into invoice (invoice_id, invoice_total_price, project_id) values (9, 46.12, 9);
-insert into invoice (invoice_id, invoice_total_price, project_id) values (10, 57.06, 10);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (1, 18529.4, 1);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (2, 68409.63, 2);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (3, 8387.83, 3);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (4, 55126.19, 4);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (5, 63487.24, 5);
+insert into invoice (invoice_id, invoice_total_price, Project_id) values (6, 61743.68, 6);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (7, 4200.28, 7);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (8, 72869.23, 8);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (9, 88723.6, 9);
+insert into invoice (invoice_id, invoice_total_price, project_id) values (10, 11298.11, 10);
 
+-- Insert into Edge Profile --
 
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Standard", "Minimal Eased", "3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Standard", "Eased", "3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Standard", "Heavy Eased", "3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Standard", "Bevel", "3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Standard", "Quarter Round", "3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Standard", "Half Round", "3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Bullnose", "3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Ogee", "3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Eased With Laminate", "3cm x 3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Bevel With Laminate", "3cm x 3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Quater Round With Laminate", "3cm x 3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Half Round With Laminate", "3cm x 3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Ogee With With Laminate", "3cm x 3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Miltered Edge", "3cm x 3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Double Bevel With Laminate", "3cm x 3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Double Quarter Round With Laminate", "3cm x 3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Double Bullnose With Laminate", "3cm x 3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Double Ogee With Eased", "3cm x 3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Double Stepped With Ogee", "3cm x 3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Triple Stepped Bullnose", "3cm x 3cm x 3cm");
+insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Rock Pitched", "3cm x 3cm x 3cm");
 

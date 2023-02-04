@@ -31,7 +31,6 @@ import jakarta.persistence.Transient;
 public class Project implements java.io.Serializable {
 
 	private Integer projectId;
-	private Integer clientId;
 	private Client client;
 	private String projectName;
 	private Boolean projectStatus;
@@ -53,12 +52,11 @@ public class Project implements java.io.Serializable {
 		this.projectName = projectName;
 	}
 
-	public Project(Integer clientId, Client client, String projectName, Boolean projectStatus,
+	public Project(Client client, String projectName, Boolean projectStatus,
 			Boolean projectCabinetsCondition, Boolean projectCounterRemoval, Boolean projectTileRemoval,
 			ProjectAddress projectAddress, ProjectSupervisor projectSupervisor, Set<Quote> quotes, Set<Image> images,
 			Set<PurchaseOrder> purchaseOrders, Set<DepositForm> depositForms, Set<Invoice> invoices) {
 		super();
-		this.clientId = clientId;
 		this.client = client;
 		this.projectName = projectName;
 		this.projectStatus = projectStatus;
@@ -86,7 +84,7 @@ public class Project implements java.io.Serializable {
 		this.projectId = projectId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.PERSIST)
 	@JoinColumn(name= "client_id")
 	@JsonBackReference
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

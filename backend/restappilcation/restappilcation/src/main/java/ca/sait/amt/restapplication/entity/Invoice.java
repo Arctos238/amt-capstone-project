@@ -3,8 +3,13 @@ package ca.sait.amt.restapplication.entity;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,26 +30,19 @@ public class Invoice implements java.io.Serializable {
 
 	private Integer invoiceId;
 	private Project project;
-	private int invoiceNumber;
-	private String documentName;
 	private Double invoiceTotalPrice;
+	private Date dateCreated;
 	private Set<InvoiceItem> invoiceItems = new HashSet<InvoiceItem>(0);
 
 	public Invoice() {
 	}
 
-	public Invoice(int invoiceNumber, String documentName) {
-		this.invoiceNumber = invoiceNumber;
-		this.documentName = documentName;
-	}
-
-	public Invoice(Project project, int invoiceNumber, String documentName, Double invoiceTotalPrice,
+	public Invoice(Project project, int invoiceNumber, String documentName, Date dateCreated, Double invoiceTotalPrice,
 			Set<InvoiceItem> invoiceItems) {
 		this.project = project;
-		this.invoiceNumber = invoiceNumber;
-		this.documentName = documentName;
 		this.invoiceTotalPrice = invoiceTotalPrice;
 		this.invoiceItems = invoiceItems;
+		this.dateCreated = dateCreated;
 	}
 
 	@Id
@@ -60,6 +58,8 @@ public class Invoice implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonBackReference
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JoinColumn(name = "project_id")
 	public Project getProject() {
 		return this.project;
@@ -67,24 +67,6 @@ public class Invoice implements java.io.Serializable {
 
 	public void setProject(Project project) {
 		this.project = project;
-	}
-
-	@Column(name = "invoice_number", nullable = false)
-	public int getInvoiceNumber() {
-		return this.invoiceNumber;
-	}
-
-	public void setInvoiceNumber(int invoiceNumber) {
-		this.invoiceNumber = invoiceNumber;
-	}
-
-	@Column(name = "document_name", nullable = false, length = 12)
-	public String getDocumentName() {
-		return this.documentName;
-	}
-
-	public void setDocumentName(String documentName) {
-		this.documentName = documentName;
 	}
 
 	@Column(name = "invoice_total_price", precision = 8)
@@ -95,8 +77,18 @@ public class Invoice implements java.io.Serializable {
 	public void setInvoiceTotalPrice(Double invoiceTotalPrice) {
 		this.invoiceTotalPrice = invoiceTotalPrice;
 	}
+	
+	@Column(name = "date_created")
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+	
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "invoice")
+	@JsonManagedReference
 	public Set<InvoiceItem> getInvoiceItems() {
 		return this.invoiceItems;
 	}
