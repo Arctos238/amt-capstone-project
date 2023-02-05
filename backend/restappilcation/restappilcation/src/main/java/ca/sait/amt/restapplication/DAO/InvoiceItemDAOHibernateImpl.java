@@ -5,11 +5,13 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import ca.sait.amt.restapplication.entity.Invoice;
 import ca.sait.amt.restapplication.entity.InvoiceItem;
 import jakarta.persistence.EntityManager;
 
+@Repository
 public class InvoiceItemDAOHibernateImpl implements InvoiceItemDAO {
 	private EntityManager entityManager;
 	
