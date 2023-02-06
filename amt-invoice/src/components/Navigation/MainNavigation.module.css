@@ -3,11 +3,10 @@
   height: 5rem;
   display: grid;
   align-items: center;
- 
+
   background-color: #fdb900;
   grid-row-start: 1;
   grid-row-end: 2;
-  
 }
 
 .logo {
@@ -16,11 +15,9 @@
   font-weight: bold;
 }
 
-
-.header 
-.nav  {
+.header .nav {
   list-style: none;
- padding: 0;
+  padding: 0;
   display: flex;
   flex-grow: 1;
   justify-content: space-between;
@@ -52,5 +49,4 @@
   color: white;
   border-radius: 12px;
   padding: 0 1rem;
- 
 }

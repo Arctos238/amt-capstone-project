@@ -1,34 +1,18 @@
-import classes from "./Login.module.css";
+import React from "react";
+import LoginForm from "./LoginForm";
+import { Link } from "react-router-dom";
 
-function Login  ({ handleSubmit, username, setUsername, password, setPassword }) {
+const Login = (props) => {
+  const loginHandler = () => {
+    props.changeLoginHandler();
+  };
+
   return (
-    <div className={classes.center}>
-    <h1 className={classes.h1Login}>AMT Invocing</h1>
-      <form onSubmit={handleSubmit} className={classes.formLogin}>
-        <div className={classes.inputContainer}>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            value={username}  
-            placeholder="enter a username"
-            onChange={({ target }) => setUsername(target.value)}
-            className={classes.input}
-          />
-        </div>
-        <div className={classes.inputContainer}>
-          <label htmlFor="password" >Password:</label>
-          <input
-            type="password"
-            value={password}
-            placeholder="enter a password"
-            onChange={({ target }) => setPassword(target.value)}
-            className={classes.input}
-          />
-        </div>
-        <button type="submit" className={classes.submitButton}>Login</button>
-      </form>
-    </div>
+    <>
+      <div>LoginPage</div>
+      <LoginForm changeLoginHandler={loginHandler}></LoginForm>
+    </>
   );
-}
+};
 
 export default Login;

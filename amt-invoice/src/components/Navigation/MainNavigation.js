@@ -1,13 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import classes from "./MainNavigation.module.css";
 
-function MainNavigation() {
-  const [reset, setReset] = useState(false);
+function MainNavigation(props) {
+  const nav = useNavigate();
 
   function clearLoc() {
     localStorage.clear();
-    setReset(true);
+    props.logoutChangeHandler();
+    nav("/");
+  }
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (!props.loggedIn || user == null) {
+    nav("/");
   }
 
   return (
