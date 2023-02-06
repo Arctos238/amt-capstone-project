@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "invoice_item_note", catalog = "amt")
@@ -51,7 +52,7 @@ public class InvoiceItemNote implements java.io.Serializable{
 		this.invoiceItemNote = invoiceItemNote;
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonBackReference
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JoinColumn(name = "invoice_item_id")
@@ -61,5 +62,10 @@ public class InvoiceItemNote implements java.io.Serializable{
 	
 	public void setInvoiceItem(InvoiceItem invoiceItem) {
 		this.invoiceItem = invoiceItem;
+	}
+	
+	@Transient
+	public int getInvoiceItemId() {
+		return this.invoiceItem.getInvoiceItemId();
 	}
 }
