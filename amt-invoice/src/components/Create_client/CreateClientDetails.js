@@ -10,17 +10,20 @@ return (
         <div className = {styles.center} >
             <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
             <label>Client Name:</label>
-            <input type = "text" className="CC_Name"
+            <input type = "text" className={styles.transparentInput}
+            ref= {props.clientName}
             />
             </CardWithRadius>
             <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
             <label>Email Personal:</label>
-            <input type = "text" className="CC_EmailPersonal"
+            <input type = "text" className={styles.transparentInput}
+            ref= {props.emailPersonal}
             />
             </CardWithRadius>
             <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
             <label>Email Business:</label>
-            <input type = "text" className="CC_EmailBusiness"
+            <input type = "text" className={styles.transparentInput}
+            ref= {props.emailBusiness}
             />
             </CardWithRadius>
             <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
@@ -29,6 +32,7 @@ return (
               className={styles.transparentInput}
               placeholder="123-456-7890"
               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              ref= {props.phoneNumber}
             />
             </CardWithRadius>
         </div>
