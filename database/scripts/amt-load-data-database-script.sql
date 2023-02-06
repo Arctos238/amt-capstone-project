@@ -157,3 +157,48 @@ insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measu
 insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Triple Stepped Bullnose", "3cm x 3cm x 3cm");
 insert into edge_profile(edge_profile_type, edge_profile_cut, edge_profile_measurement) values ("Upgrade", "Rock Pitched", "3cm x 3cm x 3cm");
 
+-- Insert into invoice item -- 
+
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Lucita', 8.02, 31.84, 'Amlodipine ', 5667.34, 12.4, 146.04, 10, 7);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Jemmy', 73.13, 12.27, 'Benzocaine', 1792.24, 121.86, 53.25, 5, 7);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Tammy', 48.77, 39.34, 'Alfalfa', 9333.48, 91.42, 100.86, 9, 3);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Homerus', 70.81, 93.2, 'Diphenhydramine hydrochloride', 3386.31, 83.78, 93.97, 7, 3);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Hansiain', 2.06, 11.17, 'Isosorbide Mononitrate', 5016.05, 199.35, 173.48, 10, 7);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Rancell', 10.96, 1.03, 'Atomoxetine hydrochloride', 2708.63, 124.24, 150.17, 3, 2);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Margette', 64.77, 17.72, 'Cephalexin', 2297.43, 75.16, 111.45, 8, 7);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Maggi', 81.24, 67.02, 'SODIUM MONOFLUOROPHOSPHATE', 2344.15, 75.08, 97.11, 10, 6);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Shela', 83.55, 16.96, 'midodrine hydrochloride', 4400.35, 75.53, 180.83, 5, 10);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Conroy', 28.21, 25.17, 'Octinoxate, Oxybenzone, and Titanium Dioxide', 1841.44, 167.56, 161.19, 3, 10);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Syd', 96.15, 8.63, 'Ethyl Alcohol', 1402.29, 100.54, 160.58, 6, 9);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Theadora', 34.5, 52.23, 'Nicotine Polacrilex', 5446.66, 154.29, 34.91, 4, 5);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Miguel', 59.4, 61.88, 'levetiracetam', 3340.34, 54.46, 85.25, 10, 3);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Elinore', 46.84, 86.6, 'Echinacea (Angustifolia)', 1378.1, 190.04, 53.81, 5, 8);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Armin', 11.05, 14.06, 'citalopram', 9246.62, 52.87, 155.54, 2, 9);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Eadmund', 55.64, 98.83, 'Aluminum Zirconium Tetrachlorohydrex GLY', 3924.79, 158.15, 89.8, 10, 5);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Hunt', 97.01, 56.37, 'Mupirocin', 568.11, 89.08, 187.97, 3, 10);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Walton', 6.15, 36.1, 'Ethyl Alcohol', 66.88, 47.09, 112.96, 7, 9);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Norton', 84.46, 61.16, 'Chelidonium majus', 5815.37, 140.69, 153.73, 4, 4);
+insert into invoice_item (invoice_measurement, invoice_width, invoice_length, invoice_item_name, invoice_item_price, invoice_area, invoice_depth, edge_profile_id, invoice_id) values ('Jilly', 93.93, 45.44, 'fenofibrate', 7516.64, 54.43, 151.5, 8, 9);
+
+-- Insert into invoice_item_note --
+
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('166YQBrTq8n3BoNJFLC4s5tBamMU4rW1G4', 4);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('1KLhWrtEUor1iFmrxhMRtxFkjioJs1mBt7', 4);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('15yD6SoL8EPddUqKYccSKBHrsqGWVPauo1', 4);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('19pC8v2PutNSvpv6u7Rak2he24FupnbnQD', 5);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('17yx22q98n4stdmox1Lss37S51cKyDZXPW', 7);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('1BFXvEEfS7eFESbCGJoSYZzityQLPaXP4a', 6);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('14xhJM73JSM5LoxwFEkMT4YdAgfVSVW3Cj', 3);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('1BNN4yDdLF5QD7XnoUkncCvnoW38eniFaZ', 6);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('18UYtPJbSB8BaDf5DKMYktrVe3h7G9gdCF', 8);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('1KDrzByvheCpDgMj4GuNTS68KeRgVrcjWQ', 3);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('1Mw1KpbBvKmGDSuWbmumVK6GoeFkaKLEB6', 1);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('1ABb3XDvKHpT9KP6ghpeG3MjNizALNjoVb', 2);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('1LFr82Tr2zPQ4qg7V6MvxXrn5o3SPUuZzs', 10);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('18orEpHu3yAmJzbZhJdLqJCkn8q2S7ttaY', 5);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('1HFVj3C4fsmHBauCJh1aHyoirNcaudH7oR', 2);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('1KWxuv7aojJwgN2oHME248TdC4UVExMyT3', 2);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('17zAF3Nqzv42NNFb36F3PytVNHygRWLMsX', 1);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('1JFVq73sM6ufok7pB4PgadktR9e3v72QdF', 3);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('17XXnonoBZG3Fi942Gjwp3XPnTa6kG7E9y', 9);
+insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('19cx3tabr9swazMkh9DGo9s4YxP7Da2nRf', 6);

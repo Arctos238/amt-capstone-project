@@ -63,7 +63,7 @@ public class InvoiceItem implements java.io.Serializable {
 		this.invoiceItemId = invoiceItemId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonBackReference
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JoinColumn(name = "invoice_id")
@@ -93,7 +93,7 @@ public class InvoiceItem implements java.io.Serializable {
 		this.invoiceItemPrice = invoiceItemPrice;
 	}
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "edge_profile_id")
 	public EdgeProfile getEdgeProfile() {
 		return edgeProfile;
@@ -103,7 +103,7 @@ public class InvoiceItem implements java.io.Serializable {
 		this.edgeProfile = edgeProfile;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "invoiceItem")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "invoiceItem")
 	@JsonManagedReference
 	public Set<InvoiceItemNote> getInvoiceItemNotes() {
 		return this.invoiceItemNotes;

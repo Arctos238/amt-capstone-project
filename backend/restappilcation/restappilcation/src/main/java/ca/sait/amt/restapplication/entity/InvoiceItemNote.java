@@ -51,7 +51,7 @@ public class InvoiceItemNote implements java.io.Serializable{
 		this.invoiceItemNote = invoiceItemNote;
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonBackReference
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JoinColumn(name = "invoice_item_id")

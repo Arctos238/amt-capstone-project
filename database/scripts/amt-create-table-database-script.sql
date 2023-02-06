@@ -165,9 +165,9 @@ CREATE TABLE invoice_item_note (
 
 CREATE TABLE invoice_item (
   invoice_item_id int(5) NOT NULL AUTO_INCREMENT,
-  invoice_item_name varchar(12) NOT NULL,
+  invoice_item_name varchar(48) NOT NULL,
   invoice_item_price double(12, 2) NOT NULL,
-  invoice_measurement varchar(20),
+  invoice_measurement varchar(200),
   invoice_width double(6, 2),
   invoice_length double(6, 2),
   invoice_area double(18,4),
