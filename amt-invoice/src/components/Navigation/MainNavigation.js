@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import classes from "./MainNavigation.module.css";
 
 function MainNavigation(props) {
@@ -13,9 +13,12 @@ function MainNavigation(props) {
 
   const user = JSON.parse(localStorage.getItem("user"));
 
-  if (!props.loggedIn || user == null) {
-    nav("/");
-  }
+  useEffect(() => {
+    if (!props.loggedIn || user === null) {
+      nav("/");
+    }
+    return () => {};
+  }, []);
 
   return (
     <header className={classes.header}>
