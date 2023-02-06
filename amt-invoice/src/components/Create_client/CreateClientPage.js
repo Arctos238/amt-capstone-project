@@ -39,8 +39,8 @@ const CreateClient = () => {
       <CreateClientDetails 
       clientNameRef = {clientNameRef}
       emailPersonalRef = {emailPersonalRef}
-      emailBusiness = {emailBusiness}
-      phoneNumber = {phoneNumber}
+      emailBusiness = {emailBusinessRef}
+      phoneNumber = {phoneNumberRef}
       />
       <Button className={classes.button}type="submit">Create Client</Button>
       </form>
