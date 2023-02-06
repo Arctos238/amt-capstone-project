@@ -73,29 +73,30 @@ const CreateProject = () => {
 
   return (
     <React.Fragment>
-      <MainNavigation />
       <h1 className={styles.h1}>Create Project</h1>
-      <form onSubmit={submitHandler}>
-        <CreateProjectDetails
-          projectNameRef={projectNameRef}
-          siteSuperNameRef={siteSuperNameRef}
-          siteSuperPhoneRef={siteSuperPhoneRef}
-          postalCodeRef={postalCodeRef}
-          cityRef={cityRef}
-          addressRef={addressRef}
-          suiteRef={suiteRef}
-          provinceRef={provinceRef}
-        />
-        <CreateProjectAddOns
-          onCabinetChange={onCabinetChange}
-          onTileChange={onTileChange}
-          onCounterChange={onCounterChange}
-        />
+      <div className={styles.container}>
+        <form className={styles.form} onSubmit={submitHandler}>
+          <CreateProjectDetails
+            projectNameRef={projectNameRef}
+            siteSuperNameRef={siteSuperNameRef}
+            siteSuperPhoneRef={siteSuperPhoneRef}
+            postalCodeRef={postalCodeRef}
+            cityRef={cityRef}
+            addressRef={addressRef}
+            suiteRef={suiteRef}
+            provinceRef={provinceRef}
+          />
+          <CreateProjectAddOns
+            onCabinetChange={onCabinetChange}
+            onTileChange={onTileChange}
+            onCounterChange={onCounterChange}
+          />
 
-        <Button type="submit" className={styles.button}>Create Project</Button>
-       
-        
-      </form>
+          <Button type="submit" className={styles.button}>
+            Create Project
+          </Button>
+        </form>
+      </div>
     </React.Fragment>
   );
 };

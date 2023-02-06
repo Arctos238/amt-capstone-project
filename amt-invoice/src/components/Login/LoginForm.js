@@ -3,6 +3,10 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { GetEmployeeByUsername } from "../../services/EmployeeServices";
 
+import Card from "../UI/Card";
+import classes from "../UI/Card.module.css";
+import styles from "./LoginForm.module.css";
+
 const LoginForm = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -38,24 +42,32 @@ const LoginForm = (props) => {
   };
 
   return (
-    <div>
-      <label>Username:</label>
-      <input
-        type="text"
-        name="formUsername"
-        onChange={inputHandler}
-        value={username}
-      ></input>
-      <br></br>
-      <label>Password:</label>
-      <input
-        type="text"
-        name="formPassword"
-        onChange={inputHandler}
-        value={password}
-      ></input>
-      <br />
-      <button onClick={handleSubmit}>Submit</button>
+    <div className={styles.formLogin}>
+      <label className={styles.label}>Username:</label>
+      <Card className={styles.inputContainer}>
+        <input
+          className={styles.input}
+          type="text"
+          name="formUsername"
+          onChange={inputHandler}
+          value={username}
+        ></input>
+      </Card>
+
+      <label className={styles.label}>Password:</label>
+      <Card className={styles.inputContainer}>
+        <input
+          className={styles.password}
+          type="password"
+          name="formPassword"
+          onChange={inputHandler}
+          value={password}
+        ></input>
+      </Card>
+
+      <button className={styles.submitButton} onClick={handleSubmit}>
+        Submit
+      </button>
     </div>
   );
 };

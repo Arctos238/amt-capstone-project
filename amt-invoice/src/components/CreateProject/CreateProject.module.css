@@ -5,6 +5,10 @@
 }
 
 .button {
-    width: 10%;
-    margin: auto auto auto 45%;
+    width: 12%;
+    margin: auto auto auto 44%;
+    
+}
+.form {
+    width: 100%;
 }

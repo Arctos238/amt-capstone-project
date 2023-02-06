@@ -1,11 +1,7 @@
 .main {
-    margin: 3rem auto;
-    width: 100%;
-    max-width: 40rem;
-    
-  }
+  width: 100%;
+}
 
-  .container{
-    display: grid;
-   grid-gap: 2;
+.container{
+    
 }

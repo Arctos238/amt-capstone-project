@@ -1,8 +1,11 @@
 import "./App.css";
 import { Routes, Route, Link } from "react-router-dom";
+
+import { useState } from "react";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login.js";
-import { useState } from "react";
+import CreateProject from "./components/CreateProject/CreateProject";
+import CreateClient from "./components/Create_client/CreateClientPage";
 import MainNavigation from "./components/Navigation/MainNavigation";
 import Layout from "./components/Navigation/Layout";
 
@@ -21,6 +24,22 @@ function App() {
         element={
           <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
             <Home />
+          </Layout>
+        }
+      />
+      <Route
+        path="/createProject"
+        element={
+          <Layout>
+            <CreateProject />
+          </Layout>
+        }
+      />
+      <Route
+        path="/createClient"
+        element={
+          <Layout>
+            <CreateClient />
           </Layout>
         }
       />

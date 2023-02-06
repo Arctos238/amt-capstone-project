@@ -8,28 +8,38 @@
   padding-right: 25%;
   border-radius: 0.5rem;
   text-align: center;
+  font-size: 150%;
 }
 
 .label {
-  display: block;
   margin-bottom: 0.5rem;
+  color: black
 }
 
 .inputContainer {
   text-align: center;
   color: white;
   background-color: #05516a;
+  width: 50%;
   border-radius: 10px;
-  margin: 1rem 0;
 }
 
 .input {
-  background-color: #05516a;
+  background-color:transparent;
   color: white;
-  padding-left: 50px;
-  padding: 10px;
-  margin: 10px 0;
   border: none;
+  width: inherit;
+}
+
+.password {
+  background-color:transparent;
+  color: white;
+  border: none;
+  width: inherit;
+  height: 50px;
+}
+.password:focus {
+  outline: none;
 }
 
 .submitButton {
@@ -39,4 +49,8 @@
   border-radius: 1rem;
   margin-top: 1rem;
   border: none;
+}
+
+.submitButton:hover{
+  background-color: #fabd44bd;
 }

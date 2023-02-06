@@ -6,7 +6,7 @@ import classes from "../UI/CardWithRadius.module.css";
 
 const CreateProjectDetails = (props) => {
   return (
-    <React.Fragment>
+    <div className={styles.container}>
       <div className={styles.parent}>
         <div className={styles.left}>
           <CardWithRadius
@@ -84,7 +84,7 @@ const CreateProjectDetails = (props) => {
           </CardWithRadius>
         </div>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
