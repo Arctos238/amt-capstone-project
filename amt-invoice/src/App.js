@@ -5,11 +5,10 @@ import Login from "./components/Login/Login.js";
 import { useState } from "react";
 import CreateProject from "./components/CreateProject/CreateProject";
 import SearchPage from "./components/Search/Search";
-import MainNavigation from "./components/Navigation/MainNavigation";
 import Layout from "./components/Navigation/Layout";
 import ClientPage from "./components/ClientPage/ClientPage";
 import InvoicesPage from "./components/Invoices/InvoicesPage";
-import CreateClient from "./components/Create_client/CreateClientPage";
+import CreateClient from "./components/Create_client/CreateClient";
 
 
 
