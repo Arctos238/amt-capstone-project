@@ -6,6 +6,7 @@ import Home from "./components/Home/Home";
 import Login from "./components/Login/Login.js";
 import CreateProject from "./components/CreateProject/CreateProject";
 import CreateClient from "./components/Create_client/CreateClientPage";
+import CreateInvoice from "./components/CreateInvoice/CreateInvoice";
 import MainNavigation from "./components/Navigation/MainNavigation";
 import Layout from "./components/Navigation/Layout";
 
@@ -40,6 +41,14 @@ function App() {
         element={
           <Layout>
             <CreateClient />
+          </Layout>
+        }
+      />
+      <Route
+        path="/createInvoice"
+        element={
+          <Layout>
+            <CreateInvoice />
           </Layout>
         }
       />

@@ -30,7 +30,7 @@ function MainNavigation(props) {
         </li>
 
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/home">Home</Link>
         </li>
 
         <li>

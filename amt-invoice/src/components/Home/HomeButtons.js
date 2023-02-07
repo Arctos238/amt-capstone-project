@@ -8,21 +8,24 @@ import styles from "./HomeButtons.module.css";
 const HomeButtons = () => {
   return (
     <React.Fragment>
-      <div className={styles.parent}>
-        <Link to="/createClient">
-          <div className={styles.left}>
-            <Button className={classes.change}>Add Client</Button>
-          </div>
-        </Link>
+      <div className={styles.container}>
+        <div className={styles.parent}>
+          <Link to="/createClient">
+            <div className={styles.left}>
+              <Button className={classes.change}>Add Client</Button>
+            </div>
+          </Link>
 
-        <Link to="/createProject">
-          <div className={styles.center}>
-            <Button className={classes.change}>Add Project</Button>
-          </div>
-        </Link>
+            {/* change to createProject */}
+          <Link to="/createInvoice">
+            <div className={styles.center}>
+              <Button className={classes.change}>Add Project</Button>
+            </div>
+          </Link>
 
-        <div className={styles.right}>
-          <Button className={classes.find}>Find</Button>
+          <div className={styles.right}>
+            <Button className={classes.find}>Find</Button>
+          </div>
         </div>
       </div>
     </React.Fragment>
