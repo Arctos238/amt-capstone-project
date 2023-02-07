@@ -16,16 +16,18 @@ const HomeButtons = () => {
             </div>
           </Link>
 
-            {/* change to createProject */}
+          {/* change to createProject */}
           <Link to="/createInvoice">
             <div className={styles.center}>
               <Button className={classes.change}>Add Project</Button>
             </div>
           </Link>
 
-          <div className={styles.right}>
-            <Button className={classes.find}>Find</Button>
-          </div>
+          <Link to="/search">
+            <div className={styles.right}>
+              <Button className={classes.find}>Find</Button>
+            </div>
+          </Link>
         </div>
       </div>
     </React.Fragment>
