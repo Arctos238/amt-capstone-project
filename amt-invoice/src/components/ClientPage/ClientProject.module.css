@@ -16,3 +16,14 @@
     text-align: center;
     margin: 10px;
 }
+
+.viewButton{
+  background-color: #e0aa3e;
+  border: none;
+  font-size: 125%;
+  color: #ffffff;
+  border-radius: 30px;
+  width: 10%;
+  
+  
+}

@@ -11,7 +11,7 @@ import InvoicesPageProject from "./InvoicesPageProjects";
 const InvoicesPage = () => {
   return (
     <div >
-      <MainNavigation/> 
+      
       <div className="theProjects">
         <Card className={classes.yellowProjectCard}>
           <InvoicesPageProject />

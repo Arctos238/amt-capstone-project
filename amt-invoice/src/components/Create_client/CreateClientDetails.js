@@ -5,7 +5,13 @@ import styles from"./CreateClientDetails.module.css"
 
 const createClient = (props) =>{
 
+const changeToHome = () => {
+    
+}
+
 return (
+
+
     <React.Fragment>
         <div className = {styles.center} >
             <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>

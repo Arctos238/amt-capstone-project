@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Navigate} from "react-router-dom";
 import MainNavigation from "../Navigation/MainNavigation";
 import Card from "../UI/Card";
 import classes from "../UI/Card.module.css";
@@ -8,14 +8,17 @@ import ClientPageProjects from "./ClientPageProjects";
 import ClientPageButton from "./ClientPageButton";
 
 const ClientPage = () => {
+  
+  
   return (
     <div className="clientPage">
+      
       <div className="aboutClient">
         <Card className={classes.yellowCard}>
           <ClientContact />
         </Card>
       </div>
-      <div className="theProjects">
+      <div className="theProjects" >
         <Card className={classes.yellowCard}>
           <ClientPageProjects />
         </Card>

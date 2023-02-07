@@ -4,13 +4,13 @@ import Home from "./components/Home/Home";
 import Login from "./components/Login/Login.js";
 import { useState } from "react";
 import CreateProject from "./components/CreateProject/CreateProject";
-import CreateClient from "./components/Create_client/CreateClientPage";
-import CreateInvoice from "./components/CreateInvoice/CreateInvoice";
 import SearchPage from "./components/Search/Search";
-import MainNavigation from "./components/Navigation/MainNavigation";
 import Layout from "./components/Navigation/Layout";
 import ClientPage from "./components/ClientPage/ClientPage";
 import InvoicesPage from "./components/Invoices/InvoicesPage";
+import CreateClient from "./components/Create_client/CreateClient";
+
+
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -44,6 +44,8 @@ function App() {
         }
       />
 
+      
+
       <Route
         path="/search" exact
         element={
@@ -62,7 +64,7 @@ function App() {
         }
       />
 
-        <Route
+      <Route
         path="/invoices" exact
         element={
           <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
@@ -70,11 +72,21 @@ function App() {
           </Layout>
         }
       />
+
       <Route
-        path="/createInvoice"
+        path="/createClient" exact
         element={
-          <Layout>
-            <CreateInvoice />
+          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+            <CreateClient/>
+          </Layout>
+        }
+      />
+
+        <Route
+        path="/invoices" exact
+        element={
+          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+            <InvoicesPage/>
           </Layout>
         }
       />

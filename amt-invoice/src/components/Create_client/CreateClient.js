@@ -5,12 +5,14 @@ import Button from "../UI/Button";
 import styles from "./CreateClientPage.module.css";
 import { useRef } from "react";
 import { CreateNewClient } from "../../services/ClientServices";
+import { useNavigate } from "react-router-dom";
 
 const CreateClient = () => {
   const clientNameRef = useRef();
   const emailPersonalRef = useRef();
   const emailBusinessRef = useRef();
   const phoneNumberRef = useRef();
+  const nav = useNavigate();  
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -28,8 +30,11 @@ const CreateClient = () => {
       },
     };
 
-    console.log(obj);
     const data = await CreateNewClient(obj);
+
+    if (data != null) {
+      nav("/home")
+    }
   };
 
   return (
