@@ -21,9 +21,11 @@ const HomeButtons = () => {
           </div>
         </Link>
 
+        <Link to="/search">
         <div className={styles.right}>
           <Button className={classes.find}>Find</Button>
         </div>
+        </Link>
       </div>
     </React.Fragment>
   );
