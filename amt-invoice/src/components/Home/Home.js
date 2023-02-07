@@ -3,7 +3,7 @@ import classes from './Home.module.css';
 import HomeButtons from './HomeButtons';
 
 
-function HomePage(props) {
+function HomePage() {
     return (
       <div className={classes.home}>
       <React.Fragment>
