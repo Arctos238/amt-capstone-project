@@ -4,7 +4,7 @@ import CardWithRadius from "../UI/CardWithRadius";
 import Button from "../UI/Button";
 
 import styles from "./EdgeProfile.module.css";
-import classes from "../UI/CardWithRadius.module.css"
+import classes from "../UI/CardWithRadius.module.css";
 
 const EdgeProfile = () => {
   const standardProfiles = [
@@ -50,37 +50,37 @@ const EdgeProfile = () => {
   };
 
   return (
-    <React.Fragment>
-        <CardWithRadius className={classes.blueCard}>
-      <div className={styles.edgeProfile}>
-        <div className={styles.parent}>
-          <div className={styles.left}>
-            <select value={selectedOption} onChange={handleSelectChange}>
-              <option value="Standard">Standard</option>
-              <option value="Upgrade">Upgrade</option>
-            </select>
-          </div>
-          <div className={styles.center}>
-            <select>
-              {selectedProfile.map((profile) => (
-                <option
-                  key={profile.edgeProfileId}
-                  value={profile.edgeProfileCut}
-                >
-                  {profile.edgeProfileCut}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className={styles.right}>
-            <label>Measurement:</label>
-            <input type="text"/>
+    <div className={styles.edgeProfilePage}>
+      <CardWithRadius className={classes.blueCard}>
+        <div className={styles.edgeProfile}>
+          <div className={styles.parent}>
+            <div className={styles.left}>
+              <select value={selectedOption} onChange={handleSelectChange}>
+                <option value="Standard">Standard</option>
+                <option value="Upgrade">Upgrade</option>
+              </select>
+            </div>
+            <div className={styles.center}>
+              <select>
+                {selectedProfile.map((profile) => (
+                  <option
+                    key={profile.edgeProfileId}
+                    value={profile.edgeProfileCut}
+                  >
+                    {profile.edgeProfileCut}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.right}>
+              <label>Measurement:</label>
+              <input type="text" />
+            </div>
           </div>
         </div>
-      </div>
       </CardWithRadius>
-      <Button>Add Edge Profile</Button>
-    </React.Fragment>
+      <Button className={styles.button}>Add Edge Profile</Button>
+    </div>
   );
 };
 
