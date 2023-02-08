@@ -15,7 +15,7 @@ const SearchPage = () => {
       <form className={styles.form}>
       <SearchInputs />
       <Link to="/clientPage">
-      <Button type="submit" className={styles.ButtonInput}>Find</Button>
+      <Button className={styles.ButtonInput}>Find</Button>
       </Link>
       </form>
     </React.Fragment>
