@@ -10,7 +10,6 @@ import ClientPageButton from "./ClientPageButton";
 const ClientPage = () => {
   return (
     <div className="clientPage">
-      <MainNavigation/> 
       <div className="aboutClient">
         <Card className={classes.yellowCard}>
           <ClientContact />
