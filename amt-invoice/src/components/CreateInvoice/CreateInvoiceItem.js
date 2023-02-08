@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import CardWithRadius from "../UI/CardWithRadius";
 import Button from "../UI/Button";
@@ -31,63 +31,95 @@ const invoiceItemList = [
 ];
 
 const CreateInvoiceItem = () => {
-  const [itemList, setItemList] = useState(invoiceItemList);
+  // const [itemList, setItemList] = useState(invoiceItemList);
 
-  const [enteredItemName, setEnteredItemName] = useState("");
-  const [enteredItemMeasurement, setEnteredItemMeasurement] = useState("");
-  const [enteredItemWidth, setEnteredItemWidth] = useState("");
-  const [enteredItemLength, setEnteredItemLength] = useState("");
-  const [enteredItemArea, setEnteredItemArea] = useState("");
-  const [enteredItemDepth, setEnteredItemDepth] = useState("");
-  const [enteredItemPrice, setEnteredItemPrice] = useState(""); 
+  // const addItemHandler = (itemList) => {
+  //   setItemList((prevInvoiceItemList) => {
+  //     return [itemList, ...prevInvoiceItemList];
+  //   });
+  // };
 
-  const addItemHandler = (itemList) => {
-    setItemList((prevInvoiceItemList) => {
-      return [itemList, ...prevInvoiceItemList];
-    });
+  const itemIdRef = useRef();
+  const itemNameRef = useRef();
+  const itemMeasurementRef = useRef();
+  const itemWidthRef = useRef();
+  const itemLengthRef = useRef();
+  const itemAreaRef = useRef();
+  const itemDepthRef = useRef();
+  const itemPriceRef = useRef();
+
+  const addItemHandler = (event) => {
+    event.preventDefault();
+    
+    const itemId = itemIdRef.current.value;
+    const itemName = itemNameRef.current.value;
+    const itemMeasurement = itemMeasurementRef.current.value;
+    const itemWidth = itemWidthRef.current.value;
+    const itemLength = itemLengthRef.current.value;
+    const itemArea = itemAreaRef.current.value;
+    const itemDepth = itemDepthRef.current.value;
+    const itemPrice = itemPriceRef.current.value;
+
+    const obj = {
+      itemId,
+      itemName,
+      itemMeasurement,
+      itemWidth,
+      itemLength,
+      itemArea,
+      itemDepth,
+      itemPrice,
+    };
+
+    console.log(obj);
   };
 
   return (
-    <React.Fragment>
+    <form className="invoiceItemForm" >
       <div className={styles.invoiceItem}>
         <div className={styles.parent}>
           <div className={styles.left}>
             <CardWithRadius className={classes.blueCard}>
               <label>Name:</label>
-              <input type="text" />
+              <input type="text" ref={itemNameRef} />
             </CardWithRadius>
             <CardWithRadius className={classes.blueCard}>
               <label>Width:</label>
-              <input type="number" />
+              <input
+                type="number"
+                className={styles.transparentInput}
+                ref={itemWidthRef}
+              />
             </CardWithRadius>
             <CardWithRadius className={classes.blueCard}>
               <label>Area:</label>
-              <input type="number" />
+              <input type="number" ref={itemAreaRef} />
             </CardWithRadius>
           </div>
           <div className={styles.right}>
             <CardWithRadius className={classes.blueCard}>
               <label>Measurement:</label>
-              <input type="text" />
+              <input type="text" ref={itemMeasurementRef} />
             </CardWithRadius>
             <CardWithRadius className={classes.blueCard}>
               <label>Length:</label>
-              <input type="number" />
+              <input type="number" ref={itemLengthRef} />
             </CardWithRadius>
             <CardWithRadius className={classes.blueCard}>
               <label>Depth:</label>
-              <input type="number" />
+              <input type="number" ref={itemDepthRef} />
             </CardWithRadius>
           </div>
         </div>
         <CardWithRadius className={classes.blueCard}>
           <label>Price:</label>
-          <input type="number" />
+          <input type="number" ref={itemPriceRef} />
         </CardWithRadius>
-        <Button className={styles.button} onClick={addItemHandler}>Add Item</Button>
+        <Button onClick={addItemHandler} className={styles.button} type="submit">
+          Add Item
+        </Button>
       </div>
 
-      
       {/* <div className={styles.itemList}>
         {invoiceItemList.map((itemList) => (
           <PrintItemList
@@ -101,7 +133,7 @@ const CreateInvoiceItem = () => {
           />
         ))}
       </div> */}
-    </React.Fragment>
+    </form>
   );
 };
 

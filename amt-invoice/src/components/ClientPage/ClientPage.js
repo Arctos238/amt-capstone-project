@@ -12,7 +12,6 @@ const ClientPage = () => {
   
   return (
     <div className="clientPage">
-      
       <div className="aboutClient">
         <Card className={classes.yellowCard}>
           <ClientContact />

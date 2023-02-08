@@ -1,6 +1,5 @@
 import React from "react";
 
-import MainNavigation from "../Navigation/MainNavigation";
 import CreateProjectDetails from "./CreateProjectDetails";
 import CreateProjectAddOns from "./CreateProjectAddOns";
 import Button from "../UI/Button";
@@ -46,9 +45,10 @@ const CreateProject = () => {
 
   function submitHandler(event) {
     event.preventDefault();
+    
     const projectName = projectNameRef.current.value;
     const siteSuperPhone = siteSuperPhoneRef.current.value;
-    const siteSuperName = siteSuperPhoneRef.current.value;
+    const siteSuperName = siteSuperNameRef.current.value;
     const postalCode = postalCodeRef.current.value;
     const city = cityRef.current.value;
     const address = addressRef.current.value;
