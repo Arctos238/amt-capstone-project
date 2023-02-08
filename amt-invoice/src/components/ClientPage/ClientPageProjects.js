@@ -1,8 +1,10 @@
 import React from "react";
-
+import { useState, useEffect } from "react";
 import ClientProject from "./ClientProject";
 
 import styles from "./ClientPageProjects.module.css";
+
+import { GetProjectByClientId } from "../../services/ProjectServices";
 
 const ClientPageProjects = () => {
   //change to load from api
@@ -26,8 +28,22 @@ const ClientPageProjects = () => {
       projectName: "Project Test 4",
       projectId: 4,
       projectStatus: "Active",
-    }
+    },
   ];
+
+  const [clientProjects, setClientProjects] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await GetProjectByClientId(1);
+      setClientProjects(data);
+    };
+
+    fetchData();
+    return () => {};
+  }, []);
+
+  console.log(clientProjects);
 
   return (
     <div className={styles.projectList}>
@@ -36,6 +52,7 @@ const ClientPageProjects = () => {
           projectName={projectList.projectName}
           projectId={projectList.projectId}
           projectStatus={projectList.projectStatus}
+          id={projectList.projectId}
         />
       ))}
     </div>
