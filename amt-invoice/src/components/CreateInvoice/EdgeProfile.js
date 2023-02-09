@@ -1,72 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 
 import CardWithRadius from "../UI/CardWithRadius";
-import Button from "../UI/Button";
 
 import styles from "./EdgeProfile.module.css";
 import classes from "../UI/CardWithRadius.module.css";
 
-const EdgeProfile = () => {
-  const standardProfiles = [
-    {
-      edgeProfileId: 1,
-      edgeProfileType: "Standard",
-      edgeProfileCut: "Minimal Eased",
-      edgeProfileMeasurement: "3cm",
-    },
-    {
-      edgeProfileId: 2,
-      edgeProfileType: "Standard",
-      edgeProfileCut: "Eased",
-      edgeProfileMeasurement: "3cm",
-    },
-  ];
-
-  const upgradeProfiles = [
-    {
-      edgeProfileId: 7,
-      edgeProfileType: "Upgrade",
-      edgeProfileCut: "Bullnose",
-      edgeProfileMeasurement: "3cm",
-    },
-    {
-      edgeProfileId: 8,
-      edgeProfileType: "Upgrade",
-      edgeProfileCut: "Ogee",
-      edgeProfileMeasurement: "3cm",
-    },
-  ];
-
-  const [selectedOption, setSelectedOption] = useState("Standard");
-  const [selectedProfile, setSelectedProfile] = useState(standardProfiles);
-
-  const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value);
-    if (event.target.value === "Standard") {
-      setSelectedProfile(standardProfiles);
-    } else {
-      setSelectedProfile(upgradeProfiles);
-    }
-  };
-
+const EdgeProfile = (props) => {
   return (
     <div className={styles.edgeProfilePage}>
       <CardWithRadius className={classes.blueCard}>
         <div className={styles.edgeProfile}>
           <div className={styles.parent}>
             <div className={styles.left}>
-              <select value={selectedOption} onChange={handleSelectChange}>
+              <select
+                value={props.selectedOption}
+                onChange={props.handleSelectChange}
+              >
+                <option selected value>Select Type</option>
                 <option value="Standard">Standard</option>
                 <option value="Upgrade">Upgrade</option>
               </select>
             </div>
             <div className={styles.center}>
-              <select>
-                {selectedProfile.map((profile) => (
-                  <option
-                    key={profile.edgeProfileId}
-                    value={profile.edgeProfileCut}
-                  >
+              <select value={props.selectedCut} onChange={props.handleSelectedCut}>
+              <option selected value>Select Cut</option>
+                {props.selectedProfile.map((profile) => (
+                  <option value={profile.edgeProfileCut}>
                     {profile.edgeProfileCut}
                   </option>
                 ))}
@@ -74,12 +33,11 @@ const EdgeProfile = () => {
             </div>
             <div className={styles.right}>
               <label>Measurement:</label>
-              <input type="text" />
+              <input type="text" ref={props.edgeProfileMeasurementRef} placeholder="Type Measurement Here"/>
             </div>
           </div>
         </div>
       </CardWithRadius>
-      <Button className={styles.button}>Add Edge Profile</Button>
     </div>
   );
 };
