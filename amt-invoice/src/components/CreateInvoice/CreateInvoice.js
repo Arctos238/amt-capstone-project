@@ -132,12 +132,14 @@ const CreateInvoice = () => {
   const createInvoiceHandler = async event => {
     event.preventDefault();
     setData({...data, invoiceId});
+    console.log(data);
     try {
       const info = await CreateNewInvoiceItem(data);
     } catch(error) {
       console.error(error);
     }
 
+    // delete later
     console.log(JSON.stringify(data));
   };
 

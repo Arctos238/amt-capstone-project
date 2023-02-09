@@ -12,7 +12,7 @@ const CreateClient = () => {
   const emailPersonalRef = useRef();
   const emailBusinessRef = useRef();
   const phoneNumberRef = useRef();
-  const nav = useNavigate();  
+  const nav = useNavigate();
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -33,7 +33,7 @@ const CreateClient = () => {
     const data = await CreateNewClient(obj);
 
     if (data != null) {
-      nav("/home")
+      nav("/home");
     }
   };
 

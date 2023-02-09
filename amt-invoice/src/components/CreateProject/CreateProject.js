@@ -3,34 +3,35 @@ import React from "react";
 import CreateProjectDetails from "./CreateProjectDetails";
 import CreateProjectAddOns from "./CreateProjectAddOns";
 import Button from "../UI/Button";
+import { CreateNewProject } from "../../services/ProjectServices";
 
 import styles from "./CreateProject.module.css";
 import { useRef, useState } from "react";
 
 const CreateProject = () => {
-  const [cabinet, setCabinet] = useState("");
-  const [tile, setTile] = useState("");
-  const [counter, setCounter] = useState("");
+  const [cabinet, setCabinet] = useState();
+  const [tile, setTile] = useState();
+  const [counter, setCounter] = useState();
 
   function onCabinetChange(event) {
-    if (event.target.value === "true") {
-      setCabinet("true");
+    if (event.target.value === true) {
+      setCabinet(true);
     } else {
-      setCabinet("false");
+      setCabinet(false);
     }
   }
   function onCounterChange(event) {
-    if (event.target.value === "true") {
-      setCounter("true");
+    if (event.target.value === true) {
+      setCounter(true);
     } else {
-      setCounter("false");
+      setCounter(false);
     }
   }
   function onTileChange(event) {
-    if (event.target.value === "true") {
-      setTile("true");
+    if (event.target.value === true) {
+      setTile(true);
     } else {
-      setTile("false");
+      setTile(false);
     }
   }
 
@@ -43,10 +44,12 @@ const CreateProject = () => {
   const suiteRef = useRef();
   const provinceRef = useRef();
 
-  function submitHandler(event) {
+  async function submitHandler(event) {
     event.preventDefault();
-    
+
+    const projectId = 0;
     const projectName = projectNameRef.current.value;
+    const projectStatus = true;
     const siteSuperPhone = siteSuperPhoneRef.current.value;
     const siteSuperName = siteSuperNameRef.current.value;
     const postalCode = postalCodeRef.current.value;
@@ -56,26 +59,48 @@ const CreateProject = () => {
     const province = provinceRef.current.value;
 
     const obj = {
-      projectName,
-      siteSuperPhone,
-      siteSuperName,
-      postalCode,
-      city,
-      address,
-      suite,
-      province,
-      cabinet,
-      tile,
-      counter,
+      projectId,
+      projectName: projectName,
+      projectStatus,
+      projectCabinetsCondition: cabinet,
+      projectCounterRemoval: counter,
+      projectTileRemoval: tile,
+      projectAddress: {
+        projectAddressId: 0,
+        firstLineAddress: address,
+        secondLineAddress: suite,
+        postalCode: postalCode,
+        city: city,
+        province: province,
+        projectId,
+      },
+      projectSupervisor: {
+        projectSupervisorId: 0,
+        projectSupervisorName: siteSuperName,
+        projectSupervisorNumber: siteSuperPhone,
+        projectId,
+      },
+      quotes: [],
+      images: [],
+      purchaseOrders: [],
+      depositForms: [],
+      invoices: [],
+      clientId: 0
     };
     console.log(obj);
+
+    const data = await CreateNewProject(obj);
+
+    if(data != null) {
+      alert("its probably up there");
+    }
   }
 
   return (
     <React.Fragment>
       <h1 className={styles.h1}>Create Project</h1>
       <div className={styles.container}>
-        <form className={styles.form} onSubmit={submitHandler}>
+        <form className={styles.form}>
           <CreateProjectDetails
             projectNameRef={projectNameRef}
             siteSuperNameRef={siteSuperNameRef}
@@ -92,7 +117,11 @@ const CreateProject = () => {
             onCounterChange={onCounterChange}
           />
 
-          <Button type="submit" className={styles.button}>
+          <Button
+            type="submit"
+            onClick={submitHandler}
+            className={styles.button}
+          >
             Create Project
           </Button>
         </form>
