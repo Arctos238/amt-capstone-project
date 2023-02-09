@@ -9,7 +9,6 @@ import { CreateNewInvoiceItem } from "../../services/InvoiceItemServices";
 
 import styles from "./CreateInvoice.module.css";
 
-
 const standardProfiles = [
   {
     edgeProfileId: 1,
@@ -142,7 +141,6 @@ const upgradeProfiles = [
   },
 ];
 
-
 const CreateInvoice = () => {
   const invoiceItemNameRef = useRef();
   const invoiceItemMeasurementRef = useRef();
@@ -153,28 +151,48 @@ const CreateInvoice = () => {
   const invoiceItemPriceRef = useRef();
   const invoiceNoteRef = useRef();
 
-  const [selectedOption, setSelectedOption] = useState("default");
-  const [selectedProfile, setSelectedProfile] = useState(standardProfiles);
-  const [selectedCut, setSelectedCut] = useState("");
-  const edgeProfileMeasurementRef = useRef();
-
   const [data, setData] = useState({});
 
-  const handleSelectedCut = (event) => {
-    setSelectedCut(event.target.value);
+  const [selectedEdgeProfileType, setSelectedEdgeProfileType] = useState("");
+  const [selectedEdgeProfileCut, setSelectedEdgeProfileCut] = useState("");
+  const [selectedEdgeProfileMeasurement, setSelectedEdgeProfileMeasurement] =
+    useState("");
+  const [edgeProfileId, setEdgeProfileId] = useState();
+
+  const handleEdgeProfileTypeChange = (event) => {
+    setSelectedEdgeProfileType(event.target.value);
+    setSelectedEdgeProfileCut("");
+    setSelectedEdgeProfileMeasurement("");
+    setEdgeProfileId(null);
   };
 
-  const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value);
-    if (event.target.value === "Standard") {
-      setSelectedProfile(standardProfiles);
-    } else if (event.target.value === "Upgrade") {
-      setSelectedProfile(upgradeProfiles);
-    }
+  const handleEdgeProfileCutChange = (event) => {
+    setSelectedEdgeProfileCut(event.target.value);
+
+    const edgeProfile =
+      selectedEdgeProfileType === "Standard"
+        ? standardProfiles.find(
+            (profile) => profile.edgeProfileCut === event.target.value
+          )
+        : upgradeProfiles.find(
+            (profile) => profile.edgeProfileCut === event.target.value
+          );
+
+    setSelectedEdgeProfileMeasurement(edgeProfile.edgeProfileMeasurement);
+    setEdgeProfileId(edgeProfile.edgeProfileId);
   };
 
-  const invoiceItemId = 1;
-  const invoiceId = 1;
+  const edgeProfileTypes = [
+    { value: "Standard", label: "Standard" },
+    { value: "Upgrade", label: "Upgrade" },
+  ];
+
+  const edgeProfileCuts = selectedEdgeProfileType
+    ? selectedEdgeProfileType === "Standard"
+      ? standardProfiles.map((profile) => profile.edgeProfileCut)
+      : upgradeProfiles.map((profile) => profile.edgeProfileCut)
+    : [];
+
 
   const addItemHandler = (event) => {
     event.preventDefault();
@@ -204,13 +222,13 @@ const CreateInvoice = () => {
 
   const addEdgeProfileHandler = (event) => {
     event.preventDefault();
-    const edgeProfileMeasurement = edgeProfileMeasurementRef.current.value;
-    const edgeProfileId = 1;
-    const edgeProfileType = selectedOption;
-    const edgeProfileCut = selectedCut;
+    const edgeProfileMeasurement = selectedEdgeProfileMeasurement;
+    const profileId = edgeProfileId;
+    const edgeProfileType = selectedEdgeProfileType;
+    const edgeProfileCut = selectedEdgeProfileMeasurement;
 
     const edgeProfile = {
-      edgeProfileId,
+      edgeProfileId: profileId,
       edgeProfileType,
       edgeProfileCut,
       edgeProfileMeasurement,
@@ -222,9 +240,11 @@ const CreateInvoice = () => {
     event.preventDefault();
     const invoiceItemNote = invoiceNoteRef.current.value;
 
-    const invoiceItemNotes = [{
-      invoiceItemNote
-    }];
+    const invoiceItemNotes = [
+      {
+        invoiceItemNote,
+      },
+    ];
     setData({ ...data, invoiceItemNotes });
   };
 
@@ -244,8 +264,10 @@ const CreateInvoice = () => {
       console.error(error);
     }
 
-    // delete later
-    console.log(JSON.stringify(data));
+    if(data != null) {
+      alert("invoice created");
+    }
+
   };
 
   return (
@@ -264,12 +286,13 @@ const CreateInvoice = () => {
       </Button>
 
       <EdgeProfile
-        handleSelectChange={handleSelectChange}
-        handleSelectedCut={handleSelectedCut}
-        selectedProfile={selectedProfile}
-        selectedOption={selectedOption}
-        selectedCut={selectedCut}
-        edgeProfileMeasurementRef={edgeProfileMeasurementRef}
+        selectedEdgeProfileType={selectedEdgeProfileType}
+        selectedEdgeProfileCut={selectedEdgeProfileCut}
+        handleEdgeProfileTypeChange={handleEdgeProfileTypeChange}
+        handleEdgeProfileCutChange={handleEdgeProfileCutChange}
+        edgeProfileTypes={edgeProfileTypes}
+        edgeProfileCuts={edgeProfileCuts}
+        selectedEdgeProfileMeasurement={selectedEdgeProfileMeasurement}
       />
       <Button onClick={addEdgeProfileHandler} className={styles.button}>
         Add Edge Profile
