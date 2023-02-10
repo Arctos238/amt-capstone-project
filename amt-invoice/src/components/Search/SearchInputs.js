@@ -6,15 +6,17 @@ import styles from"./SearchInputs.module.css"
 const SearchInputs = (props) =>{
 
     const [showRadioButtons, setShowRadioButtons] = useState(false);
-    const [selectedOption, setSelectedOption] = useState("");
+    const [selectedOption, setSelectedOption] = useState("invoiceId");
     const [searchInput, setSearchInput] = useState("");
 
     const handleOptionChange = (e) => {
         setSelectedOption(e.target.value);
+        console.log(selectedOption)
       };
     
       const handleSearchInput = (e) => {
         setSearchInput(e.target.value);
+        console.log(searchInput)
       };
     
       const handleFind = () => {
@@ -31,6 +33,8 @@ return (
             <input
                 type="radio"
                 value="invoiceId"
+                id="invoiceId"
+                name = "selectedOption"
                 checked={selectedOption === "invoiceId"}
                 onChange={handleOptionChange}
               />
@@ -41,6 +45,8 @@ return (
             <input
                 type="radio"
                 value="phoneNumber"
+                name = "selectedOption"
+                id="phoneNumber"
                 checked={selectedOption === "phoneNumber"}
                 onChange={handleOptionChange}
               />
@@ -51,6 +57,8 @@ return (
             <input
                 type="radio"
                 value="name"
+                name = "selectedOption"
+                id= "name"
                 checked={selectedOption === "name"}
                 onChange={handleOptionChange}
               />
@@ -58,7 +66,8 @@ return (
             </CardWithRadius>
             <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
             <label>Search:</label>
-            <input type = "text" className="SearchType" required/>
+            <input type = "text" className="SearchType" required value={searchInput} onChange={handleSearchInput}
+            />
             </CardWithRadius>
            
         </div>
