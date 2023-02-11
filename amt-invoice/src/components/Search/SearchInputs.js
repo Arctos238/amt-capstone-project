@@ -12,8 +12,6 @@ const SearchInputs = (props) => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState([]);
 
-  const searchedInputRef = useRef("");
-
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
     console.log(selectedOption);
@@ -21,17 +19,13 @@ const SearchInputs = (props) => {
 
   const handleSearchInput = (e) => {
     setSearchInput(e.target.value);
-    // console.log(searchInput);
   };
-
-  const [isDisplay, setIsDisplay] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await GetClientByFirstName(searchInput);
 
       localStorage.setItem("clientInfo", JSON.stringify(data));
-      // console.log("The Data: " + JSON.stringify(data));
     };
 
     if (searchInput) {
