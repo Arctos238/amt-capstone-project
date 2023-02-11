@@ -5,14 +5,18 @@ import SearchResult from "./SearchResult";
 import { GetClientByFirstName } from "../../services/ClientServices";
 import classes from "../UI/CardWithRadius.module.css";
 import styles from "./SearchInputs.module.css";
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
 
 const SearchInputs = (props) => {
+  const [isValidSearch,setIsValidSearch] = useState(true);
   const [showRadioButtons, setShowRadioButtons] = useState(false);
   const [selectedOption, setSelectedOption] = useState("invoiceId");
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState([]);
 
   const handleOptionChange = (e) => {
+    setIsValidSearch(true);
     setSelectedOption(e.target.value);
     console.log(selectedOption);
   };
@@ -34,6 +38,10 @@ const SearchInputs = (props) => {
   }, [searchInput]);
 
   const findHandler = () => {
+    if(searchInput === ""){
+      setIsValidSearch(false);
+    }
+
     if ("clientInfo" in localStorage) {
       let clientInfo = localStorage.getItem("clientInfo");
       let toArray = JSON.parse(clientInfo);
@@ -42,9 +50,30 @@ const SearchInputs = (props) => {
       setResults([]);
     }
   };
-
+  
   return (
     <React.Fragment>
+      {!isValidSearch  && selectedOption==="name" ? (
+          <Stack sx={{ width: "100%" }} spacing={2}>
+            <Alert severity="error">
+              Please search for a name
+            </Alert>
+          </Stack>
+        ) : <></>}
+      {!isValidSearch  && selectedOption==="phoneNumber" ? (
+          <Stack sx={{ width: "100%" }} spacing={2}>
+            <Alert severity="error">
+              Please search for a phone number (123) 4567890
+            </Alert>
+          </Stack>
+        ) : <></>}
+      {!isValidSearch  && selectedOption==="invoiceId" ? (
+          <Stack sx={{ width: "100%" }} spacing={2}>
+            <Alert severity="error">
+              Please search for an invoice ID
+            </Alert>
+          </Stack>
+        ) : <></>}
       <div className={styles.center}>
         <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
           <input
