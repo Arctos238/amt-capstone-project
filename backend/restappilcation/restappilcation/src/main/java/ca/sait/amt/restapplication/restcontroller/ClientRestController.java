@@ -38,8 +38,10 @@ public class ClientRestController {
 	public List<Client> getClients(@PathVariable String clientFirstName) {
 		List <Client> clients = clientService.findByClientName(clientFirstName);;
 		
+//		System.out.println(clientFirstName);
+		
 		if (clients.size() == 0) {
-			throw new ClientNotFoundException("No Clients found with that first name - " + clientFirstName);
+			throw new ClientNotFoundException("No Clients found with that name - " + clientFirstName);
 		};
 		
 		return clients;

@@ -55,6 +55,8 @@ public class ProjectDAOHibernateImpl implements ProjectDAO{
 
 		if (project.getProjectId() == 0) {
 			currentSession.save(project);
+			
+			
 		} else {
 			currentSession.merge(project);
 		}

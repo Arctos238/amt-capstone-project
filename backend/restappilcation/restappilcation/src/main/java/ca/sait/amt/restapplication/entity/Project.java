@@ -84,7 +84,7 @@ public class Project implements java.io.Serializable {
 		this.projectId = projectId;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
 	@JoinColumn(name= "client_id")
 	@JsonBackReference
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
