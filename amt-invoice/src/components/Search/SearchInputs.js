@@ -25,23 +25,29 @@ const SearchInputs = (props) => {
   };
 
   const [isDisplay, setIsDisplay] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await GetClientByFirstName(searchInput);
+
+      localStorage.setItem("clientInfo", JSON.stringify(data));
+      // console.log("The Data: " + JSON.stringify(data));
+    };
+
+    if (searchInput) {
+      fetchData();
+    }
+  }, [searchInput]);
+
   const findHandler = () => {
-    console.log(searchInput);
-    setIsDisplay(true);
+    if ("clientInfo" in localStorage) {
+      let clientInfo = localStorage.getItem("clientInfo");
+      let toArray = JSON.parse(clientInfo);
+      setResults(toArray);
+    } else {
+      setResults([]);
+    }
   };
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const data = await GetClientByFirstName(searchInput);
-  //     setResults(data);
-  //     console.log(data);
-  //   };
-
-  //   if (searchInput) {
-  //     fetchData();
-  //   }
-    
-  // }, [searchInput]);
 
   return (
     <React.Fragment>
@@ -90,13 +96,15 @@ const SearchInputs = (props) => {
             onChange={handleSearchInput}
           />
         </CardWithRadius>
-
-        <Button className={styles.ButtonInput} onClick={findHandler}>
-          Find
-        </Button>
-
-        {isDisplay&&<SearchResult />}
       </div>
+
+      <Button className={classes.yellowCard} onClick={findHandler}>
+        Find
+      </Button>
+
+      {results.map((results) => (
+        <SearchResult clientName={results.clientName} />
+      ))}
     </React.Fragment>
   );
 };

@@ -4,7 +4,12 @@ import { Link } from "react-router-dom";
 
 import styles from "./Login.module.css";
 
+
 const Login = (props) => {
+  if("clientInfo" in localStorage){
+    localStorage.removeItem("clientInfo");
+  }
+
   const loginHandler = () => {
     props.changeLoginHandler();
   };
