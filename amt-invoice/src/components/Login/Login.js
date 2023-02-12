@@ -16,7 +16,8 @@ const Login = (props) => {
 
   return (
     <React.Fragment>
-      <div className={styles.title}>AMT Invoicing System</div>
+      
+      <div className={styles.title}>AMT: Invoicing System</div>
       <LoginForm changeLoginHandler={loginHandler}></LoginForm>
     </React.Fragment>
   );
