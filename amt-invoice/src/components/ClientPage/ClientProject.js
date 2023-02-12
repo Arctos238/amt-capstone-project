@@ -1,14 +1,21 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import CardWithRadius from "../UI/CardWithRadius";
 
 
 import classes from "../UI/CardWithRadius.module.css";
 import styles from "./ClientProject.module.css";
 
-
 const ClientProject = (props) => {
+  const nav = useNavigate();
+
+  function handleClick(){
+    localStorage.setItem("currentProjectId", (props.projectId));
+    nav("/invoices");
+    
+  }
+
   return (
     <CardWithRadius className={classes.blueCard}>
       <div className={styles.parent}>
@@ -23,10 +30,10 @@ const ClientProject = (props) => {
         </div>
       </div>
       
-      <Link to="/invoices">
-      <button className={styles.viewButton}>View</button>
       
-      </Link>
+      <button className={styles.viewButton} onClick={handleClick}>View</button>
+      
+      
     </CardWithRadius>
   );
 };

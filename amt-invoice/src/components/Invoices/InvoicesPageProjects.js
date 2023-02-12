@@ -1,53 +1,29 @@
 import React from "react";
-
+import { useState, useEffect } from "react";
 import InvoiceProject from "./InvoiceProject";
+import {GetProjectById} from "../../services/ProjectServices";
 
 
-
-const InvoicesPageProject = () => {
+const InvoicesPageProject = (props) => {
   //change to load from api
-  const projectList = [
-    {
-      projectName: "Project Test 1",
-      projectId: 1,
-      projectStatus: "Active",
-      projectAddress:"123 Home",
-      projectClient:"Bill Construction",
-      projectMaterial:"3 Slabs Taj Mahal",
-      projectMaterial2:"10 Slabs Marble",
-      projectMaterial3:"42 Slabs of Quartzite",
-      projectCost:"$2000",
-      projectCost2:"10 Slabs Marble total = $1500",
-      projectCost3:"42 Slabs of Quartzite total = $4500",
-      projectTotal:"Total Cost $8000",
-      projectEdge:"Double Stepped",
-      projectDocumentation:"Currently the we are on track to complete the project by Easter. The client is pleased with progress, but has requested that we add more backsplash.",
-    },
 
-    
-  ];
+  const invoices = props.project.invoices;
 
+  
+  const project = props.project;
   return (
-    <div >
-      {projectList.map((projectList) => (
-        <InvoiceProject
-          projectClient={projectList.projectClient}
-          projectName={projectList.projectName}
-          projectId={projectList.projectId}
-          projectStatus={projectList.projectStatus}
-          projectAddress={projectList.projectAddress}
-          projectMaterial={projectList.projectMaterial}
-          projectCost={projectList.projectCost}
-          projectTotal={projectList.projectTotal}
-          projectEdge={projectList.projectEdge}
-          projectDocumentation={projectList.projectDocumentation}
-
+    <div>
+        {invoices.map((project) => (
+        <InvoiceProject 
+          projectName={project.projectName}
+          projectId={project.projectId}
+          projectStatus={project.projectStatus ? ("Active") : ("Inactive")}
+          
         />
-        
-      ))}
-      
+        ))}
     </div>
   );
+
 };
 
 export default InvoicesPageProject;

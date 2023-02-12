@@ -14,6 +14,7 @@ const ClientPageProjects = (props) => {
       let projectLists = props.toArray[0].projects;
       setClientProjects(projectLists);
       console.log("projectLists " + projectLists);
+      
     } else {
       setClientProjects([]);
     }
