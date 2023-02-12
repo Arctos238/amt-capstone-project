@@ -11,6 +11,7 @@ const ClientPage = () => {
   let clientInfo = localStorage.getItem("clientInfo");
   let toArray = JSON.parse(clientInfo);
 
+  // console.log(toArray[0].invoices[0].dateCreated);
   return (
     <div className="clientPage">
       <div className="aboutClient">

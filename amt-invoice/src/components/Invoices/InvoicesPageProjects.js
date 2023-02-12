@@ -6,12 +6,15 @@ import {GetProjectById} from "../../services/ProjectServices";
 
 const InvoicesPageProject = (props) => {
   //change to load from api
+  const [projectList, setProjectList] = useState([]);
 
-  const invoices = props.project.invoices;
-
+  const invoices = props.project;
+  const invoicesArray = JSON.stringify(invoices);
+  // setProjectList(invoicesArray);
+  console.log(invoicesArray);
   
-  const project = props.project;
   return (
+<<<<<<< Updated upstream
     <div>
         
         <InvoiceProject 
@@ -21,6 +24,18 @@ const InvoicesPageProject = (props) => {
           />
         
     </div>
+=======
+    <React.Fragment>
+        {/* {projectList.map((projects) => (
+          <InvoiceProject 
+          projectName={projects.projectName}
+          projectId={projects.projectId}
+          projectStatus={projects.projectStatus ? ("Active") : ("Inactive")}
+          
+        />
+        ))} */}
+    </React.Fragment>
+>>>>>>> Stashed changes
   );
 
 };

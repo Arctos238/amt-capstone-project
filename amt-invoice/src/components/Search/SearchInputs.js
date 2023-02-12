@@ -127,7 +127,9 @@ const SearchInputs = (props) => {
 
       {results.map((results) => (
         <SearchResult clientName={results.clientName} />
+        
       ))}
+
     </React.Fragment>
   );
 };

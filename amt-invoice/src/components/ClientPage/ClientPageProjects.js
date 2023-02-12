@@ -13,7 +13,7 @@ const ClientPageProjects = (props) => {
     if("clientInfo" in localStorage) {
       let projectLists = props.toArray[0].projects;
       setClientProjects(projectLists);
-      console.log("projectLists " + projectLists);
+      // console.log("projectLists " + projectLists);
       
     } else {
       setClientProjects([]);

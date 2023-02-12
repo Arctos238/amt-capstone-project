@@ -5,39 +5,35 @@ import Card from "../UI/Card";
 import classes from "./InvoicesPage.module.css";
 import { useState, useEffect } from "react";
 import InvoicesPageProject from "./InvoicesPageProjects";
-import {GetProjectById} from "../../services/ProjectServices";
-
-
+import { GetProjectById } from "../../services/ProjectServices";
 
 const InvoicesPage = (props) => {
-  const currentProjectId  = {};
-  const [project, setProject] = useState({});
+  const currentProjectId = {};
+  const [project, setProject] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await GetProjectById(localStorage.getItem("currentProjectId"));
-      
+      const data = await GetProjectById(
+        localStorage.getItem("currentProjectId")
+      );
+      // let dataParsed = JSON.parse(data);
+      console.log(data);
       setProject(data);
-      
     };
 
-    fetchData();
+    if(localStorage.getItem("currentProjectId")){
+      fetchData();
+    }
     return () => {};
   }, []);
-  
-  console.log(project);
 
   return (
-    <div >
-      
+    <div>
       <div className="theProjects">
         <Card className={classes.yellowProjectCard}>
-          <InvoicesPageProject project={project}/>
-      
-          
+          <InvoicesPageProject project={project} />
         </Card>
       </div>
-      
     </div>
   );
 };
