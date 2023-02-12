@@ -13,14 +13,13 @@ const InvoicesPageProject = (props) => {
   const project = props.project;
   return (
     <div>
-        {invoices.map((project) => (
+        
         <InvoiceProject 
           projectName={project.projectName}
           projectId={project.projectId}
           projectStatus={project.projectStatus ? ("Active") : ("Inactive")}
-          
-        />
-        ))}
+          />
+        
     </div>
   );
 

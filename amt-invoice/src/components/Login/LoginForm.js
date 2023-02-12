@@ -91,38 +91,40 @@ const LoginForm = (props) => {
           </Stack>
         ) : <></>}
         <Card className={styles.inputContainer}>
-          <TextField
-            id="input-with-icon-textfield"
-            type="text"
+        <FormControl sx={{ m: 1, width: "100%"}} variant="standard">
+            <InputLabel sx={{color: "white"}} htmlFor="standard-adornment-password">
+              Username
+            </InputLabel>
+            <Input
+            sx={{color: "white"}}
             name="formUsername"
             onChange={inputHandler}
             value={username}
             label="Username"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
+              startAdornment={
+                <InputAdornment sx={{color: "white"}} position="start">
                   <AccountCircle />
                 </InputAdornment>
-              ),
-            }}
-            variant="standard"
-          />
+              }
+            />
+          </FormControl>
         </Card>
 
         <Card className={styles.inputContainer}>
-          <FormControl sx={{ m: 1, width: "22ch" }} variant="standard">
-            <InputLabel htmlFor="standard-adornment-password">
+          <FormControl sx={{ m: 1, width: "100%"}} variant="standard">
+            <InputLabel sx={{color: "white"}} htmlFor="standard-adornment-password">
               Password
             </InputLabel>
             <Input
+            sx={{color: "white"}}
               name="formPassword"
               onChange={inputHandler}
               value={password}
               id="standard-adornment-password"
               type={showPassword ? "text" : "password"}
-              endAdornment={
+              startAdornment={
                 <InputAdornment position="start">
-                  <IconButton
+                  <IconButton sx={{color: "white"}}
                     aria-label="toggle password visibility"
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
