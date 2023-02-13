@@ -82,7 +82,6 @@ const CreateInvoice = () => {
     const invoiceItemPrice = invoiceItemPriceRef.current.value;
 
     const itemObjs = {
-      invoiceItemId,
       invoiceItemName,
       invoiceItemMeasurement,
       invoiceItemWidth,
@@ -91,7 +90,7 @@ const CreateInvoice = () => {
       invoiceItemDepth,
       invoiceItemPrice,
     };
-    setData({...data,invoiceItemId, invoiceItemName,
+    setData({...data, invoiceItemName,
       invoiceItemMeasurement,
       invoiceItemWidth,
       invoiceItemLength,
@@ -103,7 +102,7 @@ const CreateInvoice = () => {
   const addEdgeProfileHandler = (event) => {
     event.preventDefault();
     const edgeProfileMeasurement = edgeProfileMeasurementRef.current.value;
-    const edgeProfileId = 0;
+    const edgeProfileId = 1;
     const edgeProfileType = selectedOption;
     const edgeProfileCut = selectedCut
 
@@ -119,7 +118,7 @@ const CreateInvoice = () => {
   const addNotesHandler = (event) => {
     event.preventDefault();
     const invoiceItemNote = invoiceNoteRef.current.value;
-    const invoiceItemNoteId = 0;
+    const invoiceItemNoteId = 1;
 
     const invoiceItemNotes = {
       invoiceItemNoteId,
