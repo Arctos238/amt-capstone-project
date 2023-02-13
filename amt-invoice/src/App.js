@@ -89,7 +89,7 @@ function App() {
           </Layout>
         }
       />
-
+{/* 
       <Route
         path="/invoices"
         exact
@@ -98,7 +98,7 @@ function App() {
             <InvoicesPage />
           </Layout>
         }
-      />
+      /> */}
       <Route
         path="/createInvoice"
         exact
