@@ -8,7 +8,7 @@ function HomePage() {
       <div className={classes.home}>
       <React.Fragment>
         <HomeButtons/>
-        
+          
       </React.Fragment>
       </div>
     );

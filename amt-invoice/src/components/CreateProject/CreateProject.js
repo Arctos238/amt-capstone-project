@@ -47,6 +47,7 @@ const CreateProject = () => {
   async function submitHandler(event) {
     event.preventDefault();
 
+    const projectId = 1;
     const projectName = projectNameRef.current.value;
     const projectStatus = true;
     const siteSuperPhone = siteSuperPhoneRef.current.value;
@@ -64,7 +65,7 @@ const CreateProject = () => {
       projectCounterRemoval: counter,
       projectTileRemoval: tile,
       projectAddress: {
-        projectAddressId: 8,
+        projectAddressId: 1,
         firstLineAddress: address,
         secondLineAddress: suite,
         postalCode: postalCode,
@@ -81,13 +82,12 @@ const CreateProject = () => {
       purchaseOrders: [],
       depositForms: [],
       invoices: [],
-      client: {clientId: 1}
+      client: { clientId: 1 },
     };
-    console.log(obj);
-
+    console.log(JSON.stringify(obj));
     const data = await CreateNewProject(obj);
 
-    if(data != null) {
+    if (data != null) {
       alert("its probably up there");
     }
   }

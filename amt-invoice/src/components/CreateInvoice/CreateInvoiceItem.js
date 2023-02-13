@@ -2,6 +2,7 @@ import React from "react";
 
 import CardWithRadius from "../UI/CardWithRadius";
 // import PrintItemList from "./PrintItemList";
+import TextField from '@mui/material/TextField';
 
 import styles from "./CreateInvoiceItem.module.css";
 import classes from "../UI/CardWithRadius.module.css";
@@ -38,8 +39,9 @@ const CreateInvoiceItem = (props) => {
         <div className={styles.parent}>
           <div className={styles.left}>
             <CardWithRadius className={classes.blueCard}>
-              <label>Name:</label>
-              <input type="text" ref={props.invoiceItemNameRef} />
+              {/* <label>Name:</label>
+              <input type="text" ref={props.invoiceItemNameRef} /> */}
+              <TextField id="outlined-basic" label="Name" variant="outlined" ref={props.invoiceItemNameRef}/>
             </CardWithRadius>
             <CardWithRadius className={classes.blueCard}>
               <label>Width:</label>
