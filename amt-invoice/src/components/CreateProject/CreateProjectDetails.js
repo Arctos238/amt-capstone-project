@@ -1,13 +1,33 @@
 import React from "react";
-
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CardWithRadius from "../UI/CardWithRadius";
 import styles from "./CreateProjectDetails.module.css";
 import classes from "../UI/CardWithRadius.module.css";
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import FormControl from "@mui/material/FormControl";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#FFFFFF",
+    },
+    background: {
+      main: "#05516a"
+      ,
+    },
+
+    text: {
+      main: "#FFFFFF",
+    },
+  },
+});
 
 const CreateProjectDetails = (props) => {
   return (
     <div className={styles.container}>
       <div className={styles.parent}>
+      <ThemeProvider theme={theme}>
         <div className={styles.left}>
           <CardWithRadius
             className={`${classes.blueCard} ${styles.inputBoxes}`}
@@ -19,18 +39,17 @@ const CreateProjectDetails = (props) => {
               ref={props.projectNameRef}
             />
           </CardWithRadius>
-          <CardWithRadius
-            className={`${classes.blueCard} ${styles.inputBoxes}`}
-          >
-            <label>Site Super Phone:</label>
-            <input
+          
+          <FormControl sx={{ m: 1, width: "100%", color: "white"}} variant="standard">
+            <TextField sx={{color: "white", bgcolor: "background.main"}}
               type="tel"
-              className={styles.transparentInput}
+              
               placeholder="123-456-7890"
               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
               ref={props.siteSuperPhoneRef}
-            />
-          </CardWithRadius>
+              id="standard-basic" label="Site Super Phone:" variant="outlined" />
+              </FormControl>
+          
           <CardWithRadius
             className={`${classes.blueCard} ${styles.inputBoxes}`}
           >
@@ -68,7 +87,7 @@ const CreateProjectDetails = (props) => {
           <CardWithRadius
             className={`${classes.blueCard} ${styles.inputBoxes}`}
           >
-            <label>Suite/Building No.:</label>
+            <label>Suite/Building No:</label>
             <input
               type="number"
               className={styles.transparentInput}
@@ -83,6 +102,7 @@ const CreateProjectDetails = (props) => {
             <input type="text" className={styles.transparentInput} ref={props.provinceRef} />
           </CardWithRadius>
         </div>
+        </ThemeProvider>
       </div>
     </div>
   );
