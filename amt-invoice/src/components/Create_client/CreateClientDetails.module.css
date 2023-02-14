@@ -40,3 +40,18 @@ label {
   outline: none;
   font-size: 120%;
 }
+
+.textFieldLabel{
+  color: white !important;
+}
+
+.telFieldLabel{
+  color: white !important;
+}
+
+.underline:before{
+  border-bottom: 1px solid black;
+}
+.underline:after{
+  border-bottom: 1px solid white;
+}

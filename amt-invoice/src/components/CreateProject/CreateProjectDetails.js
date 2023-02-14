@@ -40,15 +40,19 @@ const CreateProjectDetails = (props) => {
             />
           </CardWithRadius>
           
-          <FormControl sx={{ m: 1, width: "100%", color: "white"}} variant="standard">
-            <TextField sx={{color: "white", bgcolor: "background.main"}}
+          
+            <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <label className={styles.label}>Project Name:</label>
+            <input
+            className={styles.transparentInput}
               type="tel"
-              
               placeholder="123-456-7890"
               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
               ref={props.siteSuperPhoneRef}
-              id="standard-basic" label="Site Super Phone:" variant="outlined" />
-              </FormControl>
+            />
+          </CardWithRadius>
           
           <CardWithRadius
             className={`${classes.blueCard} ${styles.inputBoxes}`}
