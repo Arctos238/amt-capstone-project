@@ -42,7 +42,7 @@ const InvoiceProject = (props) => {
           <Typography> Project Name: {props.projectName}</Typography>
           <Typography> Project ID: {props.projectId}</Typography>
           <Typography> Project Status: {props.projectStatus}</Typography>
-          <Typography> Project Address: {props.projectAddress}</Typography>
+          {/* <Typography> Project Address: {props.projectAddress}</Typography>
           <Typography> Project Second Address: {props.projectSecondAddress}</Typography>
           <Typography> Project Postal: {props.projectPostal}</Typography>
           <Typography> Project City: {props.projectCity}</Typography>
@@ -52,7 +52,7 @@ const InvoiceProject = (props) => {
 
           <Typography>Site Supervisor</Typography>
           <Typography> Super Name: {props.projectSuper}</Typography>
-          <Typography> Super Number: {props.projectSuperNum}</Typography>
+          <Typography> Super Number: {props.projectSuperNum}</Typography> */}
           
         </AccordionDetails>
       </Accordion>

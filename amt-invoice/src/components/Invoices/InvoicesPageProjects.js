@@ -15,7 +15,7 @@ const InvoicesPageProject = (props) => {
   const invoices = invoiceList.invoices;
   
   console.log(invoices);
-  console.log(projectList.projectName)
+  console.log(projectList)
   useEffect(() => {
     setProjectList(props.project);
   }, [props])
@@ -27,13 +27,13 @@ const InvoicesPageProject = (props) => {
           projectId={projectList.projectId}
           projectStatus={projectList.projectStatus ? ("Active") : ("Inactive")}
           
-          projectAddress={projectList.projectAddress.firstLineAddress}
-          projectSecondAddress={projectList.projectAddress.secondLineAddress}
-          projectPostal={projectList.projectAddress.postalCode}
-          projectCity={projectList.projectAddress.city}
-          projectProvince={projectList.projectAddress.province}
-          projectInvoice={invoices[0].invoiceId}
+          //projectAddress={projectList.projectAddress.firstLineAddress}
+          // projectSecondAddress={projectList.projectAddress.secondLineAddress}
+          // projectPostal={projectList.projectAddress.postalCode}
+          // projectCity={projectList.projectAddress.city}
+          // projectProvince={projectList.projectAddress.province}
 
+          projectInvoice={invoices[0].invoiceId}
           projectArea={invoices[0].invoiceItems[0].invoiceItemArea}
           projectDepth={invoices[0].invoiceItems[0].invoiceItemDepth}
           projectWidth={invoices[0].invoiceItems[0].invoiceItemWidth}
@@ -45,12 +45,14 @@ const InvoicesPageProject = (props) => {
           projectEdgeMeasure={invoices[0].invoiceItems[0].edgeProfile.edgeProfileMeasurement}
           projectEdgeType={invoices[0].invoiceItems[0].edgeProfile.edgeProfileType}
 
+          
+
       
           projectTileRemoved={projectList.projectTitleRemoval}
 
           
-          projectSuper={projectList.projectSupervisor.projectSupervisorName}
-          projectSuperNum={projectList.projectSupervisor.projectSupervisorNumber}
+          //projectSuper={projectList.projectSupervisor.projectSupervisorName}
+          //projectSuperNum={projectList.projectSupervisor.projectSupervisorNumber}
         />
     </React.Fragment>
   );
