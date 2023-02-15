@@ -5,21 +5,15 @@ import {GetProjectById} from "../../services/ProjectServices";
 
 
 const InvoicesPageProject = (props) => {
-  //change to load from api
-  const [projectList, setProjectList] = useState({});
 
-  const invoiceList = props.project;
+  const projectList = props.project;
   // setProjectList(invoicesArray);
-  console.log(invoiceList);
 
-  const invoices = invoiceList.invoices;
+
+  const invoices = projectList.invoices;
   
   console.log(invoices);
   console.log(projectList)
-  useEffect(() => {
-    setProjectList(props.project);
-  }, [props])
-  
   return (
     <React.Fragment>
           <InvoiceProject 
@@ -27,11 +21,11 @@ const InvoicesPageProject = (props) => {
           projectId={projectList.projectId}
           projectStatus={projectList.projectStatus ? ("Active") : ("Inactive")}
           
-          //projectAddress={projectList.projectAddress.firstLineAddress}
-          // projectSecondAddress={projectList.projectAddress.secondLineAddress}
-          // projectPostal={projectList.projectAddress.postalCode}
-          // projectCity={projectList.projectAddress.city}
-          // projectProvince={projectList.projectAddress.province}
+          projectAddress={projectList.projectAddress.firstLineAddress}
+          projectSecondAddress={projectList.projectAddress.secondLineAddress}
+          projectPostal={projectList.projectAddress.postalCode}
+          projectCity={projectList.projectAddress.city}
+          projectProvince={projectList.projectAddress.province}
 
           projectInvoice={invoices[0].invoiceId}
           projectArea={invoices[0].invoiceItems[0].invoiceItemArea}
@@ -51,8 +45,8 @@ const InvoicesPageProject = (props) => {
           projectTileRemoved={projectList.projectTitleRemoval}
 
           
-          //projectSuper={projectList.projectSupervisor.projectSupervisorName}
-          //projectSuperNum={projectList.projectSupervisor.projectSupervisorNumber}
+          projectSuper={projectList.projectSupervisor.projectSupervisorName}
+          projectSuperNum={projectList.projectSupervisor.projectSupervisorNumber}
         />
     </React.Fragment>
   );
