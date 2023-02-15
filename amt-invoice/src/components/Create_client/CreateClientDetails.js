@@ -99,11 +99,16 @@ return (
             /> */}
             </CardWithRadius>
             <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
-            <MuiTelInput 
-             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-             ref= {props.phoneNumberRef}
-             type="tel" 
-             value={value} onChange={handleChange} />
+            <MuiTelInput
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            ref={props.phoneNumberRef}
+            type="tel"
+            value={value}
+            onChange={handleChange}
+            inputProps={{
+                className: styles.inputPhone,
+            }}
+            />
             
             {/* Keeping just in case
             <label>Phone Number:</label>

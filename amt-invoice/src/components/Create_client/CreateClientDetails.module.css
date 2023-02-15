@@ -45,7 +45,7 @@ label {
   color: white !important;
 }
 
-.telFieldLabel{
+.teFieldLabel{
   color: white !important;
 }
 
@@ -54,4 +54,8 @@ label {
 }
 .underline:after{
   border-bottom: 1px solid white;
+}
+
+.inputPhone{
+  color: white !important;
 }
