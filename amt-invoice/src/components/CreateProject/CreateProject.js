@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 import CreateProjectDetails from "./CreateProjectDetails";
 import CreateProjectAddOns from "./CreateProjectAddOns";
@@ -9,6 +10,7 @@ import styles from "./CreateProject.module.css";
 import { useRef, useState } from "react";
 
 const CreateProject = () => {
+  const navigate = useNavigate();
   const [cabinet, setCabinet] = useState();
   const [tile, setTile] = useState();
   const [counter, setCounter] = useState();
@@ -20,7 +22,6 @@ const CreateProject = () => {
     toArray = JSON.parse(clientInfo);
   }
   const theSelectedClientId = toArray[0].clientId;
-  console.log("I am " + theSelectedClientId);
 
   function onCabinetChange(event) {
     if (event.target.value === true) {
@@ -93,12 +94,13 @@ const CreateProject = () => {
       invoices: [],
       client: { clientId: theSelectedClientId },
     };
-    console.log(JSON.stringify(obj));
+
     const data = await CreateNewProject(obj);
 
     if (data != null) {
       alert("its probably up there");
     }
+    navigate('/createInvoice');
   }
 
   return (
