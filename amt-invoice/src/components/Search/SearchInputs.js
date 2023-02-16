@@ -18,7 +18,6 @@ const SearchInputs = (props) => {
   const handleOptionChange = (e) => {
     setIsValidSearch(true);
     setSelectedOption(e.target.value);
-    console.log(selectedOption);
   };
 
   const handleSearchInput = (e) => {
@@ -126,7 +125,7 @@ const SearchInputs = (props) => {
       </Button>
 
       {results.map((results) => (
-        <SearchResult clientName={results.clientName} clientId={results.clientId}/>
+        <SearchResult key={results.clientId} clientName={results.clientName} clientId={results.clientId}/>
         
       ))}
 

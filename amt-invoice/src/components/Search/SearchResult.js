@@ -10,46 +10,57 @@ import { GetClientById } from "../../services/ClientServices";
 
 const SearchResult = (props) => {
   const [selectedName, setSelectedName] = useState("");
-  const [loading, setLoading] = useState(false);
-  const selectedId = "";
+  // const [loading, setLoading] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+
   const clientSelectedHandler = () => {
-    selectedId = props.clientId;
-    setSelectedName(props.clientId);
-    console.log("selected: " + props.clientId);
+    setSelectedId(props.clientId);
+    console.log("Selected ID: " + selectedId);
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      // const data = await GetClientByFirstName(selectedName);
-      const data = await GetClientById(selectedName);
-      setLoading(true);
-      console.log(JSON.stringify(data));
-      if ("clientInfo" in localStorage) {
-        console.log("CLIENT INFO " + localStorage.getItem("clientInfo"));
-        localStorage.removeItem("clientInfo");
+      if (selectedId) {
+        const data = await GetClientById(selectedId);
+        // setLoading(true);
+        console.log(JSON.stringify(data));
+        if ("clientInfo" in localStorage) {
+          console.log("CLIENT INFO " + localStorage.getItem("clientInfo"));
+          localStorage.removeItem("clientInfo");
+        }
+        console.log("-----------");
+        localStorage.setItem("clientInfo", JSON.stringify(data));
       }
-      console.log("-----------");
-      localStorage.setItem("clientInfo", JSON.stringify(data));
     };
 
-    if (selectedName) {
-      fetchData();
-    }
-  }, [selectedName]);
+    fetchData();
+  }, [selectedId]);
 
   return (
     <React.Fragment>
       <div>
-        {loading ?
+        {/* {loading ? (
           <Link to="/clientPage">
             <Button
+              key={props.key}
               className={classes.blueCard}
               onClick={clientSelectedHandler}
             >
               {props.clientName}
             </Button>
-          </Link> : <></>
-        }
+          </Link>
+        ) : (
+          <></>
+        )} */}
+        <Link to="/clientPage">
+            <Button
+              key={props.key}
+              className={classes.blueCard}
+              onClick={clientSelectedHandler}
+            >
+              {props.clientName}
+            </Button>
+          </Link>
       </div>
     </React.Fragment>
   );
