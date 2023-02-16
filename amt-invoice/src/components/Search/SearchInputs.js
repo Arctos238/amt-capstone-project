@@ -25,29 +25,16 @@ const SearchInputs = (props) => {
     setSearchInput(e.target.value);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await GetClientByFirstName(searchInput);
-
-      localStorage.setItem("clientInfo", JSON.stringify(data));
-    };
-
-    if (searchInput) {
-      fetchData();
-    }
-  }, [searchInput]);
+  const fetchData = async () => {
+    const data = await GetClientByFirstName(searchInput);
+    setResults(data);
+  };
 
   const findHandler = () => {
     if(searchInput === ""){
       setIsValidSearch(false);
-    }
-
-    if ("clientInfo" in localStorage) {
-      let clientInfo = localStorage.getItem("clientInfo");
-      let toArray = JSON.parse(clientInfo);
-      setResults(toArray);
     } else {
-      setResults([]);
+      fetchData();
     }
   };
   
@@ -125,8 +112,8 @@ const SearchInputs = (props) => {
         Find
       </Button>
 
-      {results.map((results) => (
-        <SearchResult clientName={results.clientName} clientId={results.clientId}/>
+      {results.map((result) => (
+        <SearchResult clientName={result.clientName} clientId={result.clientId}/>
         
       ))}
 

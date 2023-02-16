@@ -11,7 +11,7 @@ const ClientPage = () => {
   
   let clientInfo = localStorage.getItem("clientInfo");
   let toArray = JSON.parse(clientInfo);
-  // console.log(toArray);
+  console.log(toArray);
   return (
     <div className="clientPage">
       <div className="aboutClient">
