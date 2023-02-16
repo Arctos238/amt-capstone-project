@@ -13,6 +13,15 @@ const CreateProject = () => {
   const [tile, setTile] = useState();
   const [counter, setCounter] = useState();
 
+  let clientInfo;
+  let toArray;
+  if ("clientInfo" in localStorage) {
+    clientInfo = localStorage.getItem("clientInfo");
+    toArray = JSON.parse(clientInfo);
+  }
+  const theSelectedClientId = toArray[0].clientId;
+  console.log("I am " + theSelectedClientId);
+
   function onCabinetChange(event) {
     if (event.target.value === true) {
       setCabinet(true);
@@ -70,7 +79,7 @@ const CreateProject = () => {
         secondLineAddress: suite,
         postalCode: postalCode,
         city: city,
-        province: province
+        province: province,
       },
       projectSupervisor: {
         projectSupervisorId: 1,
@@ -82,11 +91,10 @@ const CreateProject = () => {
       purchaseOrders: [],
       depositForms: [],
       invoices: [],
-      client: { clientId: 1 },
+      client: { clientId: theSelectedClientId },
     };
     console.log(JSON.stringify(obj));
     const data = await CreateNewProject(obj);
-    
 
     if (data != null) {
       alert("its probably up there");
