@@ -15,7 +15,6 @@ const SearchResult = (props) => {
 
   const clientSelectedHandler = () => {
     setSelectedId(props.clientId);
-    console.log("Selected ID: " + selectedId);
   };
 
   useEffect(() => {
