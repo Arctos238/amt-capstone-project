@@ -126,7 +126,7 @@ const SearchInputs = (props) => {
       </Button>
 
       {results.map((results) => (
-        <SearchResult clientName={results.clientName} />
+        <SearchResult clientName={results.clientName} clientId={results.clientId}/>
         
       ))}
 
