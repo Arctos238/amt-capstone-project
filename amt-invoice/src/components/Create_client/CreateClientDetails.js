@@ -8,9 +8,10 @@ import { MuiTelInput } from 'mui-tel-input'
 
 
 const CreateClientDetails = (props) =>{
-    const [value, setValue] = React.useState()
+    const [value, setValue] = React.useState("+1")
 
   const handleChange = (newValue) => {
+
     setValue(newValue)
   }
     
@@ -35,7 +36,7 @@ return (
             placeholder="Candler Bing"
             variant="standard"
             type = "text" 
-            ref= {props.clientNameRef}
+            inputRef = {props.clientNameRef}
             InputLabelProps={{ className: styles.textFieldLabel }}
             InputProps={{
               classes: {
@@ -60,7 +61,7 @@ return (
             placeholder="RonSwanson@no.com"
             variant="standard"
             type = "text" 
-            ref= {props.emailPersonalRef}
+            inputRef= {props.emailPersonalRef}
             InputLabelProps={{ className: styles.textFieldLabel }}
             InputProps={{
               classes: {
@@ -84,7 +85,7 @@ return (
             placeholder="Business@work.ca"
             variant="standard"
             type = "text" 
-            ref= {props.emailBusinessRef}
+            inputRef= {props.emailBusinessRef}
             InputLabelProps={{ className: styles.textFieldLabel }}
             InputProps={{
               classes: {
@@ -100,9 +101,11 @@ return (
             </CardWithRadius>
             <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
             <MuiTelInput
+            defaultCountry={"ca"}
             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            ref={props.phoneNumberRef}
+            inputRef={props.phoneNumberRef}
             type="tel"
+            placeholder={"403 967 9697"}
             value={value}
             onChange={handleChange}
             inputProps={{

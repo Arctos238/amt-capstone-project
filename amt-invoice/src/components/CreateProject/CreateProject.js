@@ -86,6 +86,7 @@ const CreateProject = () => {
     };
     console.log(JSON.stringify(obj));
     const data = await CreateNewProject(obj);
+    
 
     if (data != null) {
       alert("its probably up there");

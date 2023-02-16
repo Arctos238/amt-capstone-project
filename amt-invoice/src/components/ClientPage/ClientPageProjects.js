@@ -13,18 +13,21 @@ const ClientPageProjects = (props) => {
     if("clientInfo" in localStorage) {
       let projectLists = props.toArray[0].projects;
       setClientProjects(projectLists);
-      // console.log("projectLists " + projectLists);
+      console.log("projectLists " + projectLists);
       
     } else {
       setClientProjects([]);
     }
     
   };
+
+  
   
   return (
     <div className={styles.projectList} onLoad={loadProjectHandler}>
       {props.toArray.map((projectList) => (
-        <ClientProject
+        <ClientProject 
+          projectSelected={projectList}
           projectName={projectList.projectName}
           projectId={projectList.projectId}
           projectStatus={projectList.projectStatus ? ("Active") : ("Inactive")}

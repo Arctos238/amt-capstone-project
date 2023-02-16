@@ -25,7 +25,9 @@ const theme = createTheme({
 });
 
 const CreateProjectDetails = (props) => {
-  const [value, setValue] = React.useState()
+
+
+  const [value, setValue] = React.useState("+1")
 
   const handleChange = (newValue) => {
     setValue(newValue)
@@ -47,7 +49,7 @@ const CreateProjectDetails = (props) => {
             placeholder="Dan's House"
             variant="standard"
             type = "text" 
-            ref={props.projectNameRef}
+            inputRef={props.projectNameRef}
             InputLabelProps={{ className: styles.textFieldLabel }}
             InputProps={{
               classes: {
@@ -68,8 +70,9 @@ const CreateProjectDetails = (props) => {
             className={`${classes.blueCard} ${styles.inputBoxes}`}
           >
             <MuiTelInput
+            defaultCountry={"ca"}
             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            ref={props.siteSuperPhoneRef}
+            inputRef={props.siteSuperPhoneRef}
             type="tel"
             value={value}
             onChange={handleChange}
@@ -99,7 +102,7 @@ const CreateProjectDetails = (props) => {
             placeholder="T2E 8K7"
             variant="standard"
             type = "text" 
-            ref={props.postalCodeRef}
+            inputRef={props.postalCodeRef}
             InputLabelProps={{ className: styles.textFieldLabel }}
             InputProps={{
               classes: {
@@ -127,7 +130,7 @@ const CreateProjectDetails = (props) => {
             placeholder="Dead Man's Flats"
             variant="standard"
             type = "text" 
-            ref={props.postalCodeRef}
+            inputRef={props.cityRef}
             InputLabelProps={{ className: styles.textFieldLabel }}
             InputProps={{
               classes: {
@@ -152,7 +155,7 @@ const CreateProjectDetails = (props) => {
             placeholder="Bob the Builder"
             variant="standard"
             type = "text" 
-            ref={props.siteSuperNameRef}
+            inputRef={props.siteSuperNameRef}
             InputLabelProps={{ className: styles.textFieldLabel }}
             InputProps={{
               classes: {
@@ -179,7 +182,7 @@ const CreateProjectDetails = (props) => {
             placeholder="2020 Pegasus Rd NE"
             variant="standard"
             type = "text" 
-            ref={props.addressRef}
+            inputRef={props.addressRef}
             InputLabelProps={{ className: styles.textFieldLabel }}
             InputProps={{
               classes: {
@@ -202,7 +205,7 @@ const CreateProjectDetails = (props) => {
             variant="standard"
             type="number" 
             min="0"
-            ref={props.suiteRef}
+            inputRef={props.suiteRef}
             InputLabelProps={{ className: styles.textFieldLabel }}
             InputProps={{
               classes: {
@@ -230,7 +233,7 @@ const CreateProjectDetails = (props) => {
             placeholder="AB"
             variant="standard"
             type = "text" 
-            ref={props.provinceRef}
+            inputRef={props.provinceRef}
             InputLabelProps={{ className: styles.textFieldLabel }}
             InputProps={{
               classes: {
