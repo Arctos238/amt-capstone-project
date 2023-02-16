@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import Button from "../UI/Button";
 import styles from "./ClientPageButton.module.css";
 import classes from '../UI/Button.module.css';
@@ -12,7 +12,9 @@ const ClientPageButton = () => {
                     <Button className={classes.editClient}>Edit Client Information</Button>
                 </div>
                 <div className={styles.right}>
+                    <Link to="/createProject">
                     <Button className={classes.addProject}>Add Project</Button>
+                    </Link>
                 </div>
             </div>
         </div>
