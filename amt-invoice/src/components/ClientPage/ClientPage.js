@@ -16,16 +16,16 @@ const ClientPage = () => {
       <div className="aboutClient">
         <Card className={classes.yellowCard}>
           <ClientContact
-            clientName={toArray[0].clientName}
-            businessEmail={toArray[0].clientContact.businessEmail}
-            phoneNumber={toArray[0].clientContact.personalContactNumber}
-            personalEmail={toArray[0].clientContact.personalEmail}
+            clientName={toArray.clientName}
+            businessEmail={toArray.clientContact.businessEmail}
+            phoneNumber={toArray.clientContact.personalContactNumber}
+            personalEmail={toArray.clientContact.personalEmail}
           />
         </Card>
       </div>
       <div className="theProjects">
         <Card className={classes.yellowCard}>
-          <ClientPageProjects toArray={toArray[0].projects}/>
+          <ClientPageProjects toArray={toArray.projects}/>
         </Card>
       </div>
       <div className="buttons">
