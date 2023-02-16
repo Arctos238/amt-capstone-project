@@ -7,14 +7,25 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import ArticleIcon from '@mui/icons-material/Article';
-
+import Button from '@mui/material/Button';
 import CardWithRadius from "../UI/CardWithRadius";
 import Box from '@mui/material/Box';
 import classes from "../UI/CardWithRadius.module.css";
 import styles from "./InvoiceProject.module.css";
+import {useNavigate} from 'react-router-dom';
+import { GetProjectById } from '../../services/ProjectServices';
 
 
 const InvoiceProject = (props) => {
+
+  const nav = useNavigate();
+
+
+  const handleClick = async () =>{
+    const data = await GetProjectById(props.projectId);
+    localStorage.setItem("projectId", JSON.stringify(data));
+    nav("/createInvoice");
+  }
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -80,6 +91,7 @@ const InvoiceProject = (props) => {
         <br></br>
         <Typography> Project Total: ${props.projectTotal}</Typography>
 
+        <Button variant="contained" onClick={handleClick}>Add Invoice</Button>
         </AccordionDetails>
       </Accordion>
       <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
