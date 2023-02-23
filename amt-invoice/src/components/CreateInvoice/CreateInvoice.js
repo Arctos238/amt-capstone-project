@@ -1,11 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import CreateInvoiceItem from "./CreateInvoiceItem";
 import EdgeProfile from "./EdgeProfile";
 import Button from "../UI/Button";
 import CreateInvoiceNotes from "./CreateInvoiceNotes";
 
-import { CreateNewInvoiceItem } from "../../services/InvoiceItemServices";
+import { CreateNewInvoice } from "../../services/InvoiceServices";
 
 import styles from "./CreateInvoice.module.css";
 
@@ -151,13 +151,47 @@ const CreateInvoice = () => {
   const invoiceItemPriceRef = useRef();
   const invoiceNoteRef = useRef();
 
+  const currentProjectId = localStorage.getItem("currentProjectId");
+
+  const [invoiceItem, setInvoiceItem] = useState([{}]);
+  const [previousInvoiceItems, setPreviousInvoiceItems] = useState([]);
+
+  const [invoiceItemNotes, setInvoiceItemNotes] = useState([{}]);
+  const [previousInvoiceItemNotes, setPreviousInvoiceItemNotes] = useState([]);
+
+  const [totalPrice, setTotalPrice] = useState(0);
   const [data, setData] = useState({});
+
+  useEffect(() => {
+    setPreviousInvoiceItems((previousInvoiceItems) => [
+      ...previousInvoiceItems,
+      invoiceItem,
+    ]);
+
+    if(previousInvoiceItems.length > 0 && Array.isArray(previousInvoiceItems[0])) {
+      delete previousInvoiceItems[0];
+      previousInvoiceItems.shift();
+    }
+  }, [invoiceItem]);
+
+  useEffect(() => {
+    setPreviousInvoiceItemNotes((previousInvoiceItemNotes) => [
+      ...previousInvoiceItemNotes,
+      invoiceItemNotes,
+    ]);
+
+    if(previousInvoiceItemNotes.length > 0 && Array.isArray(previousInvoiceItemNotes[0])) {
+      delete previousInvoiceItemNotes[0];
+      previousInvoiceItemNotes.shift();
+    }
+  }, [invoiceItemNotes]);
 
   const [selectedEdgeProfileType, setSelectedEdgeProfileType] = useState("");
   const [selectedEdgeProfileCut, setSelectedEdgeProfileCut] = useState("");
   const [selectedEdgeProfileMeasurement, setSelectedEdgeProfileMeasurement] =
     useState("");
   const [edgeProfileId, setEdgeProfileId] = useState();
+  
 
   const handleEdgeProfileTypeChange = (event) => {
     setSelectedEdgeProfileType(event.target.value);
@@ -193,7 +227,6 @@ const CreateInvoice = () => {
       : upgradeProfiles.map((profile) => profile.edgeProfileCut)
     : [];
 
-
   const addItemHandler = (event) => {
     event.preventDefault();
 
@@ -205,11 +238,21 @@ const CreateInvoice = () => {
     const invoiceItemDepth = invoiceItemDepthRef.current.value;
     const invoiceItemPrice = invoiceItemPriceRef.current.value;
 
-    setData({
-      ...data,
-      invoice: {
-        invoiceId: 1,
-      },
+    const edgeProfileMeasurement = selectedEdgeProfileMeasurement;
+    const profileId = edgeProfileId;
+    const edgeProfileType = selectedEdgeProfileType;
+    const edgeProfileCut = selectedEdgeProfileMeasurement;
+
+    if(previousInvoiceItems.length > 0 && Array.isArray(previousInvoiceItems[0])) {
+      delete previousInvoiceItems[0];
+      previousInvoiceItems.shift();
+    }
+
+    if(previousInvoiceItemNotes.length > 0 && Array.isArray(previousInvoiceItemNotes[0])) {
+      delete previousInvoiceItemNotes[0];
+      previousInvoiceItemNotes.shift();
+    }
+    setInvoiceItem({
       invoiceItemName,
       invoiceItemMeasurement,
       invoiceItemWidth,
@@ -217,35 +260,25 @@ const CreateInvoice = () => {
       invoiceItemArea,
       invoiceItemDepth,
       invoiceItemPrice,
+      edgeProfile: {
+        edgeProfileId: profileId,
+        edgeProfileType,
+        edgeProfileCut,
+        edgeProfileMeasurement,
+      },
+      invoiceItemNotes: previousInvoiceItemNotes,
+      // invoiceId: invoiceId
     });
-  };
 
-  const addEdgeProfileHandler = (event) => {
-    event.preventDefault();
-    const edgeProfileMeasurement = selectedEdgeProfileMeasurement;
-    const profileId = edgeProfileId;
-    const edgeProfileType = selectedEdgeProfileType;
-    const edgeProfileCut = selectedEdgeProfileMeasurement;
-
-    const edgeProfile = {
-      edgeProfileId: profileId,
-      edgeProfileType,
-      edgeProfileCut,
-      edgeProfileMeasurement,
-    };
-    setData({ ...data, edgeProfile });
+    setTotalPrice(Number(totalPrice) + Number(invoiceItemPrice))
+    
   };
 
   const addNotesHandler = (event) => {
     event.preventDefault();
     const invoiceItemNote = invoiceNoteRef.current.value;
 
-    const invoiceItemNotes = [
-      {
-        invoiceItemNote,
-      },
-    ];
-    setData({ ...data, invoiceItemNotes });
+    setInvoiceItemNotes({ invoiceItemNote });
   };
 
   const createInvoiceHandler = async (event) => {
@@ -253,13 +286,17 @@ const CreateInvoice = () => {
 
     setData({
       ...data,
-      invoice: {
-        invoiceId: 1,
+      // invoiceId: invoiceId,
+      invoiceTotalPrice: totalPrice,
+      project: {
+        projectId: currentProjectId,
       },
+      invoiceItems: previousInvoiceItems,
     });
 
+    //this connects to backend
     try {
-      const info = await CreateNewInvoiceItem(data);
+      const info = await CreateNewInvoice(data);
     } catch (error) {
       console.error(error);
     }
@@ -267,7 +304,15 @@ const CreateInvoice = () => {
     if(data != null) {
       alert("invoice created");
     }
+    
+  };
 
+  //used  to debug
+  const showInvoiceItemHandler = () => {
+    // console.log(previousInvoiceItems);
+    console.log(JSON.stringify(data));
+    // console.log("Total Price: " + totalPrice);
+    // console.log("previousInvoiceItemNotes " + JSON.parse(previousInvoiceItemNotes[0]));
   };
 
   return (
@@ -281,9 +326,6 @@ const CreateInvoice = () => {
         invoiceItemDepthRef={invoiceItemDepthRef}
         invoiceItemPriceRef={invoiceItemPriceRef}
       />
-      <Button onClick={addItemHandler} className={styles.button} type="submit">
-        Add Item
-      </Button>
 
       <EdgeProfile
         selectedEdgeProfileType={selectedEdgeProfileType}
@@ -294,15 +336,19 @@ const CreateInvoice = () => {
         edgeProfileCuts={edgeProfileCuts}
         selectedEdgeProfileMeasurement={selectedEdgeProfileMeasurement}
       />
-      <Button onClick={addEdgeProfileHandler} className={styles.button}>
-        Add Edge Profile
+
+      <Button onClick={addItemHandler} className={styles.button} type="submit">
+        Add Item
       </Button>
 
       <CreateInvoiceNotes invoiceNoteRef={invoiceNoteRef} />
       <Button onClick={addNotesHandler} className={styles.button}>
         Add Notes
       </Button>
-
+      {/* used to debug
+      <Button onClick={showInvoiceItemHandler} className={styles.button}>
+        Show Invoice Item
+      </Button> */}
       <Button onClick={createInvoiceHandler} className={styles.button}>
         Create Invoice
       </Button>

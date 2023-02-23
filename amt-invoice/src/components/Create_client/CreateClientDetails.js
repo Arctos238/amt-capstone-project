@@ -36,7 +36,7 @@ return (
             placeholder="Candler Bing"
             variant="standard"
             type = "text" 
-            inputRef = {props.clientNameRef}
+            ref= {props.clientNameRef}
             InputLabelProps={{ className: styles.textFieldLabel }}
             InputProps={{
               classes: {
@@ -61,7 +61,7 @@ return (
             placeholder="RonSwanson@no.com"
             variant="standard"
             type = "text" 
-            inputRef= {props.emailPersonalRef}
+            ref= {props.emailPersonalRef}
             InputLabelProps={{ className: styles.textFieldLabel }}
             InputProps={{
               classes: {
@@ -85,7 +85,7 @@ return (
             placeholder="Business@work.ca"
             variant="standard"
             type = "text" 
-            inputRef= {props.emailBusinessRef}
+            ref= {props.emailBusinessRef}
             InputLabelProps={{ className: styles.textFieldLabel }}
             InputProps={{
               classes: {
@@ -100,18 +100,11 @@ return (
             /> */}
             </CardWithRadius>
             <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
-            <MuiTelInput
-            defaultCountry={"ca"}
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            inputRef={props.phoneNumberRef}
-            type="tel"
-            placeholder={"403 967 9697"}
-            value={value}
-            onChange={handleChange}
-            inputProps={{
-                className: styles.inputPhone,
-            }}
-            />
+            <MuiTelInput 
+             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+             ref= {props.phoneNumberRef}
+             type="tel" 
+             value={value} onChange={handleChange} />
             
             {/* Keeping just in case
             <label>Phone Number:</label>

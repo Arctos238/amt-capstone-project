@@ -41,7 +41,7 @@ const CreateInvoiceItem = (props) => {
             <CardWithRadius className={classes.blueCard}>
               {/* <label>Name:</label>
               <input type="text" ref={props.invoiceItemNameRef} /> */}
-              <TextField id="outlined-basic" label="Name" variant="outlined" ref={props.invoiceItemNameRef}/>
+              <TextField id="outlined-basic" label="Name" variant="outlined" inputRef={props.invoiceItemNameRef}/>
             </CardWithRadius>
             <CardWithRadius className={classes.blueCard}>
               <label>Width:</label>

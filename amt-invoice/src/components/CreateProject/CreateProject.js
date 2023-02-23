@@ -21,7 +21,7 @@ const CreateProject = () => {
     clientInfo = localStorage.getItem("clientInfo");
     toArray = JSON.parse(clientInfo);
   }
-  const theSelectedClientId = toArray[0].clientId;
+  const theSelectedClientId = toArray.clientId;
 
   function onCabinetChange(event) {
     if (event.target.value === true) {
