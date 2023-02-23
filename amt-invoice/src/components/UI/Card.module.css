@@ -1,27 +1,48 @@
 .card {
-    border-radius: 15px;
-    /* background-color: #05516A; */
-    border: 5px;
-    width: 50%;
-    margin: 10px auto;
-    padding:10px;
-    justify-content: center;
+  border-radius: 15px;
+  /* background-color: #05516A; */
+  border: 5px;
+  width: 50%;
+  margin: 10px auto;
+  padding: 10px;
+  justify-content: center;
 }
 .blueCard {
-    background-color: #05516A;
+  background-color: #05516a;
 }
 
 .form_floating {
-    position: relative;
+  position: relative;
 }
 
-.form_floating ::after, ::before {
-    box-sizing: border-box;
+.form_floating ::after,
+::before {
+  box-sizing: border-box;
 }
 
-.yellowCard{
-    background-color:#fabd44;
+.yellowCard {
+  background-color: #fabd44;
 }
 .projectList {
-    width: 90%;
+  width: 90%;
+}
+.resultBox {
+  height: 400px;
+  width: 100%;
+  overflow: auto;
+  margin: auto;
+}
+.resultBox::-webkit-scrollbar {
+  width: 8px; 
+
+}
+.resultBox::-webkit-scrollbar-track {
+  background: transparent; 
+}
+.resultBox::-webkit-scrollbar-thumb {
+  background-color: #05516a; 
+  border-radius: 20px; 
+}
+.resultBox::-webkit-scrollbar-thumb:hover{
+    background-color: #58a1bb; 
 }
