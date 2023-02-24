@@ -16,12 +16,12 @@ const HomeButtons = () => {
             </div>
           </Link>
 
-          {/* change to createInvoice createProject */}
-          <Link to="/createProject">
+         
+          {/* <Link to="/createProject">
             <div className={styles.center}>
               <Button className={classes.change}>Add Project</Button>
             </div>
-          </Link>
+          </Link> */}
 
           <Link to="/search">
             <div className={styles.right}>
