@@ -8,6 +8,9 @@ const InvoicesPageProject = (props) => {
 
   const projectList = props.project;
   const invoices = projectList.invoices;
+
+  console.log("Project List: " + JSON.stringify(projectList));
+  console.log("Invoice List: " + JSON.stringify(invoices));
   
   return (
     <React.Fragment>
