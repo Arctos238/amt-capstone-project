@@ -38,7 +38,7 @@ const SearchResult = (props) => {
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
           >
             <Grid item xs={6}>
-              <b>Name</b>
+              <b>Name: </b>
               {props.clientName}
             </Grid>
             <Grid item xs={6}>
@@ -46,11 +46,11 @@ const SearchResult = (props) => {
               {props.businessEmail}
             </Grid>
             <Grid item xs={6}>
-              <b>Personal Email</b>
+              <b>Personal Email: </b>
               {props.personalEmail}
             </Grid>
             <Grid item xs={6}>
-              <b>Phone Number</b>
+              <b>Phone Number: </b>
               {props.phoneNumber}
             </Grid>
           </Grid>
