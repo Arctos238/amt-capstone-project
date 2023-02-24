@@ -4,10 +4,13 @@ import CreateInvoiceItem from "./CreateInvoiceItem";
 import EdgeProfile from "./EdgeProfile";
 import Button from "../UI/Button";
 import CreateInvoiceNotes from "./CreateInvoiceNotes";
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
 
 import { CreateNewInvoice } from "../../services/InvoiceServices";
 
 import styles from "./CreateInvoice.module.css";
+import { style } from "@mui/system";
 
 const standardProfiles = [
   {
@@ -162,13 +165,51 @@ const CreateInvoice = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [data, setData] = useState({});
 
+  const [itemAdded, setItemAdded] = useState(false);
+  const [noteAdded, setNoteAdded] = useState(false);
+  const [noteEmpty, setNoteEmpty] = useState(false);
+
+  //remove item added alert
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setItemAdded(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [itemAdded]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setNoteEmpty(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [noteEmpty]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setNoteAdded(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [noteAdded]);
+
   useEffect(() => {
     setPreviousInvoiceItems((previousInvoiceItems) => [
       ...previousInvoiceItems,
       invoiceItem,
     ]);
 
-    if(previousInvoiceItems.length > 0 && Array.isArray(previousInvoiceItems[0])) {
+    if (
+      previousInvoiceItems.length > 0 &&
+      Array.isArray(previousInvoiceItems[0])
+    ) {
       delete previousInvoiceItems[0];
       previousInvoiceItems.shift();
     }
@@ -180,7 +221,10 @@ const CreateInvoice = () => {
       invoiceItemNotes,
     ]);
 
-    if(previousInvoiceItemNotes.length > 0 && Array.isArray(previousInvoiceItemNotes[0])) {
+    if (
+      previousInvoiceItemNotes.length > 0 &&
+      Array.isArray(previousInvoiceItemNotes[0])
+    ) {
       delete previousInvoiceItemNotes[0];
       previousInvoiceItemNotes.shift();
     }
@@ -191,7 +235,6 @@ const CreateInvoice = () => {
   const [selectedEdgeProfileMeasurement, setSelectedEdgeProfileMeasurement] =
     useState("");
   const [edgeProfileId, setEdgeProfileId] = useState();
-  
 
   const handleEdgeProfileTypeChange = (event) => {
     setSelectedEdgeProfileType(event.target.value);
@@ -229,7 +272,7 @@ const CreateInvoice = () => {
 
   const addItemHandler = (event) => {
     event.preventDefault();
-
+    setItemAdded(true);
     const invoiceItemName = invoiceItemNameRef.current.value;
     const invoiceItemMeasurement = invoiceItemMeasurementRef.current.value;
     const invoiceItemWidth = invoiceItemWidthRef.current.value;
@@ -243,12 +286,18 @@ const CreateInvoice = () => {
     const edgeProfileType = selectedEdgeProfileType;
     const edgeProfileCut = selectedEdgeProfileMeasurement;
 
-    if(previousInvoiceItems.length > 0 && Array.isArray(previousInvoiceItems[0])) {
+    if (
+      previousInvoiceItems.length > 0 &&
+      Array.isArray(previousInvoiceItems[0])
+    ) {
       delete previousInvoiceItems[0];
       previousInvoiceItems.shift();
     }
 
-    if(previousInvoiceItemNotes.length > 0 && Array.isArray(previousInvoiceItemNotes[0])) {
+    if (
+      previousInvoiceItemNotes.length > 0 &&
+      Array.isArray(previousInvoiceItemNotes[0])
+    ) {
       delete previousInvoiceItemNotes[0];
       previousInvoiceItemNotes.shift();
     }
@@ -270,13 +319,16 @@ const CreateInvoice = () => {
       // invoiceId: invoiceId
     });
 
-    setTotalPrice(Number(totalPrice) + Number(invoiceItemPrice))
-    
+    setTotalPrice(Number(totalPrice) + Number(invoiceItemPrice));
   };
 
   const addNotesHandler = (event) => {
     event.preventDefault();
+
     const invoiceItemNote = invoiceNoteRef.current.value;
+    console.log(invoiceNoteRef.current.value);
+
+    setNoteAdded(true);
 
     setInvoiceItemNotes({ invoiceItemNote });
   };
@@ -295,16 +347,15 @@ const CreateInvoice = () => {
     });
 
     //this connects to backend
-    try {
-      const info = await CreateNewInvoice(data);
-    } catch (error) {
-      console.error(error);
-    }
+    // try {
+    //   const info = await CreateNewInvoice(data);
+    // } catch (error) {
+    //   console.error(error);
+    // }
 
-    if(data != null) {
-      alert("invoice created");
-    }
-    
+    // if (data != null) {
+    //   alert("invoice created");
+    // }
   };
 
   //used  to debug
@@ -317,6 +368,35 @@ const CreateInvoice = () => {
 
   return (
     <div className="createInvoiceItem">
+      {itemAdded ? (
+        <div className={styles.errorBox}>
+          <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
+            <Alert severity="success">
+              {invoiceItemNameRef.current.value} - item added!
+            </Alert>
+          </Stack>
+        </div>
+      ) : (
+        <></>
+      )}
+      {noteAdded ? (
+        <div className={styles.errorBox}>
+          <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
+            <Alert severity="success">Note added!</Alert>
+          </Stack>
+        </div>
+      ) : (
+        <></>
+      )}
+      {noteEmpty ? (
+        <div className={styles.errorBox}>
+          <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
+            <Alert severity="error">Note empty - please type your notes</Alert>
+          </Stack>
+        </div>
+      ) : (
+        <></>
+      )}
       <CreateInvoiceItem
         invoiceItemNameRef={invoiceItemNameRef}
         invoiceItemMeasurementRef={invoiceItemMeasurementRef}
@@ -337,21 +417,29 @@ const CreateInvoice = () => {
         selectedEdgeProfileMeasurement={selectedEdgeProfileMeasurement}
       />
 
-      <Button onClick={addItemHandler} className={styles.button} type="submit">
-        Add Item
-      </Button>
+      <CreateInvoiceNotes
+        invoiceNoteRef={invoiceNoteRef}
+        addNotesHandler={addNotesHandler}
+      />
 
-      <CreateInvoiceNotes invoiceNoteRef={invoiceNoteRef} />
-      <Button onClick={addNotesHandler} className={styles.button}>
-        Add Notes
-      </Button>
       {/* used to debug
       <Button onClick={showInvoiceItemHandler} className={styles.button}>
         Show Invoice Item
       </Button> */}
-      <Button onClick={createInvoiceHandler} className={styles.button}>
-        Create Invoice
-      </Button>
+      <div className={styles.createInvoiceButton}>
+        <Button
+          onClick={addItemHandler}
+          className={styles.button}
+          type="submit"
+        >
+          Add Item
+        </Button>
+      </div>
+      <div className={styles.createInvoiceButton}>
+        <Button onClick={createInvoiceHandler} className={styles.button}>
+          Create Invoice
+        </Button>
+      </div>
     </div>
   );
 };

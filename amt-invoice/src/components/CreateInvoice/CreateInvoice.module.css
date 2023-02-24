@@ -1,3 +1,9 @@
 .button {
     margin-left: 40%;
 }
+.createInvoiceButton {
+    padding: 5px;
+}
+.errorBox {
+    padding-top: 15px;
+}

@@ -65,3 +65,10 @@ button:hover {
   background-color: transparent;
   width: 100%;
 }
+.sendButton {
+  background-color: transparent;
+  width: 100%;
+}
+.sendButton:hover {
+  background-color: #226981;
+}

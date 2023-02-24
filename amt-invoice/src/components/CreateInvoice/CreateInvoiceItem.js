@@ -45,8 +45,6 @@ const CreateInvoiceItem = (props) => {
         <div className={styles.parent}>
           <div className={styles.left}>
             <CardWithRadius className={classes.notSoBlue}>
-              {/* <label>Name:</label>
-              <input type="text" ref={props.invoiceItemNameRef} /> */}
               <TextField
                 className={textfield.root}
                 sx={{ width: "100%", color: "white" }}
@@ -60,12 +58,6 @@ const CreateInvoiceItem = (props) => {
               />
             </CardWithRadius>
             <CardWithRadius className={classes.notSoBlue}>
-              {/* <label>Width:</label>
-              <input
-                type="number"
-                className={styles.transparentInput}
-                ref={props.invoiceItemWidthRef}
-              /> */}
               <TextField
                 sx={{ width: "100%", color: "white" }}
                 id="standard-basic"
@@ -77,8 +69,6 @@ const CreateInvoiceItem = (props) => {
               />
             </CardWithRadius>
             <CardWithRadius className={classes.notSoBlue}>
-              {/* <label>Area:</label>
-              <input type="number" ref={props.invoiceItemAreaRef} /> */}
               <TextField
                 sx={{ width: "100%", color: "white" }}
                 id="standard-basic"
@@ -92,12 +82,6 @@ const CreateInvoiceItem = (props) => {
           </div>
           <div className={styles.right}>
             <CardWithRadius className={classes.notSoBlue}>
-              {/* <label>Measurement:</label>
-              <input
-                type="text"
-                ref={props.invoiceItemMeasurementRef}
-                placeholder="Type Measurement Here"
-              /> */}
               <TextField
                 sx={{ width: "100%", color: "white" }}
                 id="standard-basic"
@@ -110,8 +94,6 @@ const CreateInvoiceItem = (props) => {
               />
             </CardWithRadius>
             <CardWithRadius className={classes.notSoBlue}>
-              {/* <label>Length:</label>
-              <input type="number" ref={props.invoiceItemLengthRef} /> */}
               <TextField
                 sx={{ width: "100%", color: "white" }}
                 id="standard-basic"
@@ -126,12 +108,6 @@ const CreateInvoiceItem = (props) => {
               />
             </CardWithRadius>
             <CardWithRadius className={classes.notSoBlue}>
-              {/* <label>Depth:</label>
-              <input
-                type="number"
-                ref={props.invoiceItemDepthRef}
-                placeholder="Type Depth Here"
-              /> */}
               <TextField
                 sx={{ width: "100%", color: "white" }}
                 id="standard-basic"
@@ -146,19 +122,6 @@ const CreateInvoiceItem = (props) => {
           </div>
         </div>
         <CardWithRadius className={classes.notSoBlue}>
-          {/* <label>Price:</label>
-          <input type="number" ref={props.invoiceItemPriceRef} /> */}
-          {/* <TextField
-            sx={{ width: "100%" }}
-            InputProps={{
-              style: { color: "white" },
-            }}
-            id="standard-basic"
-            label="Price"
-            type="number"
-            variant="standard"
-            inputRef={props.invoiceItemPriceRef}
-          /> */}
           <FormControl fullWidth sx={{ m: 1 }} variant="filled">
             <InputLabel
               htmlFor="filled-adornment-amount"
