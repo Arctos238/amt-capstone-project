@@ -7,10 +7,13 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -79,6 +82,7 @@ public class Invoice implements java.io.Serializable {
 	}
 	
 	@Column(name = "date_created")
+	@CreationTimestamp
 	public Date getDateCreated() {
 		return dateCreated;
 	}
@@ -86,8 +90,7 @@ public class Invoice implements java.io.Serializable {
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "invoice")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "invoice", cascade= {CascadeType.MERGE, CascadeType.REMOVE})
 	@JsonManagedReference
 	public Set<InvoiceItem> getInvoiceItems() {
 		return this.invoiceItems;

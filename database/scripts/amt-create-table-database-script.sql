@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS `client_contact`;
 
 CREATE TABLE `client_contact` (
   `client_contact_id` int(11) NOT NULL AUTO_INCREMENT,
-  `personal_contact_number` varchar(14) DEFAULT NULL,
+  `personal_contact_number` varchar(20) DEFAULT NULL,
   `personal_email` varchar(45) DEFAULT NULL,
    `business_email` varchar(45) DEFAULT NULL,
    `client_id` int(11) DEFAULT NULL,
@@ -53,7 +53,7 @@ DROP TABLE IF EXISTS project_supervisor;
 CREATE TABLE `project_supervisor` (
 	`project_supervisor_id` int(11) NOT NULL AUTO_INCREMENT,
     `project_supervisor_name` varchar(80) DEFAULT NULL,
-	`project_supervisor_number` varchar(14) DEFAULT NULL,
+	`project_supervisor_number` varchar(20) DEFAULT NULL,
    `project_id` int(11) DEFAULT NULL,
 	PRIMARY KEY (project_supervisor_id),
 	KEY FK_PROJECT_PROJSUPER (project_id),
@@ -188,8 +188,10 @@ DROP TABLE IF EXISTS image;
 CREATE TABLE image (
   image_id int(5) NOT NULL AUTO_INCREMENT,
   image_type varchar(5) NOT NULL,
-  document_name varchar(12) NOT NULL,
+  image_name varchar(36) NOT NULL,
   image_url varchar(50) NOT NULL,
+  image_format varchar(20) NOT NULL,
+  image_size long NOT NULL,
   project_id int(5),
   PRIMARY KEY (image_id),
   KEY FK_IMAGE_PROJECT (project_id),
