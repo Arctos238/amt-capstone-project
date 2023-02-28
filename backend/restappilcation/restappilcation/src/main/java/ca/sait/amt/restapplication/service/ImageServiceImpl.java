@@ -1,6 +1,7 @@
 package ca.sait.amt.restapplication.service;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -45,12 +46,13 @@ public class ImageServiceImpl implements ImageService{
 	@Override
 	@Transactional
 	public void saveImage(MultipartFile file, Project project) {
+		new File("/" + DEFAULT_FILE_DIR + "/" + project.getProjectId() + "-" + project.getProjectName().replaceAll("\\s+","-")  + "/").mkdir();
 		
-		String filePath = DEFAULT_FILE_DIR  + "/" + file.getOriginalFilename();
+		String filePath = DEFAULT_FILE_DIR + "/" + project.getProjectId() + "-" + project.getProjectName().replaceAll("\\s+","-") + "/" + file.getOriginalFilename();
 		Image image = new Image(project, file.getContentType(), file.getName(), filePath , file.getOriginalFilename().split("\\.")[1], file.getSize());
+		image.setImageId(0);
 		
-		
-//		imageDAO.saveImage(image);
+		imageDAO.saveImage(image);
 		storeImage(file, filePath);
 	}
 
@@ -74,6 +76,7 @@ public class ImageServiceImpl implements ImageService{
 
 	@Override
 	public void storeImage(MultipartFile file, String filePath) {
+		
 		Path targetLocation = Paths.get(filePath);
 		System.out.println(filePath);
         try {

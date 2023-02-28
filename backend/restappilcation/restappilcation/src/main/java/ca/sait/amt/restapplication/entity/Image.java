@@ -66,7 +66,7 @@ public class Image implements java.io.Serializable {
 		this.project = project;
 	}
 
-	@Column(name = "image_type", nullable = false, length = 5)
+	@Column(name = "image_type", nullable = false, length = 30)
 	public String getImageType() {
 		return this.imageType;
 	}
