@@ -40,3 +40,22 @@ label {
   outline: none;
   font-size: 120%;
 }
+
+.textFieldLabel{
+  color: white !important;
+}
+
+.teFieldLabel{
+  color: white !important;
+}
+
+.underline:before{
+  border-bottom: 1px solid black;
+}
+.underline:after{
+  border-bottom: 1px solid white;
+}
+
+.inputPhone{
+  color: white !important;
+}

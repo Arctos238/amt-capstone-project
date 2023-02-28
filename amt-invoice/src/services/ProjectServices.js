@@ -9,7 +9,7 @@ const GetProjectByClientId = async (id) => {
     return data
 }
 const GetProjectById = async (id) => {
-    const data = await getApi('http://70.77.64.68:8083/api/projects/' + id);
+    const data = await getApi('http://70.77.64.68:8083/api/projects/id/' + id);
     return data
 }
 const DeleteProjectById = async (id) => {

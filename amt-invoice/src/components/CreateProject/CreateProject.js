@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 import CreateProjectDetails from "./CreateProjectDetails";
 import CreateProjectAddOns from "./CreateProjectAddOns";
@@ -9,9 +10,18 @@ import styles from "./CreateProject.module.css";
 import { useRef, useState } from "react";
 
 const CreateProject = () => {
+  const navigate = useNavigate();
   const [cabinet, setCabinet] = useState();
   const [tile, setTile] = useState();
   const [counter, setCounter] = useState();
+
+  let clientInfo;
+  let toArray;
+  if ("clientInfo" in localStorage) {
+    clientInfo = localStorage.getItem("clientInfo");
+    toArray = JSON.parse(clientInfo);
+  }
+  const theSelectedClientId = toArray.clientId;
 
   function onCabinetChange(event) {
     if (event.target.value === true) {
@@ -47,7 +57,7 @@ const CreateProject = () => {
   async function submitHandler(event) {
     event.preventDefault();
 
-    const projectId = 0;
+    const projectId = 1;
     const projectName = projectNameRef.current.value;
     const projectStatus = true;
     const siteSuperPhone = siteSuperPhoneRef.current.value;
@@ -59,41 +69,38 @@ const CreateProject = () => {
     const province = provinceRef.current.value;
 
     const obj = {
-      projectId,
       projectName: projectName,
       projectStatus,
       projectCabinetsCondition: cabinet,
       projectCounterRemoval: counter,
       projectTileRemoval: tile,
       projectAddress: {
-        projectAddressId: 0,
+        projectAddressId: 1,
         firstLineAddress: address,
         secondLineAddress: suite,
         postalCode: postalCode,
         city: city,
         province: province,
-        projectId,
       },
       projectSupervisor: {
-        projectSupervisorId: 0,
+        projectSupervisorId: 1,
         projectSupervisorName: siteSuperName,
         projectSupervisorNumber: siteSuperPhone,
-        projectId,
       },
       quotes: [],
       images: [],
       purchaseOrders: [],
       depositForms: [],
       invoices: [],
-      clientId: 0
+      client: { clientId: theSelectedClientId },
     };
-    console.log(obj);
 
     const data = await CreateNewProject(obj);
 
-    if(data != null) {
+    if (data != null) {
       alert("its probably up there");
     }
+    navigate('/createInvoice');
   }
 
   return (

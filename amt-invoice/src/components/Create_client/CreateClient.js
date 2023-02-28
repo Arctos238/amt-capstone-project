@@ -30,7 +30,11 @@ const CreateClient = () => {
       },
     };
 
+
+    console.log(obj);
     const data = await CreateNewClient(obj);
+    
+
 
     if (data != null) {
       nav("/home");

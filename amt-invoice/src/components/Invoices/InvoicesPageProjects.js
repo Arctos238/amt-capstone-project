@@ -1,52 +1,66 @@
 import React from "react";
-
+import { useState, useEffect } from "react";
 import InvoiceProject from "./InvoiceProject";
+import {GetProjectById} from "../../services/ProjectServices";
 
 
+const InvoicesPageProject = (props) => {
 
-const InvoicesPageProject = () => {
-  //change to load from api
-  const projectList = [
-    {
-      projectName: "Project Test 1",
-      projectId: 1,
-      projectStatus: "Active",
-      projectAddress:"123 Home",
-      projectClient:"Bill Construction",
-      projectMaterial:"3 Slabs Taj Mahal",
-      projectMaterial2:"10 Slabs Marble",
-      projectMaterial3:"42 Slabs of Quartzite",
-      projectCost:"$2000",
-      projectCost2:"10 Slabs Marble total = $1500",
-      projectCost3:"42 Slabs of Quartzite total = $4500",
-      projectTotal:"Total Cost $8000",
-      projectEdge:"Double Stepped",
-      projectDocumentation:"Currently the we are on track to complete the project by Easter. The client is pleased with progress, but has requested that we add more backsplash.",
-    },
+  const projectList = props.project;
+  const invoices = projectList.invoices;
 
-    
-  ];
-
+  console.log("Project List: " + JSON.stringify(projectList));
+  console.log("Invoice List: " + JSON.stringify(invoices));
+  
   return (
-    <div >
-      {projectList.map((projectList) => (
-        <InvoiceProject
-          projectClient={projectList.projectClient}
+    <React.Fragment>
+      {invoices.length > 0 ? (
+        <InvoiceProject 
           projectName={projectList.projectName}
           projectId={projectList.projectId}
-          projectStatus={projectList.projectStatus}
-          projectAddress={projectList.projectAddress}
-          projectMaterial={projectList.projectMaterial}
-          projectCost={projectList.projectCost}
-          projectTotal={projectList.projectTotal}
-          projectEdge={projectList.projectEdge}
-          projectDocumentation={projectList.projectDocumentation}
-
+          projectStatus={projectList.projectStatus ? ("Active") : ("Inactive")}
+          projectAddress={projectList.projectAddress.firstLineAddress}
+          projectSecondAddress={projectList.projectAddress.secondLineAddress}
+          projectPostal={projectList.projectAddress.postalCode}
+          projectCity={projectList.projectAddress.city}
+          projectProvince={projectList.projectAddress.province}
+          projectInvoice={invoices[0].invoiceId}
+          projectArea={invoices[0].invoiceItems[0].invoiceItemArea}
+          projectDepth={invoices[0].invoiceItems[0].invoiceItemDepth}
+          projectWidth={invoices[0].invoiceItems[0].invoiceItemWidth}
+          projectLength={invoices[0].invoiceItems[0].invoiceItemLength}
+          projectUnit={invoices[0].invoiceItems[0].invoiceItemMeasurement}
+          projectPrice={invoices[0].invoiceItems[0].invoiceItemPrice}
+          projectTotal={invoices[0].invoiceTotalPrice}
+          projectEdge={invoices[0].invoiceItems[0].edgeProfile.edgeProfileCut}
+          projectEdgeMeasure={invoices[0].invoiceItems[0].edgeProfile.edgeProfileMeasurement}
+          projectEdgeType={invoices[0].invoiceItems[0].edgeProfile.edgeProfileType}
+          projectTileRemoved={projectList.projectTitleRemoval}
+          projectSuper={projectList.projectSupervisor.projectSupervisorName}
+          projectSuperNum={projectList.projectSupervisor.projectSupervisorNumber}
         />
-        
-      ))}
-      
-    </div>
+      ) : (
+        <InvoiceProject
+          projectName={projectList.projectName}
+          projectId={projectList.projectId}
+          projectStatus={projectList.projectStatus ? ("Active") : ("Inactive")}
+          projectAddress={projectList.projectAddress.firstLineAddress}
+          projectSecondAddress={projectList.projectAddress.secondLineAddress}
+          projectPostal={projectList.projectAddress.postalCode}
+          projectCity={projectList.projectAddress.city}
+          projectProvince={projectList.projectAddress.province}
+          projectInvoice={"No Invoices"}
+          projectArea={"No Invoices"}
+          projectUnit={"No Invoices"}
+          projectPrice={"No Invoices: Please add an invoice below"}
+          projectTotal={"No Invoices"}
+          projectEdge={"No Invoices"}
+          projectEdgeMeasure={"No Invoices"}
+          projectEdgeType={"No Invoices"}
+          
+        />
+      )}
+    </React.Fragment>
   );
 };
 
