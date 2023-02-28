@@ -347,15 +347,15 @@ const CreateInvoice = () => {
     });
 
     //this connects to backend
-    // try {
-    //   const info = await CreateNewInvoice(data);
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    try {
+      const info = await CreateNewInvoice(data);
+    } catch (error) {
+      console.error(error);
+    }
 
-    // if (data != null) {
-    //   alert("invoice created");
-    // }
+    if (data != null) {
+      alert("invoice created");
+    }
   };
 
   //used  to debug
@@ -422,10 +422,10 @@ const CreateInvoice = () => {
         addNotesHandler={addNotesHandler}
       />
 
-      {/* used to debug
+      
       <Button onClick={showInvoiceItemHandler} className={styles.button}>
         Show Invoice Item
-      </Button> */}
+      </Button>
       <div className={styles.createInvoiceButton}>
         <Button
           onClick={addItemHandler}
