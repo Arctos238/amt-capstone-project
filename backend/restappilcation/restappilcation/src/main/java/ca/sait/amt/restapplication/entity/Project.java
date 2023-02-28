@@ -151,6 +151,7 @@ public class Project implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
+	@JsonManagedReference
 	public Set<Image> getImages() {
 		return this.images;
 	}

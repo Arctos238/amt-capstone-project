@@ -49,7 +49,7 @@ public class ImageServiceImpl implements ImageService{
 		new File("/" + DEFAULT_FILE_DIR + "/" + project.getProjectId() + "-" + project.getProjectName().replaceAll("\\s+","-")  + "/").mkdir();
 		
 		String filePath = DEFAULT_FILE_DIR + "/" + project.getProjectId() + "-" + project.getProjectName().replaceAll("\\s+","-") + "/" + file.getOriginalFilename();
-		Image image = new Image(project, file.getContentType(), file.getName(), filePath , file.getOriginalFilename().split("\\.")[1], file.getSize());
+		Image image = new Image(project, file.getContentType(), file.getOriginalFilename(), filePath , file.getOriginalFilename().split("\\.")[1], file.getSize());
 		image.setImageId(0);
 		
 		imageDAO.saveImage(image);
