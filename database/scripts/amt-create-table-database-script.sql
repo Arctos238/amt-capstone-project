@@ -187,9 +187,9 @@ DROP TABLE IF EXISTS image;
 
 CREATE TABLE image (
   image_id int(5) NOT NULL AUTO_INCREMENT,
-  image_type varchar(5) NOT NULL,
-  image_name varchar(36) NOT NULL,
-  image_url varchar(50) NOT NULL,
+  image_type varchar(30) NOT NULL,
+  image_name varchar(100) NOT NULL,
+  image_url varchar(150) NOT NULL,
   image_format varchar(20) NOT NULL,
   image_size long NOT NULL,
   project_id int(5),
