@@ -27,7 +27,7 @@ import jakarta.persistence.Table;
 @Table(name = "client", catalog = "amt")
 public class Client implements java.io.Serializable {
 
-	private Integer clientId;
+	private int clientId;
 	private ClientContact clientContact;
 	private String clientName;
 	private Set<Project> projects = new HashSet<Project>(0);
@@ -74,7 +74,7 @@ public class Client implements java.io.Serializable {
 		this.clientName = clientFirstName;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "client", cascade=CascadeType.MERGE)
 	@JsonManagedReference
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	public Set<Project> getProjects() {

@@ -35,9 +35,9 @@ public class ClientDAOHibernateImpl implements ClientDAO{
 		Session currentSession = entityManager.unwrap(Session.class);
 		
 		try {
-			Query<Client> query = currentSession.createQuery("FROM Client E WHERE E.clientFirstName =:clientName", Client.class);
+			Query<Client> query = currentSession.createQuery("FROM Client E WHERE E.clientName  like :clientName", Client.class);
 			
-			query.setParameter("clientName", clientName);
+			query.setParameter("clientName", "%" + clientName + "%");
 			
 			List<Client> clients = null;
 			
