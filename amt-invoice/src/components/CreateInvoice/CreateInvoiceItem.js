@@ -133,6 +133,7 @@ const CreateInvoiceItem = (props) => {
               id="filled-adornment-amount"
               startAdornment={<label>$</label>}
               className={textfield.root}
+              inputRef={props.invoiceItemPriceRef}
               sx={{
                 padding: 0.5,
               }}
