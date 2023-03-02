@@ -36,7 +36,9 @@ public class ImageDAOHibernateImpl implements ImageDAO {
 	@Override
 	public void deleteImage(int imageId) {
 		Session currentSession = entityManager.unwrap(Session.class);
-
+		
+		System.out.println(imageId);
+		
 		currentSession.remove(findImageById(imageId));
 	}
 
