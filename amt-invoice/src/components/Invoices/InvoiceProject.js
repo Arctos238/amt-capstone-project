@@ -15,6 +15,7 @@ import styles from "./InvoiceProject.module.css";
 import {useNavigate} from 'react-router-dom';
 import { GetProjectById } from '../../services/ProjectServices';
 import DocumentUpload from './InvoiceProjectDocumentUpload';
+import BackButton from "../BackButton/BackButton";
 
 
 const InvoiceProject = (props) => {
@@ -36,6 +37,9 @@ const InvoiceProject = (props) => {
   
   
   return (
+    
+    
+    <div>
     <CardWithRadius className={classes.blueCard}>
       <div>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -123,6 +127,10 @@ const InvoiceProject = (props) => {
       
     </div>
     </CardWithRadius>
+    </div>
+    
+
+    
 
     
     

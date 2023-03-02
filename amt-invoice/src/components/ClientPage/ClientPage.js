@@ -1,18 +1,23 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
-import MainNavigation from "../Navigation/MainNavigation";
+import { useNavigate } from 'react-router-dom';
 import Card from "../UI/Card";
 import classes from "../UI/Card.module.css";
 import ClientContact from "./ClientContact";
 import ClientPageProjects from "./ClientPageProjects";
 import ClientPageButton from "./ClientPageButton";
+import BackButton from "../BackButton/BackButton";
 
 const ClientPage = () => {
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
   let clientInfo = localStorage.getItem("clientInfo");
   let toArray = JSON.parse(clientInfo);
   console.log(toArray);
   return (
     <div className="clientPage">
+      <BackButton/>
       <div className="aboutClient">
         <Card className={classes.yellowCard}>
           <ClientContact
