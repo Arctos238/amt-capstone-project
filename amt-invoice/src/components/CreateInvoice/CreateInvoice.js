@@ -156,14 +156,28 @@ const CreateInvoice = () => {
 
   const currentProjectId = localStorage.getItem("currentProjectId");
 
-  const [invoiceItem, setInvoiceItem] = useState([{}]);
-  const [previousInvoiceItems, setPreviousInvoiceItems] = useState([]);
+  //#Hooks problem
+  // const [invoiceItem, setInvoiceItem] = useState([{}]);
+  let invoiceItem = {};
 
-  const [invoiceItemNotes, setInvoiceItemNotes] = useState([{}]);
-  const [previousInvoiceItemNotes, setPreviousInvoiceItemNotes] = useState([]);
+  //#Hooks problem
+  // const [previousInvoiceItems, setPreviousInvoiceItems] = useState([]);
+  let previousInvoiceItems = [];
 
+  //#Hooks problem
+  // const [invoiceItemNotes, setInvoiceItemNotes] = useState([{}]);
+  let invoiceItemNotes = [];
+
+  //#Hooks problem
+  // const [previousInvoiceItemNotes, setPreviousInvoiceItemNotes] = useState([]);
+  let previousInvoiceItemNotes = [];
+
+  //#Potential Hooks problem
   const [totalPrice, setTotalPrice] = useState(0);
-  const [data, setData] = useState({});
+
+  //#Hooks problem
+  // const [data, setData] = useState({});
+  let data = {};
 
   const [itemAdded, setItemAdded] = useState(false);
   const [noteAdded, setNoteAdded] = useState(false);
@@ -200,41 +214,42 @@ const CreateInvoice = () => {
     };
   }, [noteAdded]);
 
-  useEffect(() => {
-    setPreviousInvoiceItems((previousInvoiceItems) => [
-      ...previousInvoiceItems,
-      invoiceItem,
-    ]);
+  //#Potential Hooks problem, I don't know what the purpose of previous items and notes are, so I just commented it out. If it is
+  //necessary, just uncommented it.
+  // useEffect(() => {
+  //   setPreviousInvoiceItems((previousInvoiceItems) => [
+  //     ...previousInvoiceItems,
+  //     invoiceItem,
+  //   ]);
 
-    if (
-      previousInvoiceItems.length > 0 &&
-      Array.isArray(previousInvoiceItems[0])
-    ) {
-      delete previousInvoiceItems[0];
-      previousInvoiceItems.shift();
-    }
-  }, [invoiceItem]);
+  //   if (
+  //     previousInvoiceItems.length > 0 &&
+  //     Array.isArray(previousInvoiceItems[0])
+  //   ) {
+  //     delete previousInvoiceItems[0];
+  //     previousInvoiceItems.shift();
+  //   }
+  // }, [invoiceItem]);
 
-  useEffect(() => {
-    setPreviousInvoiceItemNotes((previousInvoiceItemNotes) => [
-      ...previousInvoiceItemNotes,
-      invoiceItemNotes,
-    ]);
+  // useEffect(() => {
+  //   setPreviousInvoiceItemNotes((previousInvoiceItemNotes) => [
+  //     ...previousInvoiceItemNotes,
+  //     invoiceItemNotes,
+  //   ]);
 
-    if (
-      previousInvoiceItemNotes.length > 0 &&
-      Array.isArray(previousInvoiceItemNotes[0])
-    ) {
-      delete previousInvoiceItemNotes[0];
-      previousInvoiceItemNotes.shift();
-    }
-  }, [invoiceItemNotes]);
+  //   if (
+  //     previousInvoiceItemNotes.length > 0 &&
+  //     Array.isArray(previousInvoiceItemNotes[0])
+  //   ) {
+  //     delete previousInvoiceItemNotes[0];
+  //     previousInvoiceItemNotes.shift();
+  //   }
+  // }, [invoiceItemNotes]);
 
   const [selectedEdgeProfileType, setSelectedEdgeProfileType] = useState("");
   const [selectedEdgeProfileCut, setSelectedEdgeProfileCut] = useState("");
-  const [selectedEdgeProfileMeasurement, setSelectedEdgeProfileMeasurement] =
-    useState("");
-  const [edgeProfileId, setEdgeProfileId] = useState();
+  const [selectedEdgeProfileMeasurement, setSelectedEdgeProfileMeasurement] = useState("");
+  const [edgeProfileId, setEdgeProfileId] = useState(null);
 
   const handleEdgeProfileTypeChange = (event) => {
     setSelectedEdgeProfileType(event.target.value);
@@ -270,9 +285,7 @@ const CreateInvoice = () => {
       : upgradeProfiles.map((profile) => profile.edgeProfileCut)
     : [];
 
-  const addItemHandler = (event) => {
-    event.preventDefault();
-    setItemAdded(true);
+  const addItemHandler = () => {
     const invoiceItemName = invoiceItemNameRef.current.value;
     const invoiceItemMeasurement = invoiceItemMeasurementRef.current.value;
     const invoiceItemWidth = invoiceItemWidthRef.current.value;
@@ -301,7 +314,9 @@ const CreateInvoice = () => {
       delete previousInvoiceItemNotes[0];
       previousInvoiceItemNotes.shift();
     }
-    setInvoiceItem({
+    //#Hooks problem
+    // setInvoiceItem(
+      invoiceItem = {
       invoiceItemName,
       invoiceItemMeasurement,
       invoiceItemWidth,
@@ -317,38 +332,42 @@ const CreateInvoice = () => {
       },
       invoiceItemNotes: previousInvoiceItemNotes,
       // invoiceId: invoiceId
-    });
+    }
+    // );
 
     setTotalPrice(Number(totalPrice) + Number(invoiceItemPrice));
+    setItemAdded(true);
+    console.log(invoiceItem)
   };
 
-  const addNotesHandler = (event) => {
-    event.preventDefault();
+  const addNotesHandler = () => {
 
     const invoiceItemNote = invoiceNoteRef.current.value;
     console.log(invoiceNoteRef.current.value);
 
     setNoteAdded(true);
 
-    setInvoiceItemNotes({ invoiceItemNote });
+    invoiceItemNotes = invoiceItemNote;
   };
 
-  const createInvoiceHandler = async (event) => {
-    event.preventDefault();
-
-    setData({
-      ...data,
+  const createInvoiceHandler = async () => {
+    //#Hooks problem
+    // setData(
+      data = {
+      // ...data,
       // invoiceId: invoiceId,
       invoiceTotalPrice: totalPrice,
       project: {
         projectId: currentProjectId,
       },
       invoiceItems: previousInvoiceItems,
-    });
-
-    //this connects to backend
+    };
+    // );
+    console.log(data)
+    // this connects to backend
     try {
       const info = await CreateNewInvoice(data);
+      console.log(info)
     } catch (error) {
       console.error(error);
     }
@@ -430,7 +449,6 @@ const CreateInvoice = () => {
         <Button
           onClick={addItemHandler}
           className={styles.button}
-          type="submit"
         >
           Add Item
         </Button>
