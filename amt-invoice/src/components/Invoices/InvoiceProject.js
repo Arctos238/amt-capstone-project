@@ -112,7 +112,7 @@ const InvoiceProject = (props) => {
 
         </AccordionSummary>
         <AccordionDetails>
-          <DocumentUpload/>
+        <DocumentUpload projectId={props.projectId} />
           
           
           <Typography>
