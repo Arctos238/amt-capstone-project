@@ -131,7 +131,7 @@ PUT Request: http://70.77.64.68:8083/api/edgeprofiles =
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
-Image 
+Image REST endpoints configrued:
 
 GET Request: http://70.77.64.68:8083/api/images/id/{imageId} =
 	Return image resource with image type
