@@ -48,7 +48,7 @@ const CreateInvoiceNotes = (props) => {
                 id="standard-multiline-flexible"
                 label="Notes"
                 placeholder="Type notes here"
-                ref={props.invoiceNoteRef}
+                inputRef={props.invoiceNoteRef}
                 multiline
                 maxRows={10}
                 variant="standard"
