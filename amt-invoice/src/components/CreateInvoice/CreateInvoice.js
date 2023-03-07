@@ -347,7 +347,6 @@ const CreateInvoice = () => {
   };
 
   const createInvoiceHandler = async () => {
-    //#Hooks problem
     data = 
       {
         invoiceTotalPrice: totalPrice,
@@ -357,7 +356,6 @@ const CreateInvoice = () => {
         invoiceItems: previousInvoiceItems,
       };
     
-
     // this connects to backend
     try {
       const info = await CreateNewInvoice(data);
@@ -369,7 +367,6 @@ const CreateInvoice = () => {
     if (data != null) {
       alert("invoice created");
     }
-    console.log(data);
   };
 
   //used  to debug
