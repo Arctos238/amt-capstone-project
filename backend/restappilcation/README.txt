@@ -129,3 +129,17 @@ POST Request: http://70.77.64.68:8083/api/edgeprofiles =
 PUT Request: http://70.77.64.68:8083/api/edgeprofiles = 
 	Send edgeprofile w edgeprofile id JSON object as a PUT Request to update invoice in the database system.
 
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+Image REST endpoints configrued:
+
+GET Request: http://70.77.64.68:8083/api/images/id/{imageId} =
+	Return image resource with image type
+
+POST Request: http://70.77.64.68:8083/api/images =
+	Upload image with form data with two key/value pairs. file : multipartfile ~ projectId : int
+
+DELETE Request: http://70.77.64.68:8083/api/images/id/{imageId} =
+	Deletes image from database and drive with image id passed through. 
+
+

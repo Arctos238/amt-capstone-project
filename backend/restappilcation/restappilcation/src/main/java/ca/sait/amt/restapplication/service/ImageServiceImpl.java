@@ -2,14 +2,19 @@ package ca.sait.amt.restapplication.service;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ca.sait.amt.restapplication.DAO.ImageDAO;
 import ca.sait.amt.restapplication.entity.Image;
 import ca.sait.amt.restapplication.entity.Project;
+ 
 
 @Service
 public class ImageServiceImpl implements ImageService{
@@ -24,12 +30,12 @@ public class ImageServiceImpl implements ImageService{
 	private final String DEFAULT_FILE_DIR = "C:/amt-files";
     private final Path fileStorageLocation;
 
-    
-    @Autowired
+
     ImageDAO imageDAO;
 
     @Autowired
     public ImageServiceImpl(ImageDAO imageDAO) {
+    	this.imageDAO = imageDAO;
     	
         this.fileStorageLocation = Paths.get(DEFAULT_FILE_DIR);
 
@@ -57,25 +63,20 @@ public class ImageServiceImpl implements ImageService{
 	}
 
 	@Override
+	@Transactional
 	public void deleteImage(int imageId) {
-		// TODO Auto-generated method stub
+		Image image = imageDAO.findImageById(imageId);
+		 File file
+         = new File(image.getImageUrl());
+		 
+		file.delete();
+		
+		imageDAO.deleteImage(imageId);
 		
 	}
 
-	@Override
-	public ArrayList<MultipartFile> getImages(Project project) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public MultipartFile getImage(int imageId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void storeImage(MultipartFile file, String filePath) {
+	private void storeImage(MultipartFile file, String filePath) {
 		
 		Path targetLocation = Paths.get(filePath);
 		System.out.println(filePath);
@@ -88,16 +89,29 @@ public class ImageServiceImpl implements ImageService{
 	}
 
 	@Override
-	public MultipartFile downloadImage() {
+	@Transactional
+    public Resource loadFile(int imageId){
+		Image image = imageDAO.findImageById(imageId);
 		
-		return null;
-	}
+        try {
+          Path file = Paths.get(image.getImageUrl());
+          Resource resource = new UrlResource(file.toUri());
 
-	@Override
-	public ArrayList<MultipartFile> downloadImages() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+          if (resource.exists() || resource.isReadable()) {
+              return resource;
+          } 
+          else {
+              throw new FileNotFoundException("Could not find file");
+          }
+        } 
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}      
+        
+        return null;
+    }
 }
            

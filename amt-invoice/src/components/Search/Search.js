@@ -16,7 +16,7 @@ const SearchPage = () => {
   return (
     <React.Fragment>
 
-      <h1 className={styles.h1}>Invoice Finder</h1>
+      <h1 className={styles.h1}>Finder</h1>
       <form className={styles.form}>
         <SearchInputs />
         {/* <Link to="/clientPage"> */}

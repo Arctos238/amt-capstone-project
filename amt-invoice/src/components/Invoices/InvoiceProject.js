@@ -14,6 +14,8 @@ import classes from "../UI/CardWithRadius.module.css";
 import styles from "./InvoiceProject.module.css";
 import {useNavigate} from 'react-router-dom';
 import { GetProjectById } from '../../services/ProjectServices';
+import DocumentUpload from './InvoiceProjectDocumentUpload';
+import BackButton from "../BackButton/BackButton";
 
 
 const InvoiceProject = (props) => {
@@ -31,8 +33,13 @@ const InvoiceProject = (props) => {
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
+  
   
   return (
+    
+    
+    <div>
     <CardWithRadius className={classes.blueCard}>
       <div>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -109,6 +116,9 @@ const InvoiceProject = (props) => {
 
         </AccordionSummary>
         <AccordionDetails>
+        <DocumentUpload projectId={props.projectId} />
+          
+          
           <Typography>
             As of right now there is no documentation, I will wait to be told that I am right or be told that I am a idiot and if I use my eyes I would have seen it, in which case I will go home and cry about it some.... We shall see what happens.
           </Typography>
@@ -117,6 +127,10 @@ const InvoiceProject = (props) => {
       
     </div>
     </CardWithRadius>
+    </div>
+    
+
+    
 
     
     
