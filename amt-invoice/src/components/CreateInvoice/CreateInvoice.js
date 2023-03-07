@@ -176,8 +176,8 @@ const CreateInvoice = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   //#Hooks problem
-  const [data, setData] = useState({});
-  // let data = {};
+  // const [data, setData] = useState({});
+  let data = {};
 
   const [itemAdded, setItemAdded] = useState(false);
   const [noteAdded, setNoteAdded] = useState(false);
@@ -335,8 +335,6 @@ const CreateInvoice = () => {
 
     setTotalPrice(Number(totalPrice) + Number(invoiceItemPrice));
     setItemAdded(true);
-
-    let items = previousInvoiceItems || [];
   };
 
   const addNotesHandler = () => {
@@ -350,18 +348,15 @@ const CreateInvoice = () => {
 
   const createInvoiceHandler = async () => {
     //#Hooks problem
-    setData(
-      // data = {
-      // ...data,
-      // invoiceId: invoiceId,
+    data = 
       {
         invoiceTotalPrice: totalPrice,
         project: {
           projectId: currentProjectId,
         },
         invoiceItems: previousInvoiceItems,
-      }
-    );
+      };
+    
 
     // this connects to backend
     try {
@@ -374,6 +369,7 @@ const CreateInvoice = () => {
     if (data != null) {
       alert("invoice created");
     }
+    console.log(data);
   };
 
   //used  to debug
