@@ -38,13 +38,11 @@ function MainNavigation(props) {
           
           <Link to="/home">
           <HomeIcon sx={{fontSize:"60px"}}/>
-          
-          
           </Link>
         </li>
 
         <li>
-          <Link to="/">WIP</Link>
+          <Link to="/adminPage">WIP</Link>
         </li>
       </ul>
     </header>
