@@ -17,14 +17,14 @@ const SearchPage = () => {
     <React.Fragment>
 
       <h1 className={styles.h1}>Finder</h1>
-      <form className={styles.form}>
+      <div className={styles.form}>
         <SearchInputs />
         {/* <Link to="/clientPage"> */}
         
         
         
         {/* </Link> */}
-      </form>
+      </div>
     </React.Fragment>
   );
 };
