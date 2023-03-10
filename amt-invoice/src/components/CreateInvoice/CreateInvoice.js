@@ -356,7 +356,6 @@ const CreateInvoice = () => {
         invoiceItems: previousInvoiceItems,
       };
     
-    // this connects to backend
     try {
       const info = await CreateNewInvoice(data);
       console.log(info)
