@@ -16,10 +16,12 @@ import {useNavigate} from 'react-router-dom';
 import { GetProjectById } from '../../services/ProjectServices';
 import DocumentUpload from './InvoiceProjectDocumentUpload';
 import BackButton from "../BackButton/BackButton";
+import { GetImageById } from '../../services/ImageServices';
+import { useState, useEffect } from 'react';
 
 
 const InvoiceProject = (props) => {
-
+  // const [images, setImages] = useState([]);
   const nav = useNavigate();
 
 
@@ -34,6 +36,19 @@ const InvoiceProject = (props) => {
     setExpanded(isExpanded ? panel : false);
   };
 
+  // const getImage = async (id) => {
+  //   const res = await GetImageById(id);
+  //   const imageBlob = await res.blob();
+  //   const imageObjectURL = URL.createObjectURL(imageBlob);
+  //   return imageObjectURL
+  // };
+
+  // useEffect(() => {
+  //   for (let id in props.imageId) {
+  //     let imageUrl = getImage(id);
+  //     images.append(imageUrl);
+  //   }
+  // },[props.imageId, images])
   
   
   return (
