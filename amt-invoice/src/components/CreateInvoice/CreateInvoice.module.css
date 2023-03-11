@@ -7,3 +7,6 @@
 .errorBox {
     padding-top: 15px;
 }
+.cartDiv {
+    position: relative;
+}

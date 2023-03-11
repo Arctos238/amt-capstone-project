@@ -6,9 +6,14 @@ import Button from "../UI/Button";
 import CreateInvoiceNotes from "./CreateInvoiceNotes";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
 import { CreateNewInvoice } from "../../services/InvoiceServices";
 
+import buttonStyle from "../UI/Button.module.css";
 import styles from "./CreateInvoice.module.css";
 import { style } from "@mui/system";
 
@@ -144,6 +149,18 @@ const upgradeProfiles = [
   },
 ];
 
+const styleModal = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
 const CreateInvoice = () => {
   const invoiceItemNameRef = useRef();
   const invoiceItemMeasurementRef = useRef();
@@ -182,6 +199,9 @@ const CreateInvoice = () => {
   const [itemAdded, setItemAdded] = useState(false);
   const [noteAdded, setNoteAdded] = useState(false);
   const [noteEmpty, setNoteEmpty] = useState(false);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   //remove item added alert
   useEffect(() => {
@@ -343,22 +363,21 @@ const CreateInvoice = () => {
     setNoteAdded(true);
 
     // invoiceItemNotes = invoiceItemNote;
-    setInvoiceItemNotes({invoiceItemNote: invoiceItemNote});
+    setInvoiceItemNotes({ invoiceItemNote: invoiceItemNote });
   };
 
   const createInvoiceHandler = async () => {
-    data = 
-      {
-        invoiceTotalPrice: totalPrice,
-        project: {
-          projectId: currentProjectId,
-        },
-        invoiceItems: previousInvoiceItems,
-      };
-    
+    data = {
+      invoiceTotalPrice: totalPrice,
+      project: {
+        projectId: currentProjectId,
+      },
+      invoiceItems: previousInvoiceItems,
+    };
+
     try {
       const info = await CreateNewInvoice(data);
-      console.log(info)
+      console.log(info);
     } catch (error) {
       console.error(error);
     }
@@ -431,7 +450,7 @@ const CreateInvoice = () => {
         invoiceNoteRef={invoiceNoteRef}
         addNotesHandler={addNotesHandler}
       />
-{/* 
+      {/* 
       <Button onClick={showInvoiceItemHandler} className={styles.button}>
         Show Invoice Item
       </Button> */}
@@ -444,6 +463,27 @@ const CreateInvoice = () => {
         <Button onClick={createInvoiceHandler} className={styles.button}>
           Create Invoice
         </Button>
+      </div>
+
+      <div className="Modal">
+        <Button className={buttonStyle.cart} onClick={handleOpen}>
+          <ShoppingCartIcon sx={{ mt: 1 }} />
+        </Button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={styleModal}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Insert invoice info
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              more details
+            </Typography>
+          </Box>
+        </Modal>
       </div>
     </div>
   );
