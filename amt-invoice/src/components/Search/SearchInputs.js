@@ -6,6 +6,7 @@ import SearchResult from "./SearchResult";
 import {
   GetClientByFirstName,
   GetClientById,
+  GetAllClients,
 } from "../../services/ClientServices";
 import classes from "../UI/CardWithRadius.module.css";
 import styles from "./SearchInputs.module.css";
@@ -43,11 +44,30 @@ const SearchInputs = (props) => {
     try {
       if (selectedOption === "name") {
         data = await GetClientByFirstName(searchInput);
+        setResults(data);
       } else if (selectedOption === "invoiceId") {
         data = await GetClientById(searchInput);
+        setResults(data);
+      } else if (selectedOption === "phoneNumber") {
+        data = await GetAllClients();
+        const allClients = data;
+        let searchedPhone = [];
+        for (let i = 0; i < allClients.length; i++) {
+          const phoneNumber = allClients[i].clientContact.personalContactNumber;
+          if (phoneNumber.includes(searchInput)) {
+            searchedPhone.push(allClients[i]);
+          }
+        }
+
+        
+        if(searchedPhone.length > 0) {
+          setResults(searchedPhone);
+          setNoResult(false);
+        } else {
+          setNoResult(true);
+        }
+        
       }
-      setResults(data);
-      console.log(results);
     } catch (error) {
       console.log(error);
       setResults([]);
@@ -61,12 +81,10 @@ const SearchInputs = (props) => {
     } else {
       try {
         fetchData();
-        console.log("Results Length: " + Array.isArray(results));
       } catch (error) {
         console.log(error);
       }
     }
-   
   };
 
   return (

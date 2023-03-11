@@ -7,22 +7,20 @@ import styles from "./ClientPageProjects.module.css";
 import { GetProjectByClientId } from "../../services/ProjectServices";
 
 const ClientPageProjects = (props) => {
-
   const [clientProjects, setClientProjects] = useState([]);
+
   const loadProjectHandler = () => {
     if("clientInfo" in localStorage) {
-      let projectLists = props.toArray[0].projects;
+      let projectLists = props.toArray;
       setClientProjects(projectLists);
       console.log("projectLists " + projectLists);
-      
     } else {
       setClientProjects([]);
+      console.log("no client info");
     }
     
   };
-
-  
-  
+  console.log(props.toArray);
   return (
     <div className={styles.projectList} onLoad={loadProjectHandler}>
       {props.toArray.map((projectList) => (

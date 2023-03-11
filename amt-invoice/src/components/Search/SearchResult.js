@@ -17,7 +17,7 @@ const SearchResult = (props) => {
 
   const clientSelectedHandler = async () => {
     await fetchData();
-    console.log(localStorage.getItem("clientInfo"));
+    // console.log(localStorage.getItem("clientInfo"));
     nav("/clientPage");
   };
 
