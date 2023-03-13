@@ -21,6 +21,12 @@ import { useState, useEffect } from 'react';
 
 
 const InvoiceProject = (props) => {
+  console.log(props.projectAreas);
+  
+  
+  let i;
+  
+ 
   // const [images, setImages] = useState([]);
   const nav = useNavigate();
 
@@ -102,14 +108,31 @@ const InvoiceProject = (props) => {
         </AccordionSummary>
         <AccordionDetails>
         <Typography> Invoice ID: {props.projectInvoice} </Typography>
-        <Typography> Item Depth: {props.projectDepth} {props.projectUnit}</Typography>
-        <Typography> Item Width: {props.projectWidth} {props.projectUnit}</Typography>
-        <Typography> Item Length: {props.projectLength} {props.projectUnit}</Typography>
-        <Typography> Item Area: {props.projectArea}</Typography>
-        <Typography> Edge Profile: {props.projectEdge}</Typography>
-        <Typography> Edge Measurement: {props.projectEdgeMeasure}</Typography>
-        <Typography> Edge Profile Type: {props.projectEdgeType}</Typography>
-        <Typography> Item Price: ${props.projectPrice}</Typography>
+        {props.projectDepths.map((depth, i) => (
+        <Typography> Item Depth: {depth} {props.projectUnits}</Typography>
+        ))}
+        {props.projectWidths.map((width, i) => (
+        <Typography> Item Width: {width} {props.projectUnits}</Typography>
+        ))}
+        {props.projectLengths.map((length, i) => (
+        <Typography> Item Length: {length} {props.projectUnits}</Typography>
+        ))}
+
+        {props.projectAreas.map(area => (
+        <Typography> Item Area: {area}</Typography>
+        ))}
+        {props.projectEdges.map((edge) => (
+        <Typography> Edge Profile: {edge}</Typography>
+        ))}
+        {props.projectEdgeMeasures.map((measure) => (
+        <Typography> Edge Measurement: {measure}</Typography>
+        ))}
+        {props.projectEdgeTypes.map((type) => (
+        <Typography> Edge Profile Type: {type}</Typography>
+        ))}
+        {props.projectPrices.map((price) => (
+        <Typography> Item Price: ${price}</Typography>
+        ))}
         <br></br>
         <Typography> Project Total: ${props.projectTotal}</Typography>
 
