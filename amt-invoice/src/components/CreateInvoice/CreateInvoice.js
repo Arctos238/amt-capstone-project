@@ -6,14 +6,10 @@ import Button from "../UI/Button";
 import CreateInvoiceNotes from "./CreateInvoiceNotes";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
+import CreateInvoiceCart from "./CreateInvoiceCart";
 
 import { CreateNewInvoice } from "../../services/InvoiceServices";
 
-import buttonStyle from "../UI/Button.module.css";
 import styles from "./CreateInvoice.module.css";
 import { style } from "@mui/system";
 
@@ -149,18 +145,6 @@ const upgradeProfiles = [
   },
 ];
 
-const styleModal = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
-
 const CreateInvoice = () => {
   const invoiceItemNameRef = useRef();
   const invoiceItemMeasurementRef = useRef();
@@ -173,35 +157,17 @@ const CreateInvoice = () => {
 
   const currentProjectId = localStorage.getItem("currentProjectId");
 
-  //#Hooks problem
   const [invoiceItem, setInvoiceItem] = useState([{}]);
-  // let invoiceItem = {};
-
-  //#Hooks problem
   const [previousInvoiceItems, setPreviousInvoiceItems] = useState([]);
-  // let previousInvoiceItems = [];
-
-  //#Hooks problem
   const [invoiceItemNotes, setInvoiceItemNotes] = useState([{}]);
-  // let invoiceItemNotes = [];
-
-  //#Hooks problem
   const [previousInvoiceItemNotes, setPreviousInvoiceItemNotes] = useState([]);
-  // let previousInvoiceItemNotes = [];
-
-  //#Potential Hooks problem
   const [totalPrice, setTotalPrice] = useState(0);
 
-  //#Hooks problem
-  // const [data, setData] = useState({});
   let data = {};
 
   const [itemAdded, setItemAdded] = useState(false);
   const [noteAdded, setNoteAdded] = useState(false);
   const [noteEmpty, setNoteEmpty] = useState(false);
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   //remove item added alert
   useEffect(() => {
@@ -234,8 +200,6 @@ const CreateInvoice = () => {
     };
   }, [noteAdded]);
 
-  //#Potential Hooks problem, I don't know what the purpose of previous items and notes are, so I just commented it out. If it is
-  //necessary, just uncommented it.
   useEffect(() => {
     setPreviousInvoiceItems((previousInvoiceItems) => [
       ...previousInvoiceItems,
@@ -248,6 +212,7 @@ const CreateInvoice = () => {
       delete previousInvoiceItems[0];
       previousInvoiceItems.shift();
     }
+    
   }, [invoiceItem]);
 
   useEffect(() => {
@@ -361,8 +326,6 @@ const CreateInvoice = () => {
     const invoiceItemNote = invoiceNoteRef.current.value;
 
     setNoteAdded(true);
-
-    // invoiceItemNotes = invoiceItemNote;
     setInvoiceItemNotes({ invoiceItemNote: invoiceItemNote });
   };
 
@@ -389,12 +352,12 @@ const CreateInvoice = () => {
 
   //used  to debug
   const showInvoiceItemHandler = () => {
-    // console.log(previousInvoiceItems);
-    console.log(JSON.stringify(data));
+    console.log(previousInvoiceItems);
+    // console.log(JSON.stringify(data));
     // console.log("Total Price: " + totalPrice);
     // console.log("previousInvoiceItemNotes " + JSON.parse(previousInvoiceItemNotes[0]));
   };
-
+  
   return (
     <div className="createInvoiceItem">
       {itemAdded ? (
@@ -450,10 +413,10 @@ const CreateInvoice = () => {
         invoiceNoteRef={invoiceNoteRef}
         addNotesHandler={addNotesHandler}
       />
-      {/* 
+
       <Button onClick={showInvoiceItemHandler} className={styles.button}>
         Show Invoice Item
-      </Button> */}
+      </Button>
       <div className={styles.createInvoiceButton}>
         <Button onClick={addItemHandler} className={styles.button}>
           Add Item
@@ -465,26 +428,7 @@ const CreateInvoice = () => {
         </Button>
       </div>
 
-      <div className="Modal">
-        <Button className={buttonStyle.cart} onClick={handleOpen}>
-          <ShoppingCartIcon sx={{ mt: 1 }} />
-        </Button>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={styleModal}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Insert invoice info
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              more details
-            </Typography>
-          </Box>
-        </Modal>
-      </div>
+      <CreateInvoiceCart invoiceItem={previousInvoiceItems} />
     </div>
   );
 };

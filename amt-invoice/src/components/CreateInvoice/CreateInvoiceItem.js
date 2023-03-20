@@ -85,7 +85,7 @@ const CreateInvoiceItem = (props) => {
               <TextField
                 sx={{ width: "100%", color: "white" }}
                 id="standard-basic"
-                label="Area"
+                label="Measurement"
                 className={textfield.root}
                 type="text"
                 variant="standard"

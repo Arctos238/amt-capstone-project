@@ -59,14 +59,12 @@ const SearchInputs = (props) => {
           }
         }
 
-        
-        if(searchedPhone.length > 0) {
+        if (searchedPhone.length > 0) {
           setResults(searchedPhone);
           setNoResult(false);
         } else {
           setNoResult(true);
         }
-        
       }
     } catch (error) {
       console.log(error);
