@@ -15,14 +15,24 @@ import styles from "./InvoiceProject.module.css";
 import { useNavigate } from "react-router-dom";
 import { GetProjectById } from "../../services/ProjectServices";
 import DocumentUpload from "./InvoiceProjectDocumentUpload";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
+import EditIcon from "@mui/icons-material/Edit";
 import BackButton from "../BackButton/BackButton";
 import { GetImageById } from "../../services/ImageServices";
+import {DeleteInvoiceById} from "../../services/InvoiceServices";
 import { useState, useEffect } from "react";
 
 const InvoiceProject = (props) => {
   const projectList = props.project;
   const invoices = projectList.invoices;
-  console.log(invoices);
+
+  // const [invoices, setInvoices] = useState([]);
+  // setInvoices(projectInfo.invoices);
+  // console.log(invoices);
+  // useEffect(() => {
+  //   setInvoices(projectList.invoices);
+  // }, [invoices]);
   let i;
 
   // const [images, setImages] = useState([]);
@@ -39,6 +49,10 @@ const InvoiceProject = (props) => {
     setExpanded(isExpanded ? panel : false);
   };
 
+  const deleteInvoiceHandler = id => {
+    const data = DeleteInvoiceById(id);
+  }
+
   // const getImage = async (id) => {
   //   const res = await GetImageById(id);
   //   const imageBlob = await res.blob();
@@ -54,6 +68,7 @@ const InvoiceProject = (props) => {
   // },[props.imageId, images])
 
   return (
+    // SOMEONE CHECK THIS IF YOU NEED SOMETHING FROM THIS CODE 
     // <div>
     //   {/* <CardWithRadius className={classes.blueCard}>
     //     <div>
@@ -234,8 +249,37 @@ const InvoiceProject = (props) => {
           {invoices.length > 0 ? (
             invoices.map((invoices) => (
               <CardWithRadius className={classes.blueCard}>
-                Date Created: {invoices.dateCreated} Total Price:{" "}
-                {invoices.invoiceTotalPrice}
+                <div className={styles.gridContainer}>
+                  <div className={styles.gridItem}>
+                    <label className={styles.invoiceLabel}>
+                      <b>Date Created:</b> {invoices.dateCreated}
+                    </label>
+                  </div>
+                  <div className={styles.gridItem}>
+                    <label className={styles.invoiceLabel}>
+                      <b>Total Price:</b> {invoices.invoiceTotalPrice}{" "}
+                    </label>
+                  </div>
+                  <div className={styles.gridItem}>
+                    <label className={styles.invoiceLabel}>
+                      <b>No. of Items:</b> {invoices.invoiceItems.length}
+                    </label>
+                  </div>
+                  <div className={`{styles.gridItem} {styles.buttonOptions}`}>
+                    <IconButton aria-label="delete" size="medium" onClick={() => deleteInvoiceHandler(invoices.invoiceId)}>
+                      <DeleteIcon
+                        fontSize="inherit"
+                        sx={{ color: "#fabd44", padding: 0 }}
+                      />
+                    </IconButton>
+                    <IconButton aria-label="delete" size="medium">
+                      <EditIcon
+                        fontSize="inherit"
+                        sx={{ color: "#fabd44", padding: 0 }}
+                      />
+                    </IconButton>
+                  </div>
+                </div>
               </CardWithRadius>
             ))
           ) : (
