@@ -413,10 +413,10 @@ const CreateInvoice = () => {
         invoiceNoteRef={invoiceNoteRef}
         addNotesHandler={addNotesHandler}
       />
-
-      <Button onClick={showInvoiceItemHandler} className={styles.button}>
+    
+      {/* <Button onClick={showInvoiceItemHandler} className={styles.button}>
         Show Invoice Item
-      </Button>
+      </Button> */}
       <div className={styles.createInvoiceButton}>
         <Button onClick={addItemHandler} className={styles.button}>
           Add Item

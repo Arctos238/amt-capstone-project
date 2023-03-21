@@ -25,7 +25,7 @@ import { useState, useEffect } from "react";
 
 const InvoiceProject = (props) => {
   const projectList = props.project;
-  const invoices = projectList.invoices;
+  const [invoices, setInvoices] = useState(projectList.invoices);
 
   // const [invoices, setInvoices] = useState([]);
   // setInvoices(projectInfo.invoices);
@@ -49,8 +49,9 @@ const InvoiceProject = (props) => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  const deleteInvoiceHandler = id => {
-    const data = DeleteInvoiceById(id);
+  const deleteInvoiceHandler = async id => {
+    const data = await DeleteInvoiceById(id);
+    setInvoices(invoices.filter(invoice => invoice.id !== id));
   }
 
   // const getImage = async (id) => {
