@@ -135,7 +135,7 @@ const InvoicesPageProject = (props) => {
                           {invoiceItems.edgeProfile.edgeProfileMeasurement}
                         </TableCell>
                       </TableRow>
-                    ))) : <></>}
+                    ))}
                   </TableBody>
                 </Table>
               </TableContainer>
