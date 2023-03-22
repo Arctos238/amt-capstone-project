@@ -108,7 +108,7 @@ const InvoicesPageProject = (props) => {
                     <TableCell>Length</TableCell>
                     <TableCell>Area</TableCell>
                     <TableCell>Depth</TableCell>
-                    <TableCell>Amount</TableCell>
+                    <TableCell>Amount</TableCell> 
                     <TableCell>Edge Profile Type</TableCell>
                     <TableCell>Edge Profile Cut</TableCell>
                     <TableCell>Edge Profile Measurement</TableCell>
@@ -135,7 +135,7 @@ const InvoicesPageProject = (props) => {
                           {invoiceItems.edgeProfile.edgeProfileMeasurement}
                         </TableCell>
                       </TableRow>
-                    ))}
+                    ))) : <></>}
                   </TableBody>
                 </Table>
               </TableContainer>
