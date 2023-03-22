@@ -58,8 +58,6 @@ const InvoiceProject = (props) => {
     setInvoices(invoices.filter((invoice) => invoice.id !== id));
   };
 
-  
-
   //these three are sent to InvoicePageProjects
   const [open, setOpen] = useState(false);
   const handleOpen = async (invoiceId) => {
@@ -265,45 +263,46 @@ const InvoiceProject = (props) => {
         <AccordionDetails>
           {invoices.length > 0 ? (
             invoices.map((invoices) => (
-             
-                <CardWithRadius className={classes.blueCard}>
-                  <div className={styles.gridContainer}  onClick={() => handleOpen(invoices.invoiceId)}>
-                    <div className={styles.gridItem}>
-                      <label className={styles.invoiceLabel}>
-                        <b>Date Created:</b> {invoices.dateCreated}
-                      </label>
-                    </div>
-                    <div className={styles.gridItem}>
-                      <label className={styles.invoiceLabel}>
-                        <b>Total Price:</b> {invoices.invoiceTotalPrice}{" "}
-                      </label>
-                    </div>
-                    <div className={styles.gridItem}>
-                      <label className={styles.invoiceLabel}>
-                        <b>No. of Items:</b> {invoices.invoiceItems.length}
-                      </label>
-                    </div>
-                    <div className={`{styles.gridItem} {styles.buttonOptions}`}>
-                      <IconButton
-                        aria-label="delete"
-                        size="medium"
-                        onClick={() => deleteInvoiceHandler(invoices.invoiceId)}
-                      >
-                        <DeleteIcon
-                          fontSize="inherit"
-                          sx={{ color: "#fabd44", padding: 0 }}
-                        />
-                      </IconButton>
-                      <IconButton aria-label="delete" size="medium">
-                        <EditIcon
-                          fontSize="inherit"
-                          sx={{ color: "#fabd44", padding: 0 }}
-                        />
-                      </IconButton>
-                    </div>
+              <CardWithRadius className={classes.blueCard}>
+                <div
+                  className={styles.gridContainer}
+                  onClick={() => handleOpen(invoices.invoiceId)}
+                >
+                  <div className={styles.gridItem}>
+                    <label className={styles.invoiceLabel}>
+                      <b>Date Created:</b> {invoices.dateCreated}
+                    </label>
                   </div>
-                </CardWithRadius>
-           
+                  <div className={styles.gridItem}>
+                    <label className={styles.invoiceLabel}>
+                      <b>Total Price:</b> {invoices.invoiceTotalPrice}{" "}
+                    </label>
+                  </div>
+                  <div className={styles.gridItem}>
+                    <label className={styles.invoiceLabel}>
+                      <b>No. of Items:</b> {invoices.invoiceItems.length}
+                    </label>
+                  </div>
+                  <div className={`{styles.gridItem} {styles.buttonOptions}`}>
+                    <IconButton
+                      aria-label="delete"
+                      size="medium"
+                      onClick={() => deleteInvoiceHandler(invoices.invoiceId)}
+                    >
+                      <DeleteIcon
+                        fontSize="inherit"
+                        sx={{ color: "#fabd44", padding: 0 }}
+                      />
+                    </IconButton>
+                    <IconButton aria-label="delete" size="medium">
+                      <EditIcon
+                        fontSize="inherit"
+                        sx={{ color: "#fabd44", padding: 0 }}
+                      />
+                    </IconButton>
+                  </div>
+                </div>
+              </CardWithRadius>
             ))
           ) : (
             <p>No Invoices</p>
@@ -337,7 +336,7 @@ const InvoiceProject = (props) => {
         handleOpen={handleOpen}
         handleClose={handleClose}
         selectedInvoiceId={selectedInvoiceId}
-        invoiceInfo={sendInvoiceInfo}
+        invoiceInfo={sendInvoiceInfo.invoiceItems}
       />
     </div>
   );
