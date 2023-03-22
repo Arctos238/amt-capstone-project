@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import CardWithRadius from "../UI/CardWithRadius";
-import ClientPage from "../ClientPage/ClientPage";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import classes from "../UI/Button.module.css";
-import styles from "./SearchInputs.module.css";
 import Button from "../UI/Button";
 import Grid from "@mui/material/Grid";
 
@@ -20,7 +17,7 @@ const SearchResult = (props) => {
 
   const clientSelectedHandler = async () => {
     await fetchData();
-    console.log(localStorage.getItem("clientInfo"));
+    // console.log(localStorage.getItem("clientInfo"));
     nav("/clientPage");
   };
 

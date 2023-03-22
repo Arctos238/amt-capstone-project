@@ -1,9 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import CardWithRadius from "../UI/CardWithRadius";
 import Button from "../UI/Button";
 import buttonClass from "../UI/Button.module.css";
 import SearchResult from "./SearchResult";
-import { GetClientByFirstName } from "../../services/ClientServices";
+import {
+  GetClientByFirstName,
+  GetClientById,
+  GetAllClients,
+} from "../../services/ClientServices";
 import classes from "../UI/CardWithRadius.module.css";
 import styles from "./SearchInputs.module.css";
 import Alert from "@mui/material/Alert";
@@ -19,11 +23,10 @@ import Grid from "@mui/material/Grid";
 
 const SearchInputs = (props) => {
   const [isValidSearch, setIsValidSearch] = useState(true);
-  const [showRadioButtons, setShowRadioButtons] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("invoiceId");
+  const [selectedOption, setSelectedOption] = useState("name");
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState([]);
-  const [noResult, setNoResult] = useState(false);
+  const [noResult, setNoResult] = useState(null);
 
   const handleOptionChange = (e) => {
     setIsValidSearch(true);
@@ -36,13 +39,36 @@ const SearchInputs = (props) => {
     setSearchInput(e.target.value);
     setResults([]);
   };
-
+  let data;
   const fetchData = async () => {
     try {
-      const data = await GetClientByFirstName(searchInput);
-      setResults(data);
+      if (selectedOption === "name") {
+        data = await GetClientByFirstName(searchInput);
+        setResults(data);
+      } else if (selectedOption === "invoiceId") {
+        data = await GetClientById(searchInput);
+        setResults(data);
+      } else if (selectedOption === "phoneNumber") {
+        data = await GetAllClients();
+        const allClients = data;
+        let searchedPhone = [];
+        for (let i = 0; i < allClients.length; i++) {
+          const phoneNumber = allClients[i].clientContact.personalContactNumber;
+          if (phoneNumber.includes(searchInput)) {
+            searchedPhone.push(allClients[i]);
+          }
+        }
+
+        if (searchedPhone.length > 0) {
+          setResults(searchedPhone);
+          setNoResult(false);
+        } else {
+          setNoResult(true);
+        }
+      }
     } catch (error) {
       console.log(error);
+      setResults([]);
       setNoResult(true);
     }
   };
@@ -57,7 +83,6 @@ const SearchInputs = (props) => {
         console.log(error);
       }
     }
-    console.log(results.length);
   };
 
   return (
@@ -93,6 +118,7 @@ const SearchInputs = (props) => {
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
+              defaultValue="name"
             >
               <FormControlLabel
                 value="name"
@@ -164,18 +190,18 @@ const SearchInputs = (props) => {
       </div>
       <Card className={cardClass.resultBox}>
         {noResult ? "No result" : <></>}
-        {results.map((results) => (
-          <Stack direction="row">
-            <SearchResult
-              key={results.clientId}
-              clientName={results.clientName}
-              clientId={results.clientId}
-              personalEmail={results.clientContact.personalEmail}
-              phoneNumber={results.clientContact.personalContactNumber}
-              businessEmail={results.clientContact.businessEmail}
-            />
-          </Stack>
-        ))}
+        {results.length > 0 &&
+          results.map((results) => (
+            <Stack direction="row" key={results.clientId}>
+              <SearchResult
+                clientName={results.clientName}
+                clientId={results.clientId}
+                personalEmail={results.clientContact.personalEmail}
+                phoneNumber={results.clientContact.personalContactNumber}
+                businessEmail={results.clientContact.businessEmail}
+              />
+            </Stack>
+          ))}
       </Card>
     </React.Fragment>
   );

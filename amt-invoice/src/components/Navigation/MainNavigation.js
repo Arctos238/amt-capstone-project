@@ -4,6 +4,7 @@ import { useTheme } from '@mui/joy/styles';
 import classes from "./MainNavigation.module.css";
 import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 
 function MainNavigation(props) {
@@ -38,13 +39,13 @@ function MainNavigation(props) {
           
           <Link to="/home">
           <HomeIcon sx={{fontSize:"60px"}}/>
-          
-          
           </Link>
         </li>
 
         <li>
-          <Link to="/">WIP</Link>
+          <Link to="/adminPage">
+          <AdminPanelSettingsIcon sx={{fontSize:"60px"}}/>
+          </Link>
         </li>
       </ul>
     </header>

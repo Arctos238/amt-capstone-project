@@ -5,7 +5,9 @@ import Card from "../UI/Card";
 import classes from "./InvoicesPage.module.css";
 import { useState, useEffect } from "react";
 import InvoicesPageProject from "./InvoicesPageProjects";
+import InvoiceProject from "./InvoiceProject";
 import { GetProjectById } from "../../services/ProjectServices";
+import BackButton from "../BackButton/BackButton";
 
 const InvoicesPage = (props) => { 
   const [project, setProject] = useState([]);
@@ -28,12 +30,13 @@ const InvoicesPage = (props) => {
     }
   }, []);
 
-  console.log(project)
+  console.log(project);
   return (
     <div>
+      <BackButton/>
       <div className="theProjects">
         <Card className={classes.yellowProjectCard}>
-          {loading? <InvoicesPageProject project={project} /> : <></>}
+          {loading? <InvoiceProject project={project} projectId={project.projectId}/> : <></>}
         </Card>
       </div>
     </div>

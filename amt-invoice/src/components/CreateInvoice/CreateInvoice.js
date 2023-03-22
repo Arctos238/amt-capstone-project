@@ -6,6 +6,7 @@ import Button from "../UI/Button";
 import CreateInvoiceNotes from "./CreateInvoiceNotes";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
+import CreateInvoiceCart from "./CreateInvoiceCart";
 
 import { CreateNewInvoice } from "../../services/InvoiceServices";
 
@@ -156,27 +157,12 @@ const CreateInvoice = () => {
 
   const currentProjectId = localStorage.getItem("currentProjectId");
 
-  //#Hooks problem
-  // const [invoiceItem, setInvoiceItem] = useState([{}]);
-  let invoiceItem = {};
-
-  //#Hooks problem
-  // const [previousInvoiceItems, setPreviousInvoiceItems] = useState([]);
-  let previousInvoiceItems = [];
-
-  //#Hooks problem
-  // const [invoiceItemNotes, setInvoiceItemNotes] = useState([{}]);
-  let invoiceItemNotes = [];
-
-  //#Hooks problem
-  // const [previousInvoiceItemNotes, setPreviousInvoiceItemNotes] = useState([]);
-  let previousInvoiceItemNotes = [];
-
-  //#Potential Hooks problem
+  const [invoiceItem, setInvoiceItem] = useState([{}]);
+  const [previousInvoiceItems, setPreviousInvoiceItems] = useState([]);
+  const [invoiceItemNotes, setInvoiceItemNotes] = useState([{}]);
+  const [previousInvoiceItemNotes, setPreviousInvoiceItemNotes] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  //#Hooks problem
-  // const [data, setData] = useState({});
   let data = {};
 
   const [itemAdded, setItemAdded] = useState(false);
@@ -214,41 +200,40 @@ const CreateInvoice = () => {
     };
   }, [noteAdded]);
 
-  //#Potential Hooks problem, I don't know what the purpose of previous items and notes are, so I just commented it out. If it is
-  //necessary, just uncommented it.
-  // useEffect(() => {
-  //   setPreviousInvoiceItems((previousInvoiceItems) => [
-  //     ...previousInvoiceItems,
-  //     invoiceItem,
-  //   ]);
+  useEffect(() => {
+    setPreviousInvoiceItems((previousInvoiceItems) => [
+      ...previousInvoiceItems,
+      invoiceItem,
+    ]);
+    if (
+      previousInvoiceItems.length > 0 &&
+      Array.isArray(previousInvoiceItems[0])
+    ) {
+      delete previousInvoiceItems[0];
+      previousInvoiceItems.shift();
+    }
+    
+  }, [invoiceItem]);
 
-  //   if (
-  //     previousInvoiceItems.length > 0 &&
-  //     Array.isArray(previousInvoiceItems[0])
-  //   ) {
-  //     delete previousInvoiceItems[0];
-  //     previousInvoiceItems.shift();
-  //   }
-  // }, [invoiceItem]);
+  useEffect(() => {
+    setPreviousInvoiceItemNotes((previousInvoiceItemNotes) => [
+      ...previousInvoiceItemNotes,
+      invoiceItemNotes,
+    ]);
 
-  // useEffect(() => {
-  //   setPreviousInvoiceItemNotes((previousInvoiceItemNotes) => [
-  //     ...previousInvoiceItemNotes,
-  //     invoiceItemNotes,
-  //   ]);
-
-  //   if (
-  //     previousInvoiceItemNotes.length > 0 &&
-  //     Array.isArray(previousInvoiceItemNotes[0])
-  //   ) {
-  //     delete previousInvoiceItemNotes[0];
-  //     previousInvoiceItemNotes.shift();
-  //   }
-  // }, [invoiceItemNotes]);
+    if (
+      previousInvoiceItemNotes.length > 0 &&
+      Array.isArray(previousInvoiceItemNotes[0])
+    ) {
+      delete previousInvoiceItemNotes[0];
+      previousInvoiceItemNotes.shift();
+    }
+  }, [invoiceItemNotes]);
 
   const [selectedEdgeProfileType, setSelectedEdgeProfileType] = useState("");
   const [selectedEdgeProfileCut, setSelectedEdgeProfileCut] = useState("");
-  const [selectedEdgeProfileMeasurement, setSelectedEdgeProfileMeasurement] = useState("");
+  const [selectedEdgeProfileMeasurement, setSelectedEdgeProfileMeasurement] =
+    useState("");
   const [edgeProfileId, setEdgeProfileId] = useState(null);
 
   const handleEdgeProfileTypeChange = (event) => {
@@ -315,8 +300,7 @@ const CreateInvoice = () => {
       previousInvoiceItemNotes.shift();
     }
     //#Hooks problem
-    // setInvoiceItem(
-      invoiceItem = {
+    setInvoiceItem({
       invoiceItemName,
       invoiceItemMeasurement,
       invoiceItemWidth,
@@ -332,42 +316,31 @@ const CreateInvoice = () => {
       },
       invoiceItemNotes: previousInvoiceItemNotes,
       // invoiceId: invoiceId
-    }
-    // );
+    });
 
     setTotalPrice(Number(totalPrice) + Number(invoiceItemPrice));
     setItemAdded(true);
-    console.log(invoiceItem)
   };
 
   const addNotesHandler = () => {
-
     const invoiceItemNote = invoiceNoteRef.current.value;
-    console.log(invoiceNoteRef.current.value);
 
     setNoteAdded(true);
-
-    invoiceItemNotes = invoiceItemNote;
+    setInvoiceItemNotes({ invoiceItemNote: invoiceItemNote });
   };
 
   const createInvoiceHandler = async () => {
-    //#Hooks problem
-    // setData(
-      data = {
-      // ...data,
-      // invoiceId: invoiceId,
+    data = {
       invoiceTotalPrice: totalPrice,
       project: {
         projectId: currentProjectId,
       },
       invoiceItems: previousInvoiceItems,
     };
-    // );
-    console.log(data)
-    // this connects to backend
+
     try {
       const info = await CreateNewInvoice(data);
-      console.log(info)
+      console.log(info);
     } catch (error) {
       console.error(error);
     }
@@ -379,12 +352,12 @@ const CreateInvoice = () => {
 
   //used  to debug
   const showInvoiceItemHandler = () => {
-    // console.log(previousInvoiceItems);
-    console.log(JSON.stringify(data));
+    console.log(previousInvoiceItems);
+    // console.log(JSON.stringify(data));
     // console.log("Total Price: " + totalPrice);
     // console.log("previousInvoiceItemNotes " + JSON.parse(previousInvoiceItemNotes[0]));
   };
-
+  
   return (
     <div className="createInvoiceItem">
       {itemAdded ? (
@@ -440,16 +413,12 @@ const CreateInvoice = () => {
         invoiceNoteRef={invoiceNoteRef}
         addNotesHandler={addNotesHandler}
       />
-
-      
-      <Button onClick={showInvoiceItemHandler} className={styles.button}>
+    
+      {/* <Button onClick={showInvoiceItemHandler} className={styles.button}>
         Show Invoice Item
-      </Button>
+      </Button> */}
       <div className={styles.createInvoiceButton}>
-        <Button
-          onClick={addItemHandler}
-          className={styles.button}
-        >
+        <Button onClick={addItemHandler} className={styles.button}>
           Add Item
         </Button>
       </div>
@@ -458,6 +427,8 @@ const CreateInvoice = () => {
           Create Invoice
         </Button>
       </div>
+
+      <CreateInvoiceCart invoiceItem={previousInvoiceItems} />
     </div>
   );
 };

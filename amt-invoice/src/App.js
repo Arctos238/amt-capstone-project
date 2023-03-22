@@ -10,6 +10,9 @@ import Layout from "./components/Navigation/Layout";
 import ClientPage from "./components/ClientPage/ClientPage";
 import InvoicesPage from "./components/Invoices/InvoicesPage";
 import CreateClient from "./components/Create_client/CreateClient";
+import AdminPage from "./components/AdminPage/AdminPage";
+import AdminPageAdd from "./components/AdminPage/AdminPageAdd";
+import AdminPageRemove from "./components/AdminPage/AdminPageRemove";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -56,6 +59,36 @@ function App() {
         element={
           <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
             <SearchPage />
+          </Layout>
+        }
+      />
+
+      <Route
+        path="/AdminPage"
+        exact
+        element={
+          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+            <AdminPage />
+          </Layout>
+        }
+      />
+
+      <Route
+        path="/AdminPageAdd"
+        exact
+        element={
+          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+            <AdminPageAdd />
+          </Layout>
+        }
+      />
+
+<Route
+        path="/AdminPageRemove"
+        exact
+        element={
+          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+            <AdminPageRemove />
           </Layout>
         }
       />

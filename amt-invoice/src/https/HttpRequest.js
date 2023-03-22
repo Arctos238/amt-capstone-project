@@ -19,7 +19,7 @@ const putApi = async function (url, obj) {
 };
 
 const deleteApi = async function (url) {
-  let res = await axios.put(url);
+  let res = await axios.delete(url);
   let data = res.data;
   return data;
 };
