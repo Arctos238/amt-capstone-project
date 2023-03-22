@@ -237,7 +237,6 @@ const InvoiceProject = (props) => {
           <Typography> Project Status: {props.projectStatus}</Typography>
           <Typography> Project Address: {props.projectAddress}</Typography>
           <Typography>
-            {" "}
             Project Second Address: {props.projectSecondAddress}
           </Typography>
           <Typography> Project Postal: {props.projectPostal}</Typography>
@@ -266,19 +265,19 @@ const InvoiceProject = (props) => {
               <CardWithRadius className={classes.blueCard}>
                 <div
                   className={styles.gridContainer}
-                  onClick={() => handleOpen(invoices.invoiceId)}
+                  
                 >
-                  <div className={styles.gridItem}>
+                  <div className={styles.gridItem} onClick={() => handleOpen(invoices.invoiceId)}>
                     <label className={styles.invoiceLabel}>
                       <b>Date Created:</b> {invoices.dateCreated}
                     </label>
                   </div>
-                  <div className={styles.gridItem}>
+                  <div className={styles.gridItem} onClick={() => handleOpen(invoices.invoiceId)}>
                     <label className={styles.invoiceLabel}>
                       <b>Total Price:</b> {invoices.invoiceTotalPrice}{" "}
                     </label>
                   </div>
-                  <div className={styles.gridItem}>
+                  <div className={styles.gridItem} onClick={() => handleOpen(invoices.invoiceId)}>
                     <label className={styles.invoiceLabel}>
                       <b>No. of Items:</b> {invoices.invoiceItems.length}
                     </label>

@@ -95,7 +95,7 @@ const InvoicesPageProject = (props) => {
       >
         <Box sx={styleModal}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Selected Invoice ID
+            Invoice
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <Paper sx={{ width: "100%", overflow: "hidden" }}>
