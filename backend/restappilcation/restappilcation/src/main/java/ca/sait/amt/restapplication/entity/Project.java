@@ -33,6 +33,7 @@ public class Project implements java.io.Serializable {
 	private Integer projectId;
 	private Client client;
 	private String projectName;
+	private String employeeName;
 	private Boolean projectStatus;
 	private Boolean projectCabinetsCondition;
 	private Boolean projectCounterRemoval;
@@ -52,13 +53,14 @@ public class Project implements java.io.Serializable {
 		this.projectName = projectName;
 	}
 
-	public Project(Client client, String projectName, Boolean projectStatus,
+	public Project(Client client, String projectName, String employeeName, Boolean projectStatus,
 			Boolean projectCabinetsCondition, Boolean projectCounterRemoval, Boolean projectTileRemoval,
 			ProjectAddress projectAddress, ProjectSupervisor projectSupervisor, Set<Quote> quotes, Set<Image> images,
 			Set<PurchaseOrder> purchaseOrders, Set<DepositForm> depositForms, Set<Invoice> invoices) {
 		super();
 		this.client = client;
 		this.projectName = projectName;
+		this.employeeName = employeeName;
 		this.projectStatus = projectStatus;
 		this.projectCabinetsCondition = projectCabinetsCondition;
 		this.projectCounterRemoval = projectCounterRemoval;
@@ -82,6 +84,15 @@ public class Project implements java.io.Serializable {
 
 	public void setProjectId(Integer projectId) {
 		this.projectId = projectId;
+	}
+
+	@Column(name = "employee_name")
+	public String getEmployeeName() {
+		return employeeName;
+	}
+
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)

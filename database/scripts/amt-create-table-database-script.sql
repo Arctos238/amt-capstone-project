@@ -70,6 +70,7 @@ CREATE TABLE project (
   project_cabinets_condition int(1) DEFAULT 1,
   project_counter_removal int(1) DEFAULT 1,
   project_tile_removal int(1) DEFAULT 1,
+  employee_name varchar (48),
   client_id int(5),
   PRIMARY KEY (project_id),
   KEY FK_PROJECT_CLIENT (client_id),
