@@ -3,6 +3,8 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import axios from 'axios';
+import classes from "../UI/CardWithRadius.module.css";
+import CardWithRadius from "../UI/CardWithRadius";
 import Typography from '@material-ui/core/Typography';
 import { CreateNewImage } from '../../services/ImageServices';
 
@@ -10,7 +12,7 @@ const DocumentUpload = (props) => {
   const { projectId } = props;
   const [selectedFile, setSelectedFile] = useState(null);
   const [file, setFile] = useState();
-  const [files, setFiles] = useState(""); // create state variable for files
+  const [fileArray, setFileArray] = useState([]); // create state variable for files
 
   const fileSelectedHandler = useCallback(event => {
     setSelectedFile(event.target.files[0]);
@@ -18,7 +20,7 @@ const DocumentUpload = (props) => {
     console.log(event.target.files[0].name);
     const filename = event.target.files[0].name;
     console.log(filename);
-    setFiles(filename); // update the state variable with the filename
+    setFileArray(prevFiles => [...prevFiles, filename]); // update the state variable with the new filename
     setFile(URL.createObjectURL(event.target.files[0]));
   }, []);
 
@@ -31,6 +33,11 @@ const DocumentUpload = (props) => {
     console.log(data);
   };
 
+  const fileComponents = fileArray.map((file, index) => (
+    <CardWithRadius key={index} className={classes.blueCard}>
+      <Typography style={{ textAlign: 'center' }}>{file}</Typography>
+    </CardWithRadius>
+  ));
   return (
     <div>
       <Button variant="contained" component="label">
@@ -39,8 +46,9 @@ const DocumentUpload = (props) => {
         <PhotoCamera />
       </Button>
       <br />
-
-      <Typography>{files}</Typography>
+      
+      {fileComponents}
+      
 
       <br />
       <button onClick={fileUploadHandler}>Upload Image</button>

@@ -113,7 +113,7 @@ const InvoicesPageProject = (props) => {
                     <TableCell>Edge Profile Measurement</TableCell>
                   </TableHead>
                   <TableBody>
-                    {props.invoiceInfo.invoiceItems.map((invoiceItems) => (
+                    {/* {props.invoiceInfo.invoiceItems.map((invoiceItems) => (
                       <TableRow>
                         <TableCell>{invoiceItems.invoiceItemName}</TableCell>
                         <TableCell>
@@ -134,7 +134,7 @@ const InvoicesPageProject = (props) => {
                           {invoiceItems.edgeProfile.edgeProfileMeasurement}
                         </TableCell>
                       </TableRow>
-                    ))}
+                    ))} */}
                   </TableBody>
                 </Table>
               </TableContainer>
