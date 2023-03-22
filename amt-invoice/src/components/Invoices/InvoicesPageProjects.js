@@ -73,6 +73,7 @@ const rows = [
 const InvoicesPageProject = (props) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const invoiceItems = props.invoiceInfo;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -82,7 +83,7 @@ const InvoicesPageProject = (props) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  
+
   return (
     <div>
       {/* <Button onClick={props.handleOpen}>Open modal</Button> */}
@@ -113,7 +114,7 @@ const InvoicesPageProject = (props) => {
                     <TableCell>Edge Profile Measurement</TableCell>
                   </TableHead>
                   <TableBody>
-                    {props.invoiceInfo.invoiceItems.map((invoiceItems) => (
+                    {Array.isArray(invoiceItems) ? (invoiceItems.map((invoiceItems) => (
                       <TableRow>
                         <TableCell>{invoiceItems.invoiceItemName}</TableCell>
                         <TableCell>
@@ -134,7 +135,7 @@ const InvoicesPageProject = (props) => {
                           {invoiceItems.edgeProfile.edgeProfileMeasurement}
                         </TableCell>
                       </TableRow>
-                    ))}
+                    ))) : <></>}
                   </TableBody>
                 </Table>
               </TableContainer>
