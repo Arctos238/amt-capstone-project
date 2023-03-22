@@ -40,7 +40,7 @@ public class EmployeeRestController {
 	
 //	@GetMapping("/employees/{employeeId}")
 //	public Employee getEmployees(@PathVariable int employeeId) {
-//		Employee employee = employeeService.findById(employeeId);;
+//		Employee employee = employeeService.f(employeeId);;
 //		
 //		if (employee == null) {
 //			throw new RuntimeException("Employee id not found - " + employeeId);

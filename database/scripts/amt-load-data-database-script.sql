@@ -83,11 +83,7 @@ insert into project (project_id, project_name, project_status, project_cabinets_
 insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (8, 'Serial', true, false, false, 2);
 insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (9, 'Baby Face', false, false, true, 1);
 insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (10, 'Sweet Evil', false, false, true, 3);
-insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (11, 'Gloria', true, true, false, 5);
-insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (12, 'A Good Marriage', false, false, false, 7);
-insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (13, 'Samaritan, The', false, false, true, 6);
-insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (14, 'Crimes of Fashion', false, false, true, 1);
-insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (15, 'Dad Save the World', false, false, true, 4);
+
 
 -- Insert data into project address table --
 
@@ -101,11 +97,7 @@ insert into project_address (project_address_id, first_line_address, second_line
 insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (8, '9 Red Cloud Park', 'Suite 59', 'Mc Keesport', '15134', 8, 'PA');
 insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (9, '33318 Bobwhite Center', 'Apt 1234', 'Everett', '98206', 9, 'WA');
 insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (10, '0798 Waubesa Crossing', 'Apt 1128', 'New Haven', '06505', 10, 'CT');
-insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (11, '450 North Parkway', '8th Floor', 'Dallas', '75387', 11, 'TX');
-insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (12, '7404 Spenser Parkway', '5th Floor', 'New York City', '10014', 12, 'NY');
-insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (13, '9 Dayton Terrace', 'Room 384', 'Wichita', '67205', 13, 'KS');
-insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (14, '68 Welch Pass', '3rd Floor', 'Alexandria', '22301', 14, 'VA');
-insert into project_address (project_address_id, first_line_address, second_line_address, city, postal_code, project_id, province) values (15, '78686 Florence Avenue', 'PO Box 25391', 'Inglewood', '90398', 15, 'CA');
+
 
 -- Insert into project supervisor table --
 

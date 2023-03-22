@@ -27,9 +27,23 @@ import jakarta.persistence.Table;
 @Table(name = "client", catalog = "amt")
 public class Client implements java.io.Serializable {
 
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "client_id", unique = true, nullable = false)
 	private int clientId;
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.MERGE)
+	@JoinColumn(name = "client_contact_id")
+	@JsonManagedReference
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private ClientContact clientContact;
+	
+	@Column(name = "client_name", length = 80)
 	private String clientName;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "client", cascade=CascadeType.MERGE)
+	@JsonManagedReference
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Set<Project> projects = new HashSet<Project>(0);
 
 	public Client() {
@@ -41,10 +55,7 @@ public class Client implements java.io.Serializable {
 		this.projects = projects;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-
-	@Column(name = "client_id", unique = true, nullable = false)
+	
 	public Integer getClientId() {
 		return this.clientId;
 	}
@@ -53,10 +64,7 @@ public class Client implements java.io.Serializable {
 		this.clientId = clientId;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.MERGE)
-	@JoinColumn(name = "client_contact_id")
-	@JsonManagedReference
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	
 	public ClientContact getClientContact() {
 		return this.clientContact;
 	}
@@ -65,7 +73,7 @@ public class Client implements java.io.Serializable {
 		this.clientContact = clientContact;
 	}
 
-	@Column(name = "client_name", length = 80)
+	
 	public String getClientName() {
 		return this.clientName;
 	}
@@ -74,9 +82,7 @@ public class Client implements java.io.Serializable {
 		this.clientName = clientFirstName;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "client", cascade=CascadeType.MERGE)
-	@JsonManagedReference
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	
 	public Set<Project> getProjects() {
 		return this.projects;
 	}

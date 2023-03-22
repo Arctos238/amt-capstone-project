@@ -1,5 +1,6 @@
 package ca.sait.amt.restapplication.restcontroller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ca.sait.amt.restapplication.entity.Client;
 import ca.sait.amt.restapplication.exceptions.ClientNotFoundException;
-import ca.sait.amt.restapplication.exceptions.EmployeeNotFoundException;
 import ca.sait.amt.restapplication.service.ClientService;
 
 @RestController
@@ -48,14 +48,17 @@ public class ClientRestController {
 	}
 	
 	@GetMapping("/clients/id/{clientId}")
-	public Client getClientById(@PathVariable int clientId) {
+	public ArrayList<Client> getClientById(@PathVariable int clientId) {
 		Client client = clientService.findByClientId(clientId);;
 		
 		if (client == null) {
 			throw new ClientNotFoundException("No Clients found with that client id - " + clientId);
 		};
 		
-		return client;
+		ArrayList<Client> clients = new ArrayList<>();
+		clients.add(client);
+		
+		return clients;
 	}
 	
 	@PostMapping("/clients")
