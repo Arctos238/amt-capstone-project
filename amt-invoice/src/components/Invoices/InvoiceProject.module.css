@@ -29,3 +29,8 @@
 .buttonOptions {
     text-align: right;
 }
+.invisible {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}

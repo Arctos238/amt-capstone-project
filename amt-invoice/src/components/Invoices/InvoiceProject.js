@@ -14,18 +14,22 @@ import classes from "../UI/CardWithRadius.module.css";
 import styles from "./InvoiceProject.module.css";
 import { useNavigate } from "react-router-dom";
 import { GetProjectById } from "../../services/ProjectServices";
+import { GetInvoiceById } from "../../services/InvoiceServices";
 import DocumentUpload from "./InvoiceProjectDocumentUpload";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import BackButton from "../BackButton/BackButton";
 import { GetImageById } from "../../services/ImageServices";
-import {DeleteInvoiceById} from "../../services/InvoiceServices";
+import { DeleteInvoiceById } from "../../services/InvoiceServices";
 import { useState, useEffect } from "react";
+import InvoicesPageProject from "./InvoicesPageProjects";
 
 const InvoiceProject = (props) => {
   const projectList = props.project;
   const [invoices, setInvoices] = useState(projectList.invoices);
+  const [selectedInvoiceId, setSelectedInvoiceId] = useState(null);
+  const [sendInvoiceInfo, setSendInvoiceInfo] = useState({});
 
   // const [invoices, setInvoices] = useState([]);
   // setInvoices(projectInfo.invoices);
@@ -49,10 +53,22 @@ const InvoiceProject = (props) => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  const deleteInvoiceHandler = async id => {
+  const deleteInvoiceHandler = async (id) => {
     const data = await DeleteInvoiceById(id);
-    setInvoices(invoices.filter(invoice => invoice.id !== id));
-  }
+    setInvoices(invoices.filter((invoice) => invoice.id !== id));
+  };
+
+  
+
+  //these three are sent to InvoicePageProjects
+  const [open, setOpen] = useState(false);
+  const handleOpen = async (invoiceId) => {
+    setOpen(true);
+    setSelectedInvoiceId(invoiceId);
+    const data = await GetInvoiceById(invoiceId);
+    setSendInvoiceInfo(data);
+  };
+  const handleClose = () => setOpen(false);
 
   // const getImage = async (id) => {
   //   const res = await GetImageById(id);
@@ -69,7 +85,7 @@ const InvoiceProject = (props) => {
   // },[props.imageId, images])
 
   return (
-    // SOMEONE CHECK THIS IF YOU NEED SOMETHING FROM THIS CODE 
+    // SOMEONE CHECK THIS IF YOU NEED SOMETHING FROM THIS CODE
     // <div>
     //   {/* <CardWithRadius className={classes.blueCard}>
     //     <div>
@@ -249,39 +265,45 @@ const InvoiceProject = (props) => {
         <AccordionDetails>
           {invoices.length > 0 ? (
             invoices.map((invoices) => (
-              <CardWithRadius className={classes.blueCard}>
-                <div className={styles.gridContainer}>
-                  <div className={styles.gridItem}>
-                    <label className={styles.invoiceLabel}>
-                      <b>Date Created:</b> {invoices.dateCreated}
-                    </label>
+             
+                <CardWithRadius className={classes.blueCard}>
+                  <div className={styles.gridContainer}  onClick={() => handleOpen(invoices.invoiceId)}>
+                    <div className={styles.gridItem}>
+                      <label className={styles.invoiceLabel}>
+                        <b>Date Created:</b> {invoices.dateCreated}
+                      </label>
+                    </div>
+                    <div className={styles.gridItem}>
+                      <label className={styles.invoiceLabel}>
+                        <b>Total Price:</b> {invoices.invoiceTotalPrice}{" "}
+                      </label>
+                    </div>
+                    <div className={styles.gridItem}>
+                      <label className={styles.invoiceLabel}>
+                        <b>No. of Items:</b> {invoices.invoiceItems.length}
+                      </label>
+                    </div>
+                    <div className={`{styles.gridItem} {styles.buttonOptions}`}>
+                      <IconButton
+                        aria-label="delete"
+                        size="medium"
+                        onClick={() => deleteInvoiceHandler(invoices.invoiceId)}
+                      >
+                        <DeleteIcon
+                          fontSize="inherit"
+                          sx={{ color: "#fabd44", padding: 0 }}
+                        />
+                      </IconButton>
+                      <IconButton aria-label="delete" size="medium">
+                        <EditIcon
+                          fontSize="inherit"
+                          sx={{ color: "#fabd44", padding: 0 }}
+                        />
+                      </IconButton>
+                    </div>
                   </div>
-                  <div className={styles.gridItem}>
-                    <label className={styles.invoiceLabel}>
-                      <b>Total Price:</b> {invoices.invoiceTotalPrice}{" "}
-                    </label>
-                  </div>
-                  <div className={styles.gridItem}>
-                    <label className={styles.invoiceLabel}>
-                      <b>No. of Items:</b> {invoices.invoiceItems.length}
-                    </label>
-                  </div>
-                  <div className={`{styles.gridItem} {styles.buttonOptions}`}>
-                    <IconButton aria-label="delete" size="medium" onClick={() => deleteInvoiceHandler(invoices.invoiceId)}>
-                      <DeleteIcon
-                        fontSize="inherit"
-                        sx={{ color: "#fabd44", padding: 0 }}
-                      />
-                    </IconButton>
-                    <IconButton aria-label="delete" size="medium">
-                      <EditIcon
-                        fontSize="inherit"
-                        sx={{ color: "#fabd44", padding: 0 }}
-                      />
-                    </IconButton>
-                  </div>
-                </div>
-              </CardWithRadius>
+                </CardWithRadius>
+           
             ))
           ) : (
             <p>No Invoices</p>
@@ -310,6 +332,13 @@ const InvoiceProject = (props) => {
           <DocumentUpload projectId={props.projectId} />
         </AccordionDetails>
       </Accordion>
+      <InvoicesPageProject
+        open={open}
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+        selectedInvoiceId={selectedInvoiceId}
+        invoiceInfo={sendInvoiceInfo}
+      />
     </div>
   );
 };

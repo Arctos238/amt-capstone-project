@@ -9,36 +9,40 @@ import InvoiceProject from "./InvoiceProject";
 import { GetProjectById } from "../../services/ProjectServices";
 import BackButton from "../BackButton/BackButton";
 
-const InvoicesPage = (props) => { 
+const InvoicesPage = (props) => {
   const [project, setProject] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
-    const data = await GetProjectById(
-      localStorage.getItem("currentProjectId")
-    );
+    const data = await GetProjectById(localStorage.getItem("currentProjectId"));
     setLoading(true);
-    setProject(data)
+    setProject(data);
     // let dataParsed = JSON.parse(data);
     console.log(data);
-  
   };
 
   useEffect(() => {
-    if(localStorage.getItem("currentProjectId")){
+    if (localStorage.getItem("currentProjectId")) {
       fetchData();
     }
   }, []);
 
+
+
   console.log(project);
   return (
     <div>
-      <BackButton/>
+      <BackButton />
       <div className="theProjects">
         <Card className={classes.yellowProjectCard}>
-          {loading? <InvoiceProject project={project} projectId={project.projectId}/> : <></>}
+          {loading ? (
+            <InvoiceProject project={project} projectId={project.projectId} />
+          ) : (
+            <></>
+          )}
         </Card>
       </div>
+      
     </div>
   );
 };

@@ -168,8 +168,18 @@ const CreateInvoice = () => {
   const [itemAdded, setItemAdded] = useState(false);
   const [noteAdded, setNoteAdded] = useState(false);
   const [noteEmpty, setNoteEmpty] = useState(false);
+  const [isInvoiceAdded, setIsInvoiceAdded] = useState(false);
 
   //remove item added alert
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInvoiceAdded(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isInvoiceAdded]);
   useEffect(() => {
     const timer = setTimeout(() => {
       setItemAdded(false);
@@ -346,7 +356,7 @@ const CreateInvoice = () => {
     }
 
     if (data != null) {
-      alert("invoice created");
+      setIsInvoiceAdded(true);
     }
   };
 
@@ -366,6 +376,15 @@ const CreateInvoice = () => {
             <Alert severity="success">
               {invoiceItemNameRef.current.value} - item added!
             </Alert>
+          </Stack>
+        </div>
+      ) : (
+        <></>
+      )}
+      {isInvoiceAdded ? (
+        <div className={styles.errorBox}>
+          <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
+            <Alert severity="success">Invoice Created!</Alert>
           </Stack>
         </div>
       ) : (
