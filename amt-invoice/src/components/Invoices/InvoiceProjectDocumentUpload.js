@@ -12,7 +12,9 @@ const DocumentUpload = (props) => {
   const { projectId } = props;
   const [selectedFile, setSelectedFile] = useState(null);
   const [file, setFile] = useState();
-  const [fileArray, setFileArray] = useState([]); // create state variable for files
+  const [fileArray, setFileArray] = useState([]); 
+
+  console.log(file);
 
   const fileSelectedHandler = useCallback(event => {
     setSelectedFile(event.target.files[0]);
@@ -20,7 +22,7 @@ const DocumentUpload = (props) => {
     console.log(event.target.files[0].name);
     const filename = event.target.files[0].name;
     console.log(filename);
-    setFileArray(prevFiles => [...prevFiles, filename]); // update the state variable with the new filename
+    setFileArray(prevFiles => [...prevFiles, filename]); 
     setFile(URL.createObjectURL(event.target.files[0]));
   }, []);
 
@@ -35,9 +37,11 @@ const DocumentUpload = (props) => {
 
   const fileComponents = fileArray.map((file, index) => (
     <CardWithRadius key={index} className={classes.blueCard}>
-      <Typography style={{ textAlign: 'center' }}>{file}</Typography>
+      <Typography style={{ textAlign: 'center', fontWeight: 'bold' }}>{file}</Typography>
     </CardWithRadius>
   ));
+
+
   return (
     <div>
       <Button variant="contained" component="label">
@@ -46,7 +50,7 @@ const DocumentUpload = (props) => {
         <PhotoCamera />
       </Button>
       <br />
-      
+
       {fileComponents}
       
 

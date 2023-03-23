@@ -19,3 +19,10 @@
     margin: auto auto auto 44%;
     
   }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }

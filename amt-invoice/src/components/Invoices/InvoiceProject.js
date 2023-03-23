@@ -24,6 +24,7 @@ import { GetImageById } from "../../services/ImageServices";
 import { DeleteInvoiceById } from "../../services/InvoiceServices";
 import { useState, useEffect } from "react";
 import InvoicesPageProject from "./InvoicesPageProjects";
+import PhotoIcon from '@mui/icons-material/Photo';
 
 const InvoiceProject = (props) => {
   const projectList = props.project;
@@ -324,7 +325,10 @@ const InvoiceProject = (props) => {
             Documentation
           </Typography>
 
-          <ArticleIcon sx={{ width: "80%", fontSize: "60px" }}></ArticleIcon>
+          <PhotoIcon sx={{ width: "80%", fontSize: "60px" }}></PhotoIcon>
+          
+
+
         </AccordionSummary>
         <AccordionDetails>
           <DocumentUpload projectId={props.projectId} />

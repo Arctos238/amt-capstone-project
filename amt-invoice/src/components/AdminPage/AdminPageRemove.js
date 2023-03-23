@@ -12,6 +12,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 const AdminPageRemove = () => {
 
@@ -63,17 +67,18 @@ const AdminPageRemove = () => {
                 value = "add" className={styles.button}>Remove User</Button>
 
                  */}
-            <TableContainer component={Paper} className={styles.center}>
+            <div style={{ display: 'flex', justifyContent: 'center'}}>
+            <TableContainer component={Paper} className={styles.center} style={{ width: '80%', backgroundColor: '#05516a'  }}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Id</TableCell>
-                            <TableCell>LastName</TableCell>
-                            <TableCell>FirstName</TableCell>
-                            <TableCell>UserName</TableCell>
-                            <TableCell>Password</TableCell>
-                            <TableCell>Role name</TableCell>
-                            <TableCell>button</TableCell>
+                            <TableCell style={{ fontWeight: 'bold', color: 'white' }}>Id</TableCell>
+                            <TableCell style={{ fontWeight: 'bold', color: 'white'  }}>First Name</TableCell>
+                            <TableCell style={{ fontWeight: 'bold', color: 'white'  }}>Last Name</TableCell>
+                            <TableCell style={{ fontWeight: 'bold', color: 'white'  }}>User Name</TableCell>
+                            <TableCell style={{ fontWeight: 'bold', color: 'white'  }}>Password</TableCell>
+                            <TableCell style={{ fontWeight: 'bold', color: 'white'  }}>Role</TableCell>
+                            <TableCell style={{ fontWeight: 'bold', color: 'white'  }}>Edit / Delete</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -82,35 +87,56 @@ const AdminPageRemove = () => {
                                 key={row.employeeUsername}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell component="th" scope="row" >
+                                <TableCell style={{ color: 'white' }} component="th" scope="row" >
                                     {row.employeeId}
                                 </TableCell>
-                                <TableCell component="th" scope="row">
-                                    {row.employeeLastName}
-                                </TableCell>
-                                <TableCell component="th" scope="row" >
+                                <TableCell style={{ color: 'white' }} component="th" scope="row" >
                                     {row.employeeFirstName}
                                 </TableCell>
-                                <TableCell component="th" scope="row" >
+                                <TableCell style={{ color: 'white' }} component="th" scope="row">
+                                    {row.employeeLastName}
+                                </TableCell>
+                                <TableCell style={{ color: 'white' }} component="th" scope="row" >
                                     {row.employeeUsername}
                                 </TableCell>
-                                <TableCell component="th" scope="row" >
+                                <TableCell style={{ color: 'white' }} component="th" scope="row" >
                                     {row.employeePassword}
                                 </TableCell>
-                                <TableCell component="th" scope="row" >
+                                <TableCell style={{ color: 'white' }} component="th" scope="row" >
                                     {row.role.roleName}
                                 </TableCell>
                                 <TableCell >
-                                    <button type="submit"
-                                        value="add" >Edit</button>
-                                    <button type="submit"
-                                        value="add" >Delete</button>
+                                <Stack direction="row" spacing={2}>
+
+                                <IconButton
+                                    variant="outlined"
+                                    type="submit"
+                                    value="add"
+                                    aria-label="add"
+                                    style={{ color: '#FFB900' }}>
+                                    <EditIcon />
+                                </IconButton>
+                                
+                                <IconButton variant="outlined"
+                                    type="submit"
+                                    value="add"
+                                    aria-label="add"
+                                    style={{ color: '#FFB900' }}>
+                                    <DeleteIcon />
+                                </IconButton>
+
+                                
+
+                                </Stack>
+                                    
+                                    
                                 </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
+            </div>
         </div>
     );
 };
