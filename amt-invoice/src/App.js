@@ -83,7 +83,7 @@ function App() {
         }
       />
 
-<Route
+      <Route
         path="/AdminPageRemove"
         exact
         element={
@@ -122,7 +122,7 @@ function App() {
           </Layout>
         }
       />
-{/* 
+      {/* 
       <Route
         path="/invoices"
         exact
