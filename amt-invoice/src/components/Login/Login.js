@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 
 import styles from "./Login.module.css";
 
-
 const Login = (props) => {
-  if("clientInfo" in localStorage){
+  if ("clientInfo" in localStorage) {
     localStorage.removeItem("clientInfo");
   }
 
@@ -16,7 +15,6 @@ const Login = (props) => {
 
   return (
     <React.Fragment>
-      
       <div className={styles.title}>AMT: Invoicing System</div>
       <LoginForm changeLoginHandler={loginHandler}></LoginForm>
     </React.Fragment>
