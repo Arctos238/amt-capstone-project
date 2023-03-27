@@ -51,9 +51,9 @@ const AdminPageRemove = () => {
         fetchData();
     }, []);
 
-    return (
-        <div className={styles.center}>
-            <h1>Employee Table</h1>
+  return (
+    <div className={styles.center}>
+      <h1>Employees</h1>
 
             {/* {results.map((results) => (
                 <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>

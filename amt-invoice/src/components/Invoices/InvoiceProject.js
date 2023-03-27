@@ -24,11 +24,12 @@ import { GetImageById } from "../../services/ImageServices";
 import { DeleteInvoiceById } from "../../services/InvoiceServices";
 import { useState, useEffect } from "react";
 import InvoicesPageProject from "./InvoicesPageProjects";
-import PhotoIcon from '@mui/icons-material/Photo';
+import PhotoIcon from "@mui/icons-material/Photo";
 import { TableContainer } from "@mui/material";
-import { Paper , Table, TableBody, TableRow, TableCell} from '@mui/material';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import SummarizeIcon from '@mui/icons-material/Summarize';
+import { Paper, Table, TableBody, TableRow, TableCell } from "@mui/material";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import SummarizeIcon from "@mui/icons-material/Summarize";
+import { Link } from "react-router-dom";
 
 const InvoiceProject = (props) => {
   const projectList = props.project;
@@ -47,6 +48,9 @@ const InvoiceProject = (props) => {
   // const [images, setImages] = useState([]);
   const nav = useNavigate();
 
+  const workForms = () => {
+    nav("/workForm");
+  };
   const handleClick = async () => {
     const data = await GetProjectById(props.projectId);
     localStorage.setItem("projectId", JSON.stringify(data));
@@ -238,46 +242,61 @@ const InvoiceProject = (props) => {
           ></DescriptionIcon>
         </AccordionSummary>
         <AccordionDetails>
-          
-        <TableContainer component={Paper}>
-          <Table>
-          <TableBody>
-          <TableRow>
-          <TableCell style={{ fontWeight: 'bold' }}>Project Name:</TableCell>
-          <TableCell>{props.projectName}</TableCell>
-          </TableRow>
-          <TableRow>
-          <TableCell style={{ fontWeight: 'bold' }}>Project ID:</TableCell>
-          <TableCell>{props.projectID}</TableCell>
-          </TableRow>
-          <TableRow>
-          <TableCell style={{ fontWeight: 'bold' }}>Project Status:</TableCell>
-          <TableCell>{props.projectStatus}</TableCell>
-          </TableRow>
-          <TableRow>
-          <TableCell style={{ fontWeight: 'bold' }}>Project Address:</TableCell>
-          <TableCell>{props.projectAddress}</TableCell>
-          </TableRow>
-          <TableRow>
-          <TableCell style={{ fontWeight: 'bold' }}>Project Second Address:</TableCell>
-          <TableCell>{props.projectSecondAddress}</TableCell>
-          </TableRow>
-          <TableRow>
-          <TableCell style={{ fontWeight: 'bold' }}>Project Postal:</TableCell>
-          <TableCell>{props.projectPostal}</TableCell>
-          </TableRow>
-          <TableRow>
-          <TableCell style={{ fontWeight: 'bold' }}>Project City:</TableCell>
-          <TableCell>{props.projectCity}</TableCell>
-          </TableRow>
-          <TableRow>
-          <TableCell style={{ fontWeight: 'bold' }}>Project Province:</TableCell>
-          <TableCell>{props.projectProvince}</TableCell>
-          </TableRow>
-          </TableBody>
-          </Table>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableCell style={{ fontWeight: "bold" }}>
+                    Project Name:
+                  </TableCell>
+                  <TableCell>{props.projectName}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell style={{ fontWeight: "bold" }}>
+                    Project ID:
+                  </TableCell>
+                  <TableCell>{props.projectID}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell style={{ fontWeight: "bold" }}>
+                    Project Status:
+                  </TableCell>
+                  <TableCell>{props.projectStatus}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell style={{ fontWeight: "bold" }}>
+                    Project Address:
+                  </TableCell>
+                  <TableCell>{props.projectAddress}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell style={{ fontWeight: "bold" }}>
+                    Project Second Address:
+                  </TableCell>
+                  <TableCell>{props.projectSecondAddress}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell style={{ fontWeight: "bold" }}>
+                    Project Postal:
+                  </TableCell>
+                  <TableCell>{props.projectPostal}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell style={{ fontWeight: "bold" }}>
+                    Project City:
+                  </TableCell>
+                  <TableCell>{props.projectCity}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell style={{ fontWeight: "bold" }}>
+                    Project Province:
+                  </TableCell>
+                  <TableCell>{props.projectProvince}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
           </TableContainer>
-          
+
           <Typography> Project Name: {props.projectName}</Typography>
           <Typography> Project ID: {props.projectId}</Typography>
           <Typography> Project Status: {props.projectStatus}</Typography>
@@ -309,21 +328,27 @@ const InvoiceProject = (props) => {
           {invoices.length > 0 ? (
             invoices.map((invoices) => (
               <CardWithRadius className={classes.blueCard}>
-                <div
-                  className={styles.gridContainer}
-                  
-                >
-                  <div className={styles.gridItem} onClick={() => handleOpen(invoices.invoiceId)}>
+                <div className={styles.gridContainer}>
+                  <div
+                    className={styles.gridItem}
+                    onClick={() => handleOpen(invoices.invoiceId)}
+                  >
                     <label className={styles.invoiceLabel}>
                       <b>Date Created:</b> {invoices.dateCreated}
                     </label>
                   </div>
-                  <div className={styles.gridItem} onClick={() => handleOpen(invoices.invoiceId)}>
+                  <div
+                    className={styles.gridItem}
+                    onClick={() => handleOpen(invoices.invoiceId)}
+                  >
                     <label className={styles.invoiceLabel}>
                       <b>Total Price:</b> {invoices.invoiceTotalPrice}{" "}
                     </label>
                   </div>
-                  <div className={styles.gridItem} onClick={() => handleOpen(invoices.invoiceId)}>
+                  <div
+                    className={styles.gridItem}
+                    onClick={() => handleOpen(invoices.invoiceId)}
+                  >
                     <label className={styles.invoiceLabel}>
                       <b>No. of Items:</b> {invoices.invoiceItems.length}
                     </label>
@@ -352,12 +377,22 @@ const InvoiceProject = (props) => {
           ) : (
             <p>No Invoices</p>
           )}
-          <Button variant="contained" onClick={handleClick} style={{ backgroundColor: '#05516a' }} startIcon={<AddCircleOutlineIcon/>}>
+          <Button
+            variant="contained"
+            onClick={handleClick}
+            style={{ backgroundColor: "#05516a" }}
+            startIcon={<AddCircleOutlineIcon />}
+          >
             Add Invoice
           </Button>
-          <br/>
-          <br/>
-          <Button variant="contained" onClick={handleClick} style={{ backgroundColor: '#05516a' }} startIcon={<SummarizeIcon/>}>
+          <br />
+          <br />
+          <Button
+            variant="contained"
+            onClick={workForms}
+            style={{ backgroundColor: "#05516a" }}
+            startIcon={<SummarizeIcon />}
+          >
             Work Order
           </Button>
         </AccordionDetails>
@@ -376,9 +411,6 @@ const InvoiceProject = (props) => {
           </Typography>
 
           <PhotoIcon sx={{ width: "80%", fontSize: "60px" }}></PhotoIcon>
-          
-
-
         </AccordionSummary>
         <AccordionDetails>
           <DocumentUpload projectId={props.projectId} />

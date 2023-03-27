@@ -1,11 +1,12 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Card from "../UI/Card";
 import classes from "../UI/Card.module.css";
 import ClientContact from "./ClientContact";
 import ClientPageProjects from "./ClientPageProjects";
 import ClientPageButton from "./ClientPageButton";
 import BackButton from "../BackButton/BackButton";
+import styles from "./ClientContact.module.css";
 
 const ClientPage = () => {
   const handleGoBack = () => {
@@ -16,8 +17,9 @@ const ClientPage = () => {
   let toArray = JSON.parse(clientInfo);
   console.log(toArray);
   return (
-    <div className="clientPage">
-      <BackButton/>
+    <div className={styles.clientPage}>
+      <BackButton />
+      <h1 className={styles.title}>Create Client</h1>
       <div className="aboutClient">
         <Card className={classes.yellowCard}>
           <ClientContact
@@ -30,7 +32,7 @@ const ClientPage = () => {
       </div>
       <div className="theProjects">
         <Card className={classes.yellowCard}>
-          <ClientPageProjects toArray={toArray[0].projects}/>
+          <ClientPageProjects toArray={toArray[0].projects} />
         </Card>
       </div>
       <div className="buttons">

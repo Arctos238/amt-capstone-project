@@ -108,34 +108,40 @@ const InvoicesPageProject = (props) => {
                     <TableCell>Length</TableCell>
                     <TableCell>Area</TableCell>
                     <TableCell>Depth</TableCell>
-                    <TableCell>Amount</TableCell> 
+                    <TableCell>Amount</TableCell>
                     <TableCell>Edge Profile Type</TableCell>
                     <TableCell>Edge Profile Cut</TableCell>
                     <TableCell>Edge Profile Measurement</TableCell>
                   </TableHead>
                   <TableBody>
-                    {Array.isArray(invoiceItems) ? (invoiceItems.map((invoiceItems) => (
-                      <TableRow>
-                        <TableCell>{invoiceItems.invoiceItemName}</TableCell>
-                        <TableCell>
-                          {invoiceItems.invoiceItemMeasurement}
-                        </TableCell>
-                        <TableCell>{invoiceItems.invoiceItemWidth}</TableCell>
-                        <TableCell>{invoiceItems.invoiceItemLength}</TableCell>
-                        <TableCell>{invoiceItems.invoiceItemArea}</TableCell>
-                        <TableCell>{invoiceItems.invoiceItemDepth}</TableCell>
-                        <TableCell>{invoiceItems.invoiceItemPrice}</TableCell>
-                        <TableCell>
-                          {invoiceItems.edgeProfile.edgeProfileType}
-                        </TableCell>
-                        <TableCell>
-                          {invoiceItems.edgeProfile.edgeProfileCut}
-                        </TableCell>
-                        <TableCell>
-                          {invoiceItems.edgeProfile.edgeProfileMeasurement}
-                        </TableCell>
-                      </TableRow>
-                    ))) : <></>}
+                    {Array.isArray(invoiceItems) ? (
+                      invoiceItems.map((invoiceItems) => (
+                        <TableRow>
+                          <TableCell>{invoiceItems.invoiceItemName}</TableCell>
+                          <TableCell>
+                            {invoiceItems.invoiceItemMeasurement}
+                          </TableCell>
+                          <TableCell>{invoiceItems.invoiceItemWidth}</TableCell>
+                          <TableCell>
+                            {invoiceItems.invoiceItemLength}
+                          </TableCell>
+                          <TableCell>{invoiceItems.invoiceItemArea}</TableCell>
+                          <TableCell>{invoiceItems.invoiceItemDepth}</TableCell>
+                          <TableCell>{invoiceItems.invoiceItemPrice}</TableCell>
+                          <TableCell>
+                            {invoiceItems.edgeProfile.edgeProfileType}
+                          </TableCell>
+                          <TableCell>
+                            {invoiceItems.edgeProfile.edgeProfileCut}
+                          </TableCell>
+                          <TableCell>
+                            {invoiceItems.edgeProfile.edgeProfileMeasurement}
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    ) : (
+                      <></>
+                    )}
                   </TableBody>
                 </Table>
               </TableContainer>
