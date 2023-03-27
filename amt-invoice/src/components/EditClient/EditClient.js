@@ -1,31 +1,76 @@
 import React from "react";
+import Button from "../UI/Button";
+import styles from "./EditClient.module.css";
+import { useRef } from "react";
+import { UpdateClient, DeleteClientById } from "../../services/ClientServices";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CardWithRadius from "../UI/CardWithRadius";
 import classes from "../UI/CardWithRadius.module.css";
-import styles from"./CreateClientDetails.module.css"
 import TextField from '@mui/material/TextField';
 import { MuiTelInput } from 'mui-tel-input'
+import { FormControl } from "@mui/material";
 
+const EditClient = () => {
+  const clientNameRef = useRef();
+  const emailPersonalRef = useRef();
+  const emailBusinessRef = useRef();
+  const phoneNumberRef = useRef();
+  const nav = useNavigate();
 
-const CreateClientDetails = (props) =>{
-    const [value, setValue] = React.useState("+1")
+  let clientInfo = localStorage.getItem("clientInfo");
+    let toArray = JSON.parse(clientInfo);
+    const [value, setValue] = React.useState(toArray[0].clientContact.personalContactNumber)
 
   const handleChange = (newValue) => {
-
     setValue(newValue)
   }
+
+  const deleteHandler = async () => {
+    let clientInfo = localStorage.getItem("clientInfo");
+    let toArray = JSON.parse(clientInfo);
+    await DeleteClientById(toArray[0].clientId);
+
+    nav("/home");
+  }
+
+
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    const clientName = clientNameRef.current.value;
+    const emailPersonal = emailPersonalRef.current.value;
+    const emailBusiness = emailBusinessRef.current.value;
+    const phoneNumber = phoneNumberRef.current.value;
+
+    console.log(clientNameRef.current)
+    let clientInfo = localStorage.getItem("clientInfo");
+    let toArray = JSON.parse(clientInfo);
+    const obj = {
+      clientId: toArray[0].clientId,
+      clientName: clientName,
+      clientContact: {
+        personalEmail: emailPersonal,
+        businessEmail: emailBusiness,
+        personalContactNumber: phoneNumber,
+      },
+    };
+
+
+    console.log(obj);
+    const data = await UpdateClient(obj);
     
 
-const changeToHome = () => {
-    
-}
 
-return (
-    
+    if (data != null) {
+      nav("/home");
+    }
+  };
 
-
-    <React.Fragment>
-        <div className = {styles.center} >
+  return (
+    <div>
+      <h1 className={styles.h1}>Edit Client</h1>
+      <FormControl className={styles.form}>
+      <div className = {styles.center} >
             <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
             <TextField
             sx={{ width: "100%", color: "white", "& .MuiInputBase-input": {
@@ -35,8 +80,9 @@ return (
             label="Client Name"
             placeholder="Candler Bing"
             variant="standard"
-            type = "text" 
-            inputRef= {props.clientNameRef}
+            type = "text"
+            defaultValue = {toArray[0].clientName} 
+            inputRef= {clientNameRef}
             InputLabelProps={{ className: styles.textFieldLabel }}
             InputProps={{
               classes: {
@@ -61,7 +107,8 @@ return (
             placeholder="RonSwanson@no.com"
             variant="standard"
             type = "text" 
-            inputRef= {props.emailPersonalRef}
+            defaultValue = {toArray[0].clientContact.personalEmail} 
+            inputRef= {emailPersonalRef}
             InputLabelProps={{ className: styles.textFieldLabel }}
             InputProps={{
               classes: {
@@ -85,7 +132,8 @@ return (
             placeholder="Business@work.ca"
             variant="standard"
             type = "text" 
-            inputRef= {props.emailBusinessRef}
+            defaultValue = {toArray[0].clientContact.businessEmail} 
+            inputRef= {emailBusinessRef}
             InputLabelProps={{ className: styles.textFieldLabel }}
             InputProps={{
               classes: {
@@ -102,9 +150,9 @@ return (
             <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
             <MuiTelInput 
              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-             inputRef= {props.phoneNumberRef}
+             inputRef= {phoneNumberRef}
              type="tel" 
-             value={value} onChange={handleChange} />
+             value={value}  onChange={handleChange} />
             
             {/* Keeping just in case
             <label>Phone Number:</label>
@@ -116,8 +164,21 @@ return (
             /> */}
             </CardWithRadius>
         </div>
-    </React.Fragment>
-);
+        <div className={styles.parent}>
+          <div className={styles.buttonContainer}>
+            <Button className={styles.button} onClick={deleteHandler}>
+              Delete
+            </Button>
+          </div>
+          <div className={styles.buttonContainer}>
+            <Button className={styles.button} onClick={submitHandler}>
+              Submit
+            </Button>
+          </div>
+        </div>
+      </FormControl>
+    </div>
+  );
 };
 
-export default CreateClientDetails;
+export default EditClient;
