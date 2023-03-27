@@ -27,6 +27,8 @@ import InvoicesPageProject from "./InvoicesPageProjects";
 import PhotoIcon from '@mui/icons-material/Photo';
 import { TableContainer } from "@mui/material";
 import { Paper , Table, TableBody, TableRow, TableCell} from '@mui/material';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import SummarizeIcon from '@mui/icons-material/Summarize';
 
 const InvoiceProject = (props) => {
   const projectList = props.project;
@@ -350,8 +352,13 @@ const InvoiceProject = (props) => {
           ) : (
             <p>No Invoices</p>
           )}
-          <Button variant="contained" onClick={handleClick} style={{ backgroundColor: '#05516a' }}>
+          <Button variant="contained" onClick={handleClick} style={{ backgroundColor: '#05516a' }} startIcon={<AddCircleOutlineIcon/>}>
             Add Invoice
+          </Button>
+          <br/>
+          <br/>
+          <Button variant="contained" onClick={handleClick} style={{ backgroundColor: '#05516a' }} startIcon={<SummarizeIcon/>}>
+            Work Order
           </Button>
         </AccordionDetails>
       </Accordion>
