@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -116,7 +117,7 @@ public class InvoiceItem implements java.io.Serializable {
 		this.edgeProfile = edgeProfile;
 	}
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "invoiceItem")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "invoiceItem", cascade= {CascadeType.MERGE, CascadeType.REMOVE})
 	@JsonManagedReference
 	public Set<InvoiceItemNote> getInvoiceItemNotes() {
 		return this.invoiceItemNotes;

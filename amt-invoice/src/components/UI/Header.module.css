@@ -1,0 +1,11 @@
+/* Header.module.css */
+.header {
+  overflow: hidden;
+}
+
+.header img {
+  width: 100%;
+  margin-bottom: 0;
+  height: 10rem;
+  display: block;
+}
