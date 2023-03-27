@@ -57,8 +57,9 @@ const InvoiceProject = (props) => {
   };
 
   const deleteInvoiceHandler = async (id) => {
-    const data = await DeleteInvoiceById(id);
-    setInvoices(invoices.filter((invoice) => invoice.id !== id));
+    console.log(invoices);
+    await DeleteInvoiceById(id);
+    setInvoices(invoices.filter((invoice) => invoice.invoiceId !== id));
   };
 
   //these three are sent to InvoicePageProjects
