@@ -13,6 +13,7 @@ import CreateClient from "./components/Create_client/CreateClient";
 import AdminPage from "./components/AdminPage/AdminPage";
 import AdminPageAdd from "./components/AdminPage/AdminPageAdd";
 import AdminPageRemove from "./components/AdminPage/AdminPageRemove";
+import WorkOrderForm from "./components/Invoices/WorkOrderForm";
 import Header from "./components/UI/Header";
 
 function App() {
@@ -117,6 +118,18 @@ function App() {
         />
 
         <Route
+          path="/workForm"
+          exact
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <WorkOrderForm />
+            </Layout>
+          }
+        />
+
+        
+
+        <Route
           path="/createClient"
           exact
           element={
@@ -135,6 +148,8 @@ function App() {
             </Layout>
           }
         />
+
+       
       </Routes>
     </div>
   );

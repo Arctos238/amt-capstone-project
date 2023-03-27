@@ -29,6 +29,7 @@ import { TableContainer } from "@mui/material";
 import { Paper , Table, TableBody, TableRow, TableCell} from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import SummarizeIcon from '@mui/icons-material/Summarize';
+import { Link } from "react-router-dom";
 
 const InvoiceProject = (props) => {
   const projectList = props.project;
@@ -47,6 +48,9 @@ const InvoiceProject = (props) => {
   // const [images, setImages] = useState([]);
   const nav = useNavigate();
 
+  const workForms = () =>{
+    nav("/workForm");
+  }
   const handleClick = async () => {
     const data = await GetProjectById(props.projectId);
     localStorage.setItem("projectId", JSON.stringify(data));
@@ -357,7 +361,7 @@ const InvoiceProject = (props) => {
           </Button>
           <br/>
           <br/>
-          <Button variant="contained" onClick={handleClick} style={{ backgroundColor: '#05516a' }} startIcon={<SummarizeIcon/>}>
+          <Button variant="contained" onClick={workForms} style={{ backgroundColor: '#05516a' }} startIcon={<SummarizeIcon/>}>
             Work Order
           </Button>
         </AccordionDetails>
