@@ -90,7 +90,7 @@ public class Invoice implements java.io.Serializable {
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "invoice", cascade= {CascadeType.MERGE, CascadeType.REMOVE})
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "invoice", cascade= {CascadeType.MERGE, CascadeType.REMOVE, CascadeType.ALL})
 	@JsonManagedReference
 	public Set<InvoiceItem> getInvoiceItems() {
 		return this.invoiceItems;

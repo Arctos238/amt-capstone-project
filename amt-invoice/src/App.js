@@ -13,7 +13,7 @@ import CreateClient from "./components/Create_client/CreateClient";
 import AdminPage from "./components/AdminPage/AdminPage";
 import AdminPageAdd from "./components/AdminPage/AdminPageAdd";
 import AdminPageRemove from "./components/AdminPage/AdminPageRemove";
-import EditClient from "./components/EditClient/EditClient";
+import Header from "./components/UI/Header";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -28,131 +28,115 @@ function App() {
   }
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        exact
-        element={<Login changeLoginHandler={changeLogin} />}
-      />
+    <div>
+      <Header />
+      <Routes>
+        <Route
+          path="/"
+          exact
+          element={<Login changeLoginHandler={changeLogin} />}
+        />
 
-      <Route
-        path="/home"
-        exact
-        element={
-          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-            <Home />
-          </Layout>
-        }
-      />
+        <Route
+          path="/home"
+          exact
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <Home />
+            </Layout>
+          }
+        />
 
-      <Route
-        path="/createProject"
-        element={
-          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-            <CreateProject />
-          </Layout>
-        }
-      />
+        <Route
+          path="/createProject"
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <CreateProject />
+            </Layout>
+          }
+        />
 
-      <Route
-        path="/search"
-        exact
-        element={
-          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-            <SearchPage />
-          </Layout>
-        }
-      />
+        <Route
+          path="/search"
+          exact
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <SearchPage />
+            </Layout>
+          }
+        />
 
-      <Route
-        path="/AdminPage"
-        exact
-        element={
-          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-            <AdminPage />
-          </Layout>
-        }
-      />
+        <Route
+          path="/AdminPage"
+          exact
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <AdminPage />
+            </Layout>
+          }
+        />
 
-      <Route
-        path="/AdminPageAdd"
-        exact
-        element={
-          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-            <AdminPageAdd />
-          </Layout>
-        }
-      />
+        <Route
+          path="/AdminPageAdd"
+          exact
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <AdminPageAdd />
+            </Layout>
+          }
+        />
 
-      <Route
-        path="/AdminPageRemove"
-        exact
-        element={
-          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-            <AdminPageRemove />
-          </Layout>
-        }
-      />
+        <Route
+          path="/AdminPageRemove"
+          exact
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <AdminPageRemove />
+            </Layout>
+          }
+        />
 
-      <Route
-        path="/clientPage"
-        exact
-        element={
-          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-            <ClientPage />
-          </Layout>
-        }
-      />
+        <Route
+          path="/clientPage"
+          exact
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <ClientPage />
+            </Layout>
+          }
+        />
 
-      <Route
-        path="/invoices"
-        exact
-        element={
-          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-            <InvoicesPage />
-          </Layout>
-        }
-      />
+        <Route
+          path="/invoices"
+          exact
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <InvoicesPage />
+            </Layout>
+          }
+        />
 
-      <Route
-        path="/createClient"
-        exact
-        element={
-          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-            <CreateClient />
-          </Layout>
-        }
-      />
+        <Route
+          path="/createClient"
+          exact
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <CreateClient />
+            </Layout>
+          }
+        />
 
-      <Route
-        path="/editClient"
-        exact
-        element={
-          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-            <EditClient />
-          </Layout>
-        }
-      />
-{/* 
-      <Route
-        path="/invoices"
-        exact
-        element={
-          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-            <InvoicesPage />
-          </Layout>
-        }
-      /> */}
-      <Route
-        path="/createInvoice"
-        exact
-        element={
-          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-            <CreateInvoice />
-          </Layout>
-        }
-      />
-    </Routes>
+        <Route
+          path="/createInvoice"
+          exact
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <CreateInvoice />
+            </Layout>
+          }
+        />
+      </Routes>
+    </div>
   );
 }
 
