@@ -16,28 +16,46 @@ import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 const AdminPageRemove = () => {
-  const [results, setResults] = useState([]);
+    const [results, setResults] = useState([]);
+    const [open, setOpen] = useState(false);
+    //const theme = useTheme();
+    //const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await GetAllEmployees();
-        console.log(data);
-        setResults(data);
-      } catch (error) {
-        console.log(error);
-      }
+    const handleClickOpen = () => {
+        setOpen(true);
     };
-    fetchData();
-  }, []);
 
-  return (
-    <div className={styles.center}>
-      <h1>Employee Table</h1>
+    const handleClose = () => {
+        setOpen(false);
+    };
 
-      {/* {results.map((results) => (
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await GetAllEmployees();
+                console.log(data);
+                setResults(data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    return (
+        <div className={styles.center}>
+            <h1>Employee Table</h1>
+
+            {/* {results.map((results) => (
                 <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
 
                     <Stack direction="row" >
@@ -65,117 +83,140 @@ const AdminPageRemove = () => {
                 value = "add" className={styles.button}>Remove User</Button>
 
                  */}
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <TableContainer
-          component={Paper}
-          className={styles.center}
-          style={{ width: "80%", backgroundColor: "#05516a" }}
-        >
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell style={{ fontWeight: "bold", color: "white" }}>
-                  Id
-                </TableCell>
-                <TableCell style={{ fontWeight: "bold", color: "white" }}>
-                  First Name
-                </TableCell>
-                <TableCell style={{ fontWeight: "bold", color: "white" }}>
-                  Last Name
-                </TableCell>
-                <TableCell style={{ fontWeight: "bold", color: "white" }}>
-                  User Name
-                </TableCell>
-                <TableCell style={{ fontWeight: "bold", color: "white" }}>
-                  Password
-                </TableCell>
-                <TableCell style={{ fontWeight: "bold", color: "white" }}>
-                  Role
-                </TableCell>
-                <TableCell style={{ fontWeight: "bold", color: "white" }}>
-                  Edit / Delete
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {results.map((row) => (
-                <TableRow
-                  key={row.employeeUsername}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <TableContainer
+                    component={Paper}
+                    className={styles.center}
+                    style={{ width: "80%", backgroundColor: "#05516a" }}
                 >
-                  <TableCell
-                    style={{ color: "white" }}
-                    component="th"
-                    scope="row"
-                  >
-                    {row.employeeId}
-                  </TableCell>
-                  <TableCell
-                    style={{ color: "white" }}
-                    component="th"
-                    scope="row"
-                  >
-                    {row.employeeFirstName}
-                  </TableCell>
-                  <TableCell
-                    style={{ color: "white" }}
-                    component="th"
-                    scope="row"
-                  >
-                    {row.employeeLastName}
-                  </TableCell>
-                  <TableCell
-                    style={{ color: "white" }}
-                    component="th"
-                    scope="row"
-                  >
-                    {row.employeeUsername}
-                  </TableCell>
-                  <TableCell
-                    style={{ color: "white" }}
-                    component="th"
-                    scope="row"
-                  >
-                    {row.employeePassword}
-                  </TableCell>
-                  <TableCell
-                    style={{ color: "white" }}
-                    component="th"
-                    scope="row"
-                  >
-                    {row.role.roleName}
-                  </TableCell>
-                  <TableCell>
-                    <Stack direction="row" spacing={2}>
-                      <IconButton
-                        variant="outlined"
-                        type="submit"
-                        value="add"
-                        aria-label="add"
-                        style={{ color: "#FFB900" }}
-                      >
-                        <EditIcon />
-                      </IconButton>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell style={{ fontWeight: "bold", color: "white" }}>
+                                    Id
+                                </TableCell>
+                                <TableCell style={{ fontWeight: "bold", color: "white" }}>
+                                    First Name
+                                </TableCell>
+                                <TableCell style={{ fontWeight: "bold", color: "white" }}>
+                                    Last Name
+                                </TableCell>
+                                <TableCell style={{ fontWeight: "bold", color: "white" }}>
+                                    User Name
+                                </TableCell>
+                                <TableCell style={{ fontWeight: "bold", color: "white" }}>
+                                    Password
+                                </TableCell>
+                                <TableCell style={{ fontWeight: "bold", color: "white" }}>
+                                    Role
+                                </TableCell>
+                                <TableCell style={{ fontWeight: "bold", color: "white" }}>
+                                    Edit / Delete
+                                </TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {results.map((row) => (
+                                <TableRow
+                                    key={row.employeeUsername}
+                                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                                >
+                                    <TableCell
+                                        style={{ color: "white" }}
+                                        component="th"
+                                        scope="row"
+                                    >
+                                        {row.employeeId}
+                                    </TableCell>
+                                    <TableCell
+                                        style={{ color: "white" }}
+                                        component="th"
+                                        scope="row"
+                                    >
+                                        {row.employeeFirstName}
+                                    </TableCell>
+                                    <TableCell
+                                        style={{ color: "white" }}
+                                        component="th"
+                                        scope="row"
+                                    >
+                                        {row.employeeLastName}
+                                    </TableCell>
+                                    <TableCell
+                                        style={{ color: "white" }}
+                                        component="th"
+                                        scope="row"
+                                    >
+                                        {row.employeeUsername}
+                                    </TableCell>
+                                    <TableCell
+                                        style={{ color: "white" }}
+                                        component="th"
+                                        scope="row"
+                                    >
+                                        {row.employeePassword}
+                                    </TableCell>
+                                    <TableCell
+                                        style={{ color: "white" }}
+                                        component="th"
+                                        scope="row"
+                                    >
+                                        {row.role.roleName}
+                                    </TableCell>
+                                    <TableCell>
+                                        <Stack direction="row" spacing={2}>
+                                            <IconButton
+                                                variant="outlined"
+                                                type="submit"
+                                                value="add"
+                                                aria-label="add"
+                                                style={{ color: "#FFB900" }}
+                                            >
+                                                <EditIcon />
+                                            </IconButton>
 
-                      <IconButton
-                        variant="outlined"
-                        type="submit"
-                        value="add"
-                        aria-label="add"
-                        style={{ color: "#FFB900" }}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </Stack>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
-    </div>
-  );
+                                            <IconButton
+                                                variant="outlined"
+                                                type="submit"
+                                                value="add"
+                                                aria-label="add"
+                                                style={{ color: "#FFB900" }}
+                                            >
+                                                <DeleteIcon onClick={handleClickOpen} />
+                                            </IconButton>
+                                            <Dialog
+                                                open={open}
+                                                onClose={handleClose}
+                                                aria-labelledby="alert-dialog-title"
+                                                aria-describedby="alert-dialog-description"
+                                            >
+                                                <DialogTitle id="alert-dialog-title">
+                                                    {"Delete"}
+                                                </DialogTitle>
+                                                <DialogContent>
+                                                    <DialogContentText id="alert-dialog-description">
+                                                        Are you sure?
+                                                    </DialogContentText>
+                                                </DialogContent>
+                                                <DialogActions>
+                                                    <button onClick={handleClose}>
+                                                        No
+                                                    </button>
+                                                    <button onClick={handleClose} autoFocus>
+                                                        Yes
+                                                    </button>
+                                                </DialogActions>
+                                            </Dialog>
+                                        </Stack>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </div>
+        </div>
+    );
 };
 
 export default AdminPageRemove;
