@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Electrolize&display=swap");
 h1 {
   text-align: center;
   margin: 0;
@@ -7,10 +8,9 @@ h1 {
   text-align: center;
 
   color: #05516a;
-  font-family: "Droid serif", serif;
+  font-family: "Electrolize", sans-serif;
+
   font-size: 60px;
-  font-weight: 400;
-  font-style: italic;
   line-height: 44px;
   text-align: center;
 }

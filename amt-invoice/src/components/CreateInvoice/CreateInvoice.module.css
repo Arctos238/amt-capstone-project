@@ -1,12 +1,17 @@
 .button {
-    margin-left: 40%;
+  margin-left: 40%;
 }
 .createInvoiceButton {
-    padding: 5px;
+  padding: 5px;
 }
 .errorBox {
-    padding-top: 15px;
+  padding-top: 15px;
 }
 .cartDiv {
-    position: relative;
+  position: relative;
+}
+
+.title {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }

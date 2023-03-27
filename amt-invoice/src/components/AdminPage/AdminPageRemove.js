@@ -35,7 +35,7 @@ const AdminPageRemove = () => {
 
   return (
     <div className={styles.center}>
-      <h1>Employee Table</h1>
+      <h1>Employees</h1>
 
       {/* {results.map((results) => (
                 <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>

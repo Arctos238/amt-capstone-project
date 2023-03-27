@@ -222,7 +222,6 @@ const CreateInvoice = () => {
       delete previousInvoiceItems[0];
       previousInvoiceItems.shift();
     }
-    
   }, [invoiceItem]);
 
   useEffect(() => {
@@ -367,9 +366,10 @@ const CreateInvoice = () => {
     // console.log("Total Price: " + totalPrice);
     // console.log("previousInvoiceItemNotes " + JSON.parse(previousInvoiceItemNotes[0]));
   };
-  
+
   return (
     <div className="createInvoiceItem">
+      <h1 className={styles.title}>Create Invoice</h1>
       {itemAdded ? (
         <div className={styles.errorBox}>
           <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
@@ -432,7 +432,7 @@ const CreateInvoice = () => {
         invoiceNoteRef={invoiceNoteRef}
         addNotesHandler={addNotesHandler}
       />
-    
+
       {/* <Button onClick={showInvoiceItemHandler} className={styles.button}>
         Show Invoice Item
       </Button> */}

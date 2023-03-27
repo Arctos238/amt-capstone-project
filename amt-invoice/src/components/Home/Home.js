@@ -1,17 +1,16 @@
-import React from 'react';
-import classes from './Home.module.css';
-import HomeButtons from './HomeButtons';
-
+import React from "react";
+import classes from "./Home.module.css";
+import HomeButtons from "./HomeButtons";
 
 function HomePage() {
-    return (
-      <div className={classes.home}>
+  return (
+    <div className={classes.home}>
+      <h1>Home</h1>
       <React.Fragment>
-        <HomeButtons/>
-          
+        <HomeButtons />
       </React.Fragment>
-      </div>
-    );
-  }
-  
-  export default HomePage;
+    </div>
+  );
+}
+
+export default HomePage;
