@@ -13,6 +13,7 @@ import CreateClient from "./components/Create_client/CreateClient";
 import AdminPage from "./components/AdminPage/AdminPage";
 import AdminPageAdd from "./components/AdminPage/AdminPageAdd";
 import AdminPageRemove from "./components/AdminPage/AdminPageRemove";
+import EditClient from "./components/EditClient/EditClient";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -119,6 +120,16 @@ function App() {
         element={
           <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
             <CreateClient />
+          </Layout>
+        }
+      />
+
+      <Route
+        path="/editClient"
+        exact
+        element={
+          <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+            <EditClient />
           </Layout>
         }
       />

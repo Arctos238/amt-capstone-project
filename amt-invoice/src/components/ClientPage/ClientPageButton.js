@@ -9,7 +9,9 @@ const ClientPageButton = () => {
         <div className={styles.clientPageButtons}>
             <div className={styles.parent}>
                 <div className={styles.left}>
-                    <Button className={classes.editClient}>Edit Client Information</Button>
+                    <Link to="/editClient">
+                        <Button className={classes.editClient}>Edit Client Information</Button>
+                    </Link>
                 </div>
                 <div className={styles.right}>
                     <Link to="/createProject">
