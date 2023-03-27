@@ -49,6 +49,8 @@ public class InvoiceItemDAOHibernateImpl implements InvoiceItemDAO {
 	public List<InvoiceItem> findInvoiceItemByInvoiceId(int invoiceId) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
+		
+		
 		try {
 			Query<InvoiceItem> query = currentSession.createQuery("FROM InvoiceItem I WHERE I.invoiceId =:invoiceId", InvoiceItem.class);
 			
@@ -57,6 +59,8 @@ public class InvoiceItemDAOHibernateImpl implements InvoiceItemDAO {
 			List<InvoiceItem> invoiceItems = null;
 			
 			invoiceItems = query.getResultList();
+			
+			System.out.println(invoiceItems);
 			
 			return invoiceItems;
 		} catch (Exception ex) {

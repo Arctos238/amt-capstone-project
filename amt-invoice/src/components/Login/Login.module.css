@@ -5,6 +5,24 @@
 
 .title {
   text-align: center;
-  font-size: 200%;
-  font-weight: bold;
+
+  color: #05516a;
+  font-family: "Droid serif", serif;
+  font-size: 60px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 44px;
+  margin: 0 0 12px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 70px;
+
+  /* font-weight: bold;
+  margin-top: 20px;
+  font-size: 60px;
+  font-weight: 600;
+  background-image: radial-gradient(circle, #12487e 45%, #fffb00);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text; */
 }

@@ -25,6 +25,8 @@ import { DeleteInvoiceById } from "../../services/InvoiceServices";
 import { useState, useEffect } from "react";
 import InvoicesPageProject from "./InvoicesPageProjects";
 import PhotoIcon from '@mui/icons-material/Photo';
+import { TableContainer } from "@mui/material";
+import { Paper , Table, TableBody, TableRow, TableCell} from '@mui/material';
 
 const InvoiceProject = (props) => {
   const projectList = props.project;
@@ -233,6 +235,46 @@ const InvoiceProject = (props) => {
           ></DescriptionIcon>
         </AccordionSummary>
         <AccordionDetails>
+          
+        <TableContainer component={Paper}>
+          <Table>
+          <TableBody>
+          <TableRow>
+          <TableCell style={{ fontWeight: 'bold' }}>Project Name:</TableCell>
+          <TableCell>{props.projectName}</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell style={{ fontWeight: 'bold' }}>Project ID:</TableCell>
+          <TableCell>{props.projectID}</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell style={{ fontWeight: 'bold' }}>Project Status:</TableCell>
+          <TableCell>{props.projectStatus}</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell style={{ fontWeight: 'bold' }}>Project Address:</TableCell>
+          <TableCell>{props.projectAddress}</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell style={{ fontWeight: 'bold' }}>Project Second Address:</TableCell>
+          <TableCell>{props.projectSecondAddress}</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell style={{ fontWeight: 'bold' }}>Project Postal:</TableCell>
+          <TableCell>{props.projectPostal}</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell style={{ fontWeight: 'bold' }}>Project City:</TableCell>
+          <TableCell>{props.projectCity}</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell style={{ fontWeight: 'bold' }}>Project Province:</TableCell>
+          <TableCell>{props.projectProvince}</TableCell>
+          </TableRow>
+          </TableBody>
+          </Table>
+          </TableContainer>
+          
           <Typography> Project Name: {props.projectName}</Typography>
           <Typography> Project ID: {props.projectId}</Typography>
           <Typography> Project Status: {props.projectStatus}</Typography>
@@ -307,7 +349,7 @@ const InvoiceProject = (props) => {
           ) : (
             <p>No Invoices</p>
           )}
-          <Button variant="contained" onClick={handleClick}>
+          <Button variant="contained" onClick={handleClick} style={{ backgroundColor: '#05516a' }}>
             Add Invoice
           </Button>
         </AccordionDetails>
