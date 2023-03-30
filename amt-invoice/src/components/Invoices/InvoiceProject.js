@@ -57,7 +57,6 @@ const InvoiceProject = (props) => {
   };
 
   const deleteInvoiceHandler = async (id) => {
-    console.log(invoices);
     await DeleteInvoiceById(id);
     setInvoices(invoices.filter((invoice) => invoice.invoiceId !== id));
   };
