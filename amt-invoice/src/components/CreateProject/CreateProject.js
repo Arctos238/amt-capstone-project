@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 import CreateProjectDetails from "./CreateProjectDetails";
 import CreateProjectAddOns from "./CreateProjectAddOns";
@@ -11,9 +11,9 @@ import { useRef, useState } from "react";
 
 const CreateProject = () => {
   const navigate = useNavigate();
-  const [cabinet, setCabinet] = useState();
-  const [tile, setTile] = useState();
-  const [counter, setCounter] = useState();
+  const [cabinet, setCabinet] = useState(null);
+  const [tile, setTile] = useState(null);
+  const [counter, setCounter] = useState(null);
 
   let clientInfo;
   let toArray;
@@ -21,9 +21,9 @@ const CreateProject = () => {
     clientInfo = localStorage.getItem("clientInfo");
     toArray = JSON.parse(clientInfo);
   }
-  const theSelectedClientId = toArray.clientId;
-
+  const theSelectedClientId = toArray[0].clientId;
   function onCabinetChange(event) {
+    console.log(event.target.value);
     if (event.target.value === true) {
       setCabinet(true);
     } else {
@@ -53,10 +53,16 @@ const CreateProject = () => {
   const addressRef = useRef();
   const suiteRef = useRef();
   const provinceRef = useRef();
+  const projectCabinetsConditionRef = useRef();
+  const projectCounterRemovalRef = useRef();
+  const projectTileRemovalRef = useRef();
+
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const employeeName = user.employeeFirstName + " " + user.employeeLastName;
 
   async function submitHandler(event) {
     event.preventDefault();
-
     const projectId = 1;
     const projectName = projectNameRef.current.value;
     const projectStatus = true;
@@ -67,13 +73,17 @@ const CreateProject = () => {
     const address = addressRef.current.value;
     const suite = suiteRef.current.value;
     const province = provinceRef.current.value;
+    const projectCounterRemoval = projectCounterRemovalRef.current;
+    const projectTileRemoval = projectTileRemovalRef.current;
+    const projectCabinetsCondition = projectCabinetsConditionRef.current;
+
 
     const obj = {
       projectName: projectName,
       projectStatus,
-      projectCabinetsCondition: cabinet,
-      projectCounterRemoval: counter,
-      projectTileRemoval: tile,
+      projectCabinetsCondition,
+      projectCounterRemoval,
+      projectTileRemoval,
       projectAddress: {
         projectAddressId: 1,
         firstLineAddress: address,
@@ -93,6 +103,7 @@ const CreateProject = () => {
       depositForms: [],
       invoices: [],
       client: { clientId: theSelectedClientId },
+      employeeName,
     };
 
     const data = await CreateNewProject(obj);
@@ -100,6 +111,7 @@ const CreateProject = () => {
     if (data != null) {
       alert("its probably up there");
     }
+
     navigate('/createInvoice');
   }
 
@@ -119,9 +131,9 @@ const CreateProject = () => {
             provinceRef={provinceRef}
           />
           <CreateProjectAddOns
-            onCabinetChange={onCabinetChange}
-            onTileChange={onTileChange}
-            onCounterChange={onCounterChange}
+            projectTileRemovalRef={projectTileRemovalRef}
+            projectCounterRemovalRef={projectCounterRemovalRef}
+            projectCabinetsConditionRef={projectCabinetsConditionRef}
           />
 
           <Button

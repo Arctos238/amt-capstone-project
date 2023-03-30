@@ -24,20 +24,26 @@ const theme = createTheme({
 const CreateProjectAddOns = (props) => {
   const [alignment, setAlignment] = React.useState('new');
 
+  //cabinet 
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
+    props.projectCabinetsConditionRef.current = newAlignment;
   };
 
   const [alignment2, setAlignment2] = React.useState('amt');
 
+  //counter removal
   const handleChange2 = (event, newAlignment2) => {
     setAlignment2(newAlignment2);
+    props.projectCounterRemovalRef.current = newAlignment2;
   };
 
   const [alignment3, setAlignment3] = React.useState('amt');
 
+  //tile
   const handleChange3 = (event, newAlignment3) => {
     setAlignment3(newAlignment3);
+    props.projectTileRemovalRef.current = newAlignment3;
   };
 
   return (
@@ -56,8 +62,8 @@ const CreateProjectAddOns = (props) => {
           onChange={handleChange}
           aria-label="Platform"
           >
-          <ToggleButton className="new" name="cabinet" value="new" onChange={props.onCabinetChange} sx={{color: "white"}}>New</ToggleButton>
-          <ToggleButton className="existing" name="cabinet" value="existing" onChange={props.onCabinetChange} sx={{color: "white"}}>Existing</ToggleButton>
+          <ToggleButton className="new" name="cabinet" value="true" onChange={props.onCabinetChange} sx={{color: "white"}}>New</ToggleButton>
+          <ToggleButton className="existing" name="cabinet" value="false" onChange={props.onCabinetChange} sx={{color: "white"}}>Existing</ToggleButton>
           
           </ToggleButtonGroup>
           
