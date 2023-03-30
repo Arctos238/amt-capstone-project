@@ -141,20 +141,6 @@ const CreateInvoiceItem = (props) => {
           </FormControl>
         </CardWithRadius>
       </div>
-
-      {/* <div className={styles.itemList}>
-        {invoiceItemList.map((itemList) => (
-          <PrintItemList
-            invoiceItemName={itemList.invoiceItemName}
-            invoiceItemMeasurement={itemList.invoiceItemMeasurement}
-            invoiceItemWidth={itemList.invoiceItemWidth}
-            invoiceItemLength={itemList.invoiceItemLength}
-            invoiceItemArea={itemList.invoiceItemArea}
-            invoiceItemDepth={itemList.invoiceItemDepth}
-            invoiceItemPrice={itemList.invoiceItemPrice}
-          />
-        ))}
-      </div> */}
     </form>
   );
 };

@@ -169,23 +169,34 @@ const CreateInvoice = () => {
   // if(location.state.currentInvoiceItems != null) {
   //   console.log(location.state.currentInvoiceItems);
   // }
-  
 
   const [itemAdded, setItemAdded] = useState(false);
   const [noteAdded, setNoteAdded] = useState(false);
   const [noteEmpty, setNoteEmpty] = useState(false);
   const [isInvoiceAdded, setIsInvoiceAdded] = useState(false);
+  const [isInputEmpty, setIsInputEmpty] = useState(false);
+  const [isInvoiceItemsEmpty, setIsInvoiceItemsEmpty] = useState(false);
 
-  //remove item added alert
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setIsInvoiceAdded(false);
-  //   }, 3000);
 
-  //   return () => {
-  //     clearTimeout(timer);
-  //   };
-  // }, [isInvoiceAdded]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInvoiceItemsEmpty(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isInvoiceItemsEmpty]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInputEmpty(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isInputEmpty]);
   useEffect(() => {
     const timer = setTimeout(() => {
       setItemAdded(false);
@@ -314,27 +325,52 @@ const CreateInvoice = () => {
       delete previousInvoiceItemNotes[0];
       previousInvoiceItemNotes.shift();
     }
-    //#Hooks problem
-    setInvoiceItem({
-      invoiceItemName,
-      invoiceItemMeasurement,
-      invoiceItemWidth,
-      invoiceItemLength,
-      invoiceItemArea,
-      invoiceItemDepth,
-      invoiceItemPrice,
-      edgeProfile: {
-        edgeProfileId: profileId,
-        edgeProfileType,
-        edgeProfileCut,
-        edgeProfileMeasurement,
-      },
-      invoiceItemNotes: previousInvoiceItemNotes,
-      // invoiceId: invoiceId
-    });
+    if (
+      invoiceItemName === null ||
+      invoiceItemName === "" ||
+      invoiceItemMeasurement === null ||
+      invoiceItemMeasurement === "" ||
+      invoiceItemWidth === null ||
+      invoiceItemWidth === "" ||
+      invoiceItemLength === null ||
+      invoiceItemLength === ""||
+      invoiceItemArea === null ||
+      invoiceItemArea === ""||
+      invoiceItemDepth === null ||
+      invoiceItemDepth === ""||
+      invoiceItemPrice === null ||
+      invoiceItemPrice === ""||
+      edgeProfileMeasurement === null ||
+      edgeProfileMeasurement === ""||
+      profileId === null ||
+      profileId === ""||
+      edgeProfileType === null ||
+      edgeProfileType === ""||
+      edgeProfileCut === null ||
+      edgeProfileCut === ""
+    ) {
+      setIsInputEmpty(true);
+    } else {
+      setInvoiceItem({
+        invoiceItemName,
+        invoiceItemMeasurement,
+        invoiceItemWidth,
+        invoiceItemLength,
+        invoiceItemArea,
+        invoiceItemDepth,
+        invoiceItemPrice,
+        edgeProfile: {
+          edgeProfileId: profileId,
+          edgeProfileType,
+          edgeProfileCut,
+          edgeProfileMeasurement,
+        },
+        invoiceItemNotes: previousInvoiceItemNotes,
+      });
 
-    setTotalPrice(Number(totalPrice) + Number(invoiceItemPrice));
-    setItemAdded(true);
+      setTotalPrice(Number(totalPrice) + Number(invoiceItemPrice));
+      setItemAdded(true);
+    }
   };
 
   const addNotesHandler = () => {
@@ -345,31 +381,28 @@ const CreateInvoice = () => {
   };
 
   const createInvoiceHandler = async () => {
-    data = {
-      invoiceTotalPrice: totalPrice,
-      project: {
-        projectId: currentProjectId,
-      },
-      invoiceItems: previousInvoiceItems,
-    };
-
-    try {
-      const info = await CreateNewInvoice(data);
-    } catch (error) {
-      console.error(error);
+    if(previousInvoiceItems.length < 0 || previousInvoiceItems[0].length === 1) {
+      setIsInvoiceItemsEmpty(true);
+    } else {
+      data = {
+        invoiceTotalPrice: totalPrice,
+        project: {
+          projectId: currentProjectId,
+        },
+        invoiceItems: previousInvoiceItems,
+      };
+  
+      try {
+        const info = await CreateNewInvoice(data);
+      } catch (error) {
+        console.error(error);
+      }
+  
+      if (data != null) {
+        setIsInvoiceAdded(true);
+      }
     }
-
-    if (data != null) {
-      setIsInvoiceAdded(true);
-    }
-  };
-
-  //used  to debug
-  const showInvoiceItemHandler = () => {
-    console.log(previousInvoiceItems);
-    // console.log(JSON.stringify(data));
-    // console.log("Total Price: " + totalPrice);
-    // console.log("previousInvoiceItemNotes " + JSON.parse(previousInvoiceItemNotes[0]));
+    
   };
 
   return (
@@ -389,7 +422,10 @@ const CreateInvoice = () => {
       {isInvoiceAdded ? (
         <div className={styles.errorBox}>
           <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
-            <Alert severity="success">Invoice Created! <Link to={'/invoices'}>Go back to Invoice Page</Link></Alert>
+            <Alert severity="success">
+              Invoice Created!{" "}
+              <Link to={"/invoices"}>Go back to Invoice Page</Link>
+            </Alert>
           </Stack>
         </div>
       ) : (
@@ -408,6 +444,24 @@ const CreateInvoice = () => {
         <div className={styles.errorBox}>
           <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
             <Alert severity="error">Note empty - please type your notes</Alert>
+          </Stack>
+        </div>
+      ) : (
+        <></>
+      )}
+      {isInputEmpty ? (
+        <div className={styles.errorBox}>
+          <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
+            <Alert severity="error">Please fill up the form</Alert>
+          </Stack>
+        </div>
+      ) : (
+        <></>
+      )}
+      {isInvoiceItemsEmpty ? (
+        <div className={styles.errorBox}>
+          <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
+            <Alert severity="error">No Invoice Items Added - Please add items</Alert>
           </Stack>
         </div>
       ) : (

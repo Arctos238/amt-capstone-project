@@ -32,12 +32,15 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SummarizeIcon from "@mui/icons-material/Summarize";
 
 
+
 const InvoiceProject = (props) => {
   const projectList = props.project;
   const [invoices, setInvoices] = useState(projectList.invoices);
   const [selectedInvoiceId, setSelectedInvoiceId] = useState(null);
   const [sendInvoiceInfo, setSendInvoiceInfo] = useState({});
 
+  console.log(props.project);
+  console.log(invoices[0].invoiceItems);
   // const [invoices, setInvoices] = useState([]);
   // setInvoices(projectInfo.invoices);
   // console.log(invoices);
@@ -48,8 +51,10 @@ const InvoiceProject = (props) => {
 
   // const [images, setImages] = useState([]);
   const nav = useNavigate();
-
-  const workForms = () => {
+  localStorage.setItem('invoice', JSON.stringify(projectList));
+  const test = JSON.parse(localStorage.getItem('invoice'));
+  console.log(test);
+  const workForms = async () => {
     nav("/workForm");
   };
   const handleClick = async () => {
@@ -64,9 +69,9 @@ const InvoiceProject = (props) => {
   };
 
   const deleteInvoiceHandler = async (id) => {
-    const data = await DeleteInvoiceById(id);
-    setInvoices(invoices.filter((invoice) => invoice.id !== id));
-    
+    console.log(invoices);
+    await DeleteInvoiceById(id);
+    setInvoices(invoices.filter((invoice) => invoice.invoiceId !== id));
   };
 
   //these three are sent to InvoicePageProjects
@@ -120,70 +125,88 @@ const InvoiceProject = (props) => {
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project Name:
                   </TableCell>
-                  <TableCell>{props.projectName}</TableCell>
+                  <TableCell>{props.project.projectName}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project ID:
                   </TableCell>
-                  <TableCell>{props.projectID}</TableCell>
+                  <TableCell>{props.projectId}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project Status:
                   </TableCell>
-                  <TableCell>{props.projectStatus}</TableCell>
+                  <TableCell>{props.project.projectStatus}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project Address:
                   </TableCell>
-                  <TableCell>{props.projectAddress}</TableCell>
+                  <TableCell>{props.project.projectAddress.firstLineAddress}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project Second Address:
                   </TableCell>
-                  <TableCell>{props.projectSecondAddress}</TableCell>
+                  <TableCell>{props.project.projectAddress.secondLineAddress}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project Postal:
                   </TableCell>
-                  <TableCell>{props.projectPostal}</TableCell>
+                  <TableCell>{props.project.projectAddress.postalCode}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project City:
                   </TableCell>
-                  <TableCell>{props.projectCity}</TableCell>
+                  <TableCell>{props.project.projectAddress.city}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project Province:
                   </TableCell>
-                  <TableCell>{props.projectProvince}</TableCell>
+                  <TableCell>{props.project.projectAddress.province}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </TableContainer>
 
-          <Typography> Project Name: {props.projectName}</Typography>
-          <Typography> Project ID: {props.projectId}</Typography>
-          <Typography> Project Status: {props.projectStatus}</Typography>
-          <Typography> Project Address: {props.projectAddress}</Typography>
-          <Typography>
-            Project Second Address: {props.projectSecondAddress}
-          </Typography>
-          <Typography> Project Postal: {props.projectPostal}</Typography>
-          <Typography> Project City: {props.projectCity}</Typography>
-          <Typography> Project Province: {props.projectProvince}</Typography>
-
           <br></br>
 
-          <Typography>Site Supervisor</Typography>
-          <Typography> Super Name: {props.projectSuper}</Typography>
-          <Typography> Super Number: {props.projectSuperNum}</Typography>
+          <div>
+              <Typography variant="h6" gutterBottom>
+                Project Supervisor Information
+              </Typography>
+              <TableContainer component={Paper}>
+                <Table>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell style={{ fontWeight: "bold" }}>
+                        Super Name:
+                      </TableCell>
+                      <TableCell>
+                        {props.project.projectSupervisor.projectSupervisorName}
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell style={{ fontWeight: "bold" }}>
+                        Super Number:
+                      </TableCell>
+                      <TableCell>
+                        {props.project.projectSupervisor.projectSupervisorNumber}
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
+
+
+          
+
+          
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -236,12 +259,10 @@ const InvoiceProject = (props) => {
                       />
                     </IconButton>
                     <IconButton aria-label="delete" size="medium">
-                      <Link to={{ pathname: '/updateInvoice', search: `?invoiceId=${invoices.invoiceId}`}}>
                       <EditIcon
                         fontSize="inherit"
                         sx={{ color: "#fabd44", padding: 0 }}
                       />
-                      </Link>
                     </IconButton>
                   </div>
                 </div>

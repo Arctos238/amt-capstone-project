@@ -1,19 +1,38 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 import CreateProjectDetails from "./CreateProjectDetails";
 import CreateProjectAddOns from "./CreateProjectAddOns";
 import Button from "../UI/Button";
 import { CreateNewProject } from "../../services/ProjectServices";
-
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
 import styles from "./CreateProject.module.css";
-import { useRef, useState } from "react";
+import BackButton from "../BackButton/BackButton";
+import { useRef, useState, useEffect } from "react";
 
 const CreateProject = () => {
   const navigate = useNavigate();
-  const [cabinet, setCabinet] = useState();
-  const [tile, setTile] = useState();
-  const [counter, setCounter] = useState();
+  const [isProjectUploaded, setIsProjectUploaded] = useState(false);
+  const [isInputEmpty, setIsInputEmpty] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsProjectUploaded(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isProjectUploaded]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInputEmpty(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isInputEmpty]);
 
   let clientInfo;
   let toArray;
@@ -21,29 +40,7 @@ const CreateProject = () => {
     clientInfo = localStorage.getItem("clientInfo");
     toArray = JSON.parse(clientInfo);
   }
-  const theSelectedClientId = toArray.clientId;
-
-  function onCabinetChange(event) {
-    if (event.target.value === true) {
-      setCabinet(true);
-    } else {
-      setCabinet(false);
-    }
-  }
-  function onCounterChange(event) {
-    if (event.target.value === true) {
-      setCounter(true);
-    } else {
-      setCounter(false);
-    }
-  }
-  function onTileChange(event) {
-    if (event.target.value === true) {
-      setTile(true);
-    } else {
-      setTile(false);
-    }
-  }
+  const theSelectedClientId = toArray[0].clientId;
 
   const projectNameRef = useRef();
   const siteSuperPhoneRef = useRef();
@@ -53,11 +50,15 @@ const CreateProject = () => {
   const addressRef = useRef();
   const suiteRef = useRef();
   const provinceRef = useRef();
+  const projectCabinetsConditionRef = useRef();
+  const projectCounterRemovalRef = useRef();
+  const projectTileRemovalRef = useRef();
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const employeeName = user.employeeFirstName + " " + user.employeeLastName;
 
   async function submitHandler(event) {
     event.preventDefault();
-
-    const projectId = 1;
     const projectName = projectNameRef.current.value;
     const projectStatus = true;
     const siteSuperPhone = siteSuperPhoneRef.current.value;
@@ -67,46 +68,97 @@ const CreateProject = () => {
     const address = addressRef.current.value;
     const suite = suiteRef.current.value;
     const province = provinceRef.current.value;
+    const projectCounterRemoval = projectCounterRemovalRef.current;
+    const projectTileRemoval = projectTileRemovalRef.current;
+    const projectCabinetsCondition = projectCabinetsConditionRef.current;
 
-    const obj = {
-      projectName: projectName,
-      projectStatus,
-      projectCabinetsCondition: cabinet,
-      projectCounterRemoval: counter,
-      projectTileRemoval: tile,
-      projectAddress: {
-        projectAddressId: 1,
-        firstLineAddress: address,
-        secondLineAddress: suite,
-        postalCode: postalCode,
-        city: city,
-        province: province,
-      },
-      projectSupervisor: {
-        projectSupervisorId: 1,
-        projectSupervisorName: siteSuperName,
-        projectSupervisorNumber: siteSuperPhone,
-      },
-      quotes: [],
-      images: [],
-      purchaseOrders: [],
-      depositForms: [],
-      invoices: [],
-      client: { clientId: theSelectedClientId },
-    };
+    if (
+      projectName === null ||
+      projectName === "" ||
+      projectStatus === null ||
+      projectStatus === "" ||
+      siteSuperPhone === null ||
+      siteSuperPhone === "" ||
+      siteSuperName === null ||
+      siteSuperName === "" ||
+      postalCode === null ||
+      postalCode === "" ||
+      city === null ||
+      city === "" ||
+      province === null ||
+      province === "" ||
+      projectCounterRemoval === null ||
+      projectCounterRemoval === "" ||
+      projectTileRemoval === null ||
+      projectTileRemoval === "" ||
+      projectCabinetsCondition === null ||
+      projectCabinetsCondition === ""
+    ) {
+      setIsInputEmpty(true);
+    } else {
+      const obj = {
+        projectName: projectName,
+        projectStatus,
+        projectCabinetsCondition,
+        projectCounterRemoval,
+        projectTileRemoval,
+        projectAddress: {
+          projectAddressId: 1,
+          firstLineAddress: address,
+          secondLineAddress: suite,
+          postalCode: postalCode,
+          city: city,
+          province: province,
+        },
+        projectSupervisor: {
+          projectSupervisorId: 1,
+          projectSupervisorName: siteSuperName,
+          projectSupervisorNumber: siteSuperPhone,
+        },
+        quotes: [],
+        images: [],
+        purchaseOrders: [],
+        depositForms: [],
+        invoices: [],
+        client: { clientId: theSelectedClientId },
+        employeeName,
+      };
 
-    const data = await CreateNewProject(obj);
+      const data = await CreateNewProject(obj);
 
-    if (data != null) {
-      alert("its probably up there");
+      if (data != null) {
+        setIsProjectUploaded(true);
+      }
     }
-    navigate('/createInvoice');
+
+    // navigate("/clientPage");
   }
 
   return (
     <React.Fragment>
+      <BackButton/>
       <h1 className={styles.h1}>Create Project</h1>
       <div className={styles.container}>
+        {isProjectUploaded ? (
+          <div className={styles.errorBox}>
+            <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
+              <Alert severity="success">
+                {projectNameRef.current.value} - project added!
+              </Alert>
+            </Stack>
+          </div>
+        ) : (
+          <></>
+        )}
+        {isInputEmpty ? (
+          <div className={styles.errorBox}>
+            <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
+              <Alert severity="error">Please fill up the form</Alert>
+            </Stack>
+          </div>
+        ) : (
+          <></>
+        )}
         <form className={styles.form}>
           <CreateProjectDetails
             projectNameRef={projectNameRef}
@@ -119,9 +171,9 @@ const CreateProject = () => {
             provinceRef={provinceRef}
           />
           <CreateProjectAddOns
-            onCabinetChange={onCabinetChange}
-            onTileChange={onTileChange}
-            onCounterChange={onCounterChange}
+            projectTileRemovalRef={projectTileRemovalRef}
+            projectCounterRemovalRef={projectCounterRemovalRef}
+            projectCabinetsConditionRef={projectCabinetsConditionRef}
           />
 
           <Button
