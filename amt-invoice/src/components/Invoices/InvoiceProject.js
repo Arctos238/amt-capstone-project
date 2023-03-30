@@ -12,7 +12,7 @@ import CardWithRadius from "../UI/CardWithRadius";
 import Box from "@mui/material/Box";
 import classes from "../UI/CardWithRadius.module.css";
 import styles from "./InvoiceProject.module.css";
-import { useNavigate } from "react-router-dom";
+import { createSearchParams, useNavigate, Link } from "react-router-dom";
 import { GetProjectById } from "../../services/ProjectServices";
 import { GetInvoiceById } from "../../services/InvoiceServices";
 import DocumentUpload from "./InvoiceProjectDocumentUpload";
@@ -22,6 +22,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import BackButton from "../BackButton/BackButton";
 import { GetImageById } from "../../services/ImageServices";
 import { DeleteInvoiceById } from "../../services/InvoiceServices";
+import { GetInvoiceItemsByInvoiceId } from "../../services/InvoiceItemServices";
 import { useState, useEffect } from "react";
 import InvoicesPageProject from "./InvoicesPageProjects";
 import PhotoIcon from "@mui/icons-material/Photo";
@@ -29,7 +30,7 @@ import { TableContainer } from "@mui/material";
 import { Paper, Table, TableBody, TableRow, TableCell } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SummarizeIcon from "@mui/icons-material/Summarize";
-import { Link } from "react-router-dom";
+
 
 const InvoiceProject = (props) => {
   const projectList = props.project;
@@ -65,9 +66,9 @@ const InvoiceProject = (props) => {
   };
 
   const deleteInvoiceHandler = async (id) => {
-    console.log(invoices);
-    await DeleteInvoiceById(id);
-    setInvoices(invoices.filter((invoice) => invoice.invoiceId !== id));
+    const data = await DeleteInvoiceById(id);
+    setInvoices(invoices.filter((invoice) => invoice.id !== id));
+    
   };
 
   //these three are sent to InvoicePageProjects
@@ -255,10 +256,12 @@ const InvoiceProject = (props) => {
                       />
                     </IconButton>
                     <IconButton aria-label="delete" size="medium">
+                      <Link to={{ pathname: '/updateInvoice', search: `?invoiceId=${invoices.invoiceId}`}}>
                       <EditIcon
                         fontSize="inherit"
                         sx={{ color: "#fabd44", padding: 0 }}
                       />
+                      </Link>
                     </IconButton>
                   </div>
                 </div>
