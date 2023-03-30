@@ -69,10 +69,6 @@ const InvoiceProject = (props) => {
     
   };
 
-  const editInvoiceHandler = (id) => {
-    nav.navigate("/updateInvoice", {selectedInvoiceId: id});
-  }
-
   //these three are sent to InvoicePageProjects
   const [open, setOpen] = useState(false);
   const handleOpen = async (invoiceId) => {

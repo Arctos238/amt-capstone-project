@@ -7,7 +7,7 @@ import CreateInvoiceNotes from "./CreateInvoiceNotes";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import CreateInvoiceCart from "./CreateInvoiceCart";
-
+import { Link } from "react-router-dom";
 import { CreateNewInvoice } from "../../services/InvoiceServices";
 
 import styles from "./CreateInvoice.module.css";
@@ -177,15 +177,15 @@ const CreateInvoice = () => {
   const [isInvoiceAdded, setIsInvoiceAdded] = useState(false);
 
   //remove item added alert
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsInvoiceAdded(false);
-    }, 3000);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsInvoiceAdded(false);
+  //   }, 3000);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [isInvoiceAdded]);
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, [isInvoiceAdded]);
   useEffect(() => {
     const timer = setTimeout(() => {
       setItemAdded(false);
@@ -355,7 +355,6 @@ const CreateInvoice = () => {
 
     try {
       const info = await CreateNewInvoice(data);
-      console.log(info);
     } catch (error) {
       console.error(error);
     }
@@ -390,7 +389,7 @@ const CreateInvoice = () => {
       {isInvoiceAdded ? (
         <div className={styles.errorBox}>
           <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
-            <Alert severity="success">Invoice Created!</Alert>
+            <Alert severity="success">Invoice Created! <Link to={'/invoices'}>Go back to Invoice Page</Link></Alert>
           </Stack>
         </div>
       ) : (
