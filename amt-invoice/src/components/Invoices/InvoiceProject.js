@@ -32,6 +32,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SummarizeIcon from "@mui/icons-material/Summarize";
 
 
+
 const InvoiceProject = (props) => {
   const projectList = props.project;
   const [invoices, setInvoices] = useState(projectList.invoices);
@@ -39,7 +40,7 @@ const InvoiceProject = (props) => {
   const [sendInvoiceInfo, setSendInvoiceInfo] = useState({});
 
   console.log(props.project);
-  console.log(props.project.projectAddress.firstLineAddress);
+  console.log(invoices[0].invoiceItems);
   // const [invoices, setInvoices] = useState([]);
   // setInvoices(projectInfo.invoices);
   // console.log(invoices);
@@ -50,8 +51,10 @@ const InvoiceProject = (props) => {
 
   // const [images, setImages] = useState([]);
   const nav = useNavigate();
-
-  const workForms = () => {
+  localStorage.setItem('invoice', JSON.stringify(projectList));
+  const test = JSON.parse(localStorage.getItem('invoice'));
+  console.log(test);
+  const workForms = async () => {
     nav("/workForm");
   };
   const handleClick = async () => {
@@ -66,9 +69,9 @@ const InvoiceProject = (props) => {
   };
 
   const deleteInvoiceHandler = async (id) => {
-    const data = await DeleteInvoiceById(id);
-    setInvoices(invoices.filter((invoice) => invoice.id !== id));
-    
+    console.log(invoices);
+    await DeleteInvoiceById(id);
+    setInvoices(invoices.filter((invoice) => invoice.invoiceId !== id));
   };
 
   //these three are sent to InvoicePageProjects
@@ -173,32 +176,32 @@ const InvoiceProject = (props) => {
           <br></br>
 
           <div>
-  <Typography variant="h6" gutterBottom>
-    Project Supervisor Information
-  </Typography>
-  <TableContainer component={Paper}>
-    <Table>
-      <TableBody>
-        <TableRow>
-          <TableCell style={{ fontWeight: "bold" }}>
-            Super Name:
-          </TableCell>
-          <TableCell>
-            {props.project.projectSupervisor.projectSupervisorName}
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell style={{ fontWeight: "bold" }}>
-            Super Number:
-          </TableCell>
-          <TableCell>
-            {props.project.projectSupervisor.projectSupervisorNumber}
-          </TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
-  </TableContainer>
-</div>
+              <Typography variant="h6" gutterBottom>
+                Project Supervisor Information
+              </Typography>
+              <TableContainer component={Paper}>
+                <Table>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell style={{ fontWeight: "bold" }}>
+                        Super Name:
+                      </TableCell>
+                      <TableCell>
+                        {props.project.projectSupervisor.projectSupervisorName}
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell style={{ fontWeight: "bold" }}>
+                        Super Number:
+                      </TableCell>
+                      <TableCell>
+                        {props.project.projectSupervisor.projectSupervisorNumber}
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
 
 
           
@@ -256,12 +259,10 @@ const InvoiceProject = (props) => {
                       />
                     </IconButton>
                     <IconButton aria-label="delete" size="medium">
-                      <Link to={{ pathname: '/updateInvoice', search: `?invoiceId=${invoices.invoiceId}`}}>
                       <EditIcon
                         fontSize="inherit"
                         sx={{ color: "#fabd44", padding: 0 }}
                       />
-                      </Link>
                     </IconButton>
                   </div>
                 </div>
