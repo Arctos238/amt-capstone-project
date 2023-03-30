@@ -390,7 +390,7 @@ const UpdateInvoice = (props) => {
       {isInvoiceAdded ? (
         <div className={styles.errorBox}>
           <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
-          <Alert severity="success">Invoice Created! <Link to={'/invoices'}>Go back to Invoice Page</Link></Alert>
+          <Alert severity="success">Invoice Updated! <Link to={'/invoices'}>Go back to Invoice Page</Link></Alert>
           </Stack>
         </div>
       ) : (
