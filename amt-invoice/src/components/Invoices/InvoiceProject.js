@@ -12,7 +12,7 @@ import CardWithRadius from "../UI/CardWithRadius";
 import Box from "@mui/material/Box";
 import classes from "../UI/CardWithRadius.module.css";
 import styles from "./InvoiceProject.module.css";
-import { useNavigate } from "react-router-dom";
+import { createSearchParams, useNavigate, Link } from "react-router-dom";
 import { GetProjectById } from "../../services/ProjectServices";
 import { GetInvoiceById } from "../../services/InvoiceServices";
 import DocumentUpload from "./InvoiceProjectDocumentUpload";
@@ -22,6 +22,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import BackButton from "../BackButton/BackButton";
 import { GetImageById } from "../../services/ImageServices";
 import { DeleteInvoiceById } from "../../services/InvoiceServices";
+import { GetInvoiceItemsByInvoiceId } from "../../services/InvoiceItemServices";
 import { useState, useEffect } from "react";
 import InvoicesPageProject from "./InvoicesPageProjects";
 import PhotoIcon from "@mui/icons-material/Photo";
@@ -29,7 +30,7 @@ import { TableContainer } from "@mui/material";
 import { Paper, Table, TableBody, TableRow, TableCell } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SummarizeIcon from "@mui/icons-material/Summarize";
-import { Link } from "react-router-dom";
+
 
 const InvoiceProject = (props) => {
   const projectList = props.project;
@@ -63,10 +64,14 @@ const InvoiceProject = (props) => {
   };
 
   const deleteInvoiceHandler = async (id) => {
-    console.log(invoices);
-    await DeleteInvoiceById(id);
-    setInvoices(invoices.filter((invoice) => invoice.invoiceId !== id));
+    const data = await DeleteInvoiceById(id);
+    setInvoices(invoices.filter((invoice) => invoice.id !== id));
+    
   };
+
+  const editInvoiceHandler = (id) => {
+    nav.navigate("/updateInvoice", {selectedInvoiceId: id});
+  }
 
   //these three are sent to InvoicePageProjects
   const [open, setOpen] = useState(false);
@@ -93,136 +98,6 @@ const InvoiceProject = (props) => {
   // },[props.imageId, images])
 
   return (
-    // SOMEONE CHECK THIS IF YOU NEED SOMETHING FROM THIS CODE
-    // <div>
-    //   {/* <CardWithRadius className={classes.blueCard}>
-    //     <div>
-    //       <Accordion
-    //         expanded={expanded === "panel1"}
-    //         onChange={handleChange("panel1")}
-    //       >
-    //         <AccordionSummary
-    //           expandIcon={<ExpandMoreIcon />}
-    //           aria-controls="panel1bh-content"
-    //           id="panel1bh-header"
-    //         >
-    //           <Typography sx={{ width: "33%", flexShrink: 0 }}>
-    //             Project Details
-    //           </Typography>
-
-    //           <DescriptionIcon
-    //             sx={{ width: "80%", fontSize: "60px" }}
-    //           ></DescriptionIcon>
-    //         </AccordionSummary>
-    //         <AccordionDetails>
-    //           <Typography> Project Name: {props.projectName}</Typography>
-    //           <Typography> Project ID: {props.projectId}</Typography>
-    //           <Typography> Project Status: {props.projectStatus}</Typography>
-    //           <Typography> Project Address: {props.projectAddress}</Typography>
-    //           <Typography>
-    //             {" "}
-    //             Project Second Address: {props.projectSecondAddress}
-    //           </Typography>
-    //           <Typography> Project Postal: {props.projectPostal}</Typography>
-    //           <Typography> Project City: {props.projectCity}</Typography>
-    //           <Typography>
-    //             {" "}
-    //             Project Province: {props.projectProvince}
-    //           </Typography>
-
-    //           <br></br>
-
-    //           <Typography>Site Supervisor</Typography>
-    //           <Typography> Super Name: {props.projectSuper}</Typography>
-    //           <Typography> Super Number: {props.projectSuperNum}</Typography>
-    //         </AccordionDetails>
-    //       </Accordion>
-    //       <Accordion
-    //         expanded={expanded === "panel2"}
-    //         onChange={handleChange("panel2")}
-    //       >
-    //         <AccordionSummary
-    //           expandIcon={<ExpandMoreIcon />}
-    //           aria-controls="panel2bh-content"
-    //           id="panel2bh-header"
-    //         >
-    //           <Typography sx={{ width: "33%", flexShrink: 0 }}>
-    //             Invoice
-    //           </Typography>
-
-    //           <ReceiptIcon
-    //             sx={{ width: "80%", fontSize: "60px" }}
-    //           ></ReceiptIcon>
-    //         </AccordionSummary>
-    //         <AccordionDetails>
-    //           <Typography> Invoice ID: {props.projectInvoice} </Typography>
-    //           {props.projectDepths.map((depth, i) => (
-    //             <Typography>
-    //               {" "}
-    //               Item Depth: {depth} {props.projectUnits}
-    //             </Typography>
-    //           ))}
-    //           {props.projectWidths.map((width, i) => (
-    //             <Typography>
-    //               {" "}
-    //               Item Width: {width} {props.projectUnits}
-    //             </Typography>
-    //           ))}
-    //           {props.projectLengths.map((length, i) => (
-    //             <Typography>
-    //               {" "}
-    //               Item Length: {length} {props.projectUnits}
-    //             </Typography>
-    //           ))}
-
-    //           {props.projectAreas.map((area) => (
-    //             <Typography> Item Area: {area}</Typography>
-    //           ))}
-    //           {props.projectEdges.map((edge) => (
-    //             <Typography> Edge Profile: {edge}</Typography>
-    //           ))}
-    //           {props.projectEdgeMeasures.map((measure) => (
-    //             <Typography> Edge Measurement: {measure}</Typography>
-    //           ))}
-    //           {props.projectEdgeTypes.map((type) => (
-    //             <Typography> Edge Profile Type: {type}</Typography>
-    //           ))}
-    //           {props.projectPrices.map((price) => (
-    //             <Typography> Item Price: ${price}</Typography>
-    //           ))}
-    //           <br></br>
-    //           <Typography> Project Total: ${props.projectTotal}</Typography>
-
-    //           <Button variant="contained" onClick={handleClick}>
-    //             Add Invoice
-    //           </Button>
-    //         </AccordionDetails>
-    //       </Accordion>
-    //       <Accordion
-    //         expanded={expanded === "panel3"}
-    //         onChange={handleChange("panel3")}
-    //       >
-    //         <AccordionSummary
-    //           expandIcon={<ExpandMoreIcon />}
-    //           aria-controls="panel3bh-content"
-    //           id="panel3bh-header"
-    //         >
-    //           <Typography sx={{ width: "33%", flexShrink: 0 }}>
-    //             Documentation
-    //           </Typography>
-
-    //           <ArticleIcon
-    //             sx={{ width: "80%", fontSize: "60px" }}
-    //           ></ArticleIcon>
-    //         </AccordionSummary>
-    //         <AccordionDetails>
-    //           <DocumentUpload projectId={props.projectId} />
-    //         </AccordionDetails>
-    //       </Accordion>
-    //     </div>
-    //   </CardWithRadius> */}
-
-    // </div>
     <div>
       <Accordion
         expanded={expanded === "panel1"}
@@ -365,10 +240,12 @@ const InvoiceProject = (props) => {
                       />
                     </IconButton>
                     <IconButton aria-label="delete" size="medium">
+                      <Link to={{ pathname: '/updateInvoice', search: `?invoiceId=${invoices.invoiceId}`}}>
                       <EditIcon
                         fontSize="inherit"
                         sx={{ color: "#fabd44", padding: 0 }}
                       />
+                      </Link>
                     </IconButton>
                   </div>
                 </div>

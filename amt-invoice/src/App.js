@@ -15,6 +15,7 @@ import AdminPageAdd from "./components/AdminPage/AdminPageAdd";
 import AdminPageRemove from "./components/AdminPage/AdminPageRemove";
 import WorkOrderForm from "./components/Invoices/WorkOrderForm";
 import Header from "./components/UI/Header";
+import UpdateInvoice from "./components/CreateInvoice/UpdateInvoice";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -27,7 +28,6 @@ function App() {
   if (!loggedIn && location.pathname !== "/") {
     return <Navigate to="/" />;
   }
-
   return (
     <div>
       <Header />
@@ -148,8 +148,15 @@ function App() {
             </Layout>
           }
         />
-
-       
+        <Route
+          path="/updateInvoice"
+          exact
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <UpdateInvoice />
+            </Layout>
+          }
+        />
       </Routes>
     </div>
   );
