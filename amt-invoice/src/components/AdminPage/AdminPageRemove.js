@@ -23,6 +23,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { DeleteEmployeeByUsername } from "../../services/EmployeeServices";
+import { Link } from "react-router-dom";
 
 const AdminPageRemove = () => {
     const [results, setResults] = useState([]);
@@ -30,13 +32,19 @@ const AdminPageRemove = () => {
     //const theme = useTheme();
     //const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+    // const handleClickOpen = () => {
+    //     setOpen(true);
+    // };
 
-    const handleClose = () => {
+    // const handleClose = () => {
+    //     setOpen(false);
+    // };
+    const handleDelete = async (username) => {
+        console.log(username);
+        await DeleteEmployeeByUsername(username);
         setOpen(false);
-    };
+        setResults(results.filter((result) => result.employeeUsername !== username));
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -165,15 +173,18 @@ const AdminPageRemove = () => {
                                     </TableCell>
                                     <TableCell>
                                         <Stack direction="row" spacing={2}>
-                                            <IconButton
-                                                variant="outlined"
-                                                type="submit"
-                                                value="add"
-                                                aria-label="add"
-                                                style={{ color: "#FFB900" }}
-                                            >
-                                                <EditIcon />
-                                            </IconButton>
+                                            <Link to={"/AdminPageEdit"}
+                                                state={row.employeeUsername}>
+                                                <IconButton
+                                                    variant="outlined"
+                                                    type="submit"
+                                                    value="add"
+                                                    aria-label="add"
+                                                    style={{ color: "#FFB900" }}
+                                                >
+                                                    <EditIcon />
+                                                </IconButton>
+                                            </Link>
 
                                             <IconButton
                                                 variant="outlined"
@@ -181,10 +192,11 @@ const AdminPageRemove = () => {
                                                 value="add"
                                                 aria-label="add"
                                                 style={{ color: "#FFB900" }}
+                                                
                                             >
-                                                <DeleteIcon onClick={handleClickOpen} />
+                                                <DeleteIcon onClick={() => handleDelete(row.employeeUsername)}/>
                                             </IconButton>
-                                            <Dialog
+                                            {/* <Dialog
                                                 open={open}
                                                 onClose={handleClose}
                                                 aria-labelledby="alert-dialog-title"
@@ -202,11 +214,11 @@ const AdminPageRemove = () => {
                                                     <button onClick={handleClose}>
                                                         No
                                                     </button>
-                                                    <button onClick={handleClose} autoFocus>
+                                                    <button onClick={() => handleDelete(row.employeeUsername)} autoFocus>
                                                         Yes
                                                     </button>
                                                 </DialogActions>
-                                            </Dialog>
+                                            </Dialog> */}
                                         </Stack>
                                     </TableCell>
                                 </TableRow>

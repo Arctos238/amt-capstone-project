@@ -16,6 +16,7 @@ import AdminPageRemove from "./components/AdminPage/AdminPageRemove";
 import WorkOrderForm from "./components/Invoices/WorkOrderForm";
 import Header from "./components/UI/Header";
 import UpdateInvoice from "./components/CreateInvoice/UpdateInvoice";
+import AdminPageEdit from "./components/AdminPage/AdminPageEdit";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -93,6 +94,15 @@ function App() {
           element={
             <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
               <AdminPageRemove />
+            </Layout>
+          }
+        />
+        <Route
+          path="/AdminPageEdit"
+          exact
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <AdminPageEdit />
             </Layout>
           }
         />
