@@ -37,6 +37,8 @@ const InvoiceProject = (props) => {
   const [selectedInvoiceId, setSelectedInvoiceId] = useState(null);
   const [sendInvoiceInfo, setSendInvoiceInfo] = useState({});
 
+  console.log(props.project);
+  console.log(props.project.projectAddress.firstLineAddress);
   // const [invoices, setInvoices] = useState([]);
   // setInvoices(projectInfo.invoices);
   // console.log(invoices);
@@ -93,136 +95,6 @@ const InvoiceProject = (props) => {
   // },[props.imageId, images])
 
   return (
-    // SOMEONE CHECK THIS IF YOU NEED SOMETHING FROM THIS CODE
-    // <div>
-    //   {/* <CardWithRadius className={classes.blueCard}>
-    //     <div>
-    //       <Accordion
-    //         expanded={expanded === "panel1"}
-    //         onChange={handleChange("panel1")}
-    //       >
-    //         <AccordionSummary
-    //           expandIcon={<ExpandMoreIcon />}
-    //           aria-controls="panel1bh-content"
-    //           id="panel1bh-header"
-    //         >
-    //           <Typography sx={{ width: "33%", flexShrink: 0 }}>
-    //             Project Details
-    //           </Typography>
-
-    //           <DescriptionIcon
-    //             sx={{ width: "80%", fontSize: "60px" }}
-    //           ></DescriptionIcon>
-    //         </AccordionSummary>
-    //         <AccordionDetails>
-    //           <Typography> Project Name: {props.projectName}</Typography>
-    //           <Typography> Project ID: {props.projectId}</Typography>
-    //           <Typography> Project Status: {props.projectStatus}</Typography>
-    //           <Typography> Project Address: {props.projectAddress}</Typography>
-    //           <Typography>
-    //             {" "}
-    //             Project Second Address: {props.projectSecondAddress}
-    //           </Typography>
-    //           <Typography> Project Postal: {props.projectPostal}</Typography>
-    //           <Typography> Project City: {props.projectCity}</Typography>
-    //           <Typography>
-    //             {" "}
-    //             Project Province: {props.projectProvince}
-    //           </Typography>
-
-    //           <br></br>
-
-    //           <Typography>Site Supervisor</Typography>
-    //           <Typography> Super Name: {props.projectSuper}</Typography>
-    //           <Typography> Super Number: {props.projectSuperNum}</Typography>
-    //         </AccordionDetails>
-    //       </Accordion>
-    //       <Accordion
-    //         expanded={expanded === "panel2"}
-    //         onChange={handleChange("panel2")}
-    //       >
-    //         <AccordionSummary
-    //           expandIcon={<ExpandMoreIcon />}
-    //           aria-controls="panel2bh-content"
-    //           id="panel2bh-header"
-    //         >
-    //           <Typography sx={{ width: "33%", flexShrink: 0 }}>
-    //             Invoice
-    //           </Typography>
-
-    //           <ReceiptIcon
-    //             sx={{ width: "80%", fontSize: "60px" }}
-    //           ></ReceiptIcon>
-    //         </AccordionSummary>
-    //         <AccordionDetails>
-    //           <Typography> Invoice ID: {props.projectInvoice} </Typography>
-    //           {props.projectDepths.map((depth, i) => (
-    //             <Typography>
-    //               {" "}
-    //               Item Depth: {depth} {props.projectUnits}
-    //             </Typography>
-    //           ))}
-    //           {props.projectWidths.map((width, i) => (
-    //             <Typography>
-    //               {" "}
-    //               Item Width: {width} {props.projectUnits}
-    //             </Typography>
-    //           ))}
-    //           {props.projectLengths.map((length, i) => (
-    //             <Typography>
-    //               {" "}
-    //               Item Length: {length} {props.projectUnits}
-    //             </Typography>
-    //           ))}
-
-    //           {props.projectAreas.map((area) => (
-    //             <Typography> Item Area: {area}</Typography>
-    //           ))}
-    //           {props.projectEdges.map((edge) => (
-    //             <Typography> Edge Profile: {edge}</Typography>
-    //           ))}
-    //           {props.projectEdgeMeasures.map((measure) => (
-    //             <Typography> Edge Measurement: {measure}</Typography>
-    //           ))}
-    //           {props.projectEdgeTypes.map((type) => (
-    //             <Typography> Edge Profile Type: {type}</Typography>
-    //           ))}
-    //           {props.projectPrices.map((price) => (
-    //             <Typography> Item Price: ${price}</Typography>
-    //           ))}
-    //           <br></br>
-    //           <Typography> Project Total: ${props.projectTotal}</Typography>
-
-    //           <Button variant="contained" onClick={handleClick}>
-    //             Add Invoice
-    //           </Button>
-    //         </AccordionDetails>
-    //       </Accordion>
-    //       <Accordion
-    //         expanded={expanded === "panel3"}
-    //         onChange={handleChange("panel3")}
-    //       >
-    //         <AccordionSummary
-    //           expandIcon={<ExpandMoreIcon />}
-    //           aria-controls="panel3bh-content"
-    //           id="panel3bh-header"
-    //         >
-    //           <Typography sx={{ width: "33%", flexShrink: 0 }}>
-    //             Documentation
-    //           </Typography>
-
-    //           <ArticleIcon
-    //             sx={{ width: "80%", fontSize: "60px" }}
-    //           ></ArticleIcon>
-    //         </AccordionSummary>
-    //         <AccordionDetails>
-    //           <DocumentUpload projectId={props.projectId} />
-    //         </AccordionDetails>
-    //       </Accordion>
-    //     </div>
-    //   </CardWithRadius> */}
-
-    // </div>
     <div>
       <Accordion
         expanded={expanded === "panel1"}
@@ -249,70 +121,88 @@ const InvoiceProject = (props) => {
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project Name:
                   </TableCell>
-                  <TableCell>{props.projectName}</TableCell>
+                  <TableCell>{props.project.projectName}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project ID:
                   </TableCell>
-                  <TableCell>{props.projectID}</TableCell>
+                  <TableCell>{props.projectId}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project Status:
                   </TableCell>
-                  <TableCell>{props.projectStatus}</TableCell>
+                  <TableCell>{props.project.projectStatus}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project Address:
                   </TableCell>
-                  <TableCell>{props.projectAddress}</TableCell>
+                  <TableCell>{props.project.projectAddress.firstLineAddress}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project Second Address:
                   </TableCell>
-                  <TableCell>{props.projectSecondAddress}</TableCell>
+                  <TableCell>{props.project.projectAddress.secondLineAddress}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project Postal:
                   </TableCell>
-                  <TableCell>{props.projectPostal}</TableCell>
+                  <TableCell>{props.project.projectAddress.postalCode}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project City:
                   </TableCell>
-                  <TableCell>{props.projectCity}</TableCell>
+                  <TableCell>{props.project.projectAddress.city}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project Province:
                   </TableCell>
-                  <TableCell>{props.projectProvince}</TableCell>
+                  <TableCell>{props.project.projectAddress.province}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </TableContainer>
 
-          <Typography> Project Name: {props.projectName}</Typography>
-          <Typography> Project ID: {props.projectId}</Typography>
-          <Typography> Project Status: {props.projectStatus}</Typography>
-          <Typography> Project Address: {props.projectAddress}</Typography>
-          <Typography>
-            Project Second Address: {props.projectSecondAddress}
-          </Typography>
-          <Typography> Project Postal: {props.projectPostal}</Typography>
-          <Typography> Project City: {props.projectCity}</Typography>
-          <Typography> Project Province: {props.projectProvince}</Typography>
-
           <br></br>
 
-          <Typography>Site Supervisor</Typography>
-          <Typography> Super Name: {props.projectSuper}</Typography>
-          <Typography> Super Number: {props.projectSuperNum}</Typography>
+          <div>
+  <Typography variant="h6" gutterBottom>
+    Project Supervisor Information
+  </Typography>
+  <TableContainer component={Paper}>
+    <Table>
+      <TableBody>
+        <TableRow>
+          <TableCell style={{ fontWeight: "bold" }}>
+            Super Name:
+          </TableCell>
+          <TableCell>
+            {props.project.projectSupervisor.projectSupervisorName}
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell style={{ fontWeight: "bold" }}>
+            Super Number:
+          </TableCell>
+          <TableCell>
+            {props.project.projectSupervisor.projectSupervisorNumber}
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </TableContainer>
+</div>
+
+
+          
+
+          
         </AccordionDetails>
       </Accordion>
       <Accordion>

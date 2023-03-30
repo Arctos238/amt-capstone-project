@@ -13,14 +13,15 @@ const DocumentUpload = (props) => {
   const { projectId } = props;
   const [selectedFile, setSelectedFile] = useState(null);
   const [file, setFile] = useState();
-  const [fileArray, setFileArray] = useState([]); 
+  const [fileArray, setFileArray] = useState([]);
+  
 
   console.log(file);
 
   const fileSelectedHandler = useCallback(event => {
     setSelectedFile(event.target.files[0]);
     console.log(event.target.files[0]);
-    console.log(event.target.files[0].url);
+    console.log(event.target.files[0]);
     const filename = event.target.files[0].name;
     console.log(filename);
     setFileArray(prevFiles => [...prevFiles, filename]); 
