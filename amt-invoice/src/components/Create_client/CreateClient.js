@@ -30,11 +30,8 @@ const CreateClient = () => {
       },
     };
 
-
     console.log(obj);
     const data = await CreateNewClient(obj);
-    
-
 
     if (data != null) {
       nav("/home");
@@ -43,7 +40,7 @@ const CreateClient = () => {
 
   return (
     <div>
-      <h1 className={styles.h1}>Client Creator</h1>
+      <h1 className={styles.h1}>Create Client</h1>
       <div className={styles.form}>
         <CreateClientDetails
           clientNameRef={clientNameRef}

@@ -7,9 +7,9 @@ import CreateInvoiceNotes from "./CreateInvoiceNotes";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import CreateInvoiceCart from "./CreateInvoiceCart";
-import { Link } from "react-router-dom";
+import { GetInvoiceItemsByInvoiceId } from "../../services/InvoiceItemServices";
 import { CreateNewInvoice } from "../../services/InvoiceServices";
-
+import { Link } from "react-router-dom";
 import styles from "./CreateInvoice.module.css";
 import { style } from "@mui/system";
 import { useLocation, useSearchParams } from "react-router-dom";
@@ -146,7 +146,11 @@ const upgradeProfiles = [
   },
 ];
 
-const CreateInvoice = () => {
+const UpdateInvoice = (props) => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const toEditInvoiceId = searchParams.get("invoiceId");
+
   const invoiceItemNameRef = useRef();
   const invoiceItemMeasurementRef = useRef();
   const invoiceItemWidthRef = useRef();
@@ -164,12 +168,17 @@ const CreateInvoice = () => {
   const [previousInvoiceItemNotes, setPreviousInvoiceItemNotes] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
+  const getCurrentInvoiceItems = async () => {
+    const data = await GetInvoiceItemsByInvoiceId(toEditInvoiceId);
+    setPreviousInvoiceItems(data);
+    data.map(data => (setTotalPrice(Number(totalPrice) + Number(data.invoiceItemPrice))));
+  };
+
+  useEffect(()=>{
+    getCurrentInvoiceItems();
+  }, []);
+
   let data = {};
-  // const location = useLocation();
-  // if(location.state.currentInvoiceItems != null) {
-  //   console.log(location.state.currentInvoiceItems);
-  // }
-  
 
   const [itemAdded, setItemAdded] = useState(false);
   const [noteAdded, setNoteAdded] = useState(false);
@@ -177,15 +186,15 @@ const CreateInvoice = () => {
   const [isInvoiceAdded, setIsInvoiceAdded] = useState(false);
 
   //remove item added alert
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setIsInvoiceAdded(false);
-  //   }, 3000);
+//   useEffect(() => {
+//     const timer = setTimeout(() => {
+//       setIsInvoiceAdded(false);
+//     }, 3000);
 
-  //   return () => {
-  //     clearTimeout(timer);
-  //   };
-  // }, [isInvoiceAdded]);
+//     return () => {
+//       clearTimeout(timer);
+//     };
+//   }, [isInvoiceAdded]);
   useEffect(() => {
     const timer = setTimeout(() => {
       setItemAdded(false);
@@ -355,6 +364,7 @@ const CreateInvoice = () => {
 
     try {
       const info = await CreateNewInvoice(data);
+      console.log(info);
     } catch (error) {
       console.error(error);
     }
@@ -364,17 +374,8 @@ const CreateInvoice = () => {
     }
   };
 
-  //used  to debug
-  const showInvoiceItemHandler = () => {
-    console.log(previousInvoiceItems);
-    // console.log(JSON.stringify(data));
-    // console.log("Total Price: " + totalPrice);
-    // console.log("previousInvoiceItemNotes " + JSON.parse(previousInvoiceItemNotes[0]));
-  };
-
   return (
     <div className="createInvoiceItem">
-      <h1 className={styles.title}>Create Invoice</h1>
       {itemAdded ? (
         <div className={styles.errorBox}>
           <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
@@ -389,7 +390,7 @@ const CreateInvoice = () => {
       {isInvoiceAdded ? (
         <div className={styles.errorBox}>
           <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
-            <Alert severity="success">Invoice Created! <Link to={'/invoices'}>Go back to Invoice Page</Link></Alert>
+          <Alert severity="success">Invoice Created! <Link to={'/invoices'}>Go back to Invoice Page</Link></Alert>
           </Stack>
         </div>
       ) : (
@@ -457,4 +458,4 @@ const CreateInvoice = () => {
   );
 };
 
-export default CreateInvoice;
+export default UpdateInvoice;

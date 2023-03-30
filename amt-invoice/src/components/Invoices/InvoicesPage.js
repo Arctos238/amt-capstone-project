@@ -27,12 +27,11 @@ const InvoicesPage = (props) => {
     }
   }, []);
 
-
-
   console.log(project);
   return (
     <div>
       <BackButton />
+      <h1>Project</h1>
       <div className="theProjects">
         <Card className={classes.yellowProjectCard}>
           {loading ? (
@@ -42,7 +41,6 @@ const InvoicesPage = (props) => {
           )}
         </Card>
       </div>
-      
     </div>
   );
 };

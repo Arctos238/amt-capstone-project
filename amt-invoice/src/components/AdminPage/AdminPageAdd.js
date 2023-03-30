@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import CardWithRadius from "../UI/CardWithRadius";
 import classes from "../UI/CardWithRadius.module.css";
 import styles from "./AdminPageAdd.module.css";
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
 import Button from "../UI/Button";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -22,15 +22,15 @@ const AdminPageAdd = () => {
 
   const handleIDChange = (event) => {
     setEmployeeId(event.target.value);
-  }
+  };
 
   const handleFirstnameChange = (event) => {
     setEmployeeFirstName(event.target.value);
-  }
+  };
 
   const handleLastnameChange = (event) => {
     setEmployeeLastName(event.target.value);
-  }
+  };
 
   const handleUsernameChange = (event) => {
     setEmployeeUsername(event.target.value);
@@ -44,21 +44,18 @@ const AdminPageAdd = () => {
     setIsValidSearch(true);
     setSelectedOption(e.target.value);
 
-    if (e.target.value === "regular_user") { 
-      setRoleId("2")
+    if (e.target.value === "regular_user") {
+      setRoleId("2");
+    } else {
+      setRoleId("1");
     }
-    else{
-      setRoleId("1")
-     };
   };
-  console.log(isSelectedOption)
-
- 
+  console.log(isSelectedOption);
 
   const obj = {
     employeeId: isEmployeeId,
     role: {
-      roleId:isRoleId,
+      roleId: isRoleId,
       roleName: isSelectedOption,
     },
     employeeFirstName: isEmployeeFirstName,
@@ -73,15 +70,15 @@ const AdminPageAdd = () => {
     // const data = await CreateNewEmployee(obj);
   };
 
-
-
   return (
-    <div className={styles.center} >
-      <h1>Adding User</h1>
+    <div className={styles.center}>
+      <h1>Create User</h1>
       <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
         <TextField
           sx={{
-            width: "100%", color: "white", "& .MuiInputBase-input": {
+            width: "100%",
+            color: "white",
+            "& .MuiInputBase-input": {
               width: "calc(100% - 2px)", // 2px is the width of the underline
             },
           }}
@@ -101,7 +98,9 @@ const AdminPageAdd = () => {
       <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
         <TextField
           sx={{
-            width: "100%", color: "white", "& .MuiInputBase-input": {
+            width: "100%",
+            color: "white",
+            "& .MuiInputBase-input": {
               width: "calc(100% - 2px)", // 2px is the width of the underline
             },
           }}
@@ -121,7 +120,9 @@ const AdminPageAdd = () => {
       <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
         <TextField
           sx={{
-            width: "100%", color: "white", "& .MuiInputBase-input": {
+            width: "100%",
+            color: "white",
+            "& .MuiInputBase-input": {
               width: "calc(100% - 2px)", // 2px is the width of the underline
             },
           }}
@@ -142,7 +143,9 @@ const AdminPageAdd = () => {
       <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
         <TextField
           sx={{
-            width: "100%", color: "white", "& .MuiInputBase-input": {
+            width: "100%",
+            color: "white",
+            "& .MuiInputBase-input": {
               width: "calc(100% - 2px)", // 2px is the width of the underline
             },
           }}
@@ -150,7 +153,6 @@ const AdminPageAdd = () => {
           label="Username:"
           variant="standard"
           type="text"
-
           InputLabelProps={{ className: styles.textFieldLabel }}
           InputProps={{
             classes: {
@@ -164,7 +166,9 @@ const AdminPageAdd = () => {
       <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
         <TextField
           sx={{
-            width: "100%", color: "white", "& .MuiInputBase-input": {
+            width: "100%",
+            color: "white",
+            "& .MuiInputBase-input": {
               width: "calc(100% - 2px)", // 2px is the width of the underline
             },
           }}
@@ -172,7 +176,6 @@ const AdminPageAdd = () => {
           label="Password:"
           variant="standard"
           type="text"
-
           InputLabelProps={{ className: styles.textFieldLabel }}
           InputProps={{
             classes: {
@@ -222,8 +225,14 @@ const AdminPageAdd = () => {
           </RadioGroup>
         </FormControl>
       </CardWithRadius>
-      <Button type="submit"
-        value="add" className={styles.button} onClick={submitHandler}>Add User</Button>
+      <Button
+        type="submit"
+        value="add"
+        className={styles.button}
+        onClick={submitHandler}
+      >
+        Add User
+      </Button>
     </div>
   );
 };

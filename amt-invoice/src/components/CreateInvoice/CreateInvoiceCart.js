@@ -61,11 +61,17 @@ const rows = [
 
 const CreateInvoiceCart = (props) => {
   const [invoiceItems, setInvoiceItems] = useState([]);
+  const [isInvoiceItemsEmpty, setIsInvoiceItemsEmpty] = useState(false);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
     setInvoiceItems(props.invoiceItem);
     console.log(invoiceItems[0]);
+    if(invoiceItems.length > 0) {
+      setIsInvoiceItemsEmpty(false);
+    } else {
+      setIsInvoiceItemsEmpty(true);
+    }
   };
   const handleClose = () => setOpen(false);
   const [page, setPage] = React.useState(0);
@@ -113,7 +119,7 @@ const CreateInvoiceCart = (props) => {
                     <TableCell>Edge Profile Measurement</TableCell>
                   </TableHead>
                   <TableBody>
-                    {invoiceItems.map((invoiceItems) => (
+                    {!isInvoiceItemsEmpty ? invoiceItems.map((invoiceItems) => (
                       <TableRow>
                         <TableCell>{invoiceItems.invoiceItemName}</TableCell>
                         <TableCell>{invoiceItems.invoiceItemMeasurement}</TableCell>
@@ -128,7 +134,7 @@ const CreateInvoiceCart = (props) => {
 
 
                       </TableRow>
-                    ))}
+                    )) : "Empty"}
                   </TableBody>
                 </Table>
               </TableContainer>

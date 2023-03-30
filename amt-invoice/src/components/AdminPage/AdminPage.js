@@ -8,7 +8,7 @@ import classes from "../UI/Button.module.css";
 const AdminPage = () => {
   return (
     <div className={styles.home}>
-      <h1 className={styles.h1}>Admin Page:</h1>
+      <h1 className={styles.h1}>Admin</h1>
       <div className={styles.parent}>
         <div className={styles.left}>
           <Link to="/AdminPageAdd">

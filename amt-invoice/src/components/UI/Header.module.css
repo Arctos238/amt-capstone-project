@@ -1,0 +1,10 @@
+/* Header.module.css */
+.header {
+  height: 16vh;
+}
+
+.header img {
+  width: 100%;
+  height: 16vh;
+  display: block;
+}
