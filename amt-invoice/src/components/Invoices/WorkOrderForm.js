@@ -4,11 +4,8 @@ import BackButton from "../BackButton/BackButton";
 import { useState, useEffect } from "react";
 import { TableBody, TableCell, TableContainer, TableRow, Paper } from '@mui/material';
 
-
-
-
 const WorkOrderForm = (props) =>{
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState({});
     const currentDate = new Date().toLocaleDateString();
 
     let clientInfo = localStorage.getItem("clientInfo");
@@ -23,7 +20,6 @@ const WorkOrderForm = (props) =>{
       }, []);
 
      console.log(items.invoices);
-      
 
     return(
         <div>
@@ -33,9 +29,9 @@ const WorkOrderForm = (props) =>{
             <TableBody>
             <TableRow>
             <TableCell style={{ fontWeight: "bold" }}>Contractor</TableCell>
-                {/* <TableCell>{toArray[0].clientName}</TableCell> */}
+                <TableCell>{toArray[0].clientName}</TableCell>
                 <TableCell style={{ fontWeight: "bold" }}>Phone</TableCell>
-                {/* <TableCell>{toArray[0].clientContact.personalContactNumber}</TableCell> */}
+                <TableCell>{toArray[0].clientContact.personalContactNumber}</TableCell>
                 <TableCell style={{ fontWeight: "bold" }}>Date</TableCell>
                 <TableCell>{currentDate}</TableCell>
             </TableRow> 
@@ -49,9 +45,9 @@ const WorkOrderForm = (props) =>{
             </TableRow> 
             <TableRow>
                 <TableCell style={{ fontWeight: "bold" }}>Address</TableCell>
-                <TableCell>{items.projectAddress.firstLineAddress}</TableCell>
+                <TableCell>{items.projectAddress?.firstLineAddress}</TableCell>
                 <TableCell style={{ fontWeight: "bold" }}>Postal Code</TableCell>
-                <TableCell>{items.projectAddress.postalCode}</TableCell>
+                <TableCell>{items.projectAddress?.postalCode}</TableCell>
                 <TableCell style={{ fontWeight: "bold" }}>Required</TableCell>
                 <TableCell>{currentDate}</TableCell>
             </TableRow> 
@@ -61,7 +57,7 @@ const WorkOrderForm = (props) =>{
                 <TableCell style={{ fontWeight: "bold" }}></TableCell>
                 <TableCell></TableCell>
                 <TableCell style={{ fontWeight: "bold" }}>Invoice #</TableCell>
-                {/* <TableCell>{items.invoices[0].invoiceId}</TableCell> */}
+                <TableCell>{items.invoices?.[0]?.invoiceId}</TableCell>
             </TableRow> 
             </TableBody>
         </TableContainer>
