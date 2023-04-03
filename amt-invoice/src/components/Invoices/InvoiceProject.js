@@ -40,7 +40,6 @@ const InvoiceProject = (props) => {
   const [sendInvoiceInfo, setSendInvoiceInfo] = useState({});
 
   console.log(props.project);
-  console.log(invoices[0].invoiceItems);
   // const [invoices, setInvoices] = useState([]);
   // setInvoices(projectInfo.invoices);
   // console.log(invoices);
