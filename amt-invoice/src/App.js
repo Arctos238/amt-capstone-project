@@ -17,6 +17,7 @@ import WorkOrderForm from "./components/Invoices/WorkOrderForm";
 import Header from "./components/UI/Header";
 import UpdateInvoice from "./components/CreateInvoice/UpdateInvoice";
 import AdminPageEdit from "./components/AdminPage/AdminPageEdit";
+import EditClient from "./components/EditClient/EditClient"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -158,6 +159,17 @@ function App() {
             </Layout>
           }
         />
+
+        <Route
+          path="/editClient"
+          exact
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <EditClient />
+            </Layout>
+          }
+        />
+
         <Route
           path="/updateInvoice"
           exact
