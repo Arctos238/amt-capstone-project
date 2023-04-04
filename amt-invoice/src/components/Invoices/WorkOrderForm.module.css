@@ -1,0 +1,9 @@
+.textfield {
+    color: black !important;
+    background-color: white !important;
+  }
+
+  .textfield input[type="text"] {
+    color: black;
+  }
+  

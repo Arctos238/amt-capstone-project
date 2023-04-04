@@ -2,13 +2,20 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import BackButton from "../BackButton/BackButton";
 import { useState, useEffect, useRef } from "react";
-import { TableBody, TableCell, TableContainer, TableRow, Paper, TableHead, Table } from '@mui/material';
+import { TableBody, TableCell, TableContainer, TableRow, Paper, TableHead, Table, TextField } from '@mui/material';
 import ReactToPrint from "react-to-print";
 import { Button, Icon } from '@mui/material';
 import PrintIcon from '@mui/icons-material/Print';
+import Typography from "@mui/material/Typography";
+import styles from "./WorkOrderForm.module.css"
 
 export default function WorkOrderForm(props) {
-  const groceryItems = ["apples", "bananas", "milk", "bread"];
+  const [additionalNotes, setAdditionalNotes] = useState('');
+
+  const handleAdditionalNotesChange = (event) => {
+    setAdditionalNotes(event.target.value);
+  };
+  
   let componentRef = useRef();
   const [items, setItems] = useState({});
   const currentDate = new Date().toLocaleDateString();
@@ -24,10 +31,11 @@ export default function WorkOrderForm(props) {
   }, []);
 
   if (items && items.invoices && items.invoices.length > 0) {
-    console.log(items.invoices[0].invoiceItems);
+    console.log(items.invoices[0].invoiceTotalPrice);
   } else {
     console.log('No invoices found.');
   }
+  
 
   
   
@@ -78,6 +86,31 @@ export default function WorkOrderForm(props) {
           </TableContainer>
 
           <br></br>
+          <Typography variant="subtitle1" align="center" gutterBottom>
+            Production Ticket Details
+          </Typography>
+          <TableContainer component={Paper}>
+            <TableRow>
+              <TableCell style={{fontWeight: "bold"}}>Name</TableCell>
+              <TableCell>{toArray[0]?.clientName}</TableCell>
+              <TableCell style={{fontWeight: "bold"}}>Address</TableCell>
+              <TableCell>{items.projectAddress?.firstLineAddress}</TableCell>
+              <TableCell style={{fontWeight: "bold"}}>Phone</TableCell>
+              <TableCell>{toArray[0]?.clientContact?.personalContactNumber}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell style={{fontWeight: "bold"}}>Price</TableCell>
+              <TableCell>{items.invoices?.[0]?.invoiceTotalPrice} (+G.S.T.)</TableCell>
+              <TableCell style={{fontWeight: "bold"}}>Deposit</TableCell>
+              <TableCell></TableCell>
+              <TableCell style={{fontWeight: "bold"}}>Balance Due</TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+          </TableContainer>
+
+
+          <br/>
+          <br/>
 
           <TableContainer component={Paper}>
           <Table>
@@ -87,7 +120,7 @@ export default function WorkOrderForm(props) {
                 <TableCell style={{ borderRight: "1px solid #ddd", fontWeight: "bold" }}>NO. OF PCS</TableCell>
                 <TableCell style={{ borderRight: "1px solid #ddd", fontWeight: "bold" }}>SIZE</TableCell>
                 <TableCell style={{ borderRight: "1px solid #ddd", fontWeight: "bold" }}>UNIT</TableCell>
-                <TableCell style={{ borderRight: "1px solid #ddd", fontWeight: "bold" }}>EDGE NO.</TableCell>
+                <TableCell style={{ borderRight: "1px solid #ddd", fontWeight: "bold" }}>EDGE NAME.</TableCell>
                 <TableCell style={{ fontWeight: "bold" }}>M2/SQ. FT.</TableCell>
               </TableRow>
             </TableHead>
@@ -96,12 +129,12 @@ export default function WorkOrderForm(props) {
             {items && items.invoices && items.invoices.length > 0 && items.invoices[0].invoiceItems.length > 0 ? (
               items.invoices[0].invoiceItems.map((item) => (
                 <TableRow key={item.id}>
-                <TableCell style={{ borderRight: "1px solid #ddd"}}></TableCell>
-                <TableCell style={{ borderRight: "1px solid #ddd"}}></TableCell>
-                <TableCell style={{ borderRight: "1px solid #ddd"}}></TableCell>
-                <TableCell style={{ borderRight: "1px solid #ddd", fontWeight: "bold" }}>UNIT</TableCell>
-                <TableCell style={{ borderRight: "1px solid #ddd", fontWeight: "bold" }}>EDGE NO.</TableCell>
-                <TableCell style={{ fontWeight: "bold" }}>M2/SQ. FT.</TableCell>
+                  <TableCell style={{ borderRight: "1px solid #ddd"}}></TableCell>
+                  <TableCell style={{ borderRight: "1px solid #ddd"}}></TableCell>
+                  <TableCell style={{ borderRight: "1px solid #ddd"}}>{item.invoiceItemArea}</TableCell>
+                  <TableCell style={{ borderRight: "1px solid #ddd", fontWeight: "bold" }}>{item.invoiceItemMeasurement}</TableCell>
+                  <TableCell style={{ borderRight: "1px solid #ddd", fontWeight: "bold" }}>{item.edgeProfile.edgeProfileCut}</TableCell>
+                  <TableCell style={{ fontWeight: "bold" }}>{item.invoiceItemMeasurement}</TableCell>
                 </TableRow>
               ))
             ) : (
@@ -111,13 +144,28 @@ export default function WorkOrderForm(props) {
             )}
           </TableBody>
 
-
-
-
-
           </Table>
         </TableContainer>
         </div>
+        <br/>
+        <br/>
+        
+
+        <div className={styles.textfield}>
+      <TextField
+        id="additional-notes"
+        label="Additional Notes"
+        multiline
+        rows={4}
+        variant="outlined"
+        fullWidth
+        className="my-textfield" // add the class to the component
+        value={additionalNotes}
+        onChange={handleAdditionalNotesChange}
+      />
+    </div>
+
+
 
         <br>
         </br>
@@ -164,12 +212,19 @@ class ComponentToPrint extends React.Component {
         toArray
       });
     }
+
+    
   
     render() {
       const { items, toArray, currentDate } = this.state;
-  
+      const myVariable = "Hello There";
       return (
-        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+        <div style={{position: "fixed", top: 0, bottom: 0, left: 0, right: 0, backgroundColor: "white"}}>
+ 
+
+
+        <div style={{ maxWidth: "800px", margin: "0 auto", backgroundColor: "white", backgroundImage: "none" }}>
+          <h1>AMT</h1>
           <TableContainer component={Paper}>
             <TableBody>
               <TableRow>
@@ -205,6 +260,84 @@ class ComponentToPrint extends React.Component {
             </TableRow> 
             </TableBody>
           </TableContainer>
+
+          <br/>
+          <br/>
+
+          <Typography variant="subtitle1" align="center" gutterBottom>
+            Production Ticket Details
+          </Typography>
+          <TableContainer component={Paper}>
+            <TableRow>
+              <TableCell style={{fontWeight: "bold"}}>Name</TableCell>
+              <TableCell>{toArray?.[0]?.clientName}</TableCell>
+              <TableCell style={{fontWeight: "bold"}}>Address</TableCell>
+              <TableCell>{items.projectAddress?.firstLineAddress}</TableCell>
+              <TableCell style={{fontWeight: "bold"}}>Phone</TableCell>
+              <TableCell>{toArray?.[0]?.clientContact?.personalContactNumber}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell style={{fontWeight: "bold"}}>Price</TableCell>
+              <TableCell>{items.invoices?.[0]?.invoiceTotalPrice} (+G.S.T.)</TableCell>
+              <TableCell style={{fontWeight: "bold"}}>Deposit</TableCell>
+              <TableCell></TableCell>
+              <TableCell style={{fontWeight: "bold"}}>Balance Due</TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+          </TableContainer>
+
+
+          <br/>
+          <br/>
+          
+
+          <TableContainer component={Paper}>
+          <Table>
+          <TableHead>
+              <TableRow>
+                <TableCell style={{ borderRight: "1px solid #ddd", fontWeight: "bold" }}>PC. NO.</TableCell>
+                <TableCell style={{ borderRight: "1px solid #ddd", fontWeight: "bold" }}>NO. OF PCS</TableCell>
+                <TableCell style={{ borderRight: "1px solid #ddd", fontWeight: "bold" }}>SIZE</TableCell>
+                <TableCell style={{ borderRight: "1px solid #ddd", fontWeight: "bold" }}>UNIT</TableCell>
+                <TableCell style={{ borderRight: "1px solid #ddd", fontWeight: "bold" }}>EDGE NAME.</TableCell>
+                <TableCell style={{ fontWeight: "bold" }}>M2/SQ. FT.</TableCell>
+              </TableRow>
+            </TableHead>
+          <TableBody>
+            {items && items.invoices && items.invoices.length > 0 && items.invoices[0].invoiceItems.length > 0 ? (
+              items.invoices[0].invoiceItems.map((item) => (
+                <TableRow key={item.id}>
+                  <TableCell style={{ borderRight: "1px solid #ddd"}}></TableCell>
+                  <TableCell style={{ borderRight: "1px solid #ddd"}}></TableCell>
+                  <TableCell style={{ borderRight: "1px solid #ddd"}}>{item.invoiceItemArea}</TableCell>
+                  <TableCell style={{ borderRight: "1px solid #ddd", fontWeight: "bold" }}>{item.invoiceItemMeasurement}</TableCell>
+                  <TableCell style={{ borderRight: "1px solid #ddd", fontWeight: "bold" }}>{item.edgeProfile.edgeProfileCut}</TableCell>
+                  <TableCell style={{ fontWeight: "bold" }}>{item.invoiceItemMeasurement}</TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={5}>No invoices found.</TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+
+          </Table>
+        </TableContainer>
+
+        <br/>
+        <br/>
+        <div className={styles.textfield}>
+        <TextField
+          id="my-textfield"
+          label="Office Notes"
+          value={myVariable}
+          fullWidth
+        />
+        </div>
+
+        
+        </div>
         </div>
       );
     }
