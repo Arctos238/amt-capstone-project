@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../UI/Card";
 import classes from "../UI/Card.module.css";
@@ -10,11 +10,18 @@ import styles from "./ClientContact.module.css";
 import { GetProjectByClientId } from "../../services/ProjectServices";
 
 const ClientPage = () => {
+  const [projectList, setProjectList] = useState([]);
   let clientInfo = localStorage.getItem("clientInfo");
   let toArray = JSON.parse(clientInfo);
 
   let selectedClientId = toArray[0].clientId;
 
+  const fetchData = async () => {
+    const data = await GetProjectByClientId(selectedClientId);
+    console.log(data);
+    setProjectList(data);
+  }
+  fetchData();
   return (
     <div className={styles.clientPage}>
       <BackButton />
@@ -31,7 +38,7 @@ const ClientPage = () => {
       </div>
       <div className="theProjects">
         <Card className={classes.yellowCard}>
-          <ClientPageProjects toArray={toArray[0].projects} />
+          <ClientPageProjects toArray={projectList} />
         </Card>
       </div>
       <div className="buttons">
