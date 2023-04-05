@@ -1,6 +1,6 @@
 .textfield {
-    color: black !important;
     background-color: white !important;
+    color: black !important;
   }
 
   .textfield input[type="text"] {

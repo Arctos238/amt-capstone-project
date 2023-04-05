@@ -11,6 +11,17 @@ import styles from "./WorkOrderForm.module.css"
 
 export default function WorkOrderForm(props) {
   const [additionalNotes, setAdditionalNotes] = useState('');
+  
+
+  const handleNotesChange = (event) => {
+    setAdditionalNotes(event.target.value);
+  }
+  
+  // Save the additionalNotes state to local storage
+  useEffect(() => {
+    localStorage.setItem('additionalNotes', additionalNotes);
+  }, [additionalNotes]);
+  
 
   const handleAdditionalNotesChange = (event) => {
     setAdditionalNotes(event.target.value);
@@ -86,10 +97,11 @@ export default function WorkOrderForm(props) {
           </TableContainer>
 
           <br></br>
+          
+          <TableContainer component={Paper}>
           <Typography variant="subtitle1" align="center" gutterBottom>
             Production Ticket Details
           </Typography>
-          <TableContainer component={Paper}>
             <TableRow>
               <TableCell style={{fontWeight: "bold"}}>Name</TableCell>
               <TableCell>{toArray[0]?.clientName}</TableCell>
@@ -151,21 +163,41 @@ export default function WorkOrderForm(props) {
         <br/>
         
 
-        <div className={styles.textfield}>
-      <TextField
-        id="additional-notes"
-        label="Additional Notes"
-        multiline
-        rows={4}
-        variant="outlined"
-        fullWidth
-        className="my-textfield" // add the class to the component
-        value={additionalNotes}
-        onChange={handleAdditionalNotesChange}
-      />
-    </div>
+        <Typography variant="subtitle1" align="center" gutterBottom>
+            Notes
+        </Typography>
 
-
+        <TableContainer component={Paper}>
+          
+          <Table>
+            <TableBody>
+            <TableRow>
+              <TableCell></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell></TableCell>
+              </TableRow>
+            </TableBody>
+            <TableRow>
+              <TableCell></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell></TableCell>
+              </TableRow>
+          </Table>
+        </TableContainer>
 
         <br>
         </br>
@@ -196,6 +228,8 @@ class ComponentToPrint extends React.Component {
         items: {}
       };
     }
+
+    
   
     componentDidMount() {
       const currentDate = new Date().toLocaleDateString();
@@ -214,15 +248,17 @@ class ComponentToPrint extends React.Component {
     }
 
     
+
+    
+    
   
     render() {
+      
+      
       const { items, toArray, currentDate } = this.state;
-      const myVariable = "Hello There";
+      const myVariable = "This is dumby data I want to see how long this will go before it gets cut off";
       return (
         <div style={{position: "fixed", top: 0, bottom: 0, left: 0, right: 0, backgroundColor: "white"}}>
- 
-
-
         <div style={{ maxWidth: "800px", margin: "0 auto", backgroundColor: "white", backgroundImage: "none" }}>
           <h1>AMT</h1>
           <TableContainer component={Paper}>
@@ -327,14 +363,41 @@ class ComponentToPrint extends React.Component {
 
         <br/>
         <br/>
-        <div className={styles.textfield}>
-        <TextField
-          id="my-textfield"
-          label="Office Notes"
-          value={myVariable}
-          fullWidth
-        />
-        </div>
+        <Typography variant="subtitle1" align="center" gutterBottom>
+            Notes
+        </Typography>
+
+        <TableContainer component={Paper}>
+          
+          <Table>
+            <TableBody>
+            <TableRow>
+              <TableCell></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell></TableCell>
+              </TableRow>
+            </TableBody>
+            <TableRow>
+              <TableCell></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell></TableCell>
+              </TableRow>
+              
+          </Table>
+        </TableContainer>
+
+
 
         
         </div>
