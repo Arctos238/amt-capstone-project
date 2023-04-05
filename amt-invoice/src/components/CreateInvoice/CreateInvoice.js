@@ -156,9 +156,7 @@ const CreateInvoice = () => {
   const invoiceItemPriceRef = useRef();
   const invoiceNoteRef = useRef();
 
-  const projectSupervisorNameRef = useRef();
-  const projectSupervisorNumberRef = useRef();
-  const projectSupervisorEmailRef = useRef();
+  const locationRef = useRef();
 
 
   const currentProjectId = localStorage.getItem("currentProjectId");
@@ -386,11 +384,13 @@ const CreateInvoice = () => {
   };
 
   const createInvoiceHandler = async () => {
+    const location = locationRef.current.value;
     if(previousInvoiceItems.length < 0 || previousInvoiceItems[0].length === 1) {
       setIsInvoiceItemsEmpty(true);
     } else {
       data = {
         invoiceTotalPrice: totalPrice,
+        location,
         project: {
           projectId: currentProjectId,
         },
@@ -480,6 +480,7 @@ const CreateInvoice = () => {
         invoiceItemAreaRef={invoiceItemAreaRef}
         invoiceItemDepthRef={invoiceItemDepthRef}
         invoiceItemPriceRef={invoiceItemPriceRef}
+        locationRef={locationRef}
       />
 
       <EdgeProfile
