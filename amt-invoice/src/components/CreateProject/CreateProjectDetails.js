@@ -28,9 +28,15 @@ const CreateProjectDetails = (props) => {
 
 
   const [value, setValue] = React.useState("+1")
+  const [value2, setValue2] = React.useState("+1")
+
 
   const handleChange = (newValue) => {
     setValue(newValue)
+  }
+
+  const handleChange2 = (newValue) => {
+    setValue2(newValue)
   }
   return (
     <div className={styles.container}>
@@ -71,6 +77,7 @@ const CreateProjectDetails = (props) => {
           >
             <MuiTelInput
             defaultCountry={"ca"}
+            label="Supervisor Number"
             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
             inputRef={props.siteSuperPhoneRef}
             type="tel"
@@ -243,6 +250,114 @@ const CreateProjectDetails = (props) => {
           />
             {/* <label>Province:</label>
             <input type="text" className={styles.transparentInput} ref={props.provinceRef} /> */}
+          </CardWithRadius>
+        </div>
+        
+        <div className={styles.left}>
+          <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <TextField
+            sx={{ width: "100%", color: "white", "& .MuiInputBase-input": {
+                width: "calc(100% - 2px)", // 2px is the width of the underline
+              }, }}
+            id="standard-basic"
+            label="Supervisor Email"
+            placeholder="Supervisor Email"
+            variant="standard"
+            type = "text" 
+            inputRef={props.projectSupervisorEmailRef}
+            InputLabelProps={{ className: styles.textFieldLabel }}
+            InputProps={{
+              classes: {
+                underline: styles.underline, 
+              },
+            }}
+          />   
+            {/* <label className={styles.label}>Project Name:</label>
+            <input
+              type="text"
+              className={styles.transparentInput}
+              ref={props.projectNameRef}
+            /> */}
+          </CardWithRadius>
+          
+          
+            <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <MuiTelInput
+            defaultCountry={"ca"}
+            label="Contractor Number"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            inputRef={props.projectContractorNumberRef}
+            type="tel"
+            value={value2}
+            onChange={handleChange2}
+            inputProps={{
+                className: styles.inputPhone,
+            }}
+            />
+            {/* <label className={styles.label}>Project Name:</label>
+            <input
+            className={styles.transparentInput}
+              type="tel"
+              placeholder="123-456-7890"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              ref={props.siteSuperPhoneRef}
+            /> */}
+          </CardWithRadius>
+          
+          <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <TextField
+            sx={{ width: "100%", color: "white", "& .MuiInputBase-input": {
+                width: "calc(100% - 2px)", // 2px is the width of the underline
+              }, }}
+            id="standard-basic"
+            label="Contractor Name"
+            placeholder="Contractor Name"
+            variant="standard"
+            type = "text" 
+            inputRef={props.projectContractorNameRef}
+            InputLabelProps={{ className: styles.textFieldLabel }}
+            InputProps={{
+              classes: {
+                underline: styles.underline, 
+              },
+            }}
+          />  
+            
+            {/* <label>Postal Code:</label>
+            <input
+              type="text"
+              className={styles.transparentInput}
+              ref={props.postalCodeRef}
+            /> */}
+          </CardWithRadius>
+          <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <TextField
+            sx={{ width: "100%", color: "white", "& .MuiInputBase-input": {
+                width: "calc(100% - 2px)", // 2px is the width of the underline
+              }, }}
+            id="standard-basic"
+            label="Contractor Email"
+            placeholder="Contractor Email"
+            variant="standard"
+            type = "text" 
+            inputRef={props.projectContractorEmailRef}
+            InputLabelProps={{ className: styles.textFieldLabel }}
+            InputProps={{
+              classes: {
+                underline: styles.underline, 
+              },
+            }}
+          /> 
+            {/* <label>City:</label>
+            <input type="text" className={styles.transparentInput} ref={props.cityRef} /> */}
           </CardWithRadius>
         </div>
         </ThemeProvider>

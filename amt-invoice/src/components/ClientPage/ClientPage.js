@@ -7,19 +7,18 @@ import ClientPageProjects from "./ClientPageProjects";
 import ClientPageButton from "./ClientPageButton";
 import BackButton from "../BackButton/BackButton";
 import styles from "./ClientContact.module.css";
+import { GetProjectByClientId } from "../../services/ProjectServices";
 
 const ClientPage = () => {
-  const handleGoBack = () => {
-    window.history.back();
-  };
-
   let clientInfo = localStorage.getItem("clientInfo");
   let toArray = JSON.parse(clientInfo);
-  console.log(toArray);
+
+  let selectedClientId = toArray[0].clientId;
+
   return (
     <div className={styles.clientPage}>
       <BackButton />
-      <h1 className={styles.title}>Create Client</h1>
+      <h1 className={styles.title}>Project Page</h1>
       <div className="aboutClient">
         <Card className={classes.yellowCard}>
           <ClientContact

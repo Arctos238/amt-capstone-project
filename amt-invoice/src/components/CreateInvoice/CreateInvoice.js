@@ -156,6 +156,11 @@ const CreateInvoice = () => {
   const invoiceItemPriceRef = useRef();
   const invoiceNoteRef = useRef();
 
+  const projectSupervisorNameRef = useRef();
+  const projectSupervisorNumberRef = useRef();
+  const projectSupervisorEmailRef = useRef();
+
+
   const currentProjectId = localStorage.getItem("currentProjectId");
 
   const [invoiceItem, setInvoiceItem] = useState([{}]);

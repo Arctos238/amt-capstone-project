@@ -9,6 +9,7 @@ import Stack from "@mui/material/Stack";
 import styles from "./CreateProject.module.css";
 import BackButton from "../BackButton/BackButton";
 import { useRef, useState, useEffect } from "react";
+import { GetClientById } from "../../services/ClientServices";
 
 const CreateProject = () => {
   const navigate = useNavigate();
@@ -53,6 +54,10 @@ const CreateProject = () => {
   const projectCabinetsConditionRef = useRef();
   const projectCounterRemovalRef = useRef();
   const projectTileRemovalRef = useRef();
+  const projectSupervisorEmailRef = useRef();
+  const projectContractorNameRef = useRef();
+  const projectContractorNumberRef = useRef();
+  const projectContractorEmailRef= useRef();
 
   const user = JSON.parse(localStorage.getItem("user"));
   const employeeName = user.employeeFirstName + " " + user.employeeLastName;
@@ -71,6 +76,10 @@ const CreateProject = () => {
     const projectCounterRemoval = projectCounterRemovalRef.current;
     const projectTileRemoval = projectTileRemovalRef.current;
     const projectCabinetsCondition = projectCabinetsConditionRef.current;
+    const projectSupervisorEmail = projectSupervisorEmailRef.current.value;
+    const projectContractorEmail = projectContractorEmailRef.current.value;
+    const projectContractorName = projectContractorNameRef.current.value;
+    const projectContractorNumber = projectContractorNumberRef.current.value;
 
     if (
       projectName === null ||
@@ -113,7 +122,13 @@ const CreateProject = () => {
         projectSupervisor: {
           projectSupervisorId: 1,
           projectSupervisorName: siteSuperName,
-          projectSupervisorNumber: siteSuperPhone,
+          projectSupervisorNumber: siteSuperPhone,  
+          projectSupervisorEmail: projectSupervisorEmail
+        },
+        projectContractor: {
+          projectContractorName,
+          projectContractorEmail,
+          projectContractorNumber
         },
         quotes: [],
         images: [],
@@ -124,14 +139,24 @@ const CreateProject = () => {
         employeeName,
       };
 
+      console.log(obj);
       const data = await CreateNewProject(obj);
+
+      const fetchData = async () => {
+        const data = await GetClientById(theSelectedClientId);
+        localStorage.setItem("clientInfo", JSON.stringify(data));
+      };
 
       if (data != null) {
         setIsProjectUploaded(true);
+        fetchData();
+        window.history.back();
       }
     }
 
-    // navigate("/clientPage");
+    
+
+    
   }
 
   return (
@@ -169,6 +194,10 @@ const CreateProject = () => {
             addressRef={addressRef}
             suiteRef={suiteRef}
             provinceRef={provinceRef}
+            projectSupervisorEmailRef={projectSupervisorEmailRef}
+            projectContractorEmailRef={projectContractorEmailRef}
+            projectContractorNameRef={projectContractorNameRef}
+            projectContractorNumberRef={projectContractorNumberRef}
           />
           <CreateProjectAddOns
             projectTileRemovalRef={projectTileRemovalRef}
