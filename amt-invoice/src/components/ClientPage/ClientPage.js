@@ -18,7 +18,6 @@ const ClientPage = () => {
 
   const fetchData = async () => {
     const data = await GetProjectByClientId(selectedClientId);
-    console.log(data);
     setProjectList(data);
   }
   fetchData();

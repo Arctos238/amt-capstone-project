@@ -311,7 +311,7 @@ const CreateInvoice = () => {
     const edgeProfileMeasurement = selectedEdgeProfileMeasurement;
     const profileId = edgeProfileId;
     const edgeProfileType = selectedEdgeProfileType;
-    const edgeProfileCut = selectedEdgeProfileMeasurement;
+    const edgeProfileCut = selectedEdgeProfileCut;
 
     if (
       previousInvoiceItems.length > 0 &&
@@ -374,6 +374,10 @@ const CreateInvoice = () => {
       setTotalPrice(Number(totalPrice) + Number(invoiceItemPrice));
       setItemAdded(true);
     }
+
+    setTimeout(() => {
+      clearInputs();
+    }, 3000);
   };
 
   const addNotesHandler = () => {
@@ -407,8 +411,24 @@ const CreateInvoice = () => {
         setIsInvoiceAdded(true);
       }
     }
-    
   };
+
+  const clearInputs = () => {
+    invoiceItemNameRef.current.value = "";
+    invoiceItemMeasurementRef.current.value = "";
+    invoiceItemWidthRef.current.value = "";
+    invoiceItemLengthRef.current.value = "";
+    invoiceItemAreaRef.current.value = "";
+    invoiceItemDepthRef.current.value = "";
+    invoiceItemPriceRef.current.value = "";
+
+    setSelectedEdgeProfileMeasurement("");
+    setEdgeProfileId(null)
+    setSelectedEdgeProfileType("");
+    setSelectedEdgeProfileMeasurement("");
+    setSelectedEdgeProfileCut("");
+
+  }
 
   return (
     <div className="createInvoiceItem">
