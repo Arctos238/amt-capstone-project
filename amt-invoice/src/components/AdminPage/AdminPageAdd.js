@@ -137,7 +137,6 @@ const AdminPageAdd = () => {
           onChange={handleLastnameChange}
         />
       </CardWithRadius>
-
       <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
         <TextField
           sx={{

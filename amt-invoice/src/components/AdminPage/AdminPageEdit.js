@@ -101,7 +101,7 @@ const AdminPageEdit = () => {
   return (
     <div className={styles.center}>
       <h1>Edit User</h1>
-      <text>*Please fill in the information in each text box</text>
+      <p>*Please fill in the information in each text box</p>
       <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
         <TextField
           sx={{
