@@ -213,3 +213,43 @@ insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('17zA
 insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('1JFVq73sM6ufok7pB4PgadktR9e3v72QdF', 3);
 insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('17XXnonoBZG3Fi942Gjwp3XPnTa6kG7E9y', 9);
 insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('19cx3tabr9swazMkh9DGo9s4YxP7Da2nRf', 6);
+
+-- insert into deposit_form --
+
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (2, 5633, '152-790-4384', 'itabour0@nyu.edu', 1);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (1, 1256, '125-828-9358', 'tbolles1@blogspot.com', 2);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (1, 5070, '290-672-8437', 'dcunah2@4shared.com', 3);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (1, 9968, '700-621-5014', 'hgregolin3@msu.edu', 4);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (1, 8958, '514-105-7175', 'gpettifor4@360.cn', 5);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (1, 7238, '917-346-7855', 'asnozzwell5@accuweather.com', 6);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (1, 7684, '692-541-6819', 'wrothera6@howstuffworks.com', 7);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (2, 7675, '949-811-7931', 'wdat7@constantcontact.com', 8);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (1, 4236, '590-749-3790', 'plamshead8@jimdo.com', 9);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (2, 4767, '799-329-3499', 'khrinishin9@intel.com', 10);
+
+-- insert into billing_address --
+
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('1 Memorial Park', '1st Floor', 'Durham', 'NC', '27710', 1);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('54623 Grayhawk Place', 'PO Box 27796', 'Washington', 'DC', '20530', 2);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('88 Veith Place', 'Suite 40', 'Morgantown', 'WV', '26505', 3);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('80 Briar Crest Junction', 'Suite 53', 'Crawfordsville', 'IN', '47937', 4);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('775 Towne Court', 'PO Box 59826', 'Des Moines', 'IA', '50362', 5);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('48679 Main Terrace', 'Room 132', 'Scottsdale', 'AZ', '85255', 6);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('13975 Independence Court', 'Suite 22', 'Harrisburg', 'PA', '17140', 7);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('33 Boyd Drive', 'Apt 41', 'Detroit', 'MI', '48295', 8);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('5 Bluejay Pass', 'Suite 94', 'Santa Barbara', 'CA', '93150', 9);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('702 2nd Lane', 'Room 311', 'Cincinnati', 'OH', '45213', 10);
+
+
+-- insert into credit_card_number -- 
+
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Lola Hollingsby', 100000, '2023-03', 3, 'visa', 1);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Colin Paull', 100000, '2022-01', 3, 'visa', 2);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Loleta Downes', 100000, '2022-12', 3, 'visa', 3);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Caren Mews', 100000, '2022-02', 3, 'visa', 4);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Hortense Dy', 100000, '2022-12', 3, 'visa', 5);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Brit Lydiard', 100000, '2022-04', 3, 'visa', 6);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Lily Fairnington', 100000, '2022-02', 3, 'visa', 7);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Madeline Perazzo', 100000, '2022-10', 3, 'visa', 8);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Therese Edison', 100000, '2022-07', 3, 'visa', 9);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Klement Vasilenko', 100000, '2022-02', 3, 'visa', 10);

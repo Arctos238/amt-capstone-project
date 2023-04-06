@@ -106,18 +106,6 @@ CREATE TABLE quote (
   REFERENCES project (project_id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS deposit_form;
-
-CREATE TABLE deposit_form (
-  deposit_form_id int(5) NOT NULL AUTO_INCREMENT,
-  deposit_form_status int(1) NOT NULL DEFAULT 0,
-  deposit_amount double(8, 2) NOT NULL,
-  project_id int(5),
-  PRIMARY KEY (deposit_form_id),
-  KEY FK_deposit_PROJECT (project_id),
-  CONSTRAINT FK_deposit_PROJECT_ID FOREIGN KEY (project_id) 
-  REFERENCES project (project_id) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS purchase_order;
 
@@ -146,6 +134,8 @@ CREATE TABLE purchase_order_item (
   REFERENCES purchase_order (purchase_order_id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1; ;
 
+
+
 DROP TABLE IF EXISTS invoice;
 
 CREATE TABLE invoice (
@@ -159,6 +149,54 @@ CREATE TABLE invoice (
   CONSTRAINT FK_INVOICE_PROJECT_ID FOREIGN KEY (project_id) 
   REFERENCES project (project_id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ;
+
+DROP TABLE IF EXISTS deposit_form;
+
+CREATE TABLE deposit_form (
+  deposit_form_id int(5) NOT NULL AUTO_INCREMENT,
+  is_deposit int(1) NOT NULL DEFAULT 0,
+  deposit_amount double(8, 2) NOT NULL,
+  deposit_form_phone_number varchar(22),
+  deposit_email_address varchar(100),
+  invoice_id int(5),
+  PRIMARY KEY (deposit_form_id),
+  KEY FK_deposit_invoice (invoice_id),
+  CONSTRAINT FK_deposit_INVOICE_ID FOREIGN KEY (invoice_id) 
+  REFERENCES invoice (invoice_id) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS billing_address;
+
+CREATE TABLE `billing_address` (
+	`billing_address_id` int(11) NOT NULL AUTO_INCREMENT,
+    `first_line_address` varchar(80) DEFAULT NULL,
+	`second_line_address` varchar(80) DEFAULT NULL,
+    `city` varchar(20) DEFAULT NULL, 
+	`province` char(2) DEFAULT NULL,
+   `postal_code` varchar(7) DEFAULT NULL,
+   `deposit_form_id` int(11) DEFAULT NULL,
+	PRIMARY KEY (billing_address_id),
+	KEY FK_DEPOSIT_FORM_BILLADDRESS (deposit_form_id),
+	CONSTRAINT FK_DEPOSIT_FORM_BILLADDRESS_ID FOREIGN KEY (deposit_form_id) 
+	REFERENCES deposit_form (deposit_form_id) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS credit_card_information;
+
+CREATE TABLE `credit_card_information` (
+	`credit_card_information_id` int(11) NOT NULL AUTO_INCREMENT,
+    `name_on_card` varchar(70) DEFAULT NULL,
+	`credit_card_number` varchar(36) DEFAULT NULL,
+    `expiry_date` varchar(10) DEFAULT NULL, 
+	`cvs` int(4) DEFAULT NULL,
+   `credit_card_type` varchar(20) DEFAULT NULL,
+   `deposit_form_id` int(11) DEFAULT NULL,
+	PRIMARY KEY (credit_card_information_id),
+	KEY FK_DEPOSIT_FORM_CC (deposit_form_id),
+	CONSTRAINT FK_DEPOSIT_FORM_CC_ID FOREIGN KEY (deposit_form_id) 
+	REFERENCES deposit_form (deposit_form_id) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS invoice_item;
 
