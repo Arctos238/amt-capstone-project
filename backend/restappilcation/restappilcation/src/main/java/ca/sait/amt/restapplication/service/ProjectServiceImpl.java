@@ -44,7 +44,7 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	@Transactional
-	public void saveProject(Project project) {
+	public void saveProject(Project project) {	
 		projectDAO.saveProject(project);
 	}
 

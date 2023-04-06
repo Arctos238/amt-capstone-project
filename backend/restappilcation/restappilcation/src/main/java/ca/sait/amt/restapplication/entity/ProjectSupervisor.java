@@ -20,6 +20,7 @@ public class ProjectSupervisor implements java.io.Serializable {
 	private Integer projectSupervisorId;
 	private String projectSupervisorName;
 	private String projectSupervisorNumber;
+	private String projectSupervisorEmail;
 	private Project project;
 
 	public ProjectSupervisor() {
@@ -73,6 +74,15 @@ public class ProjectSupervisor implements java.io.Serializable {
 
 	public void setProjectSupervisorNumber(String projectSupervisorNumber) {
 		this.projectSupervisorNumber = projectSupervisorNumber;
+	}
+	
+	@Column(name = "project_supervisor_email")
+	public String getProjectSupervisorEmail() {
+		return projectSupervisorEmail;
+	}
+
+	public void setProjectSupervisorEmail(String projectSupervisorEmail) {
+		this.projectSupervisorEmail = projectSupervisorEmail;
 	}
 	
 	@Transient

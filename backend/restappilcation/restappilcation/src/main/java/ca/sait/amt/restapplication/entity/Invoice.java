@@ -34,18 +34,23 @@ public class Invoice implements java.io.Serializable {
 	private Integer invoiceId;
 	private Project project;
 	private Double invoiceTotalPrice;
+	private String location;
 	private Date dateCreated;
 	private Set<InvoiceItem> invoiceItems = new HashSet<InvoiceItem>(0);
+
 
 	public Invoice() {
 	}
 
-	public Invoice(Project project, int invoiceNumber, String documentName, Date dateCreated, Double invoiceTotalPrice,
-			Set<InvoiceItem> invoiceItems) {
+
+	public Invoice(Project project, Double invoiceTotalPrice, Date dateCreated, Set<InvoiceItem> invoiceItems,
+			String location) {
+		super();
 		this.project = project;
 		this.invoiceTotalPrice = invoiceTotalPrice;
-		this.invoiceItems = invoiceItems;
 		this.dateCreated = dateCreated;
+		this.invoiceItems = invoiceItems;
+		this.location = location;
 	}
 
 	@Id
@@ -90,7 +95,7 @@ public class Invoice implements java.io.Serializable {
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "invoice", cascade= {CascadeType.MERGE, CascadeType.REMOVE, CascadeType.ALL})
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "invoice", cascade= {CascadeType.MERGE, CascadeType.REMOVE})
 	@JsonManagedReference
 	public Set<InvoiceItem> getInvoiceItems() {
 		return this.invoiceItems;
@@ -99,5 +104,16 @@ public class Invoice implements java.io.Serializable {
 	public void setInvoiceItems(Set<InvoiceItem> invoiceItems) {
 		this.invoiceItems = invoiceItems;
 	}
+
+	@Column(name = "location")
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
+	
 
 }
