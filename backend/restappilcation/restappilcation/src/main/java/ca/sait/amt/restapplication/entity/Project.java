@@ -44,7 +44,6 @@ public class Project implements java.io.Serializable {
 	private Set<Quote> quotes = new HashSet<Quote>(0);
 	private Set<Image> images = new HashSet<Image>(0);
 	private Set<PurchaseOrder> purchaseOrders = new HashSet<PurchaseOrder>(0);
-	private Set<DepositForm> depositForms = new HashSet<DepositForm>(0);
 	private Set<Invoice> invoices = new HashSet<Invoice>(0);
 
 	public Project() {
@@ -57,8 +56,7 @@ public class Project implements java.io.Serializable {
 	public Project(Client client, String projectName, String employeeName, Boolean projectStatus,
 			Boolean projectCabinetsCondition, Boolean projectCounterRemoval, Boolean projectTileRemoval,
 			ProjectAddress projectAddress, ProjectSupervisor projectSupervisor, ProjectContractor projectContractor,
-			Set<Quote> quotes, Set<Image> images, Set<PurchaseOrder> purchaseOrders, Set<DepositForm> depositForms,
-			Set<Invoice> invoices) {
+			Set<Quote> quotes, Set<Image> images, Set<PurchaseOrder> purchaseOrders, Set<Invoice> invoices) {
 		super();
 		this.client = client;
 		this.projectName = projectName;
@@ -73,7 +71,6 @@ public class Project implements java.io.Serializable {
 		this.quotes = quotes;
 		this.images = images;
 		this.purchaseOrders = purchaseOrders;
-		this.depositForms = depositForms;
 		this.invoices = invoices;
 	}
 
@@ -181,15 +178,6 @@ public class Project implements java.io.Serializable {
 
 	public void setPurchaseOrders(Set<PurchaseOrder> purchaseOrders) {
 		this.purchaseOrders = purchaseOrders;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade=CascadeType.ALL)
-	public Set<DepositForm> getDepositForms() {
-		return this.depositForms;
-	}
-
-	public void setDepositForms(Set<DepositForm> depositForms) {
-		this.depositForms = depositForms;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade=CascadeType.ALL)

@@ -54,10 +54,25 @@ CREATE TABLE `project_supervisor` (
 	`project_supervisor_id` int(11) NOT NULL AUTO_INCREMENT,
     `project_supervisor_name` varchar(80) DEFAULT NULL,
 	`project_supervisor_number` varchar(20) DEFAULT NULL,
+	`project_supervisor_email` varchar(80) DEFAULT NULL,
    `project_id` int(11) DEFAULT NULL,
 	PRIMARY KEY (project_supervisor_id),
 	KEY FK_PROJECT_PROJSUPER (project_id),
 	CONSTRAINT FK_PROJECT_PROJSUPER_ID FOREIGN KEY (project_id) 
+	REFERENCES project (project_id) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS project_contractor;
+
+CREATE TABLE `project_contractor` (
+	`project_contractor_id` int(11) NOT NULL AUTO_INCREMENT,
+    `project_contractor_name` varchar(80) DEFAULT NULL,
+	`project_contractor_number` varchar(20) DEFAULT NULL,
+    `project_contractor_email` varchar(80) DEFAULT NULL,
+   `project_id` int(11) DEFAULT NULL,
+	PRIMARY KEY (project_contractor_id),
+	KEY FK_PROJECT_PROJCONTR (project_id),
+	CONSTRAINT FK_PROJECT_PROJCONTR_ID FOREIGN KEY (project_id) 
 	REFERENCES project (project_id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
@@ -137,6 +152,7 @@ CREATE TABLE invoice (
   invoice_id int(5) NOT NULL AUTO_INCREMENT,
   invoice_total_price double(12, 2),
   date_created datetime DEFAULT CURRENT_TIMESTAMP,
+  location varchar(60),
   project_id int(5),
   PRIMARY KEY (invoice_id),
   KEY FK_INVOICE_PROJECT (project_id),
@@ -216,7 +232,7 @@ CREATE TABLE employee (
   employee_id int(5) NOT NULL AUTO_INCREMENT,
   employee_first_name varchar(22) NOT NULL,
   employee_last_name varchar(22) NOT NULL,
-  employee_username varchar(12) NOT NULL,
+  employee_username  varchar(12) unique NOT NULL,
   employee_password varchar(50),
   role_id int(5),
   PRIMARY KEY (employee_id),

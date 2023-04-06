@@ -22,6 +22,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -37,25 +38,26 @@ public class Invoice implements java.io.Serializable {
 	private String location;
 	private Date dateCreated;
 	private Set<InvoiceItem> invoiceItems = new HashSet<InvoiceItem>(0);
-
+	private DepositForm depositForm;
 
 	public Invoice() {
 	}
 
+	
 
-	public Invoice(Project project, Double invoiceTotalPrice, Date dateCreated, Set<InvoiceItem> invoiceItems,
-			String location) {
+	public Invoice(Project project, Double invoiceTotalPrice, String location, Date dateCreated,
+			Set<InvoiceItem> invoiceItems, DepositForm depositForm) {
 		super();
 		this.project = project;
 		this.invoiceTotalPrice = invoiceTotalPrice;
+		this.location = location;
 		this.dateCreated = dateCreated;
 		this.invoiceItems = invoiceItems;
-		this.location = location;
+		this.depositForm = depositForm;
 	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-
 	@Column(name = "invoice_id", unique = true, nullable = false)
 	public Integer getInvoiceId() {
 		return this.invoiceId;
@@ -95,6 +97,7 @@ public class Invoice implements java.io.Serializable {
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "invoice", cascade= {CascadeType.MERGE, CascadeType.REMOVE})
 	@JsonManagedReference
 	public Set<InvoiceItem> getInvoiceItems() {
@@ -103,6 +106,16 @@ public class Invoice implements java.io.Serializable {
 
 	public void setInvoiceItems(Set<InvoiceItem> invoiceItems) {
 		this.invoiceItems = invoiceItems;
+	}
+	
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "invoice", cascade= {CascadeType.MERGE, CascadeType.REMOVE})
+	@JsonManagedReference
+	public DepositForm getDepositForm() {
+		return this.depositForm;
+	}
+
+	public void setDepositForm(DepositForm depositForm) {
+		this.depositForm = depositForm;
 	}
 
 	@Column(name = "location")
