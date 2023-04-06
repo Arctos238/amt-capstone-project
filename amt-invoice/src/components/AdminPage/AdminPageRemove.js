@@ -29,16 +29,7 @@ import { Link } from "react-router-dom";
 const AdminPageRemove = () => {
     const [results, setResults] = useState([]);
     const [open, setOpen] = useState(false);
-    //const theme = useTheme();
-    //const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-    // const handleClickOpen = () => {
-    //     setOpen(true);
-    // };
-
-    // const handleClose = () => {
-    //     setOpen(false);
-    // };
     const handleDelete = async (username) => {
         console.log(username);
         await DeleteEmployeeByUsername(username);
@@ -59,38 +50,10 @@ const AdminPageRemove = () => {
         fetchData();
     }, []);
 
-  return (
-    <div className={styles.center}>
-      <h1>Employees</h1>
+    return (
+        <div className={styles.center}>
+            <h1>Employees</h1>
 
-            {/* {results.map((results) => (
-                <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
-
-                    <Stack direction="row" >
-                        <Radio
-                            sx={{
-                                color: "white",
-                                "&.Mui-checked": {
-                                    color: "#fabd44",
-                                },
-                            }}
-                        />
-                        <Grid sx={{ textAlign: "left", "padding-left": "10px" }}
-                            container
-                            rowSpacing={1}
-                            columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                            <Grid item xs={6}>
-                                <b>Name: {results.employeeLastName}&nbsp;{results.employeeFirstName}
-                                </b>
-                            </Grid>
-                        </Grid>
-                    </Stack>
-                </CardWithRadius>
-            ))}
-            <Button type = "submit"
-                value = "add" className={styles.button}>Remove User</Button>
-
-                 */}
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <TableContainer
                     component={Paper}
@@ -124,9 +87,9 @@ const AdminPageRemove = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {results.map((row) => (
+                            {results.map((row,idx) => (
                                 <TableRow
-                                    key={row.employeeUsername}
+                                    key={row.employeeUsername+row.employeeId}
                                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                                 >
                                     <TableCell
@@ -175,50 +138,28 @@ const AdminPageRemove = () => {
                                         <Stack direction="row" spacing={2}>
                                             <Link to={"/AdminPageEdit"}
                                                 state={row.employeeUsername}>
-                                                <IconButton
+                                                <EditIcon
                                                     variant="outlined"
                                                     type="submit"
                                                     value="add"
                                                     aria-label="add"
                                                     style={{ color: "#FFB900" }}
                                                 >
-                                                    <EditIcon />
-                                                </IconButton>
+
+                                                </EditIcon>
                                             </Link>
 
-                                            <IconButton
+                                            <DeleteIcon
                                                 variant="outlined"
                                                 type="submit"
                                                 value="add"
                                                 aria-label="add"
                                                 style={{ color: "#FFB900" }}
-                                                
+                                                onClick={() => handleDelete(row.employeeUsername)}
                                             >
-                                                <DeleteIcon onClick={() => handleDelete(row.employeeUsername)}/>
-                                            </IconButton>
-                                            {/* <Dialog
-                                                open={open}
-                                                onClose={handleClose}
-                                                aria-labelledby="alert-dialog-title"
-                                                aria-describedby="alert-dialog-description"
-                                            >
-                                                <DialogTitle id="alert-dialog-title">
-                                                    {"Delete"}
-                                                </DialogTitle>
-                                                <DialogContent>
-                                                    <DialogContentText id="alert-dialog-description">
-                                                        Are you sure?
-                                                    </DialogContentText>
-                                                </DialogContent>
-                                                <DialogActions>
-                                                    <button onClick={handleClose}>
-                                                        No
-                                                    </button>
-                                                    <button onClick={() => handleDelete(row.employeeUsername)} autoFocus>
-                                                        Yes
-                                                    </button>
-                                                </DialogActions>
-                                            </Dialog> */}
+
+                                            </DeleteIcon>
+
                                         </Stack>
                                     </TableCell>
                                 </TableRow>

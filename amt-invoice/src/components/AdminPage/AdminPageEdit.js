@@ -91,7 +91,7 @@ const AdminPageEdit = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
     console.log(obj)
-    // const data = await UpdateEmployee(obj);
+    const data = await UpdateEmployee(obj);
   };
 
   if(!loading) {
@@ -101,6 +101,7 @@ const AdminPageEdit = () => {
   return (
     <div className={styles.center}>
       <h1>Edit User</h1>
+      <p>*Please fill in the information in each text box</p>
       <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
         <TextField
           sx={{

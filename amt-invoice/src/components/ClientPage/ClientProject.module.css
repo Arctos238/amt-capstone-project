@@ -24,6 +24,15 @@
   color: #ffffff;
   border-radius: 30px;
   width: 10%;
-  
-  
+  margin:0 5px;
+}
+
+.statusButton {
+background-color: #e0aa3e;
+  border: none;
+  font-size: 125%;
+  color: #ffffff;
+  border-radius: 30px;
+  width: 20%;
+  margin:0 5px;
 }

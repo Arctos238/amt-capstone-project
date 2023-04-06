@@ -18,12 +18,11 @@ const ClientPageProjects = (props) => {
       setClientProjects([]);
       console.log("no client info");
     }
-    
   };
-  console.log(props.toArray);
+
   return (
     <div className={styles.projectList} onLoad={loadProjectHandler}>
-      {props.toArray.map((projectList) => (
+      {props.toArray.length > 0 ? props.toArray.map((projectList) => (
         <ClientProject 
           projectSelected={projectList}
           projectName={projectList.projectName}
@@ -31,7 +30,7 @@ const ClientPageProjects = (props) => {
           projectStatus={projectList.projectStatus ? ("Active") : ("Inactive")}
           id={projectList.projectId}
         />
-      ))}
+      )) : <p>No Projects</p>}
     </div>
   );
 };

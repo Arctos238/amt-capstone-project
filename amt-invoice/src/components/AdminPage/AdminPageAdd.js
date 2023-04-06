@@ -50,7 +50,6 @@ const AdminPageAdd = () => {
       setRoleId("1");
     }
   };
-  console.log(isSelectedOption);
 
   const obj = {
     employeeId: isEmployeeId,
@@ -64,10 +63,9 @@ const AdminPageAdd = () => {
     employeePassword: isEmployeePassword,
   };
   console.log(obj);
-
   const submitHandler = async (event) => {
     event.preventDefault();
-    // const data = await CreateNewEmployee(obj);
+    const data = await CreateNewEmployee(obj);
   };
 
   return (
@@ -139,7 +137,6 @@ const AdminPageAdd = () => {
           onChange={handleLastnameChange}
         />
       </CardWithRadius>
-
       <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
         <TextField
           sx={{

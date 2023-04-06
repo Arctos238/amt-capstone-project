@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../UI/Card";
 import classes from "../UI/Card.module.css";
@@ -7,19 +7,24 @@ import ClientPageProjects from "./ClientPageProjects";
 import ClientPageButton from "./ClientPageButton";
 import BackButton from "../BackButton/BackButton";
 import styles from "./ClientContact.module.css";
+import { GetProjectByClientId } from "../../services/ProjectServices";
 
 const ClientPage = () => {
-  const handleGoBack = () => {
-    window.history.back();
-  };
-
+  const [projectList, setProjectList] = useState([]);
   let clientInfo = localStorage.getItem("clientInfo");
   let toArray = JSON.parse(clientInfo);
-  console.log(toArray);
+
+  let selectedClientId = toArray[0].clientId;
+
+  const fetchData = async () => {
+    const data = await GetProjectByClientId(selectedClientId);
+    setProjectList(data);
+  }
+  fetchData();
   return (
     <div className={styles.clientPage}>
       <BackButton />
-      <h1 className={styles.title}>Create Client</h1>
+      <h1 className={styles.title}>Project Page</h1>
       <div className="aboutClient">
         <Card className={classes.yellowCard}>
           <ClientContact
@@ -32,7 +37,7 @@ const ClientPage = () => {
       </div>
       <div className="theProjects">
         <Card className={classes.yellowCard}>
-          <ClientPageProjects toArray={toArray[0].projects} />
+          <ClientPageProjects toArray={projectList} />
         </Card>
       </div>
       <div className="buttons">
