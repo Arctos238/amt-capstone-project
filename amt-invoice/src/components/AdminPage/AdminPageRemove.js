@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
-import CardWithRadius from "../UI/CardWithRadius";
-import Button from "../UI/Button";
 import { GetAllEmployees } from "../../services/EmployeeServices";
 import styles from "./AdminPageRemove.module.css";
-import classes from "../UI/CardWithRadius.module.css";
-import Radio from "@mui/material/Radio";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -16,13 +12,6 @@ import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
 import { DeleteEmployeeByUsername } from "../../services/EmployeeServices";
 import { Link } from "react-router-dom";
 
@@ -31,7 +20,6 @@ const AdminPageRemove = () => {
     const [open, setOpen] = useState(false);
 
     const handleDelete = async (username) => {
-        console.log(username);
         await DeleteEmployeeByUsername(username);
         setOpen(false);
         setResults(results.filter((result) => result.employeeUsername !== username));
@@ -41,7 +29,6 @@ const AdminPageRemove = () => {
         const fetchData = async () => {
             try {
                 const data = await GetAllEmployees();
-                console.log(data);
                 setResults(data);
             } catch (error) {
                 console.log(error);

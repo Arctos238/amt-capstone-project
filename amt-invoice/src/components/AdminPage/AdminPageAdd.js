@@ -9,6 +9,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { CreateNewEmployee } from "../../services/EmployeeServices";
+import { useNavigate } from "react-router-dom";
 
 const AdminPageAdd = () => {
   const [isValidSearch, setIsValidSearch] = useState(true);
@@ -19,6 +20,7 @@ const AdminPageAdd = () => {
   const [isEmployeeLastName, setEmployeeLastName] = useState("");
   const [isEmployeeUsername, setEmployeeUsername] = useState("");
   const [isEmployeePassword, setEmployeePassword] = useState("");
+  const navigate = useNavigate();
 
   const handleIDChange = (event) => {
     setEmployeeId(event.target.value);
@@ -62,9 +64,11 @@ const AdminPageAdd = () => {
     employeeUsername: isEmployeeUsername,
     employeePassword: isEmployeePassword,
   };
-  console.log(obj);
+  
   const submitHandler = async (event) => {
     event.preventDefault();
+    alert("User Added Successfully");
+    navigate("/AdminPage");
     const data = await CreateNewEmployee(obj);
   };
 
