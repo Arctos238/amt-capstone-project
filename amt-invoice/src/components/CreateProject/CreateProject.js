@@ -139,12 +139,16 @@ const CreateProject = () => {
         employeeName,
       };
 
-      console.log(obj);
+      console.log(JSON.stringify(obj));
       const data = await CreateNewProject(obj);
 
       const fetchData = async () => {
+        try {
         const data = await GetClientById(theSelectedClientId);
         localStorage.setItem("clientInfo", JSON.stringify(data));
+        } catch {
+          console.error();
+        }
       };
 
       if (data != null) {

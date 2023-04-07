@@ -40,10 +40,10 @@ public class Project implements java.io.Serializable {
 	private Boolean projectTileRemoval;
 	private ProjectAddress projectAddress;
 	private ProjectSupervisor projectSupervisor;
+	private ProjectContractor projectContractor;
 	private Set<Quote> quotes = new HashSet<Quote>(0);
 	private Set<Image> images = new HashSet<Image>(0);
 	private Set<PurchaseOrder> purchaseOrders = new HashSet<PurchaseOrder>(0);
-	private Set<DepositForm> depositForms = new HashSet<DepositForm>(0);
 	private Set<Invoice> invoices = new HashSet<Invoice>(0);
 
 	public Project() {
@@ -55,8 +55,8 @@ public class Project implements java.io.Serializable {
 
 	public Project(Client client, String projectName, String employeeName, Boolean projectStatus,
 			Boolean projectCabinetsCondition, Boolean projectCounterRemoval, Boolean projectTileRemoval,
-			ProjectAddress projectAddress, ProjectSupervisor projectSupervisor, Set<Quote> quotes, Set<Image> images,
-			Set<PurchaseOrder> purchaseOrders, Set<DepositForm> depositForms, Set<Invoice> invoices) {
+			ProjectAddress projectAddress, ProjectSupervisor projectSupervisor, ProjectContractor projectContractor,
+			Set<Quote> quotes, Set<Image> images, Set<PurchaseOrder> purchaseOrders, Set<Invoice> invoices) {
 		super();
 		this.client = client;
 		this.projectName = projectName;
@@ -67,10 +67,10 @@ public class Project implements java.io.Serializable {
 		this.projectTileRemoval = projectTileRemoval;
 		this.projectAddress = projectAddress;
 		this.projectSupervisor = projectSupervisor;
+		this.projectContractor = projectContractor;
 		this.quotes = quotes;
 		this.images = images;
 		this.purchaseOrders = purchaseOrders;
-		this.depositForms = depositForms;
 		this.invoices = invoices;
 	}
 
@@ -95,7 +95,7 @@ public class Project implements java.io.Serializable {
 		this.employeeName = employeeName;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name= "client_id")
 	@JsonBackReference
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -171,7 +171,7 @@ public class Project implements java.io.Serializable {
 		this.images = images;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade=CascadeType.ALL)
 	public Set<PurchaseOrder> getPurchaseOrders() {
 		return this.purchaseOrders;
 	}
@@ -180,16 +180,7 @@ public class Project implements java.io.Serializable {
 		this.purchaseOrders = purchaseOrders;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
-	public Set<DepositForm> getDepositForms() {
-		return this.depositForms;
-	}
-
-	public void setDepositForms(Set<DepositForm> depositForms) {
-		this.depositForms = depositForms;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade=CascadeType.ALL)
 	public Set<Invoice> getInvoices() {
 		return this.invoices;
 	}
@@ -214,9 +205,22 @@ public class Project implements java.io.Serializable {
 	public ProjectSupervisor getProjectSupervisor() {
 		return this.projectSupervisor;
 	}
+	
 
 	public void setProjectSupervisor(ProjectSupervisor projectSupervisor) {
 		this.projectSupervisor = projectSupervisor;
+	}
+	
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "project", cascade=CascadeType.ALL) 
+	@JsonManagedReference
+	@JoinColumn(name = "project_contractor")
+	public ProjectContractor getProjectContractor() {
+		return this.projectContractor;
+	}
+	
+
+	public void setProjectContractor(ProjectContractor projectContractor) {
+		this.projectContractor = projectContractor;
 	}
 	
 	@Transient

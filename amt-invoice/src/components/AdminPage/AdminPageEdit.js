@@ -11,6 +11,7 @@ import FormControl from "@mui/material/FormControl";
 import { UpdateEmployee, GetEmployeeByUsername } from "../../services/EmployeeServices";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AdminPageEdit = () => {
   const [user, setUser] = useState();  
@@ -24,14 +25,12 @@ const AdminPageEdit = () => {
   const [isEmployeeUsername, setEmployeeUsername] = useState("");
   const [isEmployeePassword, setEmployeePassword] = useState("");
   const location = useLocation();
+  const navigate = useNavigate();
 
-
-  console.log(location.state)
   useEffect(() => {
     const fetchData = async () => {
         try {
             const data = await GetEmployeeByUsername(location.state);
-            console.log(data);
             setUser(data);
             setLoading(true);
         } catch (error) {
@@ -74,7 +73,6 @@ const AdminPageEdit = () => {
       setRoleId("1");
     }
   };
-  console.log(isSelectedOption);
 
   const obj = {
     employeeId: isEmployeeId,
@@ -90,8 +88,9 @@ const AdminPageEdit = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    console.log(obj)
-    // const data = await UpdateEmployee(obj);
+    alert("Edit Added Successfully");
+    navigate("/AdminPage");
+    const data = await UpdateEmployee(obj);
   };
 
   if(!loading) {
@@ -101,6 +100,7 @@ const AdminPageEdit = () => {
   return (
     <div className={styles.center}>
       <h1>Edit User</h1>
+      <p>*Please fill in the information in each text box</p>
       <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
         <TextField
           sx={{

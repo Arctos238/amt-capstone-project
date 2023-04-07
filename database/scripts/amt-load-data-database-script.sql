@@ -73,7 +73,7 @@ insert into client  values (10, 'Skyler Gray',  10);
 
 -- Insert data into project table --
 
-insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (1, 'Can''t Buy Me Love', true, false, true, 1);
+insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id, employee_name) values (1, 'Can''t Buy Me Love', true, false, true, 1, 'John');
 insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (2, 'Nicht alle', false, false, true, 2);
 insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (3, 'Bambi a', true, false, false, 1);
 insert into project (project_id, project_name, project_status, project_cabinets_condition, project_tile_removal, client_id) values (4, 'Detective', false, true, false, 3);
@@ -101,29 +101,48 @@ insert into project_address (project_address_id, first_line_address, second_line
 
 -- Insert into project supervisor table --
 
-insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (1, 'Bethanechol Chloride', '(667) 7365614', 1);
-insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (2, 'Antihemophilic Factor Recombinant', '(642) 3442204', 2);
-insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (3, 'Nystatin', '(628) 6634057', 3);
-insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (4, 'Methyl Salicylate, Capsaicin, and Menthol', '(177) 9252783', 4);
-insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (5, 'SALICYLIC ACID', '(487) 1746919', 5);
-insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (6, 'azithromycin', '(323) 7158541', 6);
-insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (7, 'GLYCERIN', '(286) 3245818', 7);
-insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (8, 'Loperamide Hydrochloride', '(388) 9027843', 8);
-insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (9, 'German Cockroach', '(305) 3867469', 9);
-insert into project_supervisor (project_supervisor_id, project_supervisor_name, project_supervisor_number, project_id) values (10, 'Ampicillin and Sulbactam', '(427) 7380678', 10);
+insert into project_supervisor (project_supervisor_name, project_supervisor_number, project_supervisor_email, project_id) values ('Jamil Darbyshire', '(263) 4274460', 'jdarbyshire0@google.com', 1);
+insert into project_supervisor (project_supervisor_name, project_supervisor_number, project_supervisor_email, project_id) values ('Judye Pabelik', '(838) 2389976', 'jpabelik1@webmd.com', 2);
+insert into project_supervisor (project_supervisor_name, project_supervisor_number, project_supervisor_email, project_id) values ('Vivienne Legh', '(747) 4057359', 'vlegh2@hostgator.com', 3);
+insert into project_supervisor (project_supervisor_name, project_supervisor_number, project_supervisor_email, project_id) values ('Ruy Stracey', '(122) 3729205', 'rstracey3@time.com', 4);
+insert into project_supervisor (project_supervisor_name, project_supervisor_number, project_supervisor_email, project_id) values ('Velvet Umfrey', '(904) 2114469', 'vumfrey4@google.it', 5);
+insert into project_supervisor (project_supervisor_name, project_supervisor_number, project_supervisor_email, project_id) values ('Adaline Neeve', '(437) 4439985', 'aneeve5@unicef.org', 6);
+insert into project_supervisor (project_supervisor_name, project_supervisor_number, project_supervisor_email, project_id) values ('Valerie Bolf', '(551) 2574784', 'vbolf6@usda.gov', 7);
+insert into project_supervisor (project_supervisor_name, project_supervisor_number, project_supervisor_email, project_id) values ('Zarla Shobrook', '(135) 2694212', 'zshobrook7@omniture.com', 8);
+insert into project_supervisor (project_supervisor_name, project_supervisor_number, project_supervisor_email, project_id) values ('Ashli Bellringer', '(582) 6102837', 'abellringer8@un.org', 9);
+insert into project_supervisor (project_supervisor_name, project_supervisor_number, project_supervisor_email, project_id) values ('Land Paulack', '(477) 9813238', 'lpaulack9@imdb.com', 10);
+
+-- insert into project contractor table --
+
+insert into project_contractor (project_contractor_name, project_contractor_number, project_contractor_email, project_id) values ('Shaine Kuban', '(766) 3069955', 'skuban0@census.gov', 1);
+insert into project_contractor (project_contractor_name, project_contractor_number, project_contractor_email, project_id) values ('Carolina Skelhorne', '(513) 1318348', 'cskelhorne1@google.com.hk', 2);
+insert into project_contractor (project_contractor_name, project_contractor_number, project_contractor_email, project_id) values ('Joelynn Perutto', '(446) 8962494', 'jperutto2@sciencedirect.com', 3);
+insert into project_contractor (project_contractor_name, project_contractor_number, project_contractor_email, project_id) values ('Kristi Eynaud', '(675) 4139262', 'keynaud3@jalbum.net', 4);
+insert into project_contractor (project_contractor_name, project_contractor_number, project_contractor_email, project_id) values ('Ruprecht Grooby', '(837) 7065235', 'rgrooby4@si.edu', 5);
+insert into project_contractor (project_contractor_name, project_contractor_number, project_contractor_email, project_id) values ('Tallou Toogood', '(987) 2847021', 'ttoogood5@ox.ac.uk', 6);
+insert into project_contractor (project_contractor_name, project_contractor_number, project_contractor_email, project_id) values ('Layne O''Halleghane', '(155) 8487911', 'lohalleghane6@360.cn', 7);
+insert into project_contractor (project_contractor_name, project_contractor_number, project_contractor_email, project_id) values ('Kai Dunrige', '(194) 9191305', 'kdunrige7@lycos.com', 8);
+insert into project_contractor (project_contractor_name, project_contractor_number, project_contractor_email, project_id) values ('Marilee Kobisch', '(611) 4456456', 'mkobisch8@seesaa.net', 9);
+insert into project_contractor (project_contractor_name, project_contractor_number, project_contractor_email, project_id) values ('Berny Kulicke', '(340) 5480354', 'bkulicke9@nymag.com', 10);
+
 
 -- insert into invoice table --
 
-insert into invoice (invoice_id, invoice_total_price, project_id) values (1, 18529.4, 1);
-insert into invoice (invoice_id, invoice_total_price, project_id) values (2, 68409.63, 2);
-insert into invoice (invoice_id, invoice_total_price, project_id) values (3, 8387.83, 3);
-insert into invoice (invoice_id, invoice_total_price, project_id) values (4, 55126.19, 4);
-insert into invoice (invoice_id, invoice_total_price, project_id) values (5, 63487.24, 5);
-insert into invoice (invoice_id, invoice_total_price, Project_id) values (6, 61743.68, 6);
-insert into invoice (invoice_id, invoice_total_price, project_id) values (7, 4200.28, 7);
-insert into invoice (invoice_id, invoice_total_price, project_id) values (8, 72869.23, 8);
-insert into invoice (invoice_id, invoice_total_price, project_id) values (9, 88723.6, 9);
-insert into invoice (invoice_id, invoice_total_price, project_id) values (10, 11298.11, 10);
+insert into invoice (invoice_id, invoice_total_price, location, project_id) values (1, 124, 'Palma De Mallorca', 4);
+insert into invoice (invoice_id, invoice_total_price, location, project_id) values (2, 60, 'Majie', 6);
+insert into invoice (invoice_id, invoice_total_price, location, project_id) values (3, 93, 'Pasar', 9);
+insert into invoice (invoice_id, invoice_total_price, location, project_id) values (4, 121, 'Bokhan', 5);
+insert into invoice (invoice_id, invoice_total_price, location, project_id) values (5, 11, 'Gersikputih Tengah', 1);
+insert into invoice (invoice_id, invoice_total_price, location, project_id) values (6, 170, 'Kraljevo', 6);
+insert into invoice (invoice_id, invoice_total_price, location, project_id) values (7, 39, 'Duvergé', 6);
+insert into invoice (invoice_id, invoice_total_price, location, project_id) values (8, 146, 'Opatowiec', 6);
+insert into invoice (invoice_id, invoice_total_price, location, project_id) values (9, 147, 'Särevere', 3);
+insert into invoice (invoice_id, invoice_total_price, location, project_id) values (10, 98, 'Kigoma', 10);
+insert into invoice (invoice_id, invoice_total_price, location, project_id) values (11, 178, 'Baizhu', 6);
+insert into invoice (invoice_id, invoice_total_price, location, project_id) values (12, 31, 'Qusar', 1);
+insert into invoice (invoice_id, invoice_total_price, location, project_id) values (13, 186, 'Bečmen', 1);
+insert into invoice (invoice_id, invoice_total_price, location, project_id) values (14, 223, 'Terong', 6);
+insert into invoice (invoice_id, invoice_total_price, location, project_id) values (15, 61, 'Dangshun', 9);
 
 -- Insert into Edge Profile --
 
@@ -194,3 +213,43 @@ insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('17zA
 insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('1JFVq73sM6ufok7pB4PgadktR9e3v72QdF', 3);
 insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('17XXnonoBZG3Fi942Gjwp3XPnTa6kG7E9y', 9);
 insert into invoice_item_note (invoice_item_note, invoice_item_id) values ('19cx3tabr9swazMkh9DGo9s4YxP7Da2nRf', 6);
+
+-- insert into deposit_form --
+
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (2, 5633, '152-790-4384', 'itabour0@nyu.edu', 1);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (1, 1256, '125-828-9358', 'tbolles1@blogspot.com', 2);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (1, 5070, '290-672-8437', 'dcunah2@4shared.com', 3);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (1, 9968, '700-621-5014', 'hgregolin3@msu.edu', 4);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (1, 8958, '514-105-7175', 'gpettifor4@360.cn', 5);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (1, 7238, '917-346-7855', 'asnozzwell5@accuweather.com', 6);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (1, 7684, '692-541-6819', 'wrothera6@howstuffworks.com', 7);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (2, 7675, '949-811-7931', 'wdat7@constantcontact.com', 8);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (1, 4236, '590-749-3790', 'plamshead8@jimdo.com', 9);
+insert into deposit_form (is_deposit, deposit_amount, deposit_form_phone_number, deposit_email_address, invoice_id) values (2, 4767, '799-329-3499', 'khrinishin9@intel.com', 10);
+
+-- insert into billing_address --
+
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('1 Memorial Park', '1st Floor', 'Durham', 'NC', '27710', 1);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('54623 Grayhawk Place', 'PO Box 27796', 'Washington', 'DC', '20530', 2);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('88 Veith Place', 'Suite 40', 'Morgantown', 'WV', '26505', 3);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('80 Briar Crest Junction', 'Suite 53', 'Crawfordsville', 'IN', '47937', 4);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('775 Towne Court', 'PO Box 59826', 'Des Moines', 'IA', '50362', 5);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('48679 Main Terrace', 'Room 132', 'Scottsdale', 'AZ', '85255', 6);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('13975 Independence Court', 'Suite 22', 'Harrisburg', 'PA', '17140', 7);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('33 Boyd Drive', 'Apt 41', 'Detroit', 'MI', '48295', 8);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('5 Bluejay Pass', 'Suite 94', 'Santa Barbara', 'CA', '93150', 9);
+insert into billing_address (first_line_address, second_line_address, city, province, postal_code, deposit_form_id) values ('702 2nd Lane', 'Room 311', 'Cincinnati', 'OH', '45213', 10);
+
+
+-- insert into credit_card_number -- 
+
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Lola Hollingsby', 100000, '2023-03', 3, 'visa', 1);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Colin Paull', 100000, '2022-01', 3, 'visa', 2);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Loleta Downes', 100000, '2022-12', 3, 'visa', 3);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Caren Mews', 100000, '2022-02', 3, 'visa', 4);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Hortense Dy', 100000, '2022-12', 3, 'visa', 5);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Brit Lydiard', 100000, '2022-04', 3, 'visa', 6);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Lily Fairnington', 100000, '2022-02', 3, 'visa', 7);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Madeline Perazzo', 100000, '2022-10', 3, 'visa', 8);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Therese Edison', 100000, '2022-07', 3, 'visa', 9);
+insert into credit_card_information (name_on_card, credit_card_number, expiry_date, cvs, credit_card_type, deposit_form_id) values ('Klement Vasilenko', 100000, '2022-02', 3, 'visa', 10);
