@@ -30,7 +30,7 @@ import { TableContainer } from "@mui/material";
 import { Paper, Table, TableBody, TableRow, TableCell } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SummarizeIcon from "@mui/icons-material/Summarize";
-
+import CreditCardIcon from '@mui/icons-material/CreditCard';
 
 
 const InvoiceProject = (props) => {
@@ -56,6 +56,9 @@ const InvoiceProject = (props) => {
   const workForms = async () => {
     nav("/workForm");
   };
+  const deposit = async () => {
+    nav("/deposit");
+  }
   const handleClick = async () => {
     const data = await GetProjectById(props.projectId);
     localStorage.setItem("projectId", JSON.stringify(data));
@@ -286,6 +289,17 @@ const InvoiceProject = (props) => {
             startIcon={<SummarizeIcon />}
           >
             Work Order
+          </Button>
+          <br />
+          <br />
+
+          <Button
+            variant="contained"
+            onClick={deposit}
+            style={{ backgroundColor: "#05516a" }}
+            startIcon={<CreditCardIcon />}
+          >
+            Deposit
           </Button>
         </AccordionDetails>
       </Accordion>

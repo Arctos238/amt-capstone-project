@@ -204,7 +204,8 @@ export default function WorkOrderForm(props) {
 
         <ReactToPrint
           trigger={() => (
-            <Button variant="contained" startIcon={<PrintIcon />}>
+            <Button variant="contained" startIcon={<PrintIcon />}  
+            style={{ backgroundColor: "#05516a" }}>
               Print
             </Button>
           )}

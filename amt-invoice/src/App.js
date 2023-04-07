@@ -18,6 +18,7 @@ import Header from "./components/UI/Header";
 import UpdateInvoice from "./components/CreateInvoice/UpdateInvoice";
 import AdminPageEdit from "./components/AdminPage/AdminPageEdit";
 import EditClient from "./components/EditClient/EditClient"
+import Deposit from "./components/Invoices/DepositForm";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -175,7 +176,17 @@ function App() {
           exact
           element={
             <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-              <UpdateInvoice />
+              <UpdateInvoice/>
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/deposit"
+          exact
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <Deposit/>
             </Layout>
           }
         />
