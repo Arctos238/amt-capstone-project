@@ -19,6 +19,7 @@ import UpdateInvoice from "./components/CreateInvoice/UpdateInvoice";
 import AdminPageEdit from "./components/AdminPage/AdminPageEdit";
 import EditClient from "./components/EditClient/EditClient"
 import Deposit from "./components/Invoices/DepositForm";
+import BudgetQoute from "./components/Invoices/BudgetQuote";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -190,6 +191,18 @@ function App() {
             </Layout>
           }
         />
+
+        <Route
+          path="/BudgetQoute"
+          exact
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <BudgetQoute/>
+            </Layout>
+          }
+        />
+
+
       </Routes>
     </div>
   );

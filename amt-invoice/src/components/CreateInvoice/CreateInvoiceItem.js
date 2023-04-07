@@ -49,7 +49,7 @@ const CreateInvoiceItem = (props) => {
                 className={textfield.root}
                 sx={{ width: "100%", color: "white" }}
                 id="standard-basic"
-                label="Name"
+                label="Item Name"
                 InputProps={{
                   style: { color: "white" },
                 }}
@@ -84,7 +84,7 @@ const CreateInvoiceItem = (props) => {
               <TextField
                 sx={{ width: "100%", color: "white" }}
                 id="standard-basic"
-                label="Measurement"
+                label="Measurement Unit"
                 className={textfield.root}
                 type="text"
                 variant="standard"

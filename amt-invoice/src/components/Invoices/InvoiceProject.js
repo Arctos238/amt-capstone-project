@@ -23,7 +23,7 @@ import BackButton from "../BackButton/BackButton";
 import { GetImageById } from "../../services/ImageServices";
 import { DeleteInvoiceById } from "../../services/InvoiceServices";
 import { GetInvoiceItemsByInvoiceId } from "../../services/InvoiceItemServices";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import InvoicesPageProject from "./InvoicesPageProjects";
 import PhotoIcon from "@mui/icons-material/Photo";
 import { TableContainer } from "@mui/material";
@@ -33,7 +33,9 @@ import SummarizeIcon from "@mui/icons-material/Summarize";
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 
 
+
 const InvoiceProject = (props) => {
+  let componentRef = useRef();
   const projectList = props.project;
   const [invoices, setInvoices] = useState(projectList.invoices);
   const [selectedInvoiceId, setSelectedInvoiceId] = useState(null);
@@ -58,6 +60,10 @@ const InvoiceProject = (props) => {
   };
   const deposit = async () => {
     nav("/deposit");
+  }
+
+  const budget = async () => {
+    nav("/BudgetQoute");
   }
   const handleClick = async () => {
     const data = await GetProjectById(props.projectId);
@@ -301,6 +307,19 @@ const InvoiceProject = (props) => {
           >
             Deposit
           </Button>
+
+          <br />
+          <br />
+
+          <Button
+            variant="contained"
+            onClick={budget}
+            style={{ backgroundColor: "#05516a" }}
+          >
+            Budget Quote
+          </Button>
+
+          
         </AccordionDetails>
       </Accordion>
       <Accordion
