@@ -59,6 +59,9 @@ const InvoiceProject = (props) => {
   const deposit = async () => {
     nav("/deposit");
   }
+  const productInfo = async () => {
+    nav("/productInfo");
+  }
   const handleClick = async () => {
     const data = await GetProjectById(props.projectId);
     localStorage.setItem("projectId", JSON.stringify(data));
@@ -300,6 +303,16 @@ const InvoiceProject = (props) => {
             startIcon={<CreditCardIcon />}
           >
             Deposit
+          </Button>
+          <br/>
+          <br/>
+          <Button
+            variant="contained"
+            onClick={productInfo}
+            style={{ backgroundColor: "#05516a" }}
+            startIcon={<CreditCardIcon />}
+          >
+            Product Info
           </Button>
         </AccordionDetails>
       </Accordion>
