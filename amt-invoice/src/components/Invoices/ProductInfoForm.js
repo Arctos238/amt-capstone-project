@@ -211,7 +211,7 @@ export default function ProductInfoForm(props) {
         </br>
 
         <Typography variant="subtitle1" align="center" gutterBottom>
-                Server
+                Sawyer
         </Typography>
 
             <TableContainer component={Paper}>
@@ -448,7 +448,7 @@ class ComponentToPrint extends React.Component {
         </br>
 
         <Typography variant="subtitle1" align="center" gutterBottom>
-                Server
+                Sawyer
         </Typography>
 
             <TableContainer component={Paper}>

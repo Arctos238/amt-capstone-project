@@ -183,7 +183,7 @@ function App() {
           }
         />
 
-        {/* <Route
+        <Route
           path="/deposit"
           exact
           element={
@@ -191,7 +191,7 @@ function App() {
               <Deposit/>
             </Layout>
           }
-        /> */}
+        />
 
         <Route
           path="/productInfo"
