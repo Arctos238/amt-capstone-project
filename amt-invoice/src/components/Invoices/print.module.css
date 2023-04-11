@@ -1,0 +1,9 @@
+@media print {
+    body {
+      background-color: white;
+    }
+  }
+  
+  .print-container {
+    height: 100%;
+  }
