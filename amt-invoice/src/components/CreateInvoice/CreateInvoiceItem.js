@@ -42,6 +42,19 @@ const CreateInvoiceItem = (props) => {
   return (
     <form className="invoiceItemForm">
       <div className={styles.invoiceItem}>
+        <CardWithRadius className={classes.notSoBlue}>
+          <TextField
+            className={textfield.root}
+            sx={{ width: "100%", color: "white" }}
+            id="standard-basic"
+            label="Location"
+            InputProps={{
+              style: { color: "white" },
+            }}
+            variant="standard"
+            inputRef={props.locationRef}
+          />
+        </CardWithRadius>
         <div className={styles.parent}>
           <div className={styles.left}>
             <CardWithRadius className={classes.notSoBlue}>
@@ -57,7 +70,7 @@ const CreateInvoiceItem = (props) => {
                 inputRef={props.invoiceItemNameRef}
               />
             </CardWithRadius>
-            
+
             <CardWithRadius className={classes.notSoBlue}>
               <TextField
                 sx={{ width: "100%", color: "white" }}
@@ -94,17 +107,17 @@ const CreateInvoiceItem = (props) => {
             </CardWithRadius>
           </div>
           <div className={styles.right}>
-          <CardWithRadius className={classes.notSoBlue}>
+            <CardWithRadius className={classes.notSoBlue}>
               <TextField
                 className={textfield.root}
                 sx={{ width: "100%", color: "white" }}
                 id="standard-basic"
-                label="Location"
+                label="Material"
                 InputProps={{
                   style: { color: "white" },
                 }}
                 variant="standard"
-                inputRef={props.locationRef}
+                inputRef={props.materialRef}
               />
             </CardWithRadius>
             <CardWithRadius className={classes.notSoBlue}>
@@ -134,27 +147,27 @@ const CreateInvoiceItem = (props) => {
               />
             </CardWithRadius>
             <CardWithRadius className={classes.notSoBlue}>
-          <FormControl fullWidth variant="filled">
-            <InputLabel
-              htmlFor="filled-adornment-amount"
-              style={{ color: "white" }}
-            >
-              Amount
-            </InputLabel>
-            <Input
-              id="filled-adornment-amount"
-              startAdornment={<label>$</label>}
-              className={textfield.root}
-              inputRef={props.invoiceItemPriceRef}
-              sx={{
-                padding: 0.5,
-              }}
-            />
-          </FormControl>
-        </CardWithRadius>
+              <FormControl fullWidth variant="filled">
+                <InputLabel
+                  htmlFor="filled-adornment-amount"
+                  style={{ color: "white" }}
+                >
+                  Amount
+                </InputLabel>
+                <Input
+                  id="filled-adornment-amount"
+                  startAdornment={<label>$</label>}
+                  className={textfield.root}
+                  inputRef={props.invoiceItemPriceRef}
+                  sx={{
+                    padding: 0.5,
+                  }}
+                />
+              </FormControl>
+            </CardWithRadius>
           </div>
         </div>
-        
+
       </div>
     </form>
   );
