@@ -14,6 +14,7 @@ export default function BudgetQouteTemplate(){
     const currentDate = new Date().toLocaleDateString();
     let clientInfo = localStorage.getItem("clientInfo");
     let toArray = JSON.parse(clientInfo);
+    let invoice = JSON.parse(localStorage.getItem('invoice'));
     console.log(toArray[0]);
 
     useEffect(() => {
@@ -22,12 +23,6 @@ export default function BudgetQouteTemplate(){
         setItems(items);
         }
     }, []);
-
-    if (items && items.invoices && items.invoices.length > 0) {
-        console.log(items.invoices[0].invoiceItems[0]);
-    } else {
-        console.log('No invoices found.');
-    }
 
     return(
         <div style={{ display: "flex", justifyContent: "center", backgroundColor: "white", backgroundImage: "none"}}>
@@ -52,14 +47,14 @@ export default function BudgetQouteTemplate(){
                     <span style={{ fontWeight: 'bold' }}>Seams to be determined by AMT. Any unsupported overhangs larger than 8"(16" for quartz) needs to have supports. AMT does NOT supply supports.</span>
                 </p>
 
-                {items?.invoices?.length > 0 && items?.invoices[0]?.invoiceItems?.length > 0 ? (
-                    items.invoices[0].invoiceItems.map((item) => (
+                {invoice && invoice.invoiceItems.length > 0 ? (
+                    invoice.invoiceItems.map((item) => (
                         <TableContainer component={Paper} key={item.invoiceItemId}>
                         <Table>
                             <TableHead>
                             <TableRow>
                                 <TableCell colSpan={2} style={{ fontWeight: "bold", borderBottom: "2px solid black" }}>
-                                {items.invoices[0].location} {item.invoiceItemName}
+                                {item.location} {item.invoiceItemName}
                                 </TableCell>
                             </TableRow>
                             </TableHead>

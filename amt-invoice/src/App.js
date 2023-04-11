@@ -19,8 +19,8 @@ import UpdateInvoice from "./components/CreateInvoice/UpdateInvoice";
 import AdminPageEdit from "./components/AdminPage/AdminPageEdit";
 import EditClient from "./components/EditClient/EditClient"
 import ProductInfoForm from "./components/Invoices/ProductInfoForm";
-// import Deposit from "./components/Invoices/DepositForm";
-// import BudgetQoute from "./components/Invoices/BudgetQuote";
+import Deposit from "./components/Invoices/DepositForm";
+import BudgetQoute from "./components/Invoices/BudgetQuote";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -203,7 +203,7 @@ function App() {
           }
         />
 
-        {/* <Route
+        <Route
           path="/BudgetQoute"
           exact
           element={
@@ -211,7 +211,7 @@ function App() {
               <BudgetQoute/>
             </Layout>
           }
-        /> */}
+        />
 
 
       </Routes>

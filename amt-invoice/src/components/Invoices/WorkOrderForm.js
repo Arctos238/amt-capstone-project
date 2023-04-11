@@ -32,23 +32,16 @@ export default function WorkOrderForm(props) {
   const currentDate = new Date().toLocaleDateString();
   let clientInfo = localStorage.getItem("clientInfo");
   let toArray = JSON.parse(clientInfo);
+  let invoice = JSON.parse(localStorage.getItem("invoice"));
+  console.log(invoice);
   console.log(toArray[0]);
 
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("invoice"));
+    const items = JSON.parse(localStorage.getItem("project"));
     if (items) {
       setItems(items);
     }
   }, []);
-
-  if (items && items.invoices && items.invoices.length > 0) {
-    console.log(items.invoices[0].invoiceTotalPrice);
-  } else {
-    console.log('No invoices found.');
-  }
-  
-
-  
   
 
   return (
@@ -89,7 +82,7 @@ export default function WorkOrderForm(props) {
                 <TableCell style={{ fontWeight: "bold" }}>Material</TableCell>
                 <TableCell>See List</TableCell>
                 <TableCell style={{ fontWeight: "bold" }}>Invoice #</TableCell>
-                <TableCell>{items.invoices?.[0]?.invoiceId}</TableCell>
+                <TableCell>{invoice?.invoiceId}</TableCell>
                 <TableCell style={{ fontWeight: "bold" }}>Invoiced</TableCell>
                 <TableCell></TableCell>
               </TableRow>
@@ -112,7 +105,7 @@ export default function WorkOrderForm(props) {
             </TableRow>
             <TableRow>
               <TableCell style={{fontWeight: "bold"}}>Price</TableCell>
-              <TableCell>{items.invoices?.[0]?.invoiceTotalPrice} (+G.S.T.)</TableCell>
+              <TableCell>{invoice?.invoiceTotalPrice} (+G.S.T.)</TableCell>
               <TableCell style={{fontWeight: "bold"}}>Deposit</TableCell>
               <TableCell></TableCell>
               <TableCell style={{fontWeight: "bold"}}>Balance Due</TableCell>
@@ -138,8 +131,8 @@ export default function WorkOrderForm(props) {
             </TableHead>
             
             <TableBody>
-            {items && items.invoices && items.invoices.length > 0 && items.invoices[0].invoiceItems.length > 0 ? (
-              items.invoices[0].invoiceItems.map((item) => (
+            {items && invoice && invoice.invoiceItems?.length > 0 ? (
+              invoice.invoiceItems.map((item) => (
                 <TableRow key={item.id}>
                   <TableCell style={{ borderRight: "1px solid #ddd"}}></TableCell>
                   <TableCell style={{ borderRight: "1px solid #ddd"}}></TableCell>
@@ -226,7 +219,8 @@ class ComponentToPrint extends React.Component {
       super(props);
   
       this.state = {
-        items: {}
+        items: {},
+        invoice: {}
       };
     }
 
@@ -236,10 +230,11 @@ class ComponentToPrint extends React.Component {
       const currentDate = new Date().toLocaleDateString();
       let clientInfo = localStorage.getItem("clientInfo");
       let toArray = JSON.parse(clientInfo);
+      let invoice = JSON.parse(localStorage.getItem('invoice'));
   
-      const items = JSON.parse(localStorage.getItem('invoice'));
+      const items = JSON.parse(localStorage.getItem('project'));
       if (items) {
-        this.setState({ items });
+        this.setState({ items, invoice });
       }
   
       this.setState({
@@ -256,7 +251,7 @@ class ComponentToPrint extends React.Component {
     render() {
       
       
-      const { items, toArray, currentDate } = this.state;
+      const { items, toArray, currentDate, invoice } = this.state;
       const myVariable = "This is dumby data I want to see how long this will go before it gets cut off";
       return (
         <div style={{position: "fixed", top: 0, bottom: 0, left: 0, right: 0, backgroundColor: "white"}}>
@@ -291,7 +286,7 @@ class ComponentToPrint extends React.Component {
             <TableCell style={{ fontWeight: "bold" }}>Material</TableCell>
                 <TableCell>See List</TableCell>
                 <TableCell style={{ fontWeight: "bold" }}>Invoice #</TableCell>
-                <TableCell>{items.invoices?.[0]?.invoiceId}</TableCell>
+                <TableCell>{invoice?.invoiceId}</TableCell>
                 <TableCell style={{ fontWeight: "bold" }}>Invoiced</TableCell>
                 <TableCell></TableCell>
             </TableRow> 
@@ -315,7 +310,7 @@ class ComponentToPrint extends React.Component {
             </TableRow>
             <TableRow>
               <TableCell style={{fontWeight: "bold"}}>Price</TableCell>
-              <TableCell>{items.invoices?.[0]?.invoiceTotalPrice} (+G.S.T.)</TableCell>
+              <TableCell>{invoice?.invoiceTotalPrice} (+G.S.T.)</TableCell>
               <TableCell style={{fontWeight: "bold"}}>Deposit</TableCell>
               <TableCell></TableCell>
               <TableCell style={{fontWeight: "bold"}}>Balance Due</TableCell>
@@ -341,8 +336,8 @@ class ComponentToPrint extends React.Component {
               </TableRow>
             </TableHead>
           <TableBody>
-            {items && items.invoices && items.invoices.length > 0 && items.invoices[0].invoiceItems.length > 0 ? (
-              items.invoices[0].invoiceItems.map((item) => (
+            {invoice  && invoice.invoiceItems?.length > 0 ? (
+              invoice.invoiceItems.map((item) => (
                 <TableRow key={item.id}>
                   <TableCell style={{ borderRight: "1px solid #ddd"}}></TableCell>
                   <TableCell style={{ borderRight: "1px solid #ddd"}}></TableCell>

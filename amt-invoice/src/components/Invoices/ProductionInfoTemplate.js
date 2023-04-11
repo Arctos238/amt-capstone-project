@@ -10,26 +10,19 @@ import Typography from "@mui/material/Typography";
 export default function ProductionTemplate() {
   const [currentDate, setCurrentDate] = useState(new Date().toLocaleDateString());
   const [toArray, setToArray] = useState([]);
+  const [invoice, setInvoice] = useState({});
   const [items, setItems] = useState({});
-  const [invoiceItems, setInvoiceItems] = useState([]);
 
   useEffect(() => {
     let clientInfo = localStorage.getItem("clientInfo");
     let toArray = JSON.parse(clientInfo);
     setToArray(toArray);
 
-    const items = JSON.parse(localStorage.getItem('invoice'));
-    let invoiceItems = [];
-    for (let invoice of items.invoices) {
-      if(invoice.invoiceItems) {
-          for (let item of invoice.invoiceItems) {
-              let object = {location: invoice.location, item: item};
-              invoiceItems.push(object);
-          }
-      }
-    }
+    const items = JSON.parse(localStorage.getItem('project'));
+    const invoice = JSON.parse(localStorage.getItem('invoice'));
+    console.log(invoice)
     setItems(items);
-    setInvoiceItems(invoiceItems);
+    setInvoice(invoice);
   }, []);
 
   console.log(items);
@@ -83,15 +76,13 @@ export default function ProductionTemplate() {
           </TableContainer>
           <br></br>
           
-          
-            {items?.invoices?.length > 0 && items?.invoices[0]?.invoiceItems?.length > 0 ? (
-                    items.invoices[0].invoiceItems.map((item) => (
-                        <TableContainer component={Paper}>
-                            <Table>
-                                {invoiceItems.map(invoiceItem => (
+          <TableContainer component={Paper}>
+              <Table>
+            {invoice && invoice?.invoiceItems?.length > 0 ? (
+                    (invoice.invoiceItems.map((invoiceItem) => (
                                     <TableRow>
                                     <TableCell style={{fontWeight: "bold"}}>Material</TableCell>
-                                    <TableCell>{invoiceItem.item.invoiceItemName}</TableCell>
+                                    <TableCell>{invoiceItem.invoiceItemName}</TableCell>
                                     <TableCell style={{fontWeight: "bold"}}>Number of slabs</TableCell>
                                     <TableCell>
                                         <TextField
@@ -104,24 +95,18 @@ export default function ProductionTemplate() {
                                     </TableCell>
                                     <TableCell style={{fontWeight: "bold"}}>LOC</TableCell>
                                     <TableCell>
-                                        <TextField
-                                        id="standard-basic"
-                                        sx={{
-                                            input: { color: 'black', width: '70px', height: '30px' }
-                                        }}
-                                        type="text"
-                                        />
+                                        {invoiceItem.location}
                                     </TableCell>
                                     </TableRow>
-                                ))}
-                            </Table>
-                        </TableContainer>
-                    ))
+                            
+                    )))
                     ) : (
                     <TableRow>
                         <TableCell colSpan={5}>No invoices found.</TableCell>
                     </TableRow>
                     )}
+                    </Table>
+                </TableContainer>
     </div>
     </div>
     

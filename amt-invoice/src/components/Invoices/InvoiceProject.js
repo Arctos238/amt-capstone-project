@@ -52,22 +52,31 @@ const InvoiceProject = (props) => {
 
   // const [images, setImages] = useState([]);
   const nav = useNavigate();
-  localStorage.setItem('invoice', JSON.stringify(projectList));
-  const test = JSON.parse(localStorage.getItem('invoice'));
+  localStorage.setItem('project', JSON.stringify(projectList));
+  const test = JSON.parse(localStorage.getItem('project'));
   console.log(test);
-  const workForms = async () => {
+  const workForms = async (id) => {
+    const data = await GetInvoiceById(id);
+    console.log(data)
+    localStorage.setItem('invoice', JSON.stringify(data))
     nav("/workForm");
   };
-  const deposit = async () => {
+  const deposit = async (id) => {
+    const data = await GetInvoiceById(id);
+    localStorage.setItem('invoice', JSON.stringify(data))
     nav("/deposit");
   }
-  const productInfo = async () => {
+  const productInfo = async (id) => {
+    const data = await GetInvoiceById(id);
+    localStorage.setItem('invoice', JSON.stringify(data))
     nav("/productInfo");
   }
-  const budget = async () => {
+  const budget = async (id) => {
+    const data = await GetInvoiceById(id);
+    localStorage.setItem('invoice', JSON.stringify(data))
     nav("/BudgetQoute");
   }
-  const handleClick = async () => {
+  const handleClick = async (id) => {
     const data = await GetProjectById(props.projectId);
     localStorage.setItem("projectId", JSON.stringify(data));
     nav("/createInvoice");
@@ -275,7 +284,42 @@ const InvoiceProject = (props) => {
                     </IconButton>
                   </div>
                 </div>
-              </CardWithRadius>
+                <br />
+          <Button
+            variant="contained"
+            onClick={() => workForms(invoices.invoiceId)}
+            style={{ backgroundColor: "#05516a" }}
+            startIcon={<SummarizeIcon />}
+          >
+            Work Order
+          </Button>
+
+          <Button
+            variant="contained"
+            onClick={() => deposit(invoices.invoiceId)}
+            style={{ backgroundColor: "#05516a" }}
+            startIcon={<CreditCardIcon />}
+          >
+            Deposit
+          </Button>
+          
+          <Button
+            variant="contained"
+            onClick={() => productInfo(invoices.invoiceId)}
+            style={{ backgroundColor: "#05516a" }}
+            startIcon={<CreditCardIcon />}
+          >
+            Product Info
+          </Button>
+
+          <Button
+            variant="contained"
+            onClick={() => budget(invoices.invoiceId)}
+            style={{ backgroundColor: "#05516a" }}
+          >
+            Budget Quote
+          </Button>
+        </CardWithRadius>
             ))
           ) : (
             <p>No Invoices</p>
@@ -287,48 +331,6 @@ const InvoiceProject = (props) => {
             startIcon={<AddCircleOutlineIcon />}
           >
             Add Invoice
-          </Button>
-          <br />
-          <br />
-          <Button
-            variant="contained"
-            onClick={workForms}
-            style={{ backgroundColor: "#05516a" }}
-            startIcon={<SummarizeIcon />}
-          >
-            Work Order
-          </Button>
-          <br />
-          <br />
-
-          <Button
-            variant="contained"
-            onClick={deposit}
-            style={{ backgroundColor: "#05516a" }}
-            startIcon={<CreditCardIcon />}
-          >
-            Deposit
-          </Button>
-          <br/>
-          <br/>
-          <Button
-            variant="contained"
-            onClick={productInfo}
-            style={{ backgroundColor: "#05516a" }}
-            startIcon={<CreditCardIcon />}
-          >
-            Product Info
-          </Button>
-
-          <br />
-          <br />
-
-          <Button
-            variant="contained"
-            onClick={budget}
-            style={{ backgroundColor: "#05516a" }}
-          >
-            Budget Quote
           </Button>
 
           
