@@ -141,7 +141,7 @@ function App() {
           }
         />
 
-        
+
 
         <Route
           path="/createClient"
@@ -178,7 +178,7 @@ function App() {
           exact
           element={
             <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-              <UpdateInvoice/>
+              <UpdateInvoice />
             </Layout>
           }
         />
@@ -188,7 +188,7 @@ function App() {
           exact
           element={
             <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-              <Deposit/>
+              <Deposit />
             </Layout>
           }
         />
@@ -198,20 +198,20 @@ function App() {
           exact
           element={
             <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-              <ProductInfoForm/>
+              <ProductInfoForm />
             </Layout>
           }
         />
 
-        <Route
+        {/* <Route
           path="/BudgetQoute"
           exact
           element={
             <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-              <BudgetQoute/>
+              <BudgetQoute />
             </Layout>
           }
-        />
+        /> */}
 
 
       </Routes>

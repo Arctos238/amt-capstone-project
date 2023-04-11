@@ -21,8 +21,8 @@ const AdminPageEdit = () => {
   const [loading, setLoading] = useState(false);
   const [isValidSearch, setIsValidSearch] = useState(true);
   const [isSelectedOption, setSelectedOption] = useState("");
-  const [isRoleId, setRoleId] = useState("");
   const [isEmployeeId, setEmployeeId] = useState("");
+  const [isRoleId, setRoleId] = useState("");
   const [isEmployeeFirstName, setEmployeeFirstName] = useState("");
   const [isEmployeeLastName, setEmployeeLastName] = useState("");
   const [isEmployeeUsername, setEmployeeUsername] = useState("");
@@ -32,20 +32,25 @@ const AdminPageEdit = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const data = await GetEmployeeByUsername(location.state);
-        setUser(data);
-        setLoading(true);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
+        try {
+            const data = await GetEmployeeByUsername(location.state);
+            setUser(data);
+            setEmployeeId(data.employeeId)
+            setEmployeeFirstName(data.employeeFirstName)
+            setEmployeeLastName(data.employeeLastName)
+            setEmployeeUsername(data.employeeUserName)
+            setEmployeePassword(data.employeePassword)
+            setRoleId(data.role.roleId)
+            setSelectedOption(data.role.roleName)
+            setLoading(true);
+        } catch (error) {
+            console.log(error);
+        }
+        }; 
+    
+    
     fetchData();
-  }, []);
-  const handleIDChange = (event) => {
-    setEmployeeId(event.target.value);
-  };
+  }, [])
 
   const handleFirstnameChange = (event) => {
     setEmployeeFirstName(event.target.value);
@@ -88,9 +93,10 @@ const AdminPageEdit = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    alert("Edit Added Successfully");
-    navigate("/AdminPage");
+    // alert("Edit Added Successfully");
+   
     const data = await UpdateEmployee(obj);
+    navigate("/AdminPage");
   };
 
   if (!loading) {
@@ -101,29 +107,6 @@ const AdminPageEdit = () => {
     <div className={styles.center}>
       <h1>Edit User</h1>
       <p>*Please fill in the information in each text box</p>
-      <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
-        <TextField
-          sx={{
-            width: "100%",
-            color: "white",
-            "& .MuiInputBase-input": {
-              width: "calc(100% - 2px)", // 2px is the width of the underline
-            },
-          }}
-          id="standard-basic"
-          label="ID:"
-          defaultValue={user.employeeId}
-          variant="standard"
-          type="text"
-          InputLabelProps={{ className: styles.textFieldLabel }}
-          InputProps={{
-            classes: {
-              underline: styles.underline,
-            },
-          }}
-          onChange={handleIDChange}
-        />
-      </CardWithRadius>
       <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
         <TextField
           sx={{
