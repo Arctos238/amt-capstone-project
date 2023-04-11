@@ -91,7 +91,7 @@ export default function ProductionTemplate() {
                                 {invoiceItems.map(invoiceItem => (
                                     <TableRow>
                                     <TableCell style={{fontWeight: "bold"}}>Material</TableCell>
-                                    <TableCell>{invoiceItem.item.invoiceItemName}</TableCell>
+                                    <TableCell>{invoiceItem.item.edgeProfile.edgeProfileMeasurement} {invoiceItem.item.material}</TableCell>
                                     <TableCell style={{fontWeight: "bold"}}>Number of slabs</TableCell>
                                     <TableCell>
                                         <TextField
@@ -122,6 +122,103 @@ export default function ProductionTemplate() {
                         <TableCell colSpan={5}>No invoices found.</TableCell>
                     </TableRow>
                     )}
+
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <Typography variant="subtitle1" align="center" gutterBottom>
+                        Office Notes
+                    </Typography>
+
+                    <TextField
+                        
+                        fullWidth
+                        multiline
+                        id="standard-basic"
+                        inputProps={{ style: { color: 'black', width: '100%', minHeight: '120px' } }}
+                        type="text"
+                    />
+
+                           
+                        <div style={{ marginTop: '50px', marginBottom: '50px' }}>
+                        <Typography variant="subtitle1" align="center" gutterBottom>
+                            Shop Notes
+                        </Typography>
+                        <TableContainer component={Paper}>
+                            <Table>
+                            <TableBody>
+                                <TableRow>
+                                <TableCell></TableCell>
+                                </TableRow>
+                                <TableRow>
+                                <TableCell></TableCell>
+                                </TableRow>
+                                <TableRow>
+                                <TableCell></TableCell>
+                                </TableRow>
+                                <TableRow>
+                                <TableCell></TableCell>
+                                </TableRow>
+                            </TableBody>
+                            <TableRow>
+                                <TableCell></TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell></TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell></TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell></TableCell>
+                            </TableRow>
+                            </Table>
+                        </TableContainer>
+                        </div>
+
+                            
+                            
+                        <div style={{ marginTop: '70px', marginBottom: '20px' }}>
+                        <Typography variant="subtitle1" align="center" gutterBottom>
+                            Sawyer
+                        </Typography>
+
+                            <TableContainer component={Paper}>
+                            
+                            <Table>
+                                <TableBody>
+                                <TableRow>
+                                <TableCell></TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell></TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell></TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell></TableCell>
+                                </TableRow>
+                                </TableBody>
+                                <TableRow>
+                                <TableCell></TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell></TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell></TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell></TableCell>
+                                </TableRow>
+                            </Table>
+                            </TableContainer>
+                            </div>
+
+
+
     </div>
     </div>
     
