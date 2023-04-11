@@ -8,13 +8,16 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import { UpdateEmployee, GetEmployeeByUsername } from "../../services/EmployeeServices";
+import {
+  UpdateEmployee,
+  GetEmployeeByUsername,
+} from "../../services/EmployeeServices";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const AdminPageEdit = () => {
-  const [user, setUser] = useState();  
+  const [user, setUser] = useState();
   const [loading, setLoading] = useState(false);
   const [isValidSearch, setIsValidSearch] = useState(true);
   const [isSelectedOption, setSelectedOption] = useState("");
@@ -29,20 +32,17 @@ const AdminPageEdit = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-        try {
-            const data = await GetEmployeeByUsername(location.state);
-            setUser(data);
-            setLoading(true);
-        } catch (error) {
-            console.log(error);
-        }
-        }; 
-    
-    
-    fetchData();
-  }, [])
+      try {
+        const data = await GetEmployeeByUsername(location.state);
+        setUser(data);
+        setLoading(true);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  
+    fetchData();
+  }, []);
   const handleIDChange = (event) => {
     setEmployeeId(event.target.value);
   };
@@ -93,8 +93,8 @@ const AdminPageEdit = () => {
     const data = await UpdateEmployee(obj);
   };
 
-  if(!loading) {
-    return (<h1>Loading</h1>)
+  if (!loading) {
+    return <h1>Loading</h1>;
   }
 
   return (
@@ -224,7 +224,9 @@ const AdminPageEdit = () => {
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
-            defaultValue={(user.role.roleName === "regular_user" ? "regular_user" : "admin")}
+            defaultValue={
+              user.role.roleName === "regular_user" ? "regular_user" : "admin"
+            }
           >
             <FormControlLabel
               value="admin"
@@ -268,7 +270,7 @@ const AdminPageEdit = () => {
         Edit User
       </Button>
     </div>
-            );
+  );
 };
 
 export default AdminPageEdit;
