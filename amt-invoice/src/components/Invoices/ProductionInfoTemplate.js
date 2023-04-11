@@ -35,32 +35,40 @@ export default function ProductionTemplate() {
   console.log(items);
   return (
     <div style={{ display: "flex", justifyContent: "center", backgroundColor: "white", backgroundImage: "none"}}>
-    <div style={{ maxWidth: "800px" }}>
+    <div style={{ maxWidth: "850px" }}>
     <h1>AMT</h1>
           <TableContainer component={Paper}>
             <TableBody>
               <TableRow>
-                <TableCell style={{ fontWeight: "bold" }}>Contractor</TableCell>
+                <TableCell style={{ fontWeight: "bold" }}>Contractor:</TableCell>
                 <TableCell>{toArray?.[0]?.clientName}</TableCell>
-                <TableCell style={{ fontWeight: "bold" }}>Phone</TableCell>
+                <TableCell style={{ fontWeight: "bold" }}>Phone:</TableCell>
                 <TableCell>{toArray?.[0]?.clientContact.personalContactNumber}</TableCell>
-                <TableCell style={{ fontWeight: "bold" }}>Date</TableCell>
+                <TableCell style={{ fontWeight: "bold" }}>Date:</TableCell>
                 <TableCell>{currentDate}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell style={{ fontWeight: "bold" }}>Project Name</TableCell>
+                <TableCell style={{ fontWeight: "bold" }}>Project Name:</TableCell>
                 <TableCell>{items.projectName}</TableCell>
-                <TableCell style={{ fontWeight: "bold" }}>Sales Staff</TableCell>
+                <TableCell style={{ fontWeight: "bold" }}>Sales Staff:</TableCell>
                 <TableCell>{items.employeeName}</TableCell>
-                <TableCell style={{ fontWeight: "bold" }}>Required</TableCell>
-                <TableCell>{currentDate}</TableCell>
+                <TableCell style={{ fontWeight: "bold" }}>Required Date:</TableCell>
+                <TableCell>
+                    <TextField
+                        id="standard-basic"
+                        sx={{
+                        input: { color: 'black', width: '70px', height: '30px' }
+                        }}
+                        type="text"
+                        />
+                    </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell style={{ fontWeight: "bold" }}>Address</TableCell>
+                <TableCell style={{ fontWeight: "bold" }}>Address:</TableCell>
                 <TableCell>{items.projectAddress?.firstLineAddress}</TableCell>
                 <TableCell/>
                 <TableCell/>
-                <TableCell style={{ fontWeight: "bold" }}>Phase</TableCell>
+                <TableCell style={{ fontWeight: "bold" }}>Phase:</TableCell>
                 <TableCell>
                 <TextField
                   id="standard-basic"
@@ -75,20 +83,45 @@ export default function ProductionTemplate() {
           </TableContainer>
           <br></br>
           
-          <TableContainer component={Paper}>
-            <Table>
-                {invoiceItems.map(invoiceItem => (
-                     <TableRow>
-                    <TableCell style={{fontWeight: "bold"}}>Material</TableCell>
-                    <TableCell>{invoiceItem.item.invoiceItemName}</TableCell>
-                    <TableCell style={{fontWeight: "bold"}}>Number of slabs</TableCell>
-                    <TableCell>3</TableCell>
-                    <TableCell style={{fontWeight: "bold"}}>LOC</TableCell>
-                    <TableCell>{invoiceItem.location}</TableCell>
+          
+            {items?.invoices?.length > 0 && items?.invoices[0]?.invoiceItems?.length > 0 ? (
+                    items.invoices[0].invoiceItems.map((item) => (
+                        <TableContainer component={Paper}>
+                            <Table>
+                                {invoiceItems.map(invoiceItem => (
+                                    <TableRow>
+                                    <TableCell style={{fontWeight: "bold"}}>Material</TableCell>
+                                    <TableCell>{invoiceItem.item.invoiceItemName}</TableCell>
+                                    <TableCell style={{fontWeight: "bold"}}>Number of slabs</TableCell>
+                                    <TableCell>
+                                        <TextField
+                                        id="standard-basic"
+                                        sx={{
+                                            input: { color: 'black', width: '70px', height: '30px' }
+                                        }}
+                                        type="text"
+                                        />
+                                    </TableCell>
+                                    <TableCell style={{fontWeight: "bold"}}>LOC</TableCell>
+                                    <TableCell>
+                                        <TextField
+                                        id="standard-basic"
+                                        sx={{
+                                            input: { color: 'black', width: '70px', height: '30px' }
+                                        }}
+                                        type="text"
+                                        />
+                                    </TableCell>
+                                    </TableRow>
+                                ))}
+                            </Table>
+                        </TableContainer>
+                    ))
+                    ) : (
+                    <TableRow>
+                        <TableCell colSpan={5}>No invoices found.</TableCell>
                     </TableRow>
-                ))}
-            </Table>
-          </TableContainer>
+                    )}
     </div>
     </div>
     
