@@ -43,7 +43,6 @@ const AdminPageEdit = () => {
 
     fetchData();
   }, []);
-
   const handleIDChange = (event) => {
     setEmployeeId(event.target.value);
   };
