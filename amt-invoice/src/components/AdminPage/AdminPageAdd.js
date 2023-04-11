@@ -22,10 +22,6 @@ const AdminPageAdd = () => {
   const [isEmployeePassword, setEmployeePassword] = useState("");
   const navigate = useNavigate();
 
-  const handleIDChange = (event) => {
-    setEmployeeId(event.target.value);
-  };
-
   const handleFirstnameChange = (event) => {
     setEmployeeFirstName(event.target.value);
   };
@@ -54,7 +50,6 @@ const AdminPageAdd = () => {
   };
 
   const obj = {
-    employeeId: isEmployeeId,
     role: {
       roleId: isRoleId,
       roleName: isSelectedOption,
@@ -68,35 +63,13 @@ const AdminPageAdd = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
     alert("User Added Successfully");
-    navigate("/AdminPage");
     const data = await CreateNewEmployee(obj);
+    navigate("/AdminPage");
   };
 
   return (
     <div className={styles.center}>
       <h1>Create User</h1>
-      <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
-        <TextField
-          sx={{
-            width: "100%",
-            color: "white",
-            "& .MuiInputBase-input": {
-              width: "calc(100% - 2px)", // 2px is the width of the underline
-            },
-          }}
-          id="standard-basic"
-          label="ID:"
-          variant="standard"
-          type="text"
-          InputLabelProps={{ className: styles.textFieldLabel }}
-          InputProps={{
-            classes: {
-              underline: styles.underline,
-            },
-          }}
-          onChange={handleIDChange}
-        />
-      </CardWithRadius>
       <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
         <TextField
           sx={{
