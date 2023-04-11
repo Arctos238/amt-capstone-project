@@ -8,6 +8,7 @@ import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import CreateInvoiceCart from "./CreateInvoiceCart";
 import { GetInvoiceItemsByInvoiceId } from "../../services/InvoiceItemServices";
+import { GetInvoiceById } from "../../services/InvoiceServices";
 import { CreateNewInvoice } from "../../services/InvoiceServices";
 import { Link } from "react-router-dom";
 import styles from "./CreateInvoice.module.css";
@@ -148,8 +149,7 @@ const upgradeProfiles = [
 
 const UpdateInvoice = (props) => {
   const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const toEditInvoiceId = searchParams.get("invoiceId");
+  const toEditInvoiceId = location.state.invoiceId;;
 
   const invoiceItemNameRef = useRef();
   const invoiceItemMeasurementRef = useRef();
@@ -159,14 +159,27 @@ const UpdateInvoice = (props) => {
   const invoiceItemDepthRef = useRef();
   const invoiceItemPriceRef = useRef();
   const invoiceNoteRef = useRef();
-
+  const materialRef = useRef();
+  const locationRef = useRef();
   const currentProjectId = localStorage.getItem("currentProjectId");
 
+  const [invoiceInfo, setInvoiceInfo] = useState({});
   const [invoiceItem, setInvoiceItem] = useState([{}]);
   const [previousInvoiceItems, setPreviousInvoiceItems] = useState([]);
   const [invoiceItemNotes, setInvoiceItemNotes] = useState([{}]);
   const [previousInvoiceItemNotes, setPreviousInvoiceItemNotes] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  
+  const getInvoiceInfo = async () => {
+    const data = await GetInvoiceById(toEditInvoiceId);
+    setInvoiceInfo(data);
+    console.log(data.location);
+    locationRef.current.value = data.location;
+  }
+
+  useEffect(() => {
+    getInvoiceInfo();
+  }, []);
 
   const getCurrentInvoiceItems = async () => {
     const data = await GetInvoiceItemsByInvoiceId(toEditInvoiceId);
@@ -174,7 +187,7 @@ const UpdateInvoice = (props) => {
     data.map(data => (setTotalPrice(Number(totalPrice) + Number(data.invoiceItemPrice))));
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     getCurrentInvoiceItems();
   }, []);
 
@@ -186,15 +199,15 @@ const UpdateInvoice = (props) => {
   const [isInvoiceAdded, setIsInvoiceAdded] = useState(false);
 
   //remove item added alert
-//   useEffect(() => {
-//     const timer = setTimeout(() => {
-//       setIsInvoiceAdded(false);
-//     }, 3000);
+  //   useEffect(() => {
+  //     const timer = setTimeout(() => {
+  //       setIsInvoiceAdded(false);
+  //     }, 3000);
 
-//     return () => {
-//       clearTimeout(timer);
-//     };
-//   }, [isInvoiceAdded]);
+  //     return () => {
+  //       clearTimeout(timer);
+  //     };
+  //   }, [isInvoiceAdded]);
   useEffect(() => {
     const timer = setTimeout(() => {
       setItemAdded(false);
@@ -273,11 +286,11 @@ const UpdateInvoice = (props) => {
     const edgeProfile =
       selectedEdgeProfileType === "Standard"
         ? standardProfiles.find(
-            (profile) => profile.edgeProfileCut === event.target.value
-          )
+          (profile) => profile.edgeProfileCut === event.target.value
+        )
         : upgradeProfiles.find(
-            (profile) => profile.edgeProfileCut === event.target.value
-          );
+          (profile) => profile.edgeProfileCut === event.target.value
+        );
 
     setSelectedEdgeProfileMeasurement(edgeProfile.edgeProfileMeasurement);
     setEdgeProfileId(edgeProfile.edgeProfileId);
@@ -302,7 +315,8 @@ const UpdateInvoice = (props) => {
     const invoiceItemArea = invoiceItemAreaRef.current.value;
     const invoiceItemDepth = invoiceItemDepthRef.current.value;
     const invoiceItemPrice = invoiceItemPriceRef.current.value;
-
+    const material = materialRef.current.value;
+  
     const edgeProfileMeasurement = selectedEdgeProfileMeasurement;
     const profileId = edgeProfileId;
     const edgeProfileType = selectedEdgeProfileType;
@@ -326,6 +340,7 @@ const UpdateInvoice = (props) => {
     //#Hooks problem
     setInvoiceItem({
       invoiceItemName,
+      material,
       invoiceItemMeasurement,
       invoiceItemWidth,
       invoiceItemLength,
@@ -354,8 +369,10 @@ const UpdateInvoice = (props) => {
   };
 
   const createInvoiceHandler = async () => {
+    const location = locationRef.current.value;
     data = {
       invoiceTotalPrice: totalPrice,
+      location,
       project: {
         projectId: currentProjectId,
       },
@@ -390,7 +407,7 @@ const UpdateInvoice = (props) => {
       {isInvoiceAdded ? (
         <div className={styles.errorBox}>
           <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
-          <Alert severity="success">Invoice Updated! <Link to={'/invoices'}>Go back to Invoice Page</Link></Alert>
+            <Alert severity="success">Invoice Updated! <Link to={'/invoices'}>Go back to Invoice Page</Link></Alert>
           </Stack>
         </div>
       ) : (
@@ -422,6 +439,8 @@ const UpdateInvoice = (props) => {
         invoiceItemAreaRef={invoiceItemAreaRef}
         invoiceItemDepthRef={invoiceItemDepthRef}
         invoiceItemPriceRef={invoiceItemPriceRef}
+        materialRef={materialRef}
+        locationRef={locationRef}
       />
 
       <EdgeProfile

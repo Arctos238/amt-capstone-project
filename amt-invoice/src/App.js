@@ -19,8 +19,8 @@ import UpdateInvoice from "./components/CreateInvoice/UpdateInvoice";
 import AdminPageEdit from "./components/AdminPage/AdminPageEdit";
 import EditClient from "./components/EditClient/EditClient"
 import ProductInfoForm from "./components/Invoices/ProductInfoForm";
-// import Deposit from "./components/Invoices/DepositForm";
-// import BudgetQoute from "./components/Invoices/BudgetQuote";
+import Deposit from "./components/Invoices/DepositForm";
+import BudgetQoute from "./components/Invoices/BudgetQuote";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -141,7 +141,7 @@ function App() {
           }
         />
 
-        
+
 
         <Route
           path="/createClient"
@@ -178,7 +178,7 @@ function App() {
           exact
           element={
             <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-              <UpdateInvoice/>
+              <UpdateInvoice />
             </Layout>
           }
         />
@@ -188,7 +188,7 @@ function App() {
           exact
           element={
             <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-              <Deposit/>
+              <Deposit />
             </Layout>
           }
         />
@@ -198,7 +198,7 @@ function App() {
           exact
           element={
             <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-              <ProductInfoForm/>
+              <ProductInfoForm />
             </Layout>
           }
         />
@@ -208,7 +208,7 @@ function App() {
           exact
           element={
             <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
-              <BudgetQoute/>
+              <BudgetQoute />
             </Layout>
           }
         /> */}
