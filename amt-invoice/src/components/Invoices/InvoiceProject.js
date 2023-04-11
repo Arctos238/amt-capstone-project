@@ -92,6 +92,10 @@ const InvoiceProject = (props) => {
     setInvoices(invoices.filter((invoice) => invoice.invoiceId !== id));
   };
 
+  const editInvoiceHandler = id => {
+    nav('/updateInvoice', {state: {invoiceId: id}})
+  }
+
   //these three are sent to InvoicePageProjects
   const [open, setOpen] = useState(false);
   const handleOpen = async (invoiceId) => {
@@ -194,37 +198,37 @@ const InvoiceProject = (props) => {
           <br></br>
 
           <div>
-              <Typography variant="h6" gutterBottom>
-                Project Supervisor Information
-              </Typography>
-              <TableContainer component={Paper}>
-                <Table>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell style={{ fontWeight: "bold" }}>
-                        Super Name:
-                      </TableCell>
-                      <TableCell>
-                        {props.project.projectSupervisor.projectSupervisorName}
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell style={{ fontWeight: "bold" }}>
-                        Super Number:
-                      </TableCell>
-                      <TableCell>
-                        {props.project.projectSupervisor.projectSupervisorNumber}
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </div>
+            <Typography variant="h6" gutterBottom>
+              Project Supervisor Information
+            </Typography>
+            <TableContainer component={Paper}>
+              <Table>
+                <TableBody>
+                  <TableRow>
+                    <TableCell style={{ fontWeight: "bold" }}>
+                      Super Name:
+                    </TableCell>
+                    <TableCell>
+                      {props.project.projectSupervisor.projectSupervisorName}
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell style={{ fontWeight: "bold" }}>
+                      Super Number:
+                    </TableCell>
+                    <TableCell>
+                      {props.project.projectSupervisor.projectSupervisorNumber}
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
 
 
-          
 
-          
+
+
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -276,12 +280,15 @@ const InvoiceProject = (props) => {
                         sx={{ color: "#fabd44", padding: 0 }}
                       />
                     </IconButton>
+
                     <IconButton aria-label="delete" size="medium">
                       <EditIcon
                         fontSize="inherit"
                         sx={{ color: "#fabd44", padding: 0 }}
+                        onClick={() => editInvoiceHandler(invoices.invoiceId)}
                       />
                     </IconButton>
+
                   </div>
                 </div>
                 <br />
@@ -333,7 +340,7 @@ const InvoiceProject = (props) => {
             Add Invoice
           </Button>
 
-          
+
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -362,7 +369,7 @@ const InvoiceProject = (props) => {
         selectedInvoiceId={selectedInvoiceId}
         invoiceInfo={sendInvoiceInfo.invoiceItems}
       />
-    </div>
+    </div >
   );
 };
 

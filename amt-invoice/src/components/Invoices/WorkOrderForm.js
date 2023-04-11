@@ -400,6 +400,7 @@ class ComponentToPrint extends React.Component {
         </div>
       );
     }
-  }
+}
+
   
   

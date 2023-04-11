@@ -36,10 +36,14 @@ class ComponentToPrint extends React.Component {
     }
 
     render() {
-        const tabStyle = {
-            overflow: "scroll",
-            backgroundColor: "white" // set background color to white
-          };
+      const tabStyle = {
+        overflow: "auto",
+        overflowY: "hidden", // hide the vertical scrollbar
+        backgroundColor: "white",
+        paddingRight: "17px",
+        marginRight: "-17px",
+      };
+      
         
         const { items } = this.state;
 
@@ -63,10 +67,17 @@ class BudgetQoute extends React.Component{
         <div style={{textAlign: "center"}}>
         <ReactToPrint
           trigger={() => (
-            <Button variant="contained" startIcon={<PrintIcon />}
-            style={{ backgroundColor: "#05516a" }}>
+            <Button
+              variant="contained"
+              startIcon={<PrintIcon />}
+              style={{
+                backgroundColor: "#05516a",
+                margin: "20px"
+              }}
+            >
               Print
             </Button>
+
           )}
           content={() => this.componentRef}
         />
