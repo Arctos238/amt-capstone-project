@@ -103,6 +103,7 @@ const InvoicesPageProject = (props) => {
                 <Table stickyHeader aria-label="sticky table">
                   <TableHead>
                     <TableCell>Item</TableCell>
+                    <TableCell>Material</TableCell>
                     <TableCell>Measurement</TableCell>
                     <TableCell>Width</TableCell>
                     <TableCell>Length</TableCell>
@@ -118,6 +119,7 @@ const InvoicesPageProject = (props) => {
                       invoiceItems.map((invoiceItems) => (
                         <TableRow>
                           <TableCell>{invoiceItems.invoiceItemName}</TableCell>
+                          <TableCell>{invoiceItems.material}</TableCell>
                           <TableCell>
                             {invoiceItems.invoiceItemMeasurement}
                           </TableCell>

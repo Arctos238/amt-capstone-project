@@ -34,7 +34,7 @@ const CreateClient = () => {
     const data = await CreateNewClient(obj);
 
     if (data != null) {
-      nav("/clientPage");
+      nav("/home");
     }
   };
 

@@ -21,7 +21,7 @@ const CreateNewProject = async (obj) => {
     return data
 }
 const UpdateProject = async (obj) => {
-    const data = await putApi('http://70.77.64.68:8083/api/projects/', obj);
+    const data = await putApi('http://70.77.64.68:8083/api/projects', obj);
     return data
 }
 

@@ -19,48 +19,6 @@ const ClientProject = (props) => {
     nav("/invoices");
   }
 
-  const fetchData = async () => {
-    const data = await GetProjectById(props.projectId);
-    console.log(data);
-    setSelectedProject(data);
-  }
-
-  const updateProject = async (obj) => {
-    const data = await UpdateProject(obj);
-  }
-
-  const changeStatusHandler = () => {
-    fetchData();
-
-    const projectContractor = selectedProject.projectContractor;
-    const quotes = selectedProject.quotes;
-    const images = selectedProject.images;
-    const purchaseOrders = selectedProject.purchaseOrders;
-    const depositForms = selectedProject.depositForms;
-    const invoices = selectedProject.invoices;
-
-
-    const toChangeJson = {
-      projectId: selectedProject.projectId,
-      projectName: selectedProject.projectName,
-      employeeName: selectedProject.employeeName,
-      projectStatus: true,
-      projectCabinetsCondition: selectedProject.projectCabinetsCondition,
-      projectCounterRemoval: selectedProject.projectCounterRemoval,
-      projectTileRemoval: selectedProject.projectTileRemoval,
-      projectAddress: selectedProject.projectAddress,
-      projectSupervisor: selectedProject.projectAddress,
-      projectContractor,
-      quotes,
-      images,
-      purchaseOrders,
-      depositForms,
-      invoices,
-      clientId: selectedProject.clientId
-    }
-    updateProject(toChangeJson);
-    console.log(JSON.stringify(toChangeJson));
-  }
 
   const deleteProjectHandler = async (id) => {
     await DeleteProjectById(id);
@@ -82,14 +40,14 @@ const ClientProject = (props) => {
 
 
       <button className={styles.viewButton} onClick={handleClick}>View</button>
-      <button className={styles.statusButton} onClick={changeStatusHandler}>Change Status</button>
+
       <IconButton
         aria-label="delete"
         size="medium"
         onClick={() => deleteProjectHandler(props.projectId)}
       >
         <DeleteIcon
-         
+
           sx={{ color: "#fabd44", padding: 0, fontSize: 28 }}
         />
       </IconButton>

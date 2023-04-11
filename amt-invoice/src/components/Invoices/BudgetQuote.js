@@ -7,58 +7,55 @@ import ReactToPrint from "react-to-print";
 import { Button, Icon } from '@mui/material';
 import PrintIcon from '@mui/icons-material/Print';
 import Typography from "@mui/material/Typography";
-import styles from "./ProductInfoForm.module.css"
 import BudgetQouteTemplate from './BudgetQouteTemplate';
-import ProductionTemplate from './ProductionInfoTemplate';
-
 
 class ComponentToPrint extends React.Component {
     
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      items: {}
-    };
-  }
-
-  componentDidMount() {
-    const currentDate = new Date().toLocaleDateString();
-    let clientInfo = localStorage.getItem("clientInfo");
-    let toArray = JSON.parse(clientInfo);
-
-    const items = JSON.parse(localStorage.getItem('invoice'));
-    if (items) {
-      this.setState({ items });
+    constructor(props) {
+      super(props);
+  
+      this.state = {
+        items: {}
+      };
     }
 
-    this.setState({
-      currentDate,
-      toArray
-    });
-  }
+    componentDidMount() {
+      const currentDate = new Date().toLocaleDateString();
+      let clientInfo = localStorage.getItem("clientInfo");
+      let toArray = JSON.parse(clientInfo);
+  
+      const items = JSON.parse(localStorage.getItem('invoice'));
+      if (items) {
+        this.setState({ items });
+      }
+  
+      this.setState({
+        currentDate,
+        toArray
+      });
+    }
 
-  render() {
-      const tabStyle = {
-          overflow: "scroll",
-          backgroundColor: "white" // set background color to white
-        };
-      
-      const { items } = this.state;
+    render() {
+        const tabStyle = {
+            overflow: "scroll",
+            backgroundColor: "white" // set background color to white
+          };
+        
+        const { items } = this.state;
 
-    return (
-      <div style={tabStyle}>
-      <div ref={this.props.propsRef}>
-          
-          <ProductionTemplate/>
+      return (
+        <div style={tabStyle}>
+        <div ref={this.props.propsRef}>
+            
+            <BudgetQouteTemplate/>
+        </div>
       </div>
-    </div>
-    );
+      );
+    }
   }
-}
 
-class  ProductInfoForm extends React.Component{
-  render(){
+class BudgetQoute extends React.Component{
+    render(){
     return(
         <div style={{backgroundColor: "white", backgroundImage: "none"}}>
             <BackButton/>
@@ -80,6 +77,4 @@ class  ProductInfoForm extends React.Component{
     }
 }
 
-export default ProductInfoForm;
-  
-  
+export default BudgetQoute;

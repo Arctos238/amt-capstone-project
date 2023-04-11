@@ -155,7 +155,7 @@ const CreateInvoice = () => {
   const invoiceItemDepthRef = useRef();
   const invoiceItemPriceRef = useRef();
   const invoiceNoteRef = useRef();
-
+  const materialRef = useRef();
   const locationRef = useRef();
 
 
@@ -307,7 +307,7 @@ const CreateInvoice = () => {
     const invoiceItemArea = invoiceItemAreaRef.current.value;
     const invoiceItemDepth = invoiceItemDepthRef.current.value;
     const invoiceItemPrice = invoiceItemPriceRef.current.value;
-
+    const material = materialRef.current.value;
     const edgeProfileMeasurement = selectedEdgeProfileMeasurement;
     const profileId = edgeProfileId;
     const edgeProfileType = selectedEdgeProfileType;
@@ -362,6 +362,7 @@ const CreateInvoice = () => {
         invoiceItemArea,
         invoiceItemDepth,
         invoiceItemPrice,
+        material,
         edgeProfile: {
           edgeProfileId: profileId,
           edgeProfileType,
@@ -421,7 +422,7 @@ const CreateInvoice = () => {
     invoiceItemAreaRef.current.value = "";
     invoiceItemDepthRef.current.value = "";
     invoiceItemPriceRef.current.value = "";
-
+    materialRef.current.value = "";
     setSelectedEdgeProfileMeasurement("");
     setEdgeProfileId(null)
     setSelectedEdgeProfileType("");
@@ -501,6 +502,7 @@ const CreateInvoice = () => {
         invoiceItemDepthRef={invoiceItemDepthRef}
         invoiceItemPriceRef={invoiceItemPriceRef}
         locationRef={locationRef}
+        materialRef={materialRef}
       />
 
       <EdgeProfile

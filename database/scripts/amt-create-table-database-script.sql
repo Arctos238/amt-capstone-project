@@ -80,7 +80,7 @@ DROP TABLE IF EXISTS project;
 
 CREATE TABLE project (
   project_id int(5) NOT NULL AUTO_INCREMENT,
-  project_name varchar(22) NOT NULL,
+  project_name varchar(60) NOT NULL,
   project_status int(1) DEFAULT 1,
   project_cabinets_condition int(1) DEFAULT 1,
   project_counter_removal int(1) DEFAULT 1,
