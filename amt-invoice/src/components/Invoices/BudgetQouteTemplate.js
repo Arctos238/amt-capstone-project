@@ -24,7 +24,7 @@ export default function BudgetQouteTemplate(){
     }, []);
 
     if (items && items.invoices && items.invoices.length > 0) {
-        console.log(items.invoices[0]);
+        console.log(items.invoices[0].invoiceItems[0]);
     } else {
         console.log('No invoices found.');
     }
@@ -65,7 +65,15 @@ export default function BudgetQouteTemplate(){
                             </TableHead>
                             <TableBody>
                             <TableRow>
-                                <TableCell colSpan={2} style={{ fontWeight: "bold", borderBottom: "none" }}></TableCell>
+                            <TableCell colSpan={2} style={{ fontWeight: "bold", borderBottom: "none" }}>
+                            <TextField
+                                    id="standard-basic"
+                                    sx={{
+                                        input: { color: 'black',wide: '200', height: '30px' }
+                                    }}
+                                    type="text"
+                                    />
+                                </TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell colSpan={2} style={{ fontWeight: "bold", borderBottom: "none" }}>No Allowance for support</TableCell>
@@ -80,6 +88,7 @@ export default function BudgetQouteTemplate(){
                             </TableRow>
                             <TableRow>
                                 <TableCell colSpan={2} style={{ fontWeight: "bold", borderBottom: "2px solid black" }}>{item.edgeProfile.edgeProfileMeasurement} {item.edgeProfile.edgeProfileType} Edge Profile</TableCell>
+                                
                             </TableRow>
                             <TableRow>
                                 <TableCell style={{ fontWeight: "bold", textAlign: "left", borderRight: "2px solid black" }}>{item.edgeProfile.edgeProfileMeasurement} {item.edgeProfile.edgeProfileCut}</TableCell>
