@@ -64,7 +64,7 @@ const InvoiceProject = (props) => {
   const deposit = async (id) => {
     const data = await GetInvoiceById(id);
     localStorage.setItem('invoice', JSON.stringify(data))
-    nav("/deposit");
+    nav('/deposit', {state: {invoiceId: id}});
   }
   const productInfo = async (id) => {
     const data = await GetInvoiceById(id);

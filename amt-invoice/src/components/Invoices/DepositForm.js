@@ -8,18 +8,21 @@ import { Button, Icon } from '@mui/material';
 import Typography from "@mui/material/Typography";
 import DepositInput from './DepositFormInput';
 
-export default function Deposit(){
-    return(
+export default function Deposit() {
+    const location = useLocation();
+    const selectedInvoiceId = location.state.invoiceId;;
+    console.log(selectedInvoiceId);
+    return (
         <div>
             <BackButton />
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <div style={{ maxWidth: "800px" }}>
                     <div style={{ margin: "0 auto" }}>
-                        <DepositInput></DepositInput>
+                        <DepositInput selectedInvoiceId={selectedInvoiceId}></DepositInput>
                     </div>
                 </div>
             </div>
         </div>
-        
+
     );
 }
