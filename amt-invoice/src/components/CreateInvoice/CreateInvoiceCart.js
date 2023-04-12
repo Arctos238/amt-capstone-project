@@ -67,7 +67,7 @@ const CreateInvoiceCart = (props) => {
     setOpen(true);
     setInvoiceItems(props.invoiceItem);
     console.log(invoiceItems[0]);
-    if(invoiceItems.length > 0) {
+    if (invoiceItems.length > 0) {
       setIsInvoiceItemsEmpty(false);
     } else {
       setIsInvoiceItemsEmpty(true);
@@ -85,7 +85,7 @@ const CreateInvoiceCart = (props) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
+  console.log(invoiceItems);
   return (
     <div className="Modal">
       <Button className={buttonStyle.cart} onClick={handleOpen}>
@@ -117,6 +117,8 @@ const CreateInvoiceCart = (props) => {
                     <TableCell>Edge Profile Type</TableCell>
                     <TableCell>Edge Profile Cut</TableCell>
                     <TableCell>Edge Profile Measurement</TableCell>
+                    <TableCell>Notes</TableCell>
+
                   </TableHead>
                   <TableBody>
                     {!isInvoiceItemsEmpty ? invoiceItems.map((invoiceItems) => (
@@ -131,7 +133,15 @@ const CreateInvoiceCart = (props) => {
                         <TableCell>{invoiceItems.edgeProfile.edgeProfileType}</TableCell>
                         <TableCell>{invoiceItems.edgeProfile.edgeProfileCut}</TableCell>
                         <TableCell>{invoiceItems.edgeProfile.edgeProfileMeasurement}</TableCell>
-
+                        {invoiceItems.invoiceItemNotes.length === 0 ? (
+                          <TableCell>No notes available for this item</TableCell>
+                        ) : (
+                          <TableCell>
+                            {invoiceItems.invoiceItemNotes.map((note, noteIndex) => (
+                              <p key={noteIndex}>{note.invoiceItemNote}</p>
+                            ))}
+                          </TableCell>
+                        )}
 
                       </TableRow>
                     )) : "Empty"}

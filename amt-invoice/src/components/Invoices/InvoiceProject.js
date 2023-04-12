@@ -64,7 +64,13 @@ const InvoiceProject = (props) => {
   const deposit = async (id) => {
     const data = await GetInvoiceById(id);
     localStorage.setItem('invoice', JSON.stringify(data))
-    nav("/deposit");
+    console.log(data.depositForm);
+    if (data.depositForm == null) {
+      nav('/deposit', { state: { invoiceId: id } });
+    } else {
+      nav('/finishedDeposit');
+    }
+
   }
   const productInfo = async (id) => {
     const data = await GetInvoiceById(id);
@@ -93,7 +99,7 @@ const InvoiceProject = (props) => {
   };
 
   const editInvoiceHandler = id => {
-    nav('/updateInvoice', {state: {invoiceId: id}})
+    nav('/updateInvoice', { state: { invoiceId: id } })
   }
 
   //these three are sent to InvoicePageProjects
@@ -301,41 +307,41 @@ const InvoiceProject = (props) => {
                   </div>
                 </div>
                 <br />
-          <Button
-            variant="contained"
-            onClick={() => workForms(invoices.invoiceId)}
-            style={{ backgroundColor: "#05516a" }}
-            startIcon={<SummarizeIcon />}
-          >
-            Work Order
-          </Button>
+                <Button
+                  variant="contained"
+                  onClick={() => workForms(invoices.invoiceId)}
+                  style={{ backgroundColor: "#05516a" }}
+                  startIcon={<SummarizeIcon />}
+                >
+                  Work Order
+                </Button>
 
-          <Button
-            variant="contained"
-            onClick={() => deposit(invoices.invoiceId)}
-            style={{ backgroundColor: "#05516a" }}
-            startIcon={<CreditCardIcon />}
-          >
-            Deposit
-          </Button>
-          
-          <Button
-            variant="contained"
-            onClick={() => productInfo(invoices.invoiceId)}
-            style={{ backgroundColor: "#05516a" }}
-            startIcon={<CreditCardIcon />}
-          >
-            Product Info
-          </Button>
+                <Button
+                  variant="contained"
+                  onClick={() => deposit(invoices.invoiceId)}
+                  style={{ backgroundColor: "#05516a" }}
+                  startIcon={<CreditCardIcon />}
+                >
+                  Deposit
+                </Button>
 
-          <Button
-            variant="contained"
-            onClick={() => budget(invoices.invoiceId)}
-            style={{ backgroundColor: "#05516a" }}
-          >
-            Budget Quote
-          </Button>
-        </CardWithRadius>
+                <Button
+                  variant="contained"
+                  onClick={() => productInfo(invoices.invoiceId)}
+                  style={{ backgroundColor: "#05516a" }}
+                  startIcon={<CreditCardIcon />}
+                >
+                  Product Info
+                </Button>
+
+                <Button
+                  variant="contained"
+                  onClick={() => budget(invoices.invoiceId)}
+                  style={{ backgroundColor: "#05516a" }}
+                >
+                  Budget Quote
+                </Button>
+              </CardWithRadius>
             ))
           ) : (
             <p>No Invoices</p>
