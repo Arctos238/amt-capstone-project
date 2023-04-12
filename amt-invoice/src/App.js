@@ -195,7 +195,7 @@ function App() {
         />
 
         <Route
-          path="/editDepsoit"
+          path="/finishedDeposit"
           exact
           element={
             <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
