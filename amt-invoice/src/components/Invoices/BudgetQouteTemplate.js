@@ -24,8 +24,8 @@ export default function BudgetQouteTemplate() {
         }
     }, []);
 
-    return(
-        <div style={{ display: "flex", justifyContent: "center", backgroundColor: "white", backgroundImage: "none"}}>
+    return (
+        <div style={{ display: "flex", justifyContent: "center", backgroundColor: "white", backgroundImage: "none" }}>
             <div style={{ maxWidth: "800px" }}>
 
 
@@ -47,52 +47,58 @@ export default function BudgetQouteTemplate() {
                         <span style={{ fontWeight: 'bold' }}>Seams to be determined by AMT. Any unsupported overhangs larger than 8"(16" for quartz) needs to have supports. AMT does NOT supply supports.</span>
                     </p>
 
-                {invoice && invoice.invoiceItems.length > 0 ? (
-                    invoice.invoiceItems.map((item) => (
-                        <TableContainer component={Paper} key={item.invoiceItemId}>
-                        <Table>
-                            <TableHead>
-                            <TableRow>
-                                <TableCell colSpan={2} style={{ fontWeight: "bold", borderBottom: "2px solid black" }}>
-                                {item.location} {item.invoiceItemName}
-                                </TableCell>
-                            </TableRow>
-                            </TableHead>
-                            <TableBody>
-                            <TableRow>
-                            <TableCell colSpan={2} style={{ fontWeight: "bold", borderBottom: "none" }}>
-                            <TextField
-                                    id="standard-basic"
-                                    sx={{
-                                        input: { color: 'black',wide: '200', height: '30px' }
-                                    }}
-                                    type="text"
-                                    />
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell colSpan={2} style={{ fontWeight: "bold", borderBottom: "none" }}>No Allowance for support</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell colSpan={2} style={{ fontWeight: "bold", borderBottom: "none" }}>Please Provide drilling instruction as this is done in the shop</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell colSpan={2} style={{ fontWeight: "bold", borderBottom: "none" }}>
-                                Recommend deeper base cabinets to ensure that faucet will have room between the backsplash and wall
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell colSpan={2} style={{ fontWeight: "bold", borderBottom: "2px solid black" }}>{item.edgeProfile.edgeProfileMeasurement} {item.edgeProfile.edgeProfileType} Edge Profile</TableCell>
-                                
-                            </TableRow>
-                            <TableRow>
-                                <TableCell style={{ fontWeight: "bold", textAlign: "left", borderRight: "2px solid black" }}>{item.edgeProfile.edgeProfileMeasurement} {item.edgeProfile.edgeProfileCut}</TableCell>
-                                <TableCell style={{ fontWeight: "bold", textAlign: "right", borderLeft: "2px solid black" }}>${item.invoiceItemPrice}</TableCell>
-                            </TableRow>
-                            </TableBody>
-                        </Table>
-                        </TableContainer>
-                    ))
+                    {invoice && invoice.invoiceItems.length > 0 ? (
+                        invoice.invoiceItems.map((item) => (
+                            <TableContainer component={Paper} key={item.invoiceItemId}>
+                                <Table>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell colSpan={2} style={{ fontWeight: "bold", borderBottom: "2px solid black" }}>
+                                                {item.location} {item.invoiceItemName}
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        <TableRow>
+                                            <TableCell colSpan={2} style={{ fontWeight: "bold", borderBottom: "none" }}>
+                                                <TextField
+                                                    fullWidth
+                                                    multiline
+                                                    rows={2}
+                                                    id="standard-basic"
+                                                    inputProps={{
+                                                        style: { color: 'black', width: '100%', height: '60px', overflow: 'hidden' },
+                                                    }}
+                                                    type="text"
+                                                />
+
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell colSpan={2} style={{ fontWeight: "bold", borderBottom: "none" }}>
+                                                <TextField
+                                                    fullWidth
+                                                    multiline
+                                                    rows={2}
+                                                    id="standard-basic"
+                                                    inputProps={{ style: { color: 'black', width: '100%', height: '140px', overflow: 'hidden', fontWeight: 'bold' } }}
+                                                    type="text"
+                                                />
+
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell colSpan={2} style={{ fontWeight: "bold", borderBottom: "2px solid black" }}>{item.edgeProfile.edgeProfileMeasurement} {item.edgeProfile.edgeProfileType} Edge Profile</TableCell>
+
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell style={{ fontWeight: "bold", textAlign: "left", borderRight: "2px solid black" }}>{item.edgeProfile.edgeProfileMeasurement} {item.edgeProfile.edgeProfileCut}</TableCell>
+                                            <TableCell style={{ fontWeight: "bold", textAlign: "right", borderLeft: "2px solid black" }}>${item.invoiceItemPrice}</TableCell>
+                                        </TableRow>
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        ))
                     ) : (
                         <TableRow>
                             <TableCell colSpan={5}>No invoices found.</TableCell>

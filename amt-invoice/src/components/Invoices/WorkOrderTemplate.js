@@ -9,28 +9,22 @@ import PrintIcon from '@mui/icons-material/Print';
 import Typography from "@mui/material/Typography";
 
 export default function WorkOrderTemplate() {
-    let componentRef = useRef();
     const [items, setItems] = useState({});
-    const currentDate = new Date().toLocaleDateString();
-    let clientInfo = localStorage.getItem("clientInfo");
-    let toArray = JSON.parse(clientInfo);
-    console.log(toArray[0]);
+    const [invoice, setInvoice] = useState({});
+    const [currentDate, setCurrentDate] = useState('');
+    const toArray = JSON.parse(localStorage.getItem("clientInfo"));
 
     useEffect(() => {
-        const items = JSON.parse(localStorage.getItem("invoice"));
-        if (items) {
-            setItems(items);
-        }
+        const invoice = JSON.parse(localStorage.getItem('invoice'));
+        const items = JSON.parse(localStorage.getItem('project'));
+
+        setItems(items || {});
+        setInvoice(invoice || {});
+        setCurrentDate(new Date().toLocaleDateString());
+
     }, []);
 
-    if (items && items.invoices && items.invoices.length > 0) {
-        console.log(items.invoices[0].invoiceItems[0]);
-    } else {
-        console.log('No invoices found.');
-    }
-
-
-
+    console.log(toArray);
 
     return (
         <div style={{ display: "flex", justifyContent: "center", backgroundColor: "white", backgroundImage: "none" }}>
@@ -88,7 +82,7 @@ export default function WorkOrderTemplate() {
                                 <TableCell style={{ fontWeight: "bold" }}>Material:</TableCell>
                                 <TableCell>See List</TableCell>
                                 <TableCell style={{ fontWeight: "bold" }}>Invoice #:</TableCell>
-                                <TableCell>{items.invoices?.[0]?.invoiceId}</TableCell>
+                                <TableCell>{invoice?.invoiceId}</TableCell>
                                 <TableCell style={{ fontWeight: "bold" }}>Invoiced:</TableCell>
                                 <TableCell>
                                     <TextField
@@ -109,7 +103,7 @@ export default function WorkOrderTemplate() {
                 <Typography variant="subtitle1" align="center" gutterBottom>
                     Production Ticket Details
                 </Typography>
-                <TableContainer component={Paper} >
+                <TableContainer component={Paper}>
                     <Table sx={{ border: '1px solid #ccc' }}>
                         <TableRow>
                             <TableCell style={{ fontWeight: "bold" }}>Name:</TableCell>
@@ -118,12 +112,10 @@ export default function WorkOrderTemplate() {
                             <TableCell>{items.projectAddress?.firstLineAddress}</TableCell>
                             <TableCell style={{ fontWeight: "bold" }}>Phone:</TableCell>
                             <TableCell>{toArray?.[0]?.clientContact?.personalContactNumber}</TableCell>
-
-
                         </TableRow>
                         <TableRow>
                             <TableCell style={{ fontWeight: "bold" }}>Price:</TableCell>
-                            <TableCell>{items.invoices?.[0]?.invoiceTotalPrice} (+G.S.T.)</TableCell>
+                            <TableCell>{invoice?.invoiceTotalPrice} (+G.S.T.)</TableCell>
                             <TableCell style={{ fontWeight: "bold" }}>Deposit:</TableCell>
                             <TableCell>
                                 <TextField
@@ -142,12 +134,9 @@ export default function WorkOrderTemplate() {
                                     }}
                                     type="text" />
                             </TableCell>
-
                         </TableRow>
                     </Table>
                 </TableContainer>
-
-
 
 
                 <br />
@@ -167,8 +156,8 @@ export default function WorkOrderTemplate() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {items && items.invoices && items.invoices.length > 0 && items.invoices[0].invoiceItems.length > 0 ? (
-                                items.invoices[0].invoiceItems.map((item) => (
+                            {invoice && invoice.invoiceItems?.length > 0 ? (
+                                invoice.invoiceItems.map((item) => (
                                     <TableRow key={item.id}>
                                         <TableCell style={{ borderRight: "1px solid #ddd" }}></TableCell>
                                         <TableCell style={{ borderRight: "1px solid #ddd" }}></TableCell>
@@ -188,6 +177,7 @@ export default function WorkOrderTemplate() {
                     </Table>
                 </TableContainer>
 
+
                 <br />
                 <br />
                 <Typography variant="subtitle1" align="center" gutterBottom>
@@ -198,7 +188,7 @@ export default function WorkOrderTemplate() {
                     fullWidth
                     multiline
                     id="standard-basic"
-                    inputProps={{ style: { color: 'black', width: '100%', minHeight: '120px' } }}
+                    inputProps={{ style: { color: 'black', width: '100%', minHeight: '200px' } }}
                     type="text"
                 />
 
@@ -206,5 +196,7 @@ export default function WorkOrderTemplate() {
 
 
             </div>
-        </div>);
+        </div>
+    );
+
 }
