@@ -21,6 +21,7 @@ import EditClient from "./components/EditClient/EditClient"
 import ProductInfoForm from "./components/Invoices/ProductInfoForm";
 import Deposit from "./components/Invoices/DepositForm";
 import BudgetQoute from "./components/Invoices/BudgetQuote";
+import EditProject from "./components/EditProject/EditProject";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -209,6 +210,16 @@ function App() {
           element={
             <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
               <BudgetQoute />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/editProject"
+          exact
+          element={
+            <Layout changeLoginHandler={changeLogin} userLoggedIn={loggedIn}>
+              <EditProject />
             </Layout>
           }
         />

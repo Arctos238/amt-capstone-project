@@ -224,7 +224,16 @@ const InvoiceProject = (props) => {
               </Table>
             </TableContainer>
           </div>
-
+          <br/>
+          <Link to='/editProject'>
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#05516a" }}
+              startIcon={<EditIcon />}
+            >
+              Edit Project
+            </Button>
+          </Link>
 
 
 

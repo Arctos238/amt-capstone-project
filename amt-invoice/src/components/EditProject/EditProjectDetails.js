@@ -1,0 +1,379 @@
+import React from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import CardWithRadius from "../UI/CardWithRadius";
+import styles from "./EditProjectDetails.module.css";
+import classes from "../UI/CardWithRadius.module.css";
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import FormControl from "@mui/material/FormControl";
+import { MuiTelInput } from 'mui-tel-input'
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#FFFFFF",
+    },
+    background: {
+      main: "#05516a"
+      ,
+    },
+
+    text: {
+      main: "#FFFFFF",
+    },
+  },
+});
+
+const EditProjectDetails = (props) => {
+  let project = JSON.parse(localStorage.getItem('project'))
+
+  const [value, setValue] = React.useState(project.projectSupervisor.projectSupervisorNumber)
+  const [value2, setValue2] = React.useState(project.projectContractor.projectContractorNumber)
+
+  
+
+  const handleChange = (newValue) => {
+    setValue(newValue)
+  }
+
+  const handleChange2 = (newValue) => {
+    setValue2(newValue)
+  }
+  return (
+    <div className={styles.container}>
+      <div className={styles.parent}>
+      <ThemeProvider theme={theme}>
+        <div className={styles.left}>
+          <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <TextField
+            sx={{ width: "100%", color: "white", "& .MuiInputBase-input": {
+                width: "calc(100% - 2px)", // 2px is the width of the underline
+              }, }}
+            id="standard-basic"
+            label="Project Name"
+            placeholder="Dan's House"
+            variant="standard"
+            type = "text"
+            defaultValue={project.projectName} 
+            inputRef={props.projectNameRef}
+            InputLabelProps={{ className: styles.textFieldLabel }}
+            InputProps={{
+              classes: {
+                underline: styles.underline, 
+              },
+            }}
+          />   
+            {/* <label className={styles.label}>Project Name:</label>
+            <input
+              type="text"
+              className={styles.transparentInput}
+              ref={props.projectNameRef}
+            /> */}
+          </CardWithRadius>
+          
+          
+            <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <MuiTelInput
+            defaultCountry={"ca"}
+            label="Supervisor Number"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            inputRef={props.siteSuperPhoneRef}
+            type="tel"
+            value={value}
+            onChange={handleChange}
+            inputProps={{
+                className: styles.inputPhone,
+            }}
+            />
+            {/* <label className={styles.label}>Project Name:</label>
+            <input
+            className={styles.transparentInput}
+              type="tel"
+              placeholder="123-456-7890"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              ref={props.siteSuperPhoneRef}
+            /> */}
+          </CardWithRadius>
+          
+          <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <TextField
+            sx={{ width: "100%", color: "white", "& .MuiInputBase-input": {
+                width: "calc(100% - 2px)", // 2px is the width of the underline
+              }, }}
+            id="standard-basic"
+            label="Postal Code"
+            placeholder="T2E 8K7"
+            variant="standard"
+            type = "text"
+            defaultValue={project.projectAddress.postalCode}  
+            inputRef={props.postalCodeRef}
+            InputLabelProps={{ className: styles.textFieldLabel }}
+            InputProps={{
+              classes: {
+                underline: styles.underline, 
+              },
+            }}
+          />  
+            
+            {/* <label>Postal Code:</label>
+            <input
+              type="text"
+              className={styles.transparentInput}
+              ref={props.postalCodeRef}
+            /> */}
+          </CardWithRadius>
+          <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <TextField
+            sx={{ width: "100%", color: "white", "& .MuiInputBase-input": {
+                width: "calc(100% - 2px)", // 2px is the width of the underline
+              }, }}
+            id="standard-basic"
+            label="City"
+            placeholder="Dead Man's Flats"
+            variant="standard"
+            type = "text"
+            defaultValue={project.projectAddress.city}   
+            inputRef={props.cityRef}
+            InputLabelProps={{ className: styles.textFieldLabel }}
+            InputProps={{
+              classes: {
+                underline: styles.underline, 
+              },
+            }}
+          /> 
+            {/* <label>City:</label>
+            <input type="text" className={styles.transparentInput} ref={props.cityRef} /> */}
+          </CardWithRadius>
+        </div>
+        <div className={styles.right}>
+          <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <TextField
+            sx={{ width: "100%", color: "white", "& .MuiInputBase-input": {
+                width: "calc(100% - 2px)", // 2px is the width of the underline
+              }, }}
+            id="standard-basic"
+            label="Site Super Name"
+            placeholder="Bob the Builder"
+            variant="standard"
+            type = "text"
+            defaultValue={project.projectSupervisor.projectSupervisorName}   
+            inputRef={props.siteSuperNameRef}
+            InputLabelProps={{ className: styles.textFieldLabel }}
+            InputProps={{
+              classes: {
+                underline: styles.underline, 
+              },
+            }}
+          />
+            {/* <label>Site Super Name:</label>
+            <input
+              type="text"
+              className={styles.transparentInput}
+              ref={props.siteSuperNameRef}
+            /> */}
+          </CardWithRadius>
+          <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <TextField
+            sx={{ width: "100%", color: "white", "& .MuiInputBase-input": {
+                width: "calc(100% - 2px)", // 2px is the width of the underline
+              }, }}
+            id="standard-basic"
+            label="Address"
+            placeholder="2020 Pegasus Rd NE"
+            variant="standard"
+            type = "text"
+            defaultValue={project.projectAddress.firstLineAddress}   
+            inputRef={props.addressRef}
+            InputLabelProps={{ className: styles.textFieldLabel }}
+            InputProps={{
+              classes: {
+                underline: styles.underline, 
+              },
+            }}
+          />
+            {/* <label>Address:</label>
+            <input type="text" className={styles.transparentInput} ref={props.addressRef} /> */}
+          </CardWithRadius>
+          <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <TextField
+            sx={{ width: "100%", color: "white", "& .MuiInputBase-input": {
+                width: "calc(100% - 2px)", // 2px is the width of the underline
+              }, }}
+            id="standard-basic"
+            label="Building Number"
+            variant="standard"
+            type="number" 
+            min="0"  
+            inputRef={props.suiteRef}
+            InputLabelProps={{ className: styles.textFieldLabel }}
+            InputProps={{
+              classes: {
+                underline: styles.underline, 
+              },
+            }}
+          />
+            {/* <label>Suite/Building No:</label>
+            <input
+              type="number"
+              className={styles.transparentInput}
+              min="0"
+              ref={props.suiteRef}
+            /> */}
+          </CardWithRadius>
+          <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <TextField
+            sx={{ width: "100%", color: "white", "& .MuiInputBase-input": {
+                width: "calc(100% - 2px)", // 2px is the width of the underline
+              }, }}
+            id="standard-basic"
+            label="Province"
+            placeholder="AB"
+            variant="standard"
+            type = "text" 
+            defaultValue={project.projectAddress.province}  
+            inputRef={props.provinceRef}
+            InputLabelProps={{ className: styles.textFieldLabel }}
+            InputProps={{
+              classes: {
+                underline: styles.underline, 
+              },
+            }}
+          />
+            {/* <label>Province:</label>
+            <input type="text" className={styles.transparentInput} ref={props.provinceRef} /> */}
+          </CardWithRadius>
+        </div>
+        
+        <div className={styles.left}>
+          <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <TextField
+            sx={{ width: "100%", color: "white", "& .MuiInputBase-input": {
+                width: "calc(100% - 2px)", // 2px is the width of the underline
+              }, }}
+            id="standard-basic"
+            label="Supervisor Email"
+            placeholder="Supervisor Email"
+            variant="standard"
+            type = "text"
+            defaultValue={project.projectSupervisor.projectSupervisorEmail}   
+            inputRef={props.projectSupervisorEmailRef}
+            InputLabelProps={{ className: styles.textFieldLabel }}
+            InputProps={{
+              classes: {
+                underline: styles.underline, 
+              },
+            }}
+          />   
+            {/* <label className={styles.label}>Project Name:</label>
+            <input
+              type="text"
+              className={styles.transparentInput}
+              ref={props.projectNameRef}
+            /> */}
+          </CardWithRadius>
+          
+          
+            <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <MuiTelInput
+            defaultCountry={"ca"}
+            label="Contractor Number"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            inputRef={props.projectContractorNumberRef}
+            type="tel"
+            value={value2}
+            onChange={handleChange2}
+            inputProps={{
+                className: styles.inputPhone,
+            }}
+            />
+            {/* <label className={styles.label}>Project Name:</label>
+            <input
+            className={styles.transparentInput}
+              type="tel"
+              placeholder="123-456-7890"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              ref={props.siteSuperPhoneRef}
+            /> */}
+          </CardWithRadius>
+          
+          <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <TextField
+            sx={{ width: "100%", color: "white", "& .MuiInputBase-input": {
+                width: "calc(100% - 2px)", // 2px is the width of the underline
+              }, }}
+            id="standard-basic"
+            label="Contractor Name"
+            placeholder="Contractor Name"
+            variant="standard"
+            type = "text"
+            defaultValue={project.projectContractor.projectContractorName}   
+            inputRef={props.projectContractorNameRef}
+            InputLabelProps={{ className: styles.textFieldLabel }}
+            InputProps={{
+              classes: {
+                underline: styles.underline, 
+              },
+            }}
+          />  
+            
+            {/* <label>Postal Code:</label>
+            <input
+              type="text"
+              className={styles.transparentInput}
+              ref={props.postalCodeRef}
+            /> */}
+          </CardWithRadius>
+          <CardWithRadius
+            className={`${classes.blueCard} ${styles.inputBoxes}`}
+          >
+            <TextField
+            sx={{ width: "100%", color: "white", "& .MuiInputBase-input": {
+                width: "calc(100% - 2px)", // 2px is the width of the underline
+              }, }}
+            id="standard-basic"
+            label="Contractor Email"
+            placeholder="Contractor Email"
+            variant="standard"
+            type = "text"
+            defaultValue={project.projectContractor.projectContractorEmail}   
+            inputRef={props.projectContractorEmailRef}
+            InputLabelProps={{ className: styles.textFieldLabel }}
+            InputProps={{
+              classes: {
+                underline: styles.underline, 
+              },
+            }}
+          /> 
+            {/* <label>City:</label>
+            <input type="text" className={styles.transparentInput} ref={props.cityRef} /> */}
+          </CardWithRadius>
+        </div>
+        </ThemeProvider>
+      </div>
+    </div>
+  );
+};
+
+export default EditProjectDetails;
