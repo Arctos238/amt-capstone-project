@@ -6,6 +6,7 @@ import ReactToPrint from "react-to-print";
 import { Button, Icon } from '@mui/material';
 import PrintIcon from '@mui/icons-material/Print';
 import { TableBody, TableCell, TableContainer, TableRow, Paper, TableHead, Table, TextField } from '@mui/material';
+import UpdateInvoice from '../CreateInvoice/UpdateInvoice';
 
 class ComponentToPrint extends React.Component {
 
@@ -139,6 +140,8 @@ class ComponentToPrint extends React.Component {
 }
 
 class EditDeposit extends React.Component {
+
+
     render() {
         return (
             <div style={{ backgroundColor: "white", backgroundImage: "none" }}>
@@ -161,7 +164,11 @@ class EditDeposit extends React.Component {
                         )}
                         content={() => this.componentRef}
                     />
+
                 </div>
+                <Button >
+                    Delete Deposit
+                </Button>
 
             </div>
         );
