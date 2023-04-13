@@ -14,10 +14,22 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { DeleteEmployeeByUsername } from "../../services/EmployeeServices";
 import { Link } from "react-router-dom";
+import Alert from "@mui/material/Alert";
 
 const AdminPageRemove = () => {
   const [results, setResults] = useState([]);
   const [open, setOpen] = useState(false);
+  const [deleteUsername, setDeleteUsername] = useState("");
+  const [isUserDeleted, setIsUserDeleted] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsUserDeleted(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isUserDeleted]);
 
   const handleDelete = async (username) => {
     await DeleteEmployeeByUsername(username);
@@ -25,6 +37,8 @@ const AdminPageRemove = () => {
     setResults(
       results.filter((result) => result.employeeUsername !== username)
     );
+    setDeleteUsername(username);
+    setIsUserDeleted(true);
   };
 
   useEffect(() => {
@@ -41,6 +55,17 @@ const AdminPageRemove = () => {
 
   return (
     <div className={styles.center}>
+      {isUserDeleted ? (
+        <div className={styles.errorBox}>
+          <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
+            <Alert severity="success">
+              {deleteUsername} deleted!
+            </Alert>
+          </Stack>
+        </div>
+      ) : (
+        <></>
+      )}
       <h1>Users</h1>
 
       <div style={{ display: "flex", justifyContent: "center" }}>

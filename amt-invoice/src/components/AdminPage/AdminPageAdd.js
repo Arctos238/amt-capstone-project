@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CardWithRadius from "../UI/CardWithRadius";
 import classes from "../UI/CardWithRadius.module.css";
 import styles from "./AdminPageAdd.module.css";
@@ -10,8 +10,11 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { CreateNewEmployee } from "../../services/EmployeeServices";
 import { useNavigate } from "react-router-dom";
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
 
 const AdminPageAdd = () => {
+  const [isUserAdded, setIsUserAdded] = useState(false);
   const [isValidSearch, setIsValidSearch] = useState(true);
   const [isSelectedOption, setSelectedOption] = useState("");
   const [isRoleId, setRoleId] = useState("");
@@ -21,6 +24,16 @@ const AdminPageAdd = () => {
   const [isEmployeeUsername, setEmployeeUsername] = useState("");
   const [isEmployeePassword, setEmployeePassword] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsUserAdded(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isUserAdded]);
 
   const handleFirstnameChange = (event) => {
     setEmployeeFirstName(event.target.value);
@@ -62,13 +75,26 @@ const AdminPageAdd = () => {
   
   const submitHandler = async (event) => {
     event.preventDefault();
-    alert("User Added Successfully");
     const data = await CreateNewEmployee(obj);
-    navigate("/AdminPage");
+    setIsUserAdded(true);
+    setTimeout(() => {
+      navigate("/AdminPage");
+    }, 3000);
   };
 
   return (
     <div className={styles.center}>
+      {isUserAdded ? (
+        <div className={styles.errorBox}>
+          <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
+            <Alert severity="success">
+              {isEmployeeFirstName} {isEmployeeLastName} added!
+            </Alert>
+          </Stack>
+        </div>
+      ) : (
+        <></>
+      )}
       <h1>Create User</h1>
       <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
         <TextField
