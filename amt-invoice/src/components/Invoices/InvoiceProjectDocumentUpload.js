@@ -8,6 +8,7 @@ import CardWithRadius from "../UI/CardWithRadius";
 import Typography from "@material-ui/core/Typography";
 import { CreateNewImage } from "../../services/ImageServices";
 import { saveAs } from "file-saver";
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 
 const DocumentUpload = (props) => {
   const { projectId } = props;
@@ -79,7 +80,7 @@ const DocumentUpload = (props) => {
 
   return (
     <div>
-      <label style={{ color: 'black', textAlign: 'center' }}>Existing Documents</label>
+      <label style={{ color: 'black', textAlign: 'center' }}>Existing Documents:</label>
       {existingFileComponents}
       <br />
       <br />
@@ -88,7 +89,7 @@ const DocumentUpload = (props) => {
         component="label"
         style={{ backgroundColor: "#05516a" }}
       >
-        Add Image
+        Add Doc
         <input hidden type="file" onChange={fileSelectedHandler} />
         <PhotoCamera />
       </Button>
@@ -97,7 +98,13 @@ const DocumentUpload = (props) => {
       {fileComponents}
 
       <br />
-      <button onClick={fileUploadHandler}>Upload Image</button>
+      <Button
+        variant="contained"
+        component="label"
+        style={{ backgroundColor: "#05516a" }} onClick={fileUploadHandler}>
+        Upload Doc
+        <FileUploadIcon />
+      </Button>
     </div>
   );
 };

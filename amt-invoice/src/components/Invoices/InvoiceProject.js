@@ -31,6 +31,7 @@ import { Paper, Table, TableBody, TableRow, TableCell } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SummarizeIcon from "@mui/icons-material/Summarize";
 import CreditCardIcon from '@mui/icons-material/CreditCard';
+import InfoIcon from '@mui/icons-material/Info';
 
 
 
@@ -296,14 +297,6 @@ const InvoiceProject = (props) => {
                       />
                     </IconButton>
 
-                    <IconButton aria-label="delete" size="medium">
-                      <EditIcon
-                        fontSize="inherit"
-                        sx={{ color: "#fabd44", padding: 0 }}
-                        onClick={() => editInvoiceHandler(invoices.invoiceId)}
-                      />
-                    </IconButton>
-
                   </div>
                 </div>
                 <br />
@@ -329,7 +322,7 @@ const InvoiceProject = (props) => {
                   variant="contained"
                   onClick={() => productInfo(invoices.invoiceId)}
                   style={{ backgroundColor: "#05516a" }}
-                  startIcon={<CreditCardIcon />}
+                  startIcon={<InfoIcon />}
                 >
                   Product Info
                 </Button>
