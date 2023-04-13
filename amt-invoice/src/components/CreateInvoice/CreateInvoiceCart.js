@@ -14,6 +14,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
+import { DeleteInvoiceItemById } from "../../services/InvoiceItemServices";
 
 const styleModal = {
   position: "absolute",
@@ -66,7 +67,7 @@ const CreateInvoiceCart = (props) => {
   const handleOpen = () => {
     setOpen(true);
     setInvoiceItems(props.invoiceItem);
-    console.log(invoiceItems[0]);
+
     if (invoiceItems.length > 0) {
       setIsInvoiceItemsEmpty(false);
     } else {
@@ -85,7 +86,12 @@ const CreateInvoiceCart = (props) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  console.log(invoiceItems);
+
+  const handleDeleteInvoiceItem = async (id) => {
+    console.log(id);
+    const data = await DeleteInvoiceItemById(id);
+  }
+
   return (
     <div className="Modal">
       <Button className={buttonStyle.cart} onClick={handleOpen}>
@@ -99,14 +105,11 @@ const CreateInvoiceCart = (props) => {
       >
         <Box sx={styleModal}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            {/* Insert invoice info
-            {invoiceItems.map((invoiceItems) => (
-              <p>{invoiceItems.invoiceItemName}</p>
-            ))} */}
             <Paper sx={{ width: "100%", overflow: "hidden" }}>
               <TableContainer sx={{ maxHeight: 440 }}>
                 <Table stickyHeader aria-label="sticky table">
                   <TableHead>
+                    {/* <TableCell></TableCell> */}
                     <TableCell>Item</TableCell>
                     <TableCell>Measurement</TableCell>
                     <TableCell>Width</TableCell>
@@ -123,6 +126,7 @@ const CreateInvoiceCart = (props) => {
                   <TableBody>
                     {!isInvoiceItemsEmpty ? invoiceItems.map((invoiceItems) => (
                       <TableRow>
+                        {/* <TableCell><button onClick={() => handleDeleteInvoiceItem(invoiceItems.invoiceItemId)}>Delete</button></TableCell> */}
                         <TableCell>{invoiceItems.invoiceItemName}</TableCell>
                         <TableCell>{invoiceItems.invoiceItemMeasurement}</TableCell>
                         <TableCell>{invoiceItems.invoiceItemWidth}</TableCell>
