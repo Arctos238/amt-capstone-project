@@ -46,23 +46,37 @@ export default function ProductionTemplate() {
                                 <TableCell>{items.projectName}</TableCell>
                                 <TableCell style={{ fontWeight: "bold" }}>Sales Staff:</TableCell>
                                 <TableCell>
+
                                     <TextField
                                         id="standard-basic"
                                         sx={{
-                                            input: { color: 'black', width: '70px', height: '30px' }
+                                            input: {
+                                                color: 'black',
+                                                width: '70px',
+                                                height: '30px',
+                                                fontSize: '12px'
+                                            }
                                         }}
                                         type="text"
-                                    /></TableCell>
+                                    />
+                                </TableCell>
+
                                 <TableCell style={{ fontWeight: "bold" }}>Required Date:</TableCell>
                                 <TableCell>
                                     <TextField
                                         id="standard-basic"
                                         sx={{
-                                            input: { color: 'black', width: '70px', height: '30px' }
+                                            input: {
+                                                color: 'black',
+                                                width: '70px',
+                                                height: '30px',
+                                                fontSize: '11px'
+                                            }
                                         }}
                                         type="text"
                                     />
                                 </TableCell>
+
                             </TableRow>
                             <TableRow>
                                 <TableCell style={{ fontWeight: "bold" }}>Address:</TableCell>

@@ -73,10 +73,17 @@ export default function WorkOrderTemplate() {
                                     <TextField
                                         id="standard-basic"
                                         sx={{
-                                            input: { color: 'black', width: '70px', height: '30px' }
+                                            input: {
+                                                color: 'black',
+                                                width: '70px',
+                                                height: '30px',
+                                                fontSize: '11px'
+                                            }
                                         }}
-                                        type="text" />
+                                        type="text"
+                                    />
                                 </TableCell>
+
                             </TableRow>
                             <TableRow>
                                 <TableCell style={{ fontWeight: "bold" }}>Material:</TableCell>
