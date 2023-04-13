@@ -423,11 +423,13 @@ const CreateInvoice = () => {
     invoiceItemDepthRef.current.value = "";
     invoiceItemPriceRef.current.value = "";
     materialRef.current.value = "";
+    invoiceNoteRef.current.value = "";
     setSelectedEdgeProfileMeasurement("");
     setEdgeProfileId(null);
     setSelectedEdgeProfileType("");
     setSelectedEdgeProfileMeasurement("");
     setSelectedEdgeProfileCut("");
+    setPreviousInvoiceItemNotes([]);
   };
 
   return (

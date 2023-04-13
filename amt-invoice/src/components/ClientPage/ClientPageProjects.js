@@ -22,8 +22,9 @@ const ClientPageProjects = (props) => {
 
   return (
     <div className={styles.projectList} onLoad={loadProjectHandler}>
-      {props.toArray.length > 0 ? props.toArray.map((projectList) => (
+      {props.toArray.length > 0 ? props.toArray.map((projectList, index) => (
         <ClientProject 
+          key={index}
           projectSelected={projectList}
           projectName={projectList.projectName}
           projectId={projectList.projectId}

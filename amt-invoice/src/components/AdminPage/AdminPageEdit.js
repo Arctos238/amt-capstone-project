@@ -38,7 +38,7 @@ const AdminPageEdit = () => {
             setEmployeeId(data.employeeId)
             setEmployeeFirstName(data.employeeFirstName)
             setEmployeeLastName(data.employeeLastName)
-            setEmployeeUsername(data.employeeUserName)
+            setEmployeeUsername(data.employeeUsername)
             setEmployeePassword(data.employeePassword)
             setRoleId(data.role.roleId)
             setSelectedOption(data.role.roleName)
@@ -93,6 +93,7 @@ const AdminPageEdit = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
+    console.log(obj);
     // alert("Edit Added Successfully");
    
     const data = await UpdateEmployee(obj);

@@ -113,6 +113,7 @@ const InvoicesPageProject = (props) => {
                     <TableCell>Edge Profile Type</TableCell>
                     <TableCell>Edge Profile Cut</TableCell>
                     <TableCell>Edge Profile Measurement</TableCell>
+                    <TableCell>Notes</TableCell>
                   </TableHead>
                   <TableBody>
                     {Array.isArray(invoiceItems) ? (
@@ -139,6 +140,15 @@ const InvoicesPageProject = (props) => {
                           <TableCell>
                             {invoiceItems.edgeProfile.edgeProfileMeasurement}
                           </TableCell>
+                          {invoiceItems.invoiceItemNotes.length === 0 ? (
+                            <TableCell>No notes available for this item</TableCell>
+                          ) : (
+                            <TableCell>
+                              {invoiceItems.invoiceItemNotes.map((note, noteIndex) => (
+                                <p key={noteIndex}>{note.invoiceItemNote}</p>
+                              ))}
+                            </TableCell>
+                          )}
                         </TableRow>
                       ))
                     ) : (

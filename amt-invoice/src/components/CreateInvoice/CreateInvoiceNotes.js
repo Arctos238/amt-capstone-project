@@ -43,7 +43,7 @@ const CreateInvoiceNotes = (props) => {
           <Grid container spacing={2}>
             <Grid item xs={11}>
               <TextField
-                sx={{ width: 880 }}
+                 sx={{ width: "100%", color: "white" }}
                 className={textfield.root}
                 id="standard-multiline-flexible"
                 label="Notes"
