@@ -20,7 +20,7 @@ const AdminPage = () => {
         <div className={styles.right}>
           <Link to="/AdminPageRemove">
             <Button type="submit" value="remove" className={classes.change}>
-              Remove User
+              Users
             </Button>
           </Link>
         </div>

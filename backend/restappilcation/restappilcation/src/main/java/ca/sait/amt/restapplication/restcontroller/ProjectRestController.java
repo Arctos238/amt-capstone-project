@@ -58,7 +58,6 @@ public class ProjectRestController {
 				throw new ClientIdNotFoundException("No Client ID found inside the client object that was attached");
 			}
 			
-			project.setProjectId(0);
 			
 			projectService.saveProject(project);
 		}

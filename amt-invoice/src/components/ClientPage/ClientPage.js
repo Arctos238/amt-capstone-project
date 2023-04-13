@@ -1,4 +1,4 @@
-import {React, useState} from "react";
+import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../UI/Card";
 import classes from "../UI/Card.module.css";
@@ -19,12 +19,12 @@ const ClientPage = () => {
   const fetchData = async () => {
     const data = await GetProjectByClientId(selectedClientId);
     setProjectList(data);
-  }
+  };
   fetchData();
   return (
     <div className={styles.clientPage}>
       <BackButton />
-      <h1 className={styles.title}>Project Page</h1>
+      <h1 className={styles.title}>Client</h1>
       <div className="aboutClient">
         <Card className={classes.yellowCard}>
           <ClientContact

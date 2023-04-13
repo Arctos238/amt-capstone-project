@@ -167,7 +167,6 @@ const CreateInvoiceItem = (props) => {
             </CardWithRadius>
           </div>
         </div>
-
       </div>
     </form>
   );

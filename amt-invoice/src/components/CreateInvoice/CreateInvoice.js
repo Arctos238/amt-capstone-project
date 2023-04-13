@@ -158,7 +158,6 @@ const CreateInvoice = () => {
   const materialRef = useRef();
   const locationRef = useRef();
 
-
   const currentProjectId = localStorage.getItem("currentProjectId");
 
   const [invoiceItem, setInvoiceItem] = useState([{}]);
@@ -179,8 +178,6 @@ const CreateInvoice = () => {
   const [isInvoiceAdded, setIsInvoiceAdded] = useState(false);
   const [isInputEmpty, setIsInputEmpty] = useState(false);
   const [isInvoiceItemsEmpty, setIsInvoiceItemsEmpty] = useState(false);
-
-
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -336,19 +333,19 @@ const CreateInvoice = () => {
       invoiceItemWidth === null ||
       invoiceItemWidth === "" ||
       invoiceItemLength === null ||
-      invoiceItemLength === ""||
+      invoiceItemLength === "" ||
       invoiceItemArea === null ||
-      invoiceItemArea === ""||
+      invoiceItemArea === "" ||
       invoiceItemDepth === null ||
-      invoiceItemDepth === ""||
+      invoiceItemDepth === "" ||
       invoiceItemPrice === null ||
-      invoiceItemPrice === ""||
+      invoiceItemPrice === "" ||
       edgeProfileMeasurement === null ||
-      edgeProfileMeasurement === ""||
+      edgeProfileMeasurement === "" ||
       profileId === null ||
-      profileId === ""||
+      profileId === "" ||
       edgeProfileType === null ||
-      edgeProfileType === ""||
+      edgeProfileType === "" ||
       edgeProfileCut === null ||
       edgeProfileCut === ""
     ) {
@@ -390,7 +387,10 @@ const CreateInvoice = () => {
 
   const createInvoiceHandler = async () => {
     const location = locationRef.current.value;
-    if(previousInvoiceItems.length < 0 || previousInvoiceItems[0].length === 1) {
+    if (
+      previousInvoiceItems.length < 0 ||
+      previousInvoiceItems[0].length === 1
+    ) {
       setIsInvoiceItemsEmpty(true);
     } else {
       data = {
@@ -401,13 +401,13 @@ const CreateInvoice = () => {
         },
         invoiceItems: previousInvoiceItems,
       };
-  
+
       try {
         const info = await CreateNewInvoice(data);
       } catch (error) {
         console.error(error);
       }
-  
+
       if (data != null) {
         setIsInvoiceAdded(true);
       }
@@ -424,12 +424,11 @@ const CreateInvoice = () => {
     invoiceItemPriceRef.current.value = "";
     materialRef.current.value = "";
     setSelectedEdgeProfileMeasurement("");
-    setEdgeProfileId(null)
+    setEdgeProfileId(null);
     setSelectedEdgeProfileType("");
     setSelectedEdgeProfileMeasurement("");
     setSelectedEdgeProfileCut("");
-
-  }
+  };
 
   return (
     <div className="createInvoiceItem">
@@ -487,7 +486,9 @@ const CreateInvoice = () => {
       {isInvoiceItemsEmpty ? (
         <div className={styles.errorBox}>
           <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
-            <Alert severity="error">No Invoice Items Added - Please add items</Alert>
+            <Alert severity="error">
+              No Invoice Items Added - Please add items
+            </Alert>
           </Stack>
         </div>
       ) : (
