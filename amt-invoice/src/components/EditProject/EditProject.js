@@ -10,7 +10,6 @@ import styles from "./EditProject.module.css";
 import BackButton from "../BackButton/BackButton";
 import { useRef, useState, useEffect } from "react";
 
-
 const EditProject = () => {
   const navigate = useNavigate();
   const [isProjectUploaded, setIsProjectUploaded] = useState(false);
@@ -37,7 +36,7 @@ const EditProject = () => {
 
   let clientInfo;
   let toArray;
-  let project = JSON.parse(localStorage.getItem('project'));
+  let project = JSON.parse(localStorage.getItem("project"));
   if ("clientInfo" in localStorage) {
     clientInfo = localStorage.getItem("clientInfo");
     toArray = JSON.parse(clientInfo);
@@ -58,7 +57,7 @@ const EditProject = () => {
   const projectSupervisorEmailRef = useRef();
   const projectContractorNameRef = useRef();
   const projectContractorNumberRef = useRef();
-  const projectContractorEmailRef= useRef();
+  const projectContractorEmailRef = useRef();
 
   const user = JSON.parse(localStorage.getItem("user"));
   const employeeName = user.employeeFirstName + " " + user.employeeLastName;
@@ -125,13 +124,13 @@ const EditProject = () => {
         projectSupervisor: {
           projectSupervisorId: 1,
           projectSupervisorName: siteSuperName,
-          projectSupervisorNumber: siteSuperPhone,  
-          projectSupervisorEmail: projectSupervisorEmail
+          projectSupervisorNumber: siteSuperPhone,
+          projectSupervisorEmail: projectSupervisorEmail,
         },
         projectContractor: {
           projectContractorName,
           projectContractorEmail,
-          projectContractorNumber
+          projectContractorNumber,
         },
         quotes: [],
         images: [],
@@ -148,15 +147,11 @@ const EditProject = () => {
         navigate("/invoices");
       }
     }
-
-    
-
-    
   }
 
   return (
     <React.Fragment>
-      <BackButton/>
+      <BackButton />
       <h1 className={styles.h1}>Edit Project</h1>
       <div className={styles.container}>
         {isProjectUploaded ? (

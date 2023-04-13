@@ -52,8 +52,8 @@ public class ProjectDAOHibernateImpl implements ProjectDAO{
 	@Override
 	public void saveProject(Project project) {
 		Session currentSession = entityManager.unwrap(Session.class);
-
-		if (project.getProjectId() == 0) {
+		
+		if (project.getProjectId() == null) {
 			currentSession.save(project);
 			
 			
