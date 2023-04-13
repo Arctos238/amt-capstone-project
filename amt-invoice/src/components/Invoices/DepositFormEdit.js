@@ -162,7 +162,7 @@ class EditDeposit extends React.Component {
                         content={() => this.componentRef}
                     />
                 </div>
-
+    
             </div>
         );
     }
