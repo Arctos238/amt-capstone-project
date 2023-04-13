@@ -39,22 +39,28 @@ const DocumentUpload = (props) => {
 
   const projectImages = JSON.parse(localStorage.getItem("project")).images;
 
-  console.log(projectImages);
+  console.log();
 
   const existingFileComponents = projectImages.map((projectImage, index) => (
     <CardWithRadius key={index} className={classes.blueCard}>
-      <Typography style={{ textAlign: "center", fontWeight: "bold" }}>
+      <Typography
+        style={{ textAlign: "center", fontWeight: "bold", color: "white", position: "relative" }}
+      >
         <a
           href={
             "http://70.77.64.68:8083/api/images/id/ " + projectImage.imageId
           }
         >
-          {console.log(projectImage.imageId)}
-          {projectImage.imageName}
+          <Button style={{ color: "white", borderColor: "#fabd44" }} variant="outlined">
+            Download
+          </Button>
+          <label style={{ position: "absolute", top: "0", left: "50%", transform: "translate(-50%, -50%)", color: "white" }}>{projectImage.imageName}</label>
         </a>
       </Typography>
     </CardWithRadius>
   ));
+
+
 
   const fileComponents = fileArray.map((file, index) => (
     <CardWithRadius key={index} className={classes.blueCard}>
@@ -71,7 +77,10 @@ const DocumentUpload = (props) => {
 
   return (
     <div>
+      <label style={{ color: 'black', textAlign: 'center' }}>Existing Documents</label>
       {existingFileComponents}
+      <br />
+      <br />
       <Button
         variant="contained"
         component="label"

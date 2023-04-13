@@ -230,7 +230,7 @@ const InvoiceProject = (props) => {
               </Table>
             </TableContainer>
           </div>
-          <br/>
+          <br />
           <Link to='/editProject'>
             <Button
               variant="contained"
@@ -373,7 +373,8 @@ const InvoiceProject = (props) => {
 
           <PhotoIcon sx={{ width: "80%", fontSize: "60px" }}></PhotoIcon>
         </AccordionSummary>
-        <AccordionDetails>
+
+        <AccordionDetails style={{ alignItems: "center" }}>
           <DocumentUpload projectId={props.projectId} />
         </AccordionDetails>
       </Accordion>
