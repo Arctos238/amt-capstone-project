@@ -15,9 +15,6 @@ const DocumentUpload = (props) => {
   const [file, setFile] = useState();
   const [fileArray, setFileArray] = useState([]);
 
-  console.log(file);
-  console.log(projectId);
-
   const fileSelectedHandler = useCallback((event) => {
     setSelectedFile(event.target.files[0]);
     console.log(event.target.files[0]);
@@ -34,13 +31,30 @@ const DocumentUpload = (props) => {
     fd.append("projectId", projectId);
 
     const data = await CreateNewImage(fd);
-    console.log(projectId);
-    console.log(data);
   };
 
-  const donwloadImg = () => {
+  const downloadImg = () => {
     saveAs();
   };
+
+  const projectImages = JSON.parse(localStorage.getItem("project")).images;
+
+  console.log(projectImages);
+
+  const existingFileComponents = projectImages.map((projectImage, index) => (
+    <CardWithRadius key={index} className={classes.blueCard}>
+      <Typography style={{ textAlign: "center", fontWeight: "bold" }}>
+        <a
+          href={
+            "http://70.77.64.68:8083/api/images/id/ " + projectImage.imageId
+          }
+        >
+          {console.log(projectImage.imageId)}
+          {projectImage.imageName}
+        </a>
+      </Typography>
+    </CardWithRadius>
+  ));
 
   const fileComponents = fileArray.map((file, index) => (
     <CardWithRadius key={index} className={classes.blueCard}>
@@ -57,6 +71,7 @@ const DocumentUpload = (props) => {
 
   return (
     <div>
+      {existingFileComponents}
       <Button
         variant="contained"
         component="label"

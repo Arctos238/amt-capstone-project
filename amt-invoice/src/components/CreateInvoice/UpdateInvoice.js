@@ -173,7 +173,6 @@ const UpdateInvoice = (props) => {
   const getInvoiceInfo = async () => {
     const data = await GetInvoiceById(toEditInvoiceId);
     setInvoiceInfo(data);
-    console.log(data.location);
     locationRef.current.value = data.location;
   }
 

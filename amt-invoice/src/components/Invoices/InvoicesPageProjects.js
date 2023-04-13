@@ -15,6 +15,7 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { GetInvoiceItemsByInvoiceId } from "../../services/InvoiceItemServices";
+import { DeleteInvoiceItemById } from "../../services/InvoiceItemServices";
 
 const style = {
   position: "absolute",
@@ -84,6 +85,11 @@ const InvoicesPageProject = (props) => {
     setPage(0);
   };
 
+  // const handleDeleteInvoiceItem = async (id) => {
+  //   console.log(id);
+  //   const data = await DeleteInvoiceItemById(id);
+  // }
+
   return (
     <div>
       {/* <Button onClick={props.handleOpen}>Open modal</Button> */}
@@ -102,6 +108,7 @@ const InvoicesPageProject = (props) => {
               <TableContainer sx={{ maxHeight: 440 }}>
                 <Table stickyHeader aria-label="sticky table">
                   <TableHead>
+                    {/* <TableCell></TableCell> */}
                     <TableCell>Item</TableCell>
                     <TableCell>Material</TableCell>
                     <TableCell>Measurement</TableCell>
@@ -117,8 +124,9 @@ const InvoicesPageProject = (props) => {
                   </TableHead>
                   <TableBody>
                     {Array.isArray(invoiceItems) ? (
-                      invoiceItems.map((invoiceItems) => (
-                        <TableRow>
+                      invoiceItems.map((invoiceItems, index) => (
+                        <TableRow key={index}>
+                          {/* <TableCell><button onClick={()=>handleDeleteInvoiceItem(invoiceItems.invoiceItemId)}>Delete</button></TableCell> */}
                           <TableCell>{invoiceItems.invoiceItemName}</TableCell>
                           <TableCell>{invoiceItems.material}</TableCell>
                           <TableCell>
@@ -143,7 +151,7 @@ const InvoicesPageProject = (props) => {
                           {invoiceItems.invoiceItemNotes.length === 0 ? (
                             <TableCell>No notes available for this item</TableCell>
                           ) : (
-                            <TableCell>
+                            <TableCell key={index}>
                               {invoiceItems.invoiceItemNotes.map((note, noteIndex) => (
                                 <p key={noteIndex}>{note.invoiceItemNote}</p>
                               ))}
