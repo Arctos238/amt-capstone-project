@@ -147,20 +147,11 @@ function useNavigation() {
 
 
 
+
 class EditDeposit extends React.Component {
-    deleteFun = async function(items) {
-        const obj = {
-            dateCreated: items.dateCreated,
-            depositForm: null,
-            invoiceId: items.invoiceId,
-            invoiceItems: items.invoiceItems,
-            invoiceTotalPrice: items.invoiceTotalPrice,
-            location: items.location,
-            projectId: items.projectId
-        }
-        console.log(items);
-        await UpdateInvoice(obj); // navigate to new route after deleting the deposit
-    }
+
+
+
 
     constructor(props) {
         super(props);
@@ -206,7 +197,7 @@ class EditDeposit extends React.Component {
                     />
 
                 </div>
-                <Button onClick={() => this.deleteFun(items)}>Delete Deposit</Button>
+
             </div>
         );
     }
