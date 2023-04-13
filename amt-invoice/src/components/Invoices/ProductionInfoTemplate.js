@@ -25,7 +25,7 @@ export default function ProductionTemplate() {
         setInvoice(invoice);
     }, []);
 
-    console.log(items);
+    console.log(invoice?.invoiceItems[0]?.material);
     return (
         <div style={{ display: "flex", justifyContent: "center", backgroundColor: "white", backgroundImage: "none" }}>
             <div style={{ maxWidth: "850px" }}>
@@ -45,7 +45,14 @@ export default function ProductionTemplate() {
                                 <TableCell style={{ fontWeight: "bold" }}>Project Name:</TableCell>
                                 <TableCell>{items.projectName}</TableCell>
                                 <TableCell style={{ fontWeight: "bold" }}>Sales Staff:</TableCell>
-                                <TableCell>{items.employeeName}</TableCell>
+                                <TableCell>
+                                    <TextField
+                                        id="standard-basic"
+                                        sx={{
+                                            input: { color: 'black', width: '70px', height: '30px' }
+                                        }}
+                                        type="text"
+                                    /></TableCell>
                                 <TableCell style={{ fontWeight: "bold" }}>Required Date:</TableCell>
                                 <TableCell>
                                     <TextField
@@ -84,8 +91,8 @@ export default function ProductionTemplate() {
                             (invoice.invoiceItems.map((invoiceItem) => (
                                 <TableRow>
                                     <TableCell style={{ fontWeight: "bold" }}>Material</TableCell>
-                                    {/* ASK HENRY WHY NO MEASUREMENT */}
-                                    <TableCell>{invoiceItem.item?.edgeProfile?.edgeProfileMeasurement} {invoiceItem.material}</TableCell>
+
+                                    <TableCell>{invoice?.invoiceItems[0]?.edgeProfile?.edgeProfileMeasurement} {invoice?.invoiceItems[0]?.material}</TableCell>
                                     <TableCell style={{ fontWeight: "bold" }}>Number of slabs:</TableCell>
                                     <TableCell>
                                         <TextField

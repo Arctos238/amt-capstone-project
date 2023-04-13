@@ -114,7 +114,7 @@ const EditProject = () => {
         projectCounterRemoval,
         projectTileRemoval,
         projectAddress: {
-          projectAddressId: 1,
+          projectAddressId: project.projectAddress.projectAddressId,
           firstLineAddress: address,
           secondLineAddress: suite,
           postalCode: postalCode,
@@ -122,7 +122,7 @@ const EditProject = () => {
           province: province,
         },
         projectSupervisor: {
-          projectSupervisorId: 1,
+          projectSupervisorId: project.projectSupervisor.projectSupervisorId,
           projectSupervisorName: siteSuperName,
           projectSupervisorNumber: siteSuperPhone,
           projectSupervisorEmail: projectSupervisorEmail,
@@ -132,20 +132,18 @@ const EditProject = () => {
           projectContractorEmail,
           projectContractorNumber,
         },
-        quotes: [],
-        images: [],
-        purchaseOrders: [],
-        depositForms: [],
-        invoices: [],
+        quotes: project.quotes,
+        images: project.images,
+        purchaseOrders: project.purchaseOrders,
+        depositForms: project.depositForms,
+        invoices: project.invoices,
         client: { clientId: theSelectedClientId },
         employeeName,
       };
 
       console.log(JSON.stringify(obj));
       const data = await UpdateProject(obj);
-      if (data) {
-        navigate("/invoices");
-      }
+      navigate("/invoices");
     }
   }
 
