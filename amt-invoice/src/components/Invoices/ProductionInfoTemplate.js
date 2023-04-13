@@ -25,7 +25,7 @@ export default function ProductionTemplate() {
         setInvoice(invoice);
     }, []);
 
-    console.log(invoice?.invoiceItems[0]?.material);
+
     return (
         <div style={{ display: "flex", justifyContent: "center", backgroundColor: "white", backgroundImage: "none" }}>
             <div style={{ maxWidth: "850px" }}>

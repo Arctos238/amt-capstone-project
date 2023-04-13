@@ -51,10 +51,12 @@ const DocumentUpload = (props) => {
             "http://70.77.64.68:8083/api/images/id/ " + projectImage.imageId
           }
         >
+
+          <label style={{ color: "white" }}>{projectImage.imageName}</label>
           <Button style={{ color: "white", borderColor: "#fabd44" }} variant="outlined">
             Download
           </Button>
-          <label style={{ position: "absolute", top: "0", left: "50%", transform: "translate(-50%, -50%)", color: "white" }}>{projectImage.imageName}</label>
+
         </a>
       </Typography>
     </CardWithRadius>

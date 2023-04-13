@@ -41,6 +41,7 @@ const InvoiceProject = (props) => {
   const [selectedInvoiceId, setSelectedInvoiceId] = useState(null);
   const [sendInvoiceInfo, setSendInvoiceInfo] = useState({});
 
+  console.log(props.project);
   // const [invoices, setInvoices] = useState([]);
   // setInvoices(projectInfo.invoices);
   // console.log(invoices);
@@ -53,7 +54,7 @@ const InvoiceProject = (props) => {
   const nav = useNavigate();
   localStorage.setItem('project', JSON.stringify(projectList));
   const test = JSON.parse(localStorage.getItem('project'));
-
+  console.log(test);
   const workForms = async (id) => {
     const data = await GetInvoiceById(id);
     console.log(data)
@@ -164,7 +165,7 @@ const InvoiceProject = (props) => {
                   <TableCell style={{ fontWeight: "bold" }}>
                     Project Status:
                   </TableCell>
-                  <TableCell>{props.project.projectStatus}</TableCell>
+                  <TableCell>{props.project.projectStatus ? "Active" : "Inactive"}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>
@@ -254,11 +255,10 @@ const InvoiceProject = (props) => {
           <Typography sx={{ width: "33%", flexShrink: 0 }}>Invoice</Typography>
           <ReceiptIcon sx={{ width: "80%", fontSize: "60px" }}></ReceiptIcon>
         </AccordionSummary>
-        {/* INVOICES */}
         <AccordionDetails>
           {invoices.length > 0 ? (
-            invoices.map((invoices, index) => (
-              <CardWithRadius className={classes.blueCard} key={index}>
+            invoices.map((invoices) => (
+              <CardWithRadius className={classes.blueCard}>
                 <div className={styles.gridContainer}>
                   <div
                     className={styles.gridItem}
@@ -296,13 +296,13 @@ const InvoiceProject = (props) => {
                       />
                     </IconButton>
 
-                    {/* <IconButton aria-label="delete" size="medium">
+                    <IconButton aria-label="delete" size="medium">
                       <EditIcon
                         fontSize="inherit"
                         sx={{ color: "#fabd44", padding: 0 }}
                         onClick={() => editInvoiceHandler(invoices.invoiceId)}
                       />
-                    </IconButton> */}
+                    </IconButton>
 
                   </div>
                 </div>
@@ -374,7 +374,7 @@ const InvoiceProject = (props) => {
           <PhotoIcon sx={{ width: "80%", fontSize: "60px" }}></PhotoIcon>
         </AccordionSummary>
 
-        <AccordionDetails style={{ alignItems: "center" }}>
+        <AccordionDetails >
           <DocumentUpload projectId={props.projectId} />
         </AccordionDetails>
       </Accordion>
