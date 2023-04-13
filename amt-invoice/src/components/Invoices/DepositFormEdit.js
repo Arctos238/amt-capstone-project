@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import BackButton from "../BackButton/BackButton";
 import BudgetQouteTemplate from './BudgetQouteTemplate';
 import ReactToPrint from "react-to-print";
@@ -7,6 +7,7 @@ import { Button, Icon } from '@mui/material';
 import PrintIcon from '@mui/icons-material/Print';
 import { TableBody, TableCell, TableContainer, TableRow, Paper, TableHead, Table, TextField } from '@mui/material';
 import UpdateInvoice from '../CreateInvoice/UpdateInvoice';
+
 
 class ComponentToPrint extends React.Component {
 
@@ -46,7 +47,7 @@ class ComponentToPrint extends React.Component {
 
         const { items } = this.state;
 
-        console.log(items?.depositForm);
+        console.log(items?.depositForm?.invoiceId);
         return (
             <div style={tabStyle}>
                 <div ref={this.props.propsRef}>
@@ -80,7 +81,7 @@ class ComponentToPrint extends React.Component {
                                                 <TableCell colSpan={2} style={{ fontWeight: "bold" }}>
                                                     {items?.depositForm?.deposit ? "Deposit:" : "Invoice number:"}
                                                 </TableCell>
-                                                <TableCell>{items?.depositForm?.deposit ? "Deposit was choose" : items?.depositForm?.invoiceNumber}</TableCell>
+                                                <TableCell>{items?.depositForm?.deposit ? "Deposit was choose" : items?.depositForm?.invoiceId}</TableCell>
                                             </TableRow>
 
                                             <TableRow>
@@ -139,10 +140,48 @@ class ComponentToPrint extends React.Component {
     }
 }
 
-class EditDeposit extends React.Component {
+function useNavigation() {
+    const navigate = useNavigate();
+    return navigate;
+}
 
+class EditDeposit extends React.Component {
+    deleteFun = async (items) => {
+        const navigate = useNavigation();
+        const obj = {
+            dateCreated: items.dateCreated,
+            depositForm: null,
+            invoiceId: items.invoiceId,
+            invoiceItems: items.invoiceItems,
+            invoiceTotalPrice: items.invoiceTotalPrice,
+            location: items.location,
+            projectId: items.projectId
+        }
+        await UpdateInvoice(obj);
+        navigate('/invoices'); // navigate to new route after deleting the deposit
+    }
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            items: {},
+            currentDate: new Date().toLocaleDateString(),
+            toArray: JSON.parse(localStorage.getItem("clientInfo"))
+        };
+    }
+
+    componentDidMount() {
+        const items = JSON.parse(localStorage.getItem('invoice'));
+        if (items) {
+            this.setState({ items });
+        }
+    }
 
     render() {
+
+        const { items } = this.state;
+
         return (
             <div style={{ backgroundColor: "white", backgroundImage: "none" }}>
                 <BackButton />
@@ -166,14 +205,14 @@ class EditDeposit extends React.Component {
                     />
 
                 </div>
-                <Button >
+                <Button onClick={() => this.deleteFun(items)}>
                     Delete Deposit
                 </Button>
 
             </div>
         );
     }
-
 }
 
 export default EditDeposit;
+

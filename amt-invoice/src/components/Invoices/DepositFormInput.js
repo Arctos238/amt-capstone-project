@@ -18,6 +18,9 @@ import { UpdateInvoice } from '../../services/InvoiceServices';
 
 
 export default function DepositInput(props) {
+  const handleGoBack = () => {
+    window.history.back();
+  };
   const [value, setValue] = React.useState("+1")
   const [invoiceInfo, setInvoiceInfo] = useState([{}]);
   const [isDepositAdded, setIsDepositAdded] = useState(false);
@@ -142,9 +145,10 @@ export default function DepositInput(props) {
 
   return (
     <div>
+      <h1>Deposit</h1>
       {isDepositExist ? (
         <div className={styles.errorBox}>
-          <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
+          <Stack sx={{ width: 600, margin: "auto" }} spacing={2}>
             <Alert severity="error">
               A deposit form was already created.
             </Alert>
@@ -155,7 +159,7 @@ export default function DepositInput(props) {
       )}
       {isDepositAdded ? (
         <div className={styles.errorBox}>
-          <Stack sx={{ width: 1100, margin: "auto" }} spacing={2}>
+          <Stack sx={{ width: 600, margin: "auto" }} spacing={2}>
             <Alert severity="success">
               Deposit Created!{" "}
               <Link to={"/invoices"}>Go back to Invoice Page</Link>
@@ -165,7 +169,7 @@ export default function DepositInput(props) {
       ) : (
         <></>
       )}
-      <h1>Deposit</h1>
+
       <div style={{ display: "flex", justifyContent: "space-between", gap: "16px" }}>
         <CardWithRadius className={`${classes.blueCard} ${styles.inputBoxes}`}>
           <TextField
@@ -524,7 +528,7 @@ export default function DepositInput(props) {
       </div>
 
       <div style={{ display: "flex", justifyContent: "center", margin: "0 auto", maxWidth: "800px", padding: "32px 0 64px 0" }}>
-        <Button variant="contained" style={{ backgroundColor: "#fabd44" }} onClick={handleSaveDeposit}>
+        <Button variant="contained" style={{ backgroundColor: "#fabd44" }} onClick={() => { handleSaveDeposit(); handleGoBack(); }}>
           Save Deposit
         </Button>
       </div>
