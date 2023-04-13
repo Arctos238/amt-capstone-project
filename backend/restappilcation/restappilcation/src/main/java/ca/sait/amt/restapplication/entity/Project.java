@@ -95,7 +95,7 @@ public class Project implements java.io.Serializable {
 		this.employeeName = employeeName;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.DETACH)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name= "client_id")
 	@JsonBackReference
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -171,7 +171,7 @@ public class Project implements java.io.Serializable {
 		this.images = images;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade=CascadeType.MERGE)
 	public Set<PurchaseOrder> getPurchaseOrders() {
 		return this.purchaseOrders;
 	}
@@ -180,7 +180,7 @@ public class Project implements java.io.Serializable {
 		this.purchaseOrders = purchaseOrders;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade=CascadeType.MERGE)
 	public Set<Invoice> getInvoices() {
 		return this.invoices;
 	}

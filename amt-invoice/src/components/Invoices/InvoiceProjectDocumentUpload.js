@@ -14,9 +14,10 @@ const DocumentUpload = (props) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [file, setFile] = useState();
   const [fileArray, setFileArray] = useState([]);
-  
+
 
   console.log(file);
+  console.log(projectId);
 
   const fileSelectedHandler = useCallback(event => {
     setSelectedFile(event.target.files[0]);
@@ -24,7 +25,7 @@ const DocumentUpload = (props) => {
     console.log(event.target.files[0]);
     const filename = event.target.files[0].name;
     console.log(filename);
-    setFileArray(prevFiles => [...prevFiles, filename]); 
+    setFileArray(prevFiles => [...prevFiles, filename]);
     setFile(URL.createObjectURL(event.target.files[0]));
   }, []);
 
@@ -37,32 +38,19 @@ const DocumentUpload = (props) => {
     console.log(data);
   };
 
-  const donwloadImg =() => {
+  const donwloadImg = () => {
     saveAs()
   }
 
   const fileComponents = fileArray.map((file, index) => (
-    <CardWithRadius key={index} className={classes.blueCard} onClick={() => downloadFile(file)}>
+    <CardWithRadius key={index} className={classes.blueCard}>
       <Typography style={{ textAlign: 'center', fontWeight: 'bold' }}>{file}</Typography>
+      <Button onClick={() => downloadFile(file)}>Download</Button>
     </CardWithRadius>
   ));
 
-  const downloadFile = async (filename) => {
-    try {
-      const response = await axios.get(`/files/${filename}`, {
-        responseType: 'blob'
-      });
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', filename);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error(error);
-    }
+  const downloadFile = async (index) => {
+    console.log(index);
   };
 
   return (
@@ -70,13 +58,13 @@ const DocumentUpload = (props) => {
       <Button variant="contained" component="label" style={{ backgroundColor: '#05516a' }}>
         Add Image
         <input hidden type="file" onChange={fileSelectedHandler} />
-        <img></img>
+
         <PhotoCamera />
       </Button>
       <br />
 
       {fileComponents}
-      
+
 
       <br />
       <button onClick={fileUploadHandler}>Upload Image</button>
