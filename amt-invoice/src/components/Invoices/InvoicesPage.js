@@ -17,8 +17,6 @@ const InvoicesPage = (props) => {
     const data = await GetProjectById(localStorage.getItem("currentProjectId"));
     setLoading(true);
     setProject(data);
-    // let dataParsed = JSON.parse(data);
-    console.log(data);
   };
 
   useEffect(() => {
@@ -27,7 +25,6 @@ const InvoicesPage = (props) => {
     }
   }, []);
 
-  console.log(project);
   return (
     <div>
       <BackButton />

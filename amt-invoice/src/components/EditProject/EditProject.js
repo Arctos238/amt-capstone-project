@@ -81,7 +81,7 @@ const EditProject = () => {
     const projectContractorName = projectContractorNameRef.current.value;
     const projectContractorNumber = projectContractorNumberRef.current.value;
 
-    console.log(projectTileRemoval);
+
     if (
       projectName === null ||
       projectName === "" ||
@@ -120,17 +120,21 @@ const EditProject = () => {
           postalCode: postalCode,
           city: city,
           province: province,
+          projectId: project.projectAddress.projectId
         },
         projectSupervisor: {
           projectSupervisorId: project.projectSupervisor.projectSupervisorId,
           projectSupervisorName: siteSuperName,
           projectSupervisorNumber: siteSuperPhone,
           projectSupervisorEmail: projectSupervisorEmail,
+          projectId: project.projectSupervisor.projectId
         },
         projectContractor: {
           projectContractorName,
           projectContractorEmail,
           projectContractorNumber,
+          projectContractorId: project.projectContractor.projectContractorId,
+          projectId: project.projectContractor.projectId
         },
         quotes: project.quotes,
         images: project.images,
@@ -140,8 +144,8 @@ const EditProject = () => {
         client: { clientId: theSelectedClientId },
         employeeName,
       };
-
-      console.log(JSON.stringify(obj));
+      console.log(project.invoices);
+      console.log(obj);
       const data = await UpdateProject(obj);
       navigate("/invoices");
     }

@@ -23,24 +23,23 @@ import BackButton from "../BackButton/BackButton";
 import { GetImageById } from "../../services/ImageServices";
 import { DeleteInvoiceById } from "../../services/InvoiceServices";
 import { GetInvoiceItemsByInvoiceId } from "../../services/InvoiceItemServices";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import InvoicesPageProject from "./InvoicesPageProjects";
 import PhotoIcon from "@mui/icons-material/Photo";
 import { TableContainer } from "@mui/material";
 import { Paper, Table, TableBody, TableRow, TableCell } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SummarizeIcon from "@mui/icons-material/Summarize";
-import CreditCardIcon from '@mui/icons-material/CreditCard';
 
 
 
 const InvoiceProject = (props) => {
-  let componentRef = useRef();
   const projectList = props.project;
   const [invoices, setInvoices] = useState(projectList.invoices);
   const [selectedInvoiceId, setSelectedInvoiceId] = useState(null);
   const [sendInvoiceInfo, setSendInvoiceInfo] = useState({});
 
+  console.log(props.project);
   // const [invoices, setInvoices] = useState([]);
   // setInvoices(projectInfo.invoices);
   // console.log(invoices);
@@ -51,37 +50,13 @@ const InvoiceProject = (props) => {
 
   // const [images, setImages] = useState([]);
   const nav = useNavigate();
-  localStorage.setItem('project', JSON.stringify(projectList));
-  const test = JSON.parse(localStorage.getItem('project'));
-
-  const workForms = async (id) => {
-    const data = await GetInvoiceById(id);
-    console.log(data)
-    localStorage.setItem('invoice', JSON.stringify(data))
+  localStorage.setItem('invoice', JSON.stringify(projectList));
+  const test = JSON.parse(localStorage.getItem('invoice'));
+  console.log(test);
+  const workForms = async () => {
     nav("/workForm");
   };
-  const deposit = async (id) => {
-    const data = await GetInvoiceById(id);
-    localStorage.setItem('invoice', JSON.stringify(data))
-    console.log(data.depositForm);
-    if (data.depositForm == null) {
-      nav('/deposit', { state: { invoiceId: id } });
-    } else {
-      nav('/finishedDeposit');
-    }
-
-  }
-  const productInfo = async (id) => {
-    const data = await GetInvoiceById(id);
-    localStorage.setItem('invoice', JSON.stringify(data))
-    nav("/productInfo");
-  }
-  const budget = async (id) => {
-    const data = await GetInvoiceById(id);
-    localStorage.setItem('invoice', JSON.stringify(data))
-    nav("/BudgetQoute");
-  }
-  const handleClick = async (id) => {
+  const handleClick = async () => {
     const data = await GetProjectById(props.projectId);
     localStorage.setItem("projectId", JSON.stringify(data));
     nav("/createInvoice");
@@ -96,10 +71,6 @@ const InvoiceProject = (props) => {
     await DeleteInvoiceById(id);
     setInvoices(invoices.filter((invoice) => invoice.invoiceId !== id));
   };
-
-  const editInvoiceHandler = id => {
-    nav('/updateInvoice', { state: { invoiceId: id } })
-  }
 
   //these three are sent to InvoicePageProjects
   const [open, setOpen] = useState(false);
@@ -203,46 +174,37 @@ const InvoiceProject = (props) => {
           <br></br>
 
           <div>
-            <Typography variant="h6" gutterBottom>
-              Project Supervisor Information
-            </Typography>
-            <TableContainer component={Paper}>
-              <Table>
-                <TableBody>
-                  <TableRow>
-                    <TableCell style={{ fontWeight: "bold" }}>
-                      Super Name:
-                    </TableCell>
-                    <TableCell>
-                      {props.project.projectSupervisor.projectSupervisorName}
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell style={{ fontWeight: "bold" }}>
-                      Super Number:
-                    </TableCell>
-                    <TableCell>
-                      {props.project.projectSupervisor.projectSupervisorNumber}
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div>
-          <br />
-          <Link to='/editProject'>
-            <Button
-              variant="contained"
-              style={{ backgroundColor: "#05516a" }}
-              startIcon={<EditIcon />}
-            >
-              Edit Project
-            </Button>
-          </Link>
+              <Typography variant="h6" gutterBottom>
+                Project Supervisor Information
+              </Typography>
+              <TableContainer component={Paper}>
+                <Table>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell style={{ fontWeight: "bold" }}>
+                        Super Name:
+                      </TableCell>
+                      <TableCell>
+                        {props.project.projectSupervisor.projectSupervisorName}
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell style={{ fontWeight: "bold" }}>
+                        Super Number:
+                      </TableCell>
+                      <TableCell>
+                        {props.project.projectSupervisor.projectSupervisorNumber}
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
 
 
+          
 
-
+          
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -254,11 +216,10 @@ const InvoiceProject = (props) => {
           <Typography sx={{ width: "33%", flexShrink: 0 }}>Invoice</Typography>
           <ReceiptIcon sx={{ width: "80%", fontSize: "60px" }}></ReceiptIcon>
         </AccordionSummary>
-        {/* INVOICES */}
         <AccordionDetails>
           {invoices.length > 0 ? (
-            invoices.map((invoices, index) => (
-              <CardWithRadius className={classes.blueCard} key={index}>
+            invoices.map((invoices) => (
+              <CardWithRadius className={classes.blueCard}>
                 <div className={styles.gridContainer}>
                   <div
                     className={styles.gridItem}
@@ -295,52 +256,14 @@ const InvoiceProject = (props) => {
                         sx={{ color: "#fabd44", padding: 0 }}
                       />
                     </IconButton>
-
-                    {/* <IconButton aria-label="delete" size="medium">
+                    <IconButton aria-label="delete" size="medium">
                       <EditIcon
                         fontSize="inherit"
                         sx={{ color: "#fabd44", padding: 0 }}
-                        onClick={() => editInvoiceHandler(invoices.invoiceId)}
                       />
-                    </IconButton> */}
-
+                    </IconButton>
                   </div>
                 </div>
-                <br />
-                <Button
-                  variant="contained"
-                  onClick={() => workForms(invoices.invoiceId)}
-                  style={{ backgroundColor: "#05516a" }}
-                  startIcon={<SummarizeIcon />}
-                >
-                  Work Order
-                </Button>
-
-                <Button
-                  variant="contained"
-                  onClick={() => deposit(invoices.invoiceId)}
-                  style={{ backgroundColor: "#05516a" }}
-                  startIcon={<CreditCardIcon />}
-                >
-                  Deposit
-                </Button>
-
-                <Button
-                  variant="contained"
-                  onClick={() => productInfo(invoices.invoiceId)}
-                  style={{ backgroundColor: "#05516a" }}
-                  startIcon={<CreditCardIcon />}
-                >
-                  Product Info
-                </Button>
-
-                <Button
-                  variant="contained"
-                  onClick={() => budget(invoices.invoiceId)}
-                  style={{ backgroundColor: "#05516a" }}
-                >
-                  Budget Quote
-                </Button>
               </CardWithRadius>
             ))
           ) : (
@@ -354,8 +277,16 @@ const InvoiceProject = (props) => {
           >
             Add Invoice
           </Button>
-
-
+          <br />
+          <br />
+          <Button
+            variant="contained"
+            onClick={workForms}
+            style={{ backgroundColor: "#05516a" }}
+            startIcon={<SummarizeIcon />}
+          >
+            Work Order
+          </Button>
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -373,8 +304,7 @@ const InvoiceProject = (props) => {
 
           <PhotoIcon sx={{ width: "80%", fontSize: "60px" }}></PhotoIcon>
         </AccordionSummary>
-
-        <AccordionDetails style={{ alignItems: "center" }}>
+        <AccordionDetails>
           <DocumentUpload projectId={props.projectId} />
         </AccordionDetails>
       </Accordion>
@@ -385,7 +315,7 @@ const InvoiceProject = (props) => {
         selectedInvoiceId={selectedInvoiceId}
         invoiceInfo={sendInvoiceInfo.invoiceItems}
       />
-    </div >
+    </div>
   );
 };
 
