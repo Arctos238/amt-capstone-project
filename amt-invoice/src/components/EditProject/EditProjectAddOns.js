@@ -24,6 +24,7 @@ const theme = createTheme({
 const EditProjectAddOns = (props) => {
   let project = JSON.parse(localStorage.getItem('project'));
   const [alignment, setAlignment] = React.useState(project.projectCabinetsCondition + "");
+  props.projectCabinetsConditionRef.current = project.projectCabinetsCondition + "";
   
 
   //cabinet 
@@ -35,6 +36,7 @@ const EditProjectAddOns = (props) => {
   };
 
   const [alignment2, setAlignment2] = React.useState(project.projectCounterRemoval + "");
+  props.projectCounterRemovalRef.current = project.projectCounterRemoval + "";
 
   //counter removal
   const handleChange2 = (event, newAlignment2) => {
@@ -45,6 +47,7 @@ const EditProjectAddOns = (props) => {
   };
 
   const [alignment3, setAlignment3] = React.useState(project.projectTileRemoval + "");
+  props.projectTileRemovalRef.current = project.projectTileRemoval + "";
 
   //tile
   const handleChange3 = (event, newAlignment3) => {
