@@ -205,9 +205,6 @@ class EditDeposit extends React.Component {
                     />
 
                 </div>
-                <Button onClick={() => this.deleteFun(items)}>
-                    Delete Deposit
-                </Button>
 
             </div>
         );

@@ -34,6 +34,7 @@ public class InvoiceItem implements java.io.Serializable {
 	private Invoice invoice;
 	private String invoiceItemName;
 	private String invoiceItemMeasurement;
+	private String material;
 	private double invoiceItemWidth;
 	private double invoiceItemLength;
 	private double invoiceItemArea;
@@ -50,13 +51,16 @@ public class InvoiceItem implements java.io.Serializable {
 		this.invoiceItemPrice = invoiceItemPrice;
 	}
 
-	public InvoiceItem(Invoice invoice, String invoiceItemName, String invoiceItemMeasurement,
-			double invoiceItemWidth, double invoiceItemLength, double invoiceItemArea, double invoiceItemDepth,
-			double invoiceItemPrice, EdgeProfile edgeProfile, Set<InvoiceItemNote> invoiceItemNotes) {
+	public InvoiceItem(Integer invoiceItemId, Invoice invoice, String invoiceItemName, String invoiceItemMeasurement,
+			String material, double invoiceItemWidth, double invoiceItemLength, double invoiceItemArea,
+			double invoiceItemDepth, double invoiceItemPrice, EdgeProfile edgeProfile,
+			Set<InvoiceItemNote> invoiceItemNotes) {
 		super();
+		this.invoiceItemId = invoiceItemId;
 		this.invoice = invoice;
 		this.invoiceItemName = invoiceItemName;
 		this.invoiceItemMeasurement = invoiceItemMeasurement;
+		this.material = material;
 		this.invoiceItemWidth = invoiceItemWidth;
 		this.invoiceItemLength = invoiceItemLength;
 		this.invoiceItemArea = invoiceItemArea;
@@ -170,6 +174,15 @@ public class InvoiceItem implements java.io.Serializable {
 
 	public void setInvoiceItemDepth(double invoiceItemDepth) {
 		this.invoiceItemDepth = invoiceItemDepth;
+	}
+	
+	@Column(name = "material")
+	public String getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(String material) {
+		this.material = material;
 	}
 
 	@Transient
