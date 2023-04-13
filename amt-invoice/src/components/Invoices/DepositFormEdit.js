@@ -157,6 +157,7 @@ class EditDeposit extends React.Component {
             location: items.location,
             projectId: items.projectId
         }
+        console.log(items);
         await UpdateInvoice(obj);
         navigate('/invoices'); // navigate to new route after deleting the deposit
     }
@@ -205,7 +206,7 @@ class EditDeposit extends React.Component {
                     />
 
                 </div>
-
+                <Button onClick={() => this.deleteFun(items)}>Delete Deposit</Button>
             </div>
         );
     }
