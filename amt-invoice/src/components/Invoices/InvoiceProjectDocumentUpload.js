@@ -70,7 +70,7 @@ const DocumentUpload = (props) => {
       <Typography style={{ textAlign: "center", fontWeight: "bold" }}>
         {file}
       </Typography>
-      <Button onClick={() => downloadFile(file)}>Download</Button>
+
     </CardWithRadius>
   ));
 
