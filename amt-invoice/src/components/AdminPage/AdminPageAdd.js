@@ -106,7 +106,7 @@ const AdminPageAdd = () => {
             },
           }}
           id="standard-basic"
-          label="FirstName:"
+          label="First Name:"
           variant="standard"
           type="text"
           InputLabelProps={{ className: styles.textFieldLabel }}
@@ -128,7 +128,7 @@ const AdminPageAdd = () => {
             },
           }}
           id="standard-basic"
-          label="LastName:"
+          label="Last Name:"
           variant="standard"
           type="text"
           InputLabelProps={{ className: styles.textFieldLabel }}

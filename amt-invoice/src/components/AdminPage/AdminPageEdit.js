@@ -118,7 +118,7 @@ const AdminPageEdit = () => {
             },
           }}
           id="standard-basic"
-          label="FirstName:"
+          label="First Name:"
           defaultValue={user.employeeFirstName}
           variant="standard"
           type="text"
@@ -141,7 +141,7 @@ const AdminPageEdit = () => {
             },
           }}
           id="standard-basic"
-          label="LastName:"
+          label="Last Name:"
           defaultValue={user.employeeLastName}
           variant="standard"
           type="text"
