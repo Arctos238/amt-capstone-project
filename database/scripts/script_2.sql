@@ -282,3 +282,18 @@ CREATE TABLE employee (
 
 SET FOREIGN_KEY_CHECKS = 1;
 
+--------------------------------------------------------------------------------
+-- Insert Admin --
+
+use amt;
+
+-- Inserts data for role table --
+
+insert into role values (1, 'Admin');
+insert into role values (2, 'Regular User');
+
+-- Admin --
+
+insert into employee (employee_id, employee_first_name, employee_last_name, employee_username, employee_password, role_id) values (26, 'admin', 'admin', 'admin', 'password', 1);
+
+

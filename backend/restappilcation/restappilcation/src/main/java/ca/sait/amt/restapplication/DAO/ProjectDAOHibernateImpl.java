@@ -7,6 +7,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import ca.sait.amt.restapplication.entity.Image;
+import ca.sait.amt.restapplication.entity.Invoice;
 import ca.sait.amt.restapplication.entity.Project;
 import jakarta.persistence.EntityManager;
 
@@ -53,16 +55,25 @@ public class ProjectDAOHibernateImpl implements ProjectDAO{
 	public void saveProject(Project project) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
+		
+		
 		if (project.getProjectId() == null) {
 			currentSession.save(project);
 			
 			
 		} else {
+			for(Invoice invoice : project.getInvoices()) {
+				invoice.setProject(project);
+			}
+			
+			for(Image image : project.getImages()) {
+				image.setProject(project);
+			}
+			
 			currentSession.merge(project);
 		}
 
 
-		
 	}
 
 	@Override

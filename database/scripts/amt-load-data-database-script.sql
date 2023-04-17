@@ -3,8 +3,8 @@ use amt;
 
 -- Inserts data for role table --
 
-insert into role values (1, 'admin');
-insert into role values (2, 'regular_user');
+insert into role values (1, 'Admin');
+insert into role values (2, 'Regular User');
 
 -- Insert for employee table --  
 insert into employee (employee_id, employee_first_name, employee_last_name, employee_username, employee_password) values (1, 'Fredrika', 'Blinco', 'fblinco0', 'NxD5jvy2v');
